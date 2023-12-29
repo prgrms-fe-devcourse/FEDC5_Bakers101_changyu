@@ -2,11 +2,12 @@ import { useState, useEffect } from 'react';
 import getChannelList from '@/apis/getChannelList';
 
 type ChannelSelectionModal ={
-    setNowChannel : React.Dispatch<React.SetStateAction<string>>;
+    setNowChannel : React.Dispatch<React.SetStateAction<ChannelListItemType>>;
 }
 
 type ChannelListItemType = {
     name : string,
+    _id?: string,
 }
 
 const ChannelSelectionModal = ({setNowChannel} : ChannelSelectionModal) => {
@@ -15,19 +16,20 @@ const ChannelSelectionModal = ({setNowChannel} : ChannelSelectionModal) => {
     useEffect(()=>{
          const getChannels = async () =>{
             const channelListRequest = await getChannelList();
-            setChannelList([{name : '전체보기'},...channelListRequest]);
+            setChannelList([{name : '전체보기', id : null},...channelListRequest]);
          }
          getChannels();
     },[]);
 
-    const onClickChannelButton = (index : number) =>
+    
+    const onClickChannelButton = async(index : number) =>
     {
-        const selectedChannelName = channelList[index].name as string;
+        const selectedChannelName = {name : channelList[index].name ,id : channelList[index]._id};
         setNowChannel(selectedChannelName);
     }
 
     return (
-        <div className ="absolute z-10 w-screen h-96 bg-yellow-300 flex gap-2">
+        <div className ="w-screen h-96 bg-yellow-300 flex gap-2">
             { channelList.length > 1 ? 
                 channelList.map(({name} : ChannelListItemType, index)=>(
                     <button key ={index} onClick = {()=>onClickChannelButton(index)}>

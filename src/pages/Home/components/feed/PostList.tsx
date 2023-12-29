@@ -1,25 +1,33 @@
 import { useState,useEffect } from 'react';
 import getPostList from '@/apis/getPostList';
 
-type PostList = {
-    channel : string
-}   
+type nowChannelType = {
+    title : string,
+    id?: string,
+}
 
-const PostList = ({channel} : PostList) => {
+type ChannelListItemType = nowChannelType
 
-    const [postList,setPostList] = useState([]);
+
+const PostList = ({name, id} : nowChannelType) => {
+
+    const [postList,setPostList] = useState<ChannelListItemType[]>([]);
 
     useEffect(()=>{
+        if (id === undefined)
+            return ;
+        console.log(name);
         (async() =>{
-            const channeListRequest = await getPostList(channel);
+            const channeListRequest = await getPostList(id);
+            console.log(channeListRequest);
             setPostList(channeListRequest);
         })()
-    },[channel]);
+    },[name]);
 
     return (
         <div>
-            {postList.map((item)=>(
-                <p>{item}</p>
+            {postList.map((item,index)=>(
+                <p key = {index}>{item.title}</p>
             ))}
         </div>
     )

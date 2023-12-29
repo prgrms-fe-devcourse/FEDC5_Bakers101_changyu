@@ -1,9 +1,9 @@
 import axiosInstance from './api';
 
-async function getPostList(channel : string)
+async function getPostList(channelId : string)
 {
     const request = await axiosInstance
-    .get(`/channel/${encodeURIComponent(channel)}`);
+    .get(`/posts/channel/${channelId}`);
 
     return request.data;
 }
