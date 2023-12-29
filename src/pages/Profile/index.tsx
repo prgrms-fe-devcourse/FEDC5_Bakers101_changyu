@@ -56,6 +56,19 @@ const UserNameWrapper = styled.div`
   ${tw`flex items-center gap-2`}
 `
 
+const ButtonContainer = styled.div`
+  ${tw`self-center mb-3`}
+`
+
+const ChatButton = styled.button`
+  background: url('src/assets/icons/chat.svg') no-repeat center center;
+  ${tw`w-6 h-6`}
+`
+const FollowButton = styled.button`
+  background: url('src/assets/icons/following.svg') no-repeat center center;
+  ${tw`w-6 h-6`}
+`
+
 function Profile() {
   const [userInfo, setUserInfo] = useState<User | null>(null)
 
@@ -100,6 +113,12 @@ function Profile() {
                   <button>팔로잉 {userInfo?.following.length}</button>
                 </FollowButtons>
               </UserProfileInfo>
+              <ButtonContainer>
+                <div className="flex gap-2 items-center">
+                  <ChatButton />
+                  <FollowButton />
+                </div>
+              </ButtonContainer>
             </UserProfileInfoWrapper>
           </aside>
         </DetailSection>
