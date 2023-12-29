@@ -3,6 +3,7 @@ import getChannelList from '@/apis/getChannelList';
 
 type ChannelSelectionModal ={
     setNowChannel : React.Dispatch<React.SetStateAction<ChannelListItemType>>;
+    setIsChannelSelectionsModalOpen : React.Dispatch<React.SetStateAction<boolean>>; 
 }
 
 type ChannelListItemType = {
@@ -10,7 +11,7 @@ type ChannelListItemType = {
     _id?: string,
 }
 
-const ChannelSelectionModal = ({setNowChannel} : ChannelSelectionModal) => {
+const ChannelSelectionModal = ({setNowChannel, setIsChannelSelectionsModalOpen} : ChannelSelectionModal) => {
 
     const [channelList, setChannelList] = useState<ChannelListItemType[]>([]);
     useEffect(()=>{
@@ -26,6 +27,7 @@ const ChannelSelectionModal = ({setNowChannel} : ChannelSelectionModal) => {
     {
         const selectedChannelName = {name : channelList[index].name ,id : channelList[index]._id};
         setNowChannel(selectedChannelName);
+        setIsChannelSelectionsModalOpen(false);
     }
 
     return (

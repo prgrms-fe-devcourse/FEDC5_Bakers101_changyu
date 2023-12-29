@@ -20,7 +20,7 @@ const Home = () =>{
         <div>
             <button onClick={()=>setIsChannelSelectionsModalOpen((isOpen)=>!isOpen)}>{nowChannel.name}</button>
             {isChannelSelectionsModalOpen ? 
-                <ChannelSelectionModal setNowChannel ={setNowChannel}/>
+                <ChannelSelectionModal setNowChannel ={setNowChannel} setIsChannelSelectionsModalOpen = {setIsChannelSelectionsModalOpen}/>
                 :
                 null
             }
