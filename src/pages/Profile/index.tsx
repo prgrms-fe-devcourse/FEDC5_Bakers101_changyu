@@ -69,6 +69,7 @@ const PostSection = styled.section`
 
 function Profile() {
   const [userInfo, setUserInfo] = useState<User | null>(null)
+  const isMyProfile = userInfo?._id === import.meta.env.VITE_USER_ID
 
   useEffect(() => {
     const fetchUserInfo = async () => {
@@ -87,7 +88,7 @@ function Profile() {
           <aside className="w-full flex flex-col gap-2">
             <div className="w-full flex justify-between">
               <UserProfileImage src={`${userInfo?.image}`} />
-              <EditButton />
+              {isMyProfile && <EditButton />}
             </div>
             <UserProfileInfoWrapper>
               <UserProfileInfo>
@@ -106,7 +107,7 @@ function Profile() {
               </UserProfileInfo>
               <ButtonContainer className="items-center self-center mb-5">
                 <ChatButton />
-                <FollowButton />
+                {!isMyProfile && <FollowButton />}
               </ButtonContainer>
             </UserProfileInfoWrapper>
           </aside>
