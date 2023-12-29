@@ -32,14 +32,16 @@ const ChannelSelectionModal = ({setNowChannel, setIsChannelSelectionsModalOpen} 
 
     return (
         <div className ="w-screen h-96 bg-yellow-300 flex gap-2">
+            <li>
             { channelList.length > 1 ? 
                 channelList.map(({name} : ChannelListItemType, index)=>(
-                    <button key ={index} onClick = {()=>onClickChannelButton(index)}>
+                    <option key ={index} onClick = {()=>onClickChannelButton(index)}>
                         {name}
-                    </button>
+                    </option>
                 )) : 
                 null
             }
+            </li>
         </div>
     );
 }

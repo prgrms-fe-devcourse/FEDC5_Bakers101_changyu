@@ -1,0 +1,29 @@
+import { useEffect } from 'react'
+
+type HomeHeaderProps = {
+    selectedChannel : string,
+    onClick: () => void;
+  };
+
+  
+const HomeHeader = ({selectedChannel, onClick} : HomeHeaderProps) =>{
+
+    useEffect(()=>{
+
+    },[]);
+
+    return (
+        <div className="flex justify-between mx-4">
+            <div className ="flex">
+                <p className ="text-[#957969] text-[1.375rem] font-bold">{selectedChannel}</p>
+                <button onClick ={onClick}> 채널선택 </button>
+            </div>
+            <div className ="flex gap-2">
+                <button>검색</button>
+                <button>알림</button>
+            </div>
+        </div>
+    )
+}
+
+export default HomeHeader;
