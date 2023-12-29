@@ -4,9 +4,13 @@ import createPost from '@/apis/createPost';
 import getChannelInform from '@/apis/getChannelInform';
 import { AdminLogin } from '@/apis/mockingApis';
 
+type CreatePostTypes = {
+    setNowCreate : React.Dispatch<React.SetStateAction<boolean>>; 
+  };
+
 type BreadType = '조리빵'|'특수빵'|'식빵'|'과자빵'| null;
 
-const CreatePost = () =>{
+const CreatePost = ({setNowCreate} : CreatePostTypes) =>{
 
     const breadType = ['조리빵','특수빵','식빵','과자빵'];
 
@@ -21,11 +25,12 @@ const CreatePost = () =>{
         const token = await AdminLogin();
         const channelId = await getChannelInform(selectedBread);
         createPost(token,title,null,channelId._id)
+        setNowCreate(false);
     }
 
     return (
         <div className = "w-screen">
-            <CreatePostHeader/>
+            <CreatePostHeader onClickCreate ={()=>setNowCreate(false)}/>
             <div className ="w-fit mx-auto">
                 <div className ="mb-[3rem]">               
                      <input 

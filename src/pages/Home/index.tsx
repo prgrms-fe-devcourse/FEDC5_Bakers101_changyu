@@ -13,20 +13,30 @@ const Home = () =>{
 
     const [isChannelSelectionsModalOpen,setIsChannelSelectionsModalOpen] = useState(false);
     const [nowChannel,setNowChannel] = useState<nowChannelType>({name :'전체보기', id : undefined});
+    const [nowCreate,setNowCreate] = useState<boolean>(false);
 
     useEffect(()=>{
     },[nowChannel]);
 
     return (
         <div>
-            <CreatePost/>
-            <HomeHeader selectedChannel = {nowChannel.name} onClick={()=>{setIsChannelSelectionsModalOpen((isOpen)=>!isOpen);console.log('*')}}/>
+            {nowCreate ? <CreatePost setNowCreate = {setNowCreate}/> 
+                : 
+                <HomeHeader 
+                    selectedChannel = {nowChannel.name} 
+                    onClickChanneList={()=>{setIsChannelSelectionsModalOpen((isOpen)=>!isOpen)}}
+                    onClickCreate={()=>setNowCreate(true)}/>
+                
+            }
             {isChannelSelectionsModalOpen ? 
                 <ChannelSelectionModal setNowChannel ={setNowChannel} setIsChannelSelectionsModalOpen = {setIsChannelSelectionsModalOpen}/>
-                :
-                null
+                : null
             }
-            <PostList title = {nowChannel.name} id = {nowChannel.id}/>
+            {
+                !nowCreate ?
+                     <PostList title = {nowChannel.name} id = {nowChannel.id}/>
+                     : null
+            }
         </div>
     );
 }
