@@ -1,3 +1,4 @@
+import { GET_USER_PROFILE_PATH } from '@/utils/api_paths'
 import axiosInstance from './api'
 
 interface ProfileResponse extends User {}
@@ -5,7 +6,7 @@ interface ProfileResponse extends User {}
 async function getProfile(): Promise<ProfileResponse> {
   try {
     const response = await axiosInstance.get(
-      `/users/${import.meta.env.VITE_USER_ID}`
+      `${GET_USER_PROFILE_PATH}/${import.meta.env.VITE_USER_ID}`
     )
 
     return response.data
