@@ -11,6 +11,10 @@ const Header = styled.header`
   ${tw`w-full h-16 absolute top-0 left-0`}
 `
 
+const PrevButton = styled.header`
+  background: url('src/assets/icons/prev_white.svg') no-repeat center center;
+  ${tw`w-12 h-12`}
+`
 const UserProfileSection = styled.section`
   ${tw`w-full h-full`}
 `
@@ -88,12 +92,7 @@ function Profile() {
   return (
     <ProfileContainer>
       <Header>
-        <button>
-          <img
-            src="src/assets/icons/prev_white.svg"
-            alt="goback"
-          />
-        </button>
+        <PrevButton />
       </Header>
       <UserProfileSection>
         <CoverImage src={`${userInfo?.coverImage}`} />
