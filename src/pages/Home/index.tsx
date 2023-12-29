@@ -24,7 +24,7 @@ const Home = () =>{
                 :
                 null
             }
-            <PostList name = {nowChannel.name} id = {nowChannel.id}/>
+            <PostList title = {nowChannel.name} id = {nowChannel.id}/>
         </div>
     );
 }

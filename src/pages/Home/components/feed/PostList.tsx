@@ -1,5 +1,5 @@
 import { useState,useEffect } from 'react';
-import getPostList from '@/apis/getPostList';
+import {getPostList,getAllPostList} from '@/apis/getPostList';
 
 type nowChannelType = {
     title : string,
@@ -9,20 +9,26 @@ type nowChannelType = {
 type ChannelListItemType = nowChannelType
 
 
-const PostList = ({name, id} : nowChannelType) => {
+const PostList = ({title, id} : nowChannelType) => {
 
     const [postList,setPostList] = useState<ChannelListItemType[]>([]);
 
     useEffect(()=>{
-        if (id === undefined)
-            return ;
-        console.log(name);
-        (async() =>{
-            const channeListRequest = await getPostList(id);
-            console.log(channeListRequest);
-            setPostList(channeListRequest);
-        })()
-    },[name]);
+        if (title === '전체보기' && id === undefined)
+        {
+            (async() =>{
+                const channeListRequest = await getAllPostList();
+                console.log(channeListRequest);
+                setPostList(channeListRequest);
+            })()
+        } else if (id !== undefined) {
+            (async() =>{
+                const channeListRequest = await getPostList(id);
+                console.log(channeListRequest);
+                setPostList(channeListRequest);
+            })()
+        }
+    },[title]);
 
     return (
         <div>
