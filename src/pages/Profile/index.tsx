@@ -1,6 +1,7 @@
 import getProfile from '@/apis/profile'
 import { useEffect, useState } from 'react'
 import tw, { styled } from 'twin.macro'
+import PostList from './components/PostList'
 
 const ProfileContainer = styled.main`
   ${tw`w-full h-screen relative`}
@@ -72,13 +73,6 @@ const FollowButton = styled.button`
 const PostSection = styled.section`
   ${tw`mx-auto w-10/12 flex flex-col gap-6`}
 `
-const PostList = styled.div`
-  ${tw`h-96`}
-`
-
-const PostTitle = styled.h1`
-  ${tw`text-lg font-bold mb-4`}
-`
 
 function Profile() {
   const [userInfo, setUserInfo] = useState<User | null>(null)
@@ -135,22 +129,14 @@ function Profile() {
         </DetailSection>
         <Divider />
         <PostSection>
-          <PostList>
-            <PostTitle>작성한 포스트</PostTitle>
-            <div>
-              {userInfo?.posts && userInfo?.posts.length > 0
-                ? ''
-                : '작성한 포스트가 없습니다.'}
-            </div>
-          </PostList>
-          <PostList>
-            <PostTitle>좋아요 한 포스트</PostTitle>
-            <div>
-              {userInfo?.likes && userInfo?.likes.length > 0
-                ? ''
-                : '좋아요 한 포스트가 없습니다.'}
-            </div>
-          </PostList>
+          <PostList
+            posts={userInfo?.posts}
+            listTitle="작성한 포스트"
+          />
+          <PostList
+            posts={userInfo?.likes}
+            listTitle="좋아요한 포스트"
+          />
         </PostSection>
       </UserProfileSection>
     </ProfileContainer>
