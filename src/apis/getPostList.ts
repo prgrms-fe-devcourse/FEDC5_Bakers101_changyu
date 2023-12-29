@@ -35,6 +35,7 @@ async function getPostList(channelId : string)
 {
     const request = await axiosInstance
     .get(`/posts/channel/${channelId}`);
+    request.data.sort((a : PostListType ,b : PostListType)=>  Number(b.createdAt)- Number(a.createdAt))
     return request.data;
 }
 
@@ -45,6 +46,7 @@ async function getAllPostList()
         return getPostList(_id);
     });
     const postList = (await Promise.all(postListPromises)).flat();
+    postList.sort((a : PostListType ,b : PostListType)=>  Number(b.createdAt)- Number(a.createdAt))
     return postList;
 
 }
