@@ -6,6 +6,10 @@ const ProfileContainer = styled.main`
   ${tw`w-full h-screen relative`}
 `
 
+const Header = styled.header`
+  ${tw`w-full h-16 absolute top-0 left-0`}
+`
+
 function Profile() {
   const [userInfo, setUserInfo] = useState<User | null>(null)
 
@@ -17,7 +21,18 @@ function Profile() {
     fetchUserInfo()
   }, [])
 
-  return <ProfileContainer></ProfileContainer>
+  return (
+    <ProfileContainer>
+      <Header>
+        <button>
+          <img
+            src="src/assets/icons/prev_white.svg"
+            alt="goback"
+          />
+        </button>
+      </Header>
+    </ProfileContainer>
+  )
 }
 
 export default Profile
