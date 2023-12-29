@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import ChannelSelectionModal from './components/channelSelectionsModal';
 import PostList from './components/feed/PostList';
 import HomeHeader from './components/header';
-
+import CreatePost from './components/createPost';
 type nowChannelType = {
     name : string,
     id?: string,
@@ -19,6 +19,7 @@ const Home = () =>{
 
     return (
         <div>
+            <CreatePost/>
             <HomeHeader selectedChannel = {nowChannel.name} onClick={()=>{setIsChannelSelectionsModalOpen((isOpen)=>!isOpen);console.log('*')}}/>
             {isChannelSelectionsModalOpen ? 
                 <ChannelSelectionModal setNowChannel ={setNowChannel} setIsChannelSelectionsModalOpen = {setIsChannelSelectionsModalOpen}/>
