@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import CreatePostHeader from './Header';
+import createPost from '@/apis/createPost';
+import getChannelInform from '@/apis/getChannelInform';
+import { AdminLogin } from '@/apis/mockingApis';
 
 type BreadType = '조리빵'|'특수빵'|'식빵'|'과자빵'| null;
 
@@ -12,9 +15,16 @@ const CreatePost = () =>{
     // const [fileUrl,setFileUrl] = useState<string>(''); <-file로 대체 예정
     const [selectedBread,setSelectedBread] = useState<BreadType>(null);
 
+    const onClickEnrollPost = async() => {
+        if (selectedBread === null)
+            return ;
+        const token = await AdminLogin();
+        const channelId = await getChannelInform(selectedBread);
+        createPost(token,title,null,channelId._id)
+    }
 
     return (
-        <div>
+        <div className = "w-screen">
             <CreatePostHeader/>
             <div className ="w-fit mx-auto">
                 <div className ="mb-[3rem]">               
@@ -45,10 +55,13 @@ const CreatePost = () =>{
                 </div>
             <input 
                 placeholder="레시피를 알려주세요."
-                className ="w-[20rem] min-h-[39rem] mt-6 border-2 border-[#959595]"
+                className ="w-[20rem] min-h-[39rem] mt-6 border-1 border-[#959595]"
                 onChange={(e)=>setDetail(e.target.value)}
                 />
             </div>
+            <button 
+                onClick ={onClickEnrollPost}
+                className ="w-fit mx-auto text-[1.1rem] font-bold px-6 py-2 rounded-full drop-shadow-lg border-1 border-slate-100">등록하기</button>
         </div>
     )
 }
