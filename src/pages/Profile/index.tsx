@@ -46,16 +46,12 @@ const OnlineIndicator = styled.div(({ isOnline }) => [
   isOnline && tw`bg-[limegreen]`
 ])
 
-const FollowButtons = styled.div`
-  ${tw`flex gap-2 font-semibold mt-3`}
-`
-
 const UserNameWrapper = styled.div`
   ${tw`flex items-center gap-2`}
 `
 
 const ButtonContainer = styled.div`
-  ${tw`self-center mb-3`}
+  ${tw`flex gap-2`}
 `
 
 const ChatButton = styled.button`
@@ -103,16 +99,14 @@ function Profile() {
                   <OnlineIndicator isOnline={userInfo?.isOnline} />
                 </UserNameWrapper>
                 <p className="text-[#333]">{userInfo?.email}</p>
-                <FollowButtons>
+                <ButtonContainer className="font-semibold mt-3">
                   <button>팔로워 {userInfo?.followers.length}</button>
                   <button>팔로잉 {userInfo?.following.length}</button>
-                </FollowButtons>
+                </ButtonContainer>
               </UserProfileInfo>
-              <ButtonContainer>
-                <div className="flex gap-2 items-center">
-                  <ChatButton />
-                  <FollowButton />
-                </div>
+              <ButtonContainer className="items-center self-center mb-5">
+                <ChatButton />
+                <FollowButton />
               </ButtonContainer>
             </UserProfileInfoWrapper>
           </aside>
