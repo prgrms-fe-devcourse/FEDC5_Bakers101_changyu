@@ -2,19 +2,12 @@ import getProfile from '@/apis/profile'
 import { useEffect, useState } from 'react'
 import tw, { styled } from 'twin.macro'
 import PostList from './components/PostList'
+import Header from './components/Header'
 
 const ProfileContainer = styled.main`
   ${tw`w-full h-screen relative`}
 `
 
-const Header = styled.header`
-  ${tw`w-full h-16 absolute top-0 left-0`}
-`
-
-const PrevButton = styled.header`
-  background: url('src/assets/icons/prev_white.svg') no-repeat center center;
-  ${tw`w-12 h-12`}
-`
 const UserProfileSection = styled.section`
   ${tw`w-full h-full`}
 `
@@ -91,9 +84,7 @@ function Profile() {
 
   return (
     <ProfileContainer>
-      <Header>
-        <PrevButton />
-      </Header>
+      <Header />
       <UserProfileSection>
         <CoverImage src={`${userInfo?.coverImage}`} />
         <DetailSection>
