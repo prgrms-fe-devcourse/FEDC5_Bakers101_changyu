@@ -1,18 +1,22 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import ChannelSelectionModal from './components/channelSelectionsModal';
 
 const Home = () =>{
 
     const [isChannelSelectionsModalOpen,setIsChannelSelectionsModalOpen] = useState(false);
+    const [nowChannel,setNowChannel] = useState<string>('전체보기');
 
+    useEffect(()=>{
+        console.log(nowChannel);
+    },[nowChannel]);
 
     return (
         <div>
-            <button onClick={()=>setIsChannelSelectionsModalOpen((isOpen)=>!isOpen)}>전체보기</button>
+            <button onClick={()=>setIsChannelSelectionsModalOpen((isOpen)=>!isOpen)}>{nowChannel}</button>
             {isChannelSelectionsModalOpen ? 
-                <div>
-                    
-                </div> 
-                : null    
+                <ChannelSelectionModal setNowChannel ={setNowChannel}/>
+                :
+                null
             }
 
         </div>
