@@ -69,6 +69,17 @@ const FollowButton = styled.button`
   ${tw`w-6 h-6`}
 `
 
+const PostSection = styled.section`
+  ${tw`mx-auto w-10/12 flex flex-col gap-6`}
+`
+const PostList = styled.div`
+  ${tw`h-96`}
+`
+
+const PostTitle = styled.h1`
+  ${tw`text-lg font-bold mb-4`}
+`
+
 function Profile() {
   const [userInfo, setUserInfo] = useState<User | null>(null)
 
@@ -122,8 +133,25 @@ function Profile() {
             </UserProfileInfoWrapper>
           </aside>
         </DetailSection>
-
         <Divider />
+        <PostSection>
+          <PostList>
+            <PostTitle>작성한 포스트</PostTitle>
+            <div>
+              {userInfo?.posts && userInfo?.posts.length > 0
+                ? ''
+                : '작성한 포스트가 없습니다.'}
+            </div>
+          </PostList>
+          <PostList>
+            <PostTitle>좋아요 한 포스트</PostTitle>
+            <div>
+              {userInfo?.likes && userInfo?.likes.length > 0
+                ? ''
+                : '좋아요 한 포스트가 없습니다.'}
+            </div>
+          </PostList>
+        </PostSection>
       </UserProfileSection>
     </ProfileContainer>
   )
