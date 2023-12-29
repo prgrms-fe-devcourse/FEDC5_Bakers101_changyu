@@ -35,6 +35,27 @@ const EditButton = styled.button`
   ${tw`w-6 h-6 self-end mb-3`}
 `
 
+const UserProfileInfoWrapper = styled.div`
+  ${tw`flex justify-between gap-3`}
+`
+
+const UserProfileInfo = styled.div`
+  ${tw`flex flex-col`}
+`
+
+const OnlineIndicator = styled.div(({ isOnline }) => [
+  tw`w-2 h-2 rounded-full bg-[crimson] self-end mb-1`,
+  isOnline && tw`bg-[limegreen]`
+])
+
+const FollowButtons = styled.div`
+  ${tw`flex gap-2 font-semibold mt-3`}
+`
+
+const UserNameWrapper = styled.div`
+  ${tw`flex items-center gap-2`}
+`
+
 function Profile() {
   const [userInfo, setUserInfo] = useState<User | null>(null)
 
@@ -64,8 +85,25 @@ function Profile() {
               <UserProfileImage src={`${userInfo?.image}`} />
               <EditButton />
             </div>
+            <UserProfileInfoWrapper>
+              <UserProfileInfo>
+                <UserNameWrapper>
+                  <p className="font-bold text-2xl">User</p>
+                  <p className="text-sm text-[#333] self-end">
+                    {userInfo?.fullName}
+                  </p>
+                  <OnlineIndicator isOnline={userInfo?.isOnline} />
+                </UserNameWrapper>
+                <p className="text-[#333]">{userInfo?.email}</p>
+                <FollowButtons>
+                  <button>팔로워 {userInfo?.followers.length}</button>
+                  <button>팔로잉 {userInfo?.following.length}</button>
+                </FollowButtons>
+              </UserProfileInfo>
+            </UserProfileInfoWrapper>
           </aside>
         </DetailSection>
+
         <Divider />
       </UserProfileSection>
     </ProfileContainer>
