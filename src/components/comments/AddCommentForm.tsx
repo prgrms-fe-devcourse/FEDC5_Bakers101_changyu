@@ -22,7 +22,7 @@ const AddCommentForm = ({ postId }: Props) => {
   return (
     <div className="flex items-center space-x-3 m-2 p-2 border-b border-black">
       <input
-        className="flex-1 placeholder-brand-primary p-2 outline-none"
+        className="flex-1 placeholder-brand-primary p-2 outline-none bg-transparent"
         placeholder="댓글을 입력해 주세요."
         value={comment}
         onChange={(e) => setComment(e.target.value)}
