@@ -19,7 +19,7 @@ type PostItemType = {
 
 const PostlItem = ({postDetail} : PostItemType) => {
 
-    const {_id, author, createdAt,title} = postDetail;
+    const {author, createdAt,title} = postDetail;
     
     const channelName = postDetail.channel.name;
     const authorName = postDetail.author.fullName;

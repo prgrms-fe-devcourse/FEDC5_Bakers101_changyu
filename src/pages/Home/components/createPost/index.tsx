@@ -89,13 +89,13 @@ const CreatePost = ({setNowCreate} : CreatePostTypes) =>{
                 </div>
             <input 
                 placeholder="레시피를 알려주세요."
-                className ="w-[20rem] min-h-[39rem] mt-6 border-1 border-[#959595]"
+                className ="w-[20rem] min-h-[39rem] mt-6 border-1 border-[#959595] placeholder-start"
                 onChange={(e)=>setDetail(e.target.value)}
                 />
             </div>
             <button 
                 onClick ={onClickEnrollPost}
-                className ="w-fit mx-auto text-[1.1rem] font-bold px-6 py-2 rounded-full drop-shadow-lg border-1 border-slate-100">등록하기</button>
+                className ="fixed w-fit left-1/2 transform -translate-x-1/2 bottom-4 text-[1.1rem] font-bold px-6 py-2 rounded-full drop-shadow-lg border-1 border-slate-100 ">등록하기</button>
         </div>
     )
 }
