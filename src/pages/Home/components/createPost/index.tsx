@@ -64,7 +64,9 @@ const CreatePost = ({setNowCreate} : CreatePostTypes) =>{
                 <div>
                     <div className ="flex mb-1">
                         <p className ="mt-2 mx-2 w-[16.8rem] text-[#959595]">
-                                빵 이미지를 첨부 해주세요.
+                            {
+                                file ? file.name : '빵 이미지를 첨부 해주세요.'
+                            }
                         </p>
                         <button 
                             className ="pb-2"
