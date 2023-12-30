@@ -30,9 +30,17 @@ type AuthorType = {
     _id: string;
   };
 
-const createPost = async(token : string, title :string, image : null, channelId  : string) =>{
-    await axiosInstance
-    .post('/posts/create',{'title' :  title , 'image' : image, 'channelId' : channelId },{headers: {'Authorization': `bearer ${token}`}}).then((req)=>console.log(req));
+// const createPost = async(token : string, fomrData : FormData) =>{
+//     await axiosInstance
+//     .post('/posts/create',{'title' : fomrData},
+//       {headers: {'Authorization': `bearer ${token}`,'Content-Type': 'multipart/form-data'}})
+//       .then((req)=>console.log(req));
+// }
+const createPost = async(token : string, formData : FormData) =>{
+  await axiosInstance
+  .post('/posts/create', formData,
+    {headers: {'Authorization': `bearer ${token}`,'Content-Type': 'multipart/form-data'}})
+    .then((req)=>console.log(req));
 }
 
 
