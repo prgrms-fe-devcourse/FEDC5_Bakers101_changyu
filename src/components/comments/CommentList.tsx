@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { deleteComment } from '@/apis/commnents'
 import commentDeleteIcon from '@/assets/icons/commentDelete.svg'
 
 interface CommentProps {
@@ -31,28 +32,44 @@ const formatDate = (dateString: string) => {
   return `${year}.${month}.${day}`
 }
 
-const CommentList = ({ comments }: Props) => {
+const CommentList = ({ comments: initialComments }: Props) => {
+  const [comments, setComments] = useState(initialComments)
+
+  useEffect(() => {
+    setComments(initialComments)
+  }, [initialComments])
+
+  const handleCommentDelete = async (commentId: string) => {
+    try {
+      await deleteComment(commentId)
+      setComments(comments.filter((comment) => comment._id !== commentId))
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   return (
     <div className="flex flex-col">
       {comments.length > 0 ? (
         <ul className="w-full my-3">
-          {comments.map((comment) => (
+          {comments.map(({ _id, author, createdAt, comment }) => (
             <li
-              key={comment._id}
+              key={_id}
               className="mb-4 mx-8">
               <div className="flex flex-col justify-between">
                 <div className="flex justify-between items-center">
-                  <div className="font-medium">{comment.author.fullName}</div>
+                  <div className="font-medium">{author.fullName}</div>
                   <div className="text-sm text-gray-500">
-                    {formatDate(comment.createdAt)}
+                    {formatDate(createdAt)}
                   </div>
                 </div>
                 <div className="flex justify-between items-center">
-                  <div className="py-2">{comment.comment}</div>
+                  <div className="py-2">{comment}</div>
                   <img
                     className="cursor-pointer"
                     src={commentDeleteIcon}
                     alt="댓글 삭제 아이콘"
+                    onClick={() => handleCommentDelete(_id)}
                   />
                 </div>
               </div>
