@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { getChannelList } from '@/apis/channelApis';
 
-type ChannelSelectionModal ={
+type ChannelSelectionModal = {
     setNowChannel : React.Dispatch<React.SetStateAction<ChannelListItemType>>;
     setIsChannelSelectionsModalOpen : React.Dispatch<React.SetStateAction<boolean>>; 
 }
@@ -31,17 +31,18 @@ const ChannelSelectionModal = ({setNowChannel, setIsChannelSelectionsModalOpen} 
     }
 
     return (
-        <div className ="w-screen h-96 bg-yellow-300 flex gap-2">
-            <li>
+        <div className ="absolute z-10 w-36 h-fit mx-2  bg-white flex flex-col drop-shadow-2xl">
             { channelList.length > 1 ? 
                 channelList.map(({name} : ChannelListItemType, index)=>(
-                    <option key ={index} onClick = {()=>onClickChannelButton(index)}>
+                    <button 
+                        key ={index}
+                        onClick = {()=>onClickChannelButton(index)}
+                        className ="h-8">
                         {name}
-                    </option>
+                    </button>
                 )) : 
                 null
             }
-            </li>
         </div>
     );
 }
