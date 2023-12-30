@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import getChannelList from '@/apis/getChannelList';
+import { getChannelList } from '@/apis/channelApis';
 
 type ChannelSelectionModal ={
     setNowChannel : React.Dispatch<React.SetStateAction<ChannelListItemType>>;

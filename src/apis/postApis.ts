@@ -1,5 +1,5 @@
 import axiosInstance from './api';
-import getChannelList from './getChannelList';
+import { getChannelList } from './channelApis';
 
 
 type AuthorType = {
@@ -30,17 +30,29 @@ type AuthorType = {
     _id: string;
   };
 
+const createPost = async(token : string, title :string, image : null, channelId  : string) =>{
+    await axiosInstance
+    .post('/posts/create',{'title' :  title , 'image' : image, 'channelId' : channelId },{headers: {'Authorization': `bearer ${token}`}}).then((req)=>console.log(req));
+}
 
-async function getPostList(channelId : string)
-{
+
+const getPostDetail = async(postId : number) => {
+    const request = await axiosInstance
+    .get(`/posts/${postId}`);
+    console.log(request.data);
+    return request.data;
+}
+
+const getPostList = async(channelId : string) => {
     const request = await axiosInstance
     .get(`/posts/channel/${channelId}`);
+    if (!request)
+      return ;
     request.data.sort((a : PostListType ,b : PostListType)=>  Number(b.createdAt)- Number(a.createdAt))
     return request.data;
 }
 
-async function getAllPostList()
-{
+const getAllPostList = async() =>{
     const channelList =  await getChannelList();
     const postListPromises = channelList.map(({_id} : PostListType)=>{
         return getPostList(_id);
@@ -50,4 +62,4 @@ async function getAllPostList()
     return postList;
 
 }
-export {getPostList, getAllPostList};
+export {createPost,getPostDetail, getPostList, getAllPostList};

@@ -13,4 +13,18 @@ async function createChannel(token: string, channelName : string, description : 
       .then((res) => console.log(res));
 }
 
-export {createChannel}
+async function getChannelInform(channel : string)
+{
+    const request = await axiosInstance
+    .get(`/channels/${encodeURIComponent(channel)}`);
+
+    return request.data;
+}
+
+async function getChannelList()
+{
+    const request = await axiosInstance
+    .get('/channels');
+    return request.data;
+}
+export {createChannel,getChannelInform,getChannelList};

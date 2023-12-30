@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import CreatePostHeader from './Header';
-import createPost from '@/apis/createPost';
-import getChannelInform from '@/apis/getChannelInform';
+import { createPost } from '@/apis/postApis';
+import { getChannelInform } from '@/apis/channelApis';
 import { AdminLogin } from '@/apis/mockingApis';
 
 type CreatePostTypes = {

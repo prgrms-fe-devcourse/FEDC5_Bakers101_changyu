@@ -1,5 +1,5 @@
 import { useState,useEffect } from 'react';
-import {getPostList,getAllPostList} from '@/apis/getPostList';
+import {getPostList,getAllPostList} from '@/apis/postApis';
 
 type nowChannelType = {
     title : string,
