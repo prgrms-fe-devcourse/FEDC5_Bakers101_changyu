@@ -17,7 +17,7 @@ const ChannelSelectionModal = ({setNowChannel, setIsChannelSelectionsModalOpen} 
     useEffect(()=>{
          const getChannels = async () =>{
             const channelListRequest = await getChannelList();
-            setChannelList([{name : '전체보기', id : null},...channelListRequest]);
+            setChannelList([{name : '전체 채널', id : null},...channelListRequest]);
          }
          getChannels();
     },[]);

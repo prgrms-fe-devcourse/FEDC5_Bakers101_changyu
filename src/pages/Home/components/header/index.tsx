@@ -1,4 +1,7 @@
 import { useEffect } from 'react'
+import AlarmIcon from '@/assets/icons/notification.svg'
+import SearchIcon from '@/assets/icons/search.svg'
+import TriangleIcon from '@/assets/icons/triangle.svg'
 
 type HomeHeaderProps = {
     selectedChannel : string,
@@ -15,13 +18,20 @@ const HomeHeader = ({selectedChannel, onClickChanneList,onClickCreate} : HomeHea
 
     return (
         <div className="flex justify-between mx-4">
-            <div className ="flex">
+            <div className ="flex gap-2 mt-3">
                 <p className ="text-[#957969] text-[1.375rem] font-bold">{selectedChannel}</p>
-                <button onClick ={onClickChanneList}> 채널선택 </button>
+                <button onClick ={onClickChanneList}> 
+                    <img src ={TriangleIcon}/>
+                </button>
             </div>
-            <div className ="flex gap-2">
-                <button>검색</button>
-                <button onClick ={onClickCreate}>알림</button>
+            <div className ="flex gap-3">
+                <button>
+                    <img src ={SearchIcon}/>
+                </button>
+       
+                <button onClick ={onClickCreate}>
+                    <img src ={AlarmIcon}/>
+                </button>
             </div>
         </div>
     )

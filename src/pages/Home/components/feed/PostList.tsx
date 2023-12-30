@@ -26,7 +26,7 @@ const PostList = ({title, id} : nowChannelType) => {
     const [postList,setPostList] = useState<PostListItemType[]>([]);
 
     useEffect(()=>{
-        if (title === '전체보기' && id === undefined)
+        if (title === '전체 채널' && id === undefined)
         {
             (async() =>{
                 const channeListRequest = await getAllPostList();

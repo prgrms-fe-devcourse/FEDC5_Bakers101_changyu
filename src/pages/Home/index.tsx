@@ -12,7 +12,7 @@ type nowChannelType = {
 const Home = () =>{
 
     const [isChannelSelectionsModalOpen,setIsChannelSelectionsModalOpen] = useState(false);
-    const [nowChannel,setNowChannel] = useState<nowChannelType>({name :'전체보기', id : undefined});
+    const [nowChannel,setNowChannel] = useState<nowChannelType>({name :'전체 채널', id : undefined});
     const [nowCreate,setNowCreate] = useState<boolean>(false);
 
     useEffect(()=>{
