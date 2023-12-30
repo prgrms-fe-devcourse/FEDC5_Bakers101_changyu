@@ -1,17 +1,29 @@
 import { useState,useEffect } from 'react';
 import {getPostList,getAllPostList} from '@/apis/postApis';
+import PostlItem from './PostItem';
 
 type nowChannelType = {
     title : string,
     id?: string,
 }
 
-type ChannelListItemType = nowChannelType
+type PostListItemType = {
+    comments : Comment[],
+    likes : Like[],
+    image : string | null,
+    imagePublicId : string | null,
+    title : string,
+    channel : Channel,
+    author : User,
+    _id : string,
+    createdAt: string,
+    updatedAt: string,
+}
 
 
 const PostList = ({title, id} : nowChannelType) => {
 
-    const [postList,setPostList] = useState<ChannelListItemType[]>([]);
+    const [postList,setPostList] = useState<PostListItemType[]>([]);
 
     useEffect(()=>{
         if (title === '전체보기' && id === undefined)
@@ -33,7 +45,7 @@ const PostList = ({title, id} : nowChannelType) => {
     return (
         <div>
             {postList.map((item,index)=>(
-                <p key = {index}>{item.title}</p>
+                <PostlItem postDetail = {item} key = {index}/>
             ))}
         </div>
     )
