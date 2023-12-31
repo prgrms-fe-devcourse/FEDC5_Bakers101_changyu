@@ -71,7 +71,10 @@ function UserProfileInfo({
           />
         )}
         {!isMyProfile && !isFollowed && (
-          <FollowButton onClick={onClickFollowButton} />
+          <FollowButton
+            className="w-5 h-5"
+            onClick={onClickFollowButton}
+          />
         )}
       </ButtonContainer>
     </UserProfileInfoWrapper>
