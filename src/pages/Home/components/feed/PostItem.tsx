@@ -1,4 +1,6 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
+
+import { getUserInform } from '@/apis/userApis';
 
 import CommentIcon from '@/assets/icons/comment.svg'
 import HeartIcon from '@/assets/icons/following.svg'
@@ -22,15 +24,30 @@ type PostItemType = {
 
 const PostlItem = ({postDetail} : PostItemType) => {
 
-    const { createdAt} = postDetail;
+    const {_id, createdAt} = postDetail;
     const { title, body } = JSON.parse(postDetail.title);
     const channelName = postDetail.channel.name;
     const authorName = postDetail.author.fullName;
     const likesNum = postDetail.likes.length; 
     const commentsNum = postDetail.comments.length; 
     const postImage = postDetail.image;
-
     const timeString = getPostLiveTime();
+
+    const [userImg, setUserImg] = useState(null);
+
+    useEffect(() => {
+        (async () => {
+        const request = await getUserInform(_id);
+        if (!request.image) setUserImg(null);
+        setUserImg(request.image);
+        })();
+      }, []);
+
+    async function getUserProfileImage () {
+        const request = await getUserInform(_id);
+        if (!request.image) return null;
+        return request.image;
+    }
 
     function getPostLiveTime() {
         const nowTime = new Date();
@@ -56,7 +73,10 @@ const PostlItem = ({postDetail} : PostItemType) => {
         <div className ="w-[21.5rem] h-[11.3rem] mx-auto bg-white my-8">
             <div className ="flex justify-between mx-2 my-1">
                 <div className ="flex gap-2">
-                    <p className ='w-[1.4rem] h-[1.4rem] bg-yellow-300 rounded-full '></p>
+                    {userImg ?
+                     <img src = {userImg as string}
+                        className ="'w-[1.4rem] h-[1.4rem] rounded-full"/>
+                     : <p className ='w-[1.4rem] h-[1.4rem] bg-yellow-300 rounded-full '></p>}
                     <p className = "font-bold">{authorName}</p>
                     <p className ="my-auto font-bold text-purple-500 text-[0.6rem] ">팔로우 중</p>
                 </div>
