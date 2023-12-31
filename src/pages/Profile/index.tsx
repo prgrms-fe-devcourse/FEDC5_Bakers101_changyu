@@ -1,10 +1,10 @@
 import getProfile from '@/apis/profile'
 import { useEffect, useState } from 'react'
 import tw, { styled } from 'twin.macro'
-import UserProfileImage from './components/UserProfileImage'
-import UserProfileInfo from './components/UserProfileInfo'
+import UserProfileImage from './components/profile/UserProfileImage'
+import UserProfileInfo from './components/profile/UserProfileInfo'
 import Header from './components/Header'
-import PostList from './components/PostList'
+import PostList from './components/profile/PostList'
 
 const ProfileContainer = styled.main`
   ${tw`w-full h-screen relative`}
