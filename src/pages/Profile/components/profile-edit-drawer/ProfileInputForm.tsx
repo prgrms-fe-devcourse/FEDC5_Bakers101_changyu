@@ -1,0 +1,64 @@
+import React, { useState } from 'react'
+import tw, { styled } from 'twin.macro'
+import ProfileInput from './ProfileInput'
+
+const Form = styled.form`
+  ${tw`w-full mb-36 flex flex-col gap-3`}
+`
+
+const SubmitButton = styled.button`
+  padding: 10px 20px;
+  border-radius: 30px;
+  background: #fff;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+`
+
+function ProfileInputForm() {
+  const [userName, setUserName] = useState<string>('')
+  const [fullName, setFullName] = useState<string>('')
+  const [password, setPassword] = useState<string>('')
+
+  const handleChangeUserName = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUserName(e.target.value)
+  }
+  const handleChangeFullName = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFullName(e.target.value)
+  }
+
+  const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value)
+  }
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+  }
+    
+  return (
+    <Form onSubmit={handleSubmit}>
+      <ProfileInput
+        labelName="사용자 명"
+        value={userName}
+        placeholder="사용자 명을 입력해주세요."
+        type="text"
+        onChangeInput={handleChangeUserName}
+      />
+      <ProfileInput
+        labelName="실명"
+        value={fullName}
+        placeholder="실명을 입력해주세요."
+        type="text"
+        onChangeInput={handleChangeFullName}
+      />
+      <ProfileInput
+        labelName="비밀번호"
+        value={password}
+        placeholder="비밀번호를 입력해주세요."
+        type="password"
+        onChangeInput={handleChangePassword}
+      />
+      <SubmitButton type="submit">수정하기</SubmitButton>
+    </Form>
+  )
+}
+
+export default ProfileInputForm
