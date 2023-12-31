@@ -6,6 +6,7 @@ import UserProfileInfo from './components/profile/UserProfileInfo'
 import Header from './components/Header'
 import PostList from './components/profile/PostList'
 import Drawer from './components/profile-edit-drawer/Drawer'
+import { useProfileStore } from '@/stores/userProfileStore'
 
 const ProfileContainer = styled.main`
   ${tw`w-full h-screen relative`}
@@ -39,8 +40,8 @@ const EditButton = styled.button`
 const DrawerControlLabel = styled.label``
 
 function Profile() {
-  const [userInfo, setUserInfo] = useState<User>()
-  const isMyProfile = userInfo?._id === import.meta.env.VITE_ADMIN_ID
+  const { profile, setProfile } = useProfileStore()
+  const [isMyProfile, setIsMyProfile] = useState<boolean>(false)
   const [myInfo, setMyInfo] = useState<User | null>(null)
   const [isFollowed, setIsFollowed] = useState<boolean>(false)
   const [isOpen, setIsOpen] = useState<boolean>(false)
@@ -52,7 +53,8 @@ function Profile() {
   useEffect(() => {
     const fetchUserInfo = async () => {
       const data = await getProfile(import.meta.env.VITE_ADMIN_ID)
-      setUserInfo(data)
+      setProfile(data)
+      setIsMyProfile(profile?._id === import.meta.env.VITE_ADMIN_ID)
     }
     fetchUserInfo()
 
@@ -61,7 +63,7 @@ function Profile() {
       setMyInfo(data)
     }
     fetchMyProfile()
-  }, [])
+  }, [profile?._id, setProfile])
 
   useEffect(() => {
     const checkIsFollowedUser = () => {
@@ -84,12 +86,12 @@ function Profile() {
       <ProfileContainer>
         <Header />
         <UserProfileSection>
-          <CoverImage src={`${userInfo?.coverImage}`} />
+          <CoverImage src={`${profile?.coverImage}`} />
           <DetailSection>
             <main className="w-full flex flex-col gap-2">
               <div className="w-full flex justify-between">
                 <UserProfileImage
-                  imgSrc={userInfo?.image}
+                  imgSrc={profile?.image}
                   isMyProfile={isMyProfile}
                 />
                 {isMyProfile && (
@@ -104,12 +106,12 @@ function Profile() {
                 )}
               </div>
               <UserProfileInfo
-                fullName={userInfo?.fullName}
+                fullName={profile?.fullName}
                 userName={'User'}
-                email={userInfo?.email}
-                isOnline={userInfo?.isOnline}
-                followers={userInfo?.followers}
-                following={userInfo?.following}
+                email={profile?.email}
+                isOnline={profile?.isOnline}
+                followers={profile?.followers}
+                following={profile?.following}
                 isMyProfile={isMyProfile}
                 isFollowed={isFollowed}
                 onClickFollowButton={handleClickFollowButton}
@@ -119,11 +121,11 @@ function Profile() {
           <Divider />
           <PostSection>
             <PostList
-              posts={userInfo?.posts}
+              posts={profile?.posts}
               listTitle="작성한 포스트"
             />
             <PostList
-              posts={userInfo?.likes}
+              posts={profile?.likes}
               listTitle="좋아요한 포스트"
             />
           </PostSection>
