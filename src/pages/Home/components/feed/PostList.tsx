@@ -25,21 +25,23 @@ const PostList = ({title, id} : nowChannelType) => {
 
     const [postList,setPostList] = useState<PostListItemType[]>([]);
 
-    useEffect(()=>{
+    const fetchPostList = async () =>
+    {
         if (title === '전체 채널' && id === undefined)
         {
             (async() =>{
                 const channeListRequest = await getAllPostList();
-                console.log(channeListRequest);
                 setPostList(channeListRequest);
             })()
         } else if (id !== undefined) {
             (async() =>{
                 const channeListRequest = await getPostList(id);
-                console.log(channeListRequest);
                 setPostList(channeListRequest);
             })()
         }
+    }
+    useEffect(()=>{
+        fetchPostList();
     },[title]);
 
     return (

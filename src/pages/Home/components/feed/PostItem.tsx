@@ -1,4 +1,7 @@
-import { useEffect } from "react";
+import { useEffect } from 'react';
+
+import CommentIcon from '@/assets/icons/comment.svg'
+import HeartIcon from '@/assets/icons/following.svg'
 
 type PostItemType = {
 
@@ -48,37 +51,35 @@ const PostlItem = ({postDetail} : PostItemType) => {
         }
     }
 
-    useEffect(()=>{
-    },[]);
     return (
         <div className ="w-[21.5rem] h-[11.3rem] mx-auto bg-white my-8">
             <div className ="flex justify-between mx-2 my-1">
                 <div className ="flex gap-2">
-                    <p className ='w-[1.4rem] h-[1.4rem] bg-yellow-300 rounded-full'></p>
-                    <p>{authorName}</p>
-                    <p>팔로우 중</p>
+                    <p className ='w-[1.4rem] h-[1.4rem] bg-yellow-300 rounded-full '></p>
+                    <p className = "font-bold">{authorName}</p>
+                    <p className ="my-auto font-bold text-purple-500 text-[0.6rem] ">팔로우 중</p>
                 </div>
-                <p>{channelName}</p>
+                <p className ="text-[0.7rem] font-semibold">{channelName}</p>
             </div>
             <div className ="flex mx-2 gap-3 my-2">
                 <p className ='w-[6rem] h-[5.5rem] bg-yellow-300 rounded-md my-1'>이미지</p>
                 <div className ="max-h-[4rem]">
-                    <p>{title}</p>
-                    <p className="w-[10rem] max-h-[3rem] text-[0.7rem]">{body}</p>
+                    <p className = "w-[11rem] max-h-[2rem] overflow-hidden text-ellipsis">{title}</p>
+                    <p className="w-[11rem] max-h-[4rem] text-[0.7rem] overflow-hidden text-ellipsis">{body}</p>
                 </div>
             </div>
             <div className ="flex justify-between w-full h-8 bg-white rounded-lg border-slate-100 border-1 px-3 drop-shadow-2xl">
                 <div className ="flex gap-2 w-fit h-fit my-auto">
-                    <div className ="flex">
-                        <p>좋아요</p>
-                        <p>{likesNum}</p>
+                    <div className ="flex gap-1">
+                        <img className = "w-4 h-4 my-auto" src={HeartIcon}/>
+                        <p className ="text-[0.9rem]">{likesNum}</p>
                     </div>
-                    <div className ="flex">
-                        <p>댓글</p>
-                        <p>{commentsNum}</p>
+                    <div className ="flex gap-1">
+                        <img className ="w-4 h-4 my-auto" src ={CommentIcon}/>
+                        <p className ="text-[0.9rem]">{commentsNum}</p>
                     </div>
                 </div>
-                <p className ="w-fit h-fit my-auto">{timeString}</p>
+                <p className ="w-fit h-fit my-auto text-[0.8rem]">{timeString}</p>
             </div>
         </div>
     )
