@@ -47,7 +47,7 @@ const PostList = ({title, id} : nowChannelType) => {
     return (
         <div>
             {postList.map((item,index)=>(
-                <PostlItem postDetail = {item} key = {index}/>
+                <PostlItem postDetail = {item} index={index} key = {index}/>
             ))}
         </div>
     )

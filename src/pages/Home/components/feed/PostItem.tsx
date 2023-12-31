@@ -18,11 +18,11 @@ type PostItemType = {
     _id : string,
     createdAt: string,
     updatedAt: string,
-    }
+    },
+    index : number
 }
 
-
-const PostlItem = ({postDetail} : PostItemType) => {
+const PostlItem = ({postDetail,index} : PostItemType) => {
 
     const {_id, createdAt} = postDetail;
     const { title, body } = JSON.parse(postDetail.title);
@@ -33,6 +33,7 @@ const PostlItem = ({postDetail} : PostItemType) => {
     const postImage = postDetail.image;
     const timeString = getPostLiveTime();
 
+    const [isLoading, setIsLoading] = useState(false);
     const [userImg, setUserImg] = useState(null);
 
     useEffect(() => {
@@ -40,14 +41,9 @@ const PostlItem = ({postDetail} : PostItemType) => {
         const request = await getUserInform(_id);
         if (!request.image) setUserImg(null);
         setUserImg(request.image);
+        setTimeout(() => setIsLoading(true), index * 120);
         })();
       }, []);
-
-    async function getUserProfileImage () {
-        const request = await getUserInform(_id);
-        if (!request.image) return null;
-        return request.image;
-    }
 
     function getPostLiveTime() {
         const nowTime = new Date();
@@ -70,7 +66,7 @@ const PostlItem = ({postDetail} : PostItemType) => {
     }
 
     return (
-        <div className ="w-[21.5rem] h-[11.3rem] mx-auto bg-white my-8">
+        <div className ={`w-[21.5rem] h-[11.3rem] mx-auto bg-white my-8 transition-all duration-700 ease-in-out transform ${isLoading ? 'translate-y-[0%] opacaity-100':'translate-y-[80%] opacity-0'}`}>
             <div className ="flex justify-between mx-2 my-1">
                 <div className ="flex gap-2">
                     {userImg ?
