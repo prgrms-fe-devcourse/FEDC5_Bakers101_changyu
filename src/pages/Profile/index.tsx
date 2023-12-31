@@ -3,9 +3,7 @@ import { useEffect, useState } from 'react'
 import tw, { styled } from 'twin.macro'
 import UserProfileImage from './components/UserProfileImage'
 import UserProfileInfo from './components/UserProfileInfo'
-import ButtonContainer from './components/ButtonContainer'
 import Header from './components/Header'
-import FollowButton from './components/FollowButton'
 import PostList from './components/PostList'
 
 const ProfileContainer = styled.main`
@@ -36,6 +34,7 @@ function Profile() {
   const [userInfo, setUserInfo] = useState<User>()
   const isMyProfile = userInfo?._id === import.meta.env.VITE_USER_ID
   const [myInfo, setMyInfo] = useState<User | null>(null)
+  const [isFollowed, setIsFollowed] = useState<boolean>(false)
 
   useEffect(() => {
     const fetchUserInfo = async () => {
@@ -50,6 +49,20 @@ function Profile() {
     }
     fetchMyProfile()
   }, [])
+
+  useEffect(() => {
+    const checkIsFollowedUser = () => {
+      const res = myInfo?.following.some(
+        (item) => item.user === import.meta.env.VITE_ADMIN_ID
+      )
+      setIsFollowed(res!)
+    }
+    checkIsFollowedUser()
+  }, [myInfo])
+
+  const handleClickFollowButton = () => {
+    setIsFollowed((prev) => !prev)
+  }
 
   return (
     <ProfileContainer>
@@ -70,6 +83,8 @@ function Profile() {
               followers={userInfo?.followers}
               following={userInfo?.following}
               isMyProfile={isMyProfile}
+              isFollowed={isFollowed}
+              onClickFollowButton={handleClickFollowButton}
             />
           </main>
         </DetailSection>
