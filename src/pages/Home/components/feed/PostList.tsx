@@ -1,6 +1,7 @@
 import { useState,useEffect } from 'react';
 import {getPostList,getAllPostList} from '@/apis/postApis';
 import PostlItem from './PostItem';
+import BottomNavBar from '../bottom-navbar';
 
 type nowChannelType = {
     title : string,
@@ -45,10 +46,11 @@ const PostList = ({title, id} : nowChannelType) => {
     },[title]);
 
     return (
-        <div>
+        <div className ="relative">
             {postList.map((item,index)=>(
                 <PostlItem postDetail = {item} index={index} key = {index}/>
             ))}
+            <BottomNavBar/>
         </div>
     )
 }
