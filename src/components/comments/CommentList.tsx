@@ -42,9 +42,11 @@ const CommentList = ({ comments: initialComments }: Props) => {
   const handleCommentDelete = async (commentId: string) => {
     try {
       await deleteComment(commentId)
-      setComments(comments.filter((comment) => comment._id !== commentId))
+      setComments((prevComments) =>
+        prevComments.filter((comment) => comment._id !== commentId)
+      )
     } catch (error) {
-      console.error(error)
+      console.error('댓글 삭제 중 오류가 발생했습니다:', error)
     }
   }
 
@@ -77,7 +79,9 @@ const CommentList = ({ comments: initialComments }: Props) => {
           ))}
         </ul>
       ) : (
-        <div>댓글이 없습니다.</div>
+        <div className="flex flex-grow items-center justify-center">
+          댓글이 없습니다.
+        </div>
       )}
     </div>
   )

@@ -22,6 +22,11 @@ const Comments = (props: Props) => {
     }
   }
 
+  const handleCommentAdded = () => {
+    const postId = import.meta.env.VITE_POST_ID
+    fetchCommentsData(postId)
+  }
+
   useEffect(() => {
     const postId = import.meta.env.VITE_POST_ID
     fetchCommentsData(postId)
@@ -29,7 +34,10 @@ const Comments = (props: Props) => {
 
   return (
     <div>
-      <AddCommentForm postId={import.meta.env.VITE_POST_ID} />
+      <AddCommentForm
+        postId={import.meta.env.VITE_POST_ID}
+        onCommentAdded={handleCommentAdded}
+      />
       <CommentList comments={comments} />
     </div>
   )

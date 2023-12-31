@@ -4,9 +4,10 @@ import commentUploadIcon from '@/assets/icons/commentUpload.svg'
 
 type Props = {
   postId: string
+  onCommentAdded: () => void
 }
 
-const AddCommentForm = ({ postId }: Props) => {
+const AddCommentForm = ({ postId, onCommentAdded }: Props) => {
   const [comment, setComment] = useState('')
 
   const handleUploadIconClick = async () => {
@@ -14,8 +15,12 @@ const AddCommentForm = ({ postId }: Props) => {
       const response = await createComment(comment, postId)
       console.log('response:', response)
       setComment('')
+
+      if (onCommentAdded) {
+        onCommentAdded()
+      }
     } catch (error) {
-      console.error(error)
+      console.error('댓글 추가 중 오류가 발생했습니다:', error)
     }
   }
 
