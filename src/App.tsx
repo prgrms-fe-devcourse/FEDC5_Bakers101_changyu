@@ -1,4 +1,4 @@
-import Profile from '@/pages/Profile'
+import Profile from '@/pages/profile'
 
 function App() {
   return (
