@@ -4,6 +4,7 @@ interface ImageFormData {
     isCover?: boolean
     channelId?: string
     title?:string
+    body?:string
   }
   
   function handleImageFormData({
@@ -11,19 +12,14 @@ interface ImageFormData {
     type,
     isCover,
     title,
-    channelId
+    channelId,
+    body,
   }: ImageFormData): FormData {
     const formData = new FormData()
     formData.append('image', imageFile)
-    console.log(   imageFile);
-    console.log(
-        type,
-        isCover,
-        title,
-        channelId)
     if (type === 'Profile') formData.append('isCover', String(isCover))
     if (type === 'Post') {
-        formData.append('title',String(title))
+        formData.append('title', JSON.stringify({title : String(title),body : String(body)}))
         formData.append('channelId',String(channelId));
     }
     console.log(formData);

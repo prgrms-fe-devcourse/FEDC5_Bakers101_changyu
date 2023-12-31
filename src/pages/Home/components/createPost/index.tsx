@@ -32,7 +32,7 @@ const CreatePost = ({setNowCreate} : CreatePostTypes) =>{
         const channelId = await getChannelInform(selectedBread);
         if(file == null)
             return ;
-        const formData = handleImageFormData({ imageFile: file as File, title : title, type :'Post',channelId : channelId._id});
+        const formData = handleImageFormData({ imageFile: file as File, title : title, type :'Post',body: detail, channelId : channelId._id});
         createPost(token,formData);
         setNowCreate(false);
     }

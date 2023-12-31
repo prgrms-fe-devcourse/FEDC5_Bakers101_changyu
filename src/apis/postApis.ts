@@ -36,6 +36,9 @@ type AuthorType = {
 //       {headers: {'Authorization': `bearer ${token}`,'Content-Type': 'multipart/form-data'}})
 //       .then((req)=>console.log(req));
 // }
+
+
+
 const createPost = async(token : string, formData : FormData) =>{
   await axiosInstance
   .post('/posts/create', formData,
