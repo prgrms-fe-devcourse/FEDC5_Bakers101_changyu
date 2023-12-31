@@ -19,9 +19,9 @@ type PostItemType = {
 
 const PostlItem = ({postDetail} : PostItemType) => {
 
-    const {author, createdAt} = postDetail;
+    const { createdAt} = postDetail;
     
-    const { postTitle, postBody } = JSON.parse(postDetail.title);
+    const { title, body } = JSON.parse(postDetail.title);
     const channelName = postDetail.channel.name;
     const authorName = postDetail.author.fullName;
     const likesNum = postDetail.likes.length; 
@@ -54,11 +54,11 @@ const PostlItem = ({postDetail} : PostItemType) => {
                 </div>
                 <p>{channelName}</p>
             </div>
-            <div className ="flex mx-2 gap-4 my-2">
+            <div className ="flex mx-2 gap-3 my-2">
                 <p className ='w-[6rem] h-[5.5rem] bg-yellow-300 rounded-md my-1'>이미지</p>
                 <div className ="max-h-[4rem]">
-                    <p>{postTitle}</p>
-                    <p className="w-[10rem] max-h-[3rem] text-[0.7rem]">{postBody}</p>
+                    <p>{title}</p>
+                    <p className="w-[10rem] max-h-[3rem] text-[0.7rem]">{body}</p>
                 </div>
             </div>
             <div className ="flex justify-between w-full h-8 bg-white rounded-lg border-slate-100 border-1 px-3 drop-shadow-2xl">
