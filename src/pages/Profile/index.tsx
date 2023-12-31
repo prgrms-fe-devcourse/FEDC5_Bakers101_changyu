@@ -30,9 +30,14 @@ const PostSection = styled.section`
   ${tw`mx-auto w-10/12 flex flex-col gap-6`}
 `
 
+const EditButton = styled.button`
+  background: url('src/assets/icons/edit.svg') no-repeat center center;
+  ${tw`w-6 h-6 self-end mb-3`}
+`
+
 function Profile() {
   const [userInfo, setUserInfo] = useState<User>()
-  const isMyProfile = userInfo?._id === import.meta.env.VITE_USER_ID
+  const isMyProfile = userInfo?._id === import.meta.env.VITE_ADMIN_ID
   const [myInfo, setMyInfo] = useState<User | null>(null)
   const [isFollowed, setIsFollowed] = useState<boolean>(false)
 
@@ -44,7 +49,7 @@ function Profile() {
     fetchUserInfo()
 
     const fetchMyProfile = async () => {
-      const data = await getProfile(import.meta.env.VITE_USER_ID)
+      const data = await getProfile(import.meta.env.VITE_ADMIN_ID)
       setMyInfo(data)
     }
     fetchMyProfile()
@@ -71,10 +76,14 @@ function Profile() {
         <CoverImage src={`${userInfo?.coverImage}`} />
         <DetailSection>
           <main className="w-full flex flex-col gap-2">
-            <UserProfileImage
-              imgSrc={userInfo?.image}
-              isMyProfile={isMyProfile}
-            />
+            <div className="w-full flex justify-between">
+              <UserProfileImage
+                imgSrc={userInfo?.image}
+                isMyProfile={isMyProfile}
+              />
+              {isMyProfile && <EditButton />}
+            </div>
+
             <UserProfileInfo
               fullName={userInfo?.fullName}
               userName={'User'}
