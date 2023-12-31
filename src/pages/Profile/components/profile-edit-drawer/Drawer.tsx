@@ -13,7 +13,7 @@ const DrawerContent = styled.div`
 function Drawer() {
   const [isOpen, setIsOpen] = useState(false)
 
-  const toggleDrawer = () => {
+  const handleToggleDrawer = () => {
     setIsOpen(!isOpen)
   }
 
@@ -24,15 +24,11 @@ function Drawer() {
         type="checkbox"
         className="drawer-toggle"
         checked={isOpen}
-        onChange={toggleDrawer}
+        onChange={handleToggleDrawer}
       />
       <DrawerContent className="drawer-content">
         {/* Page content here -> Profile Page */}
-        <label
-          htmlFor="my-drawer"
-          className="btn btn-primary drawer-button">
-          Open drawer
-        </label>
+        <DrawerControlLabel htmlFor="my-drawer">Open</DrawerControlLabel>
       </DrawerContent>
       <DrawerSide />
     </DrawerContainer>
