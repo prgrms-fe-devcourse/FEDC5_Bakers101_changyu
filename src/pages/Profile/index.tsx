@@ -5,6 +5,7 @@ import UserProfileImage from './components/profile/UserProfileImage'
 import UserProfileInfo from './components/profile/UserProfileInfo'
 import Header from './components/Header'
 import PostList from './components/profile/PostList'
+import Drawer from './components/profile-edit-drawer/Drawer'
 
 const ProfileContainer = styled.main`
   ${tw`w-full h-screen relative`}
@@ -35,11 +36,18 @@ const EditButton = styled.button`
   ${tw`w-6 h-6 self-end mb-3`}
 `
 
+const DrawerControlLabel = styled.label``
+
 function Profile() {
   const [userInfo, setUserInfo] = useState<User>()
   const isMyProfile = userInfo?._id === import.meta.env.VITE_ADMIN_ID
   const [myInfo, setMyInfo] = useState<User | null>(null)
   const [isFollowed, setIsFollowed] = useState<boolean>(false)
+  const [isOpen, setIsOpen] = useState<boolean>(false)
+
+  const handleToggleDrawer = () => {
+    setIsOpen(!isOpen)
+  }
 
   useEffect(() => {
     const fetchUserInfo = async () => {
@@ -70,46 +78,58 @@ function Profile() {
   }
 
   return (
-    <ProfileContainer>
-      <Header />
-      <UserProfileSection>
-        <CoverImage src={`${userInfo?.coverImage}`} />
-        <DetailSection>
-          <main className="w-full flex flex-col gap-2">
-            <div className="w-full flex justify-between">
-              <UserProfileImage
-                imgSrc={userInfo?.image}
+    <Drawer
+      isOpen={isOpen}
+      onToggle={handleToggleDrawer}>
+      <ProfileContainer>
+        <Header />
+        <UserProfileSection>
+          <CoverImage src={`${userInfo?.coverImage}`} />
+          <DetailSection>
+            <main className="w-full flex flex-col gap-2">
+              <div className="w-full flex justify-between">
+                <UserProfileImage
+                  imgSrc={userInfo?.image}
+                  isMyProfile={isMyProfile}
+                />
+                {isMyProfile && (
+                  <DrawerControlLabel
+                    htmlFor="my-drawer"
+                    className="h-fit self-end">
+                    <EditButton
+                      id="my-drawer"
+                      onClick={handleToggleDrawer}
+                    />
+                  </DrawerControlLabel>
+                )}
+              </div>
+              <UserProfileInfo
+                fullName={userInfo?.fullName}
+                userName={'User'}
+                email={userInfo?.email}
+                isOnline={userInfo?.isOnline}
+                followers={userInfo?.followers}
+                following={userInfo?.following}
                 isMyProfile={isMyProfile}
+                isFollowed={isFollowed}
+                onClickFollowButton={handleClickFollowButton}
               />
-              {isMyProfile && <EditButton />}
-            </div>
-
-            <UserProfileInfo
-              fullName={userInfo?.fullName}
-              userName={'User'}
-              email={userInfo?.email}
-              isOnline={userInfo?.isOnline}
-              followers={userInfo?.followers}
-              following={userInfo?.following}
-              isMyProfile={isMyProfile}
-              isFollowed={isFollowed}
-              onClickFollowButton={handleClickFollowButton}
+            </main>
+          </DetailSection>
+          <Divider />
+          <PostSection>
+            <PostList
+              posts={userInfo?.posts}
+              listTitle="작성한 포스트"
             />
-          </main>
-        </DetailSection>
-        <Divider />
-        <PostSection>
-          <PostList
-            posts={userInfo?.posts}
-            listTitle="작성한 포스트"
-          />
-          <PostList
-            posts={userInfo?.likes}
-            listTitle="좋아요한 포스트"
-          />
-        </PostSection>
-      </UserProfileSection>
-    </ProfileContainer>
+            <PostList
+              posts={userInfo?.likes}
+              listTitle="좋아요한 포스트"
+            />
+          </PostSection>
+        </UserProfileSection>
+      </ProfileContainer>
+    </Drawer>
   )
 }
 

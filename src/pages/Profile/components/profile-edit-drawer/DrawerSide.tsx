@@ -22,11 +22,15 @@ const DetailSection = styled.div`
   ${tw`mx-auto w-10/12 flex flex-col justify-between items-center relative -mt-16`}
 `
 
-function DrawerSide() {
+interface DrawerSideProps {
+  onToggle: () => void
+}
+
+function DrawerSide({ onToggle }: DrawerSideProps) {
   return (
     <ProfileDrawerSide className="drawer-side">
       <HeaderContainer className="z-10">
-        <PrevButton onClick={() => {}} />
+        <PrevButton onClick={onToggle} />
       </HeaderContainer>
       <Container className="bg-base-200">
         <CoverImage />

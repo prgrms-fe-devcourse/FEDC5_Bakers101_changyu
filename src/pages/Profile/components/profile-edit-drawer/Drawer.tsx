@@ -10,13 +10,13 @@ const DrawerContent = styled.div`
   ${tw`flex flex-col items-center justify-center`}
 `
 
-function Drawer() {
-  const [isOpen, setIsOpen] = useState(false)
+interface DrawerProps {
+  children: React.ReactNode
+  isOpen: boolean
+  onToggle: () => void
+}
 
-  const handleToggleDrawer = () => {
-    setIsOpen(!isOpen)
-  }
-
+function Drawer({ children, isOpen, onToggle }: DrawerProps) {
   return (
     <DrawerContainer className="drawer drawer-end">
       <DrawerControl
@@ -24,13 +24,10 @@ function Drawer() {
         type="checkbox"
         className="drawer-toggle"
         checked={isOpen}
-        onChange={handleToggleDrawer}
+        onChange={onToggle}
       />
-      <DrawerContent className="drawer-content">
-        {/* Page content here -> Profile Page */}
-        <DrawerControlLabel htmlFor="my-drawer">Open</DrawerControlLabel>
-      </DrawerContent>
-      <DrawerSide />
+      <DrawerContent className="drawer-content">{children}</DrawerContent>
+      <DrawerSide onToggle={onToggle} />
     </DrawerContainer>
   )
 }
