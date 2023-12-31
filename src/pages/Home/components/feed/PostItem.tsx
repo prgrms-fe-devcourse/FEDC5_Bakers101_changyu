@@ -28,6 +28,7 @@ const PostlItem = ({postDetail} : PostItemType) => {
     const authorName = postDetail.author.fullName;
     const likesNum = postDetail.likes.length; 
     const commentsNum = postDetail.comments.length; 
+    const postImage = postDetail.image;
 
     const timeString = getPostLiveTime();
 
@@ -62,7 +63,13 @@ const PostlItem = ({postDetail} : PostItemType) => {
                 <p className ="text-[0.7rem] font-semibold">{channelName}</p>
             </div>
             <div className ="flex mx-2 gap-3 my-2">
-                <p className ='w-[6rem] h-[5.5rem] bg-yellow-300 rounded-md my-1'>이미지</p>
+                {
+                    postImage ?
+                    <img 
+                        src={postImage}
+                        className ='w-[6rem] h-[5.5rem] bg-white rounded-md my-1'/>
+                    : null
+                }
                 <div className ="max-h-[4rem]">
                     <p className = "w-[11rem] max-h-[2rem] overflow-hidden text-ellipsis">{title}</p>
                     <p className="w-[11rem] max-h-[4rem] text-[0.7rem] overflow-hidden text-ellipsis">{body}</p>
