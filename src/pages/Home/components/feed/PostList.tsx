@@ -6,9 +6,10 @@ import PostlItem from './PostItem';
 type nowChannelType = {
     title : string,
     id?: string,
-}
+    onClickPostItem : (id : string) => void
+ }
 
-const PostList = ({title, id} : nowChannelType) => {
+const PostList = ({title, id, onClickPostItem} : nowChannelType) => {
 
     const [postList,setPostList] = useState<Post[]>([]);
 
@@ -34,9 +35,11 @@ const PostList = ({title, id} : nowChannelType) => {
 
 
     return (
-        <div className ="relative">
+        <div className ="relative flex flex-col">
             {postList.map((item,index)=>(
-                <PostlItem postDetail = {item} index={index} key = {index}/>
+                <button  key = {index} onClick={()=>onClickPostItem(item._id)}>
+                    <PostlItem postDetail = {item} index={index}/>
+                </button>
             ))}
         </div>
     )
