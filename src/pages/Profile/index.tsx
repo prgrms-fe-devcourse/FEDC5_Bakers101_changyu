@@ -31,34 +31,28 @@ const PostSection = styled.section`
 `
 
 function Profile() {
-  const [userInfo, setUserInfo] = useState<User>()
-  const isMyProfile = userInfo?._id === import.meta.env.VITE_USER_ID
-  const [myInfo, setMyInfo] = useState<User | null>(null)
+  const [myProfile, setMyInfo] = useState<User | null>(null)
+  const [isMyProfile, setIsMyProfile] = useState<boolean>(false)
   const [isFollowed, setIsFollowed] = useState<boolean>(false)
 
   useEffect(() => {
-    const fetchUserInfo = async () => {
-      const data = await getProfile(import.meta.env.VITE_ADMIN_ID)
-      setUserInfo(data)
-    }
-    fetchUserInfo()
-
     const fetchMyProfile = async () => {
       const data = await getProfile(import.meta.env.VITE_USER_ID)
       setMyInfo(data)
+      setIsMyProfile(data?._id === import.meta.env.VITE_USER_ID)
     }
     fetchMyProfile()
   }, [])
 
   useEffect(() => {
     const checkIsFollowedUser = () => {
-      const res = myInfo?.following.some(
+      const res = myProfile?.following.some(
         (item) => item.user === import.meta.env.VITE_ADMIN_ID
       )
       setIsFollowed(res!)
     }
     checkIsFollowedUser()
-  }, [myInfo])
+  }, [myProfile])
 
   const handleClickFollowButton = () => {
     setIsFollowed((prev) => !prev)
@@ -68,20 +62,20 @@ function Profile() {
     <ProfileContainer>
       <Header />
       <UserProfileSection>
-        <CoverImage src={`${userInfo?.coverImage}`} />
+        <CoverImage src={`${myProfile?.coverImage}`} />
         <DetailSection>
           <main className="w-full flex flex-col gap-2">
             <UserProfileImage
-              imgSrc={userInfo?.image}
+              imgSrc={myProfile?.image}
               isMyProfile={isMyProfile}
             />
             <UserProfileInfo
-              fullName={userInfo?.fullName}
+              fullName={myProfile?.fullName}
               userName={'User'}
-              email={userInfo?.email}
-              isOnline={userInfo?.isOnline}
-              followers={userInfo?.followers}
-              following={userInfo?.following}
+              email={myProfile?.email}
+              isOnline={myProfile?.isOnline}
+              followers={myProfile?.followers}
+              following={myProfile?.following}
               isMyProfile={isMyProfile}
               isFollowed={isFollowed}
               onClickFollowButton={handleClickFollowButton}
@@ -91,11 +85,11 @@ function Profile() {
         <Divider />
         <PostSection>
           <PostList
-            posts={userInfo?.posts}
+            posts={myProfile?.posts}
             listTitle="작성한 포스트"
           />
           <PostList
-            posts={userInfo?.likes}
+            posts={myProfile?.likes}
             listTitle="좋아요한 포스트"
           />
         </PostSection>
