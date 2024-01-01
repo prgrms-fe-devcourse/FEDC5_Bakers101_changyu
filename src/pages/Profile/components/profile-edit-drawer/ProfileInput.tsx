@@ -3,6 +3,7 @@ import tw, { styled } from 'twin.macro'
 
 interface InputProps {
   labelName: string
+  name: string
   value: string
   placeholder: string
   type: string
@@ -19,6 +20,7 @@ const Label = styled.label`
 
 function ProfileInput({
   labelName,
+  name,
   value,
   placeholder,
   type,
@@ -29,6 +31,7 @@ function ProfileInput({
       <Label>{labelName}</Label>
       <Input
         type={type}
+        name={name}
         placeholder={placeholder}
         value={value}
         onChange={onChangeInput}
