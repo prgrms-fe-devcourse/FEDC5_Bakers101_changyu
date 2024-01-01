@@ -1,6 +1,6 @@
 import axiosInstance from './api';
 
-async function createChannel(token: string, channelName : string, description : string)
+const createChannel = async (token: string, channelName : string, description : string)=>
 {
     const adminCheck = await axiosInstance
     .get('/auth-user',{headers: {'Authorization': `bearer ${token}`}});
@@ -13,7 +13,7 @@ async function createChannel(token: string, channelName : string, description : 
       .then((res) => console.log(res));
 }
 
-async function getChannelInform(channel : string)
+const getChannelInform = async (channel : string) =>
 {
     const request = await axiosInstance
     .get(`/channels/${encodeURIComponent(channel)}`);
@@ -21,7 +21,7 @@ async function getChannelInform(channel : string)
     return request.data;
 }
 
-async function getChannelList()
+const getChannelList = async () =>
 {
     const request = await axiosInstance
     .get('/channels');

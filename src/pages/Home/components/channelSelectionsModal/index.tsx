@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+
 import { getChannelList } from '@/apis/channelApis';
 
 type ChannelSelectionModal = {

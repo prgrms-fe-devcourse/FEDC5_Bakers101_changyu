@@ -24,7 +24,7 @@ type PostItemType = {
 
 const PostlItem = ({postDetail,index} : PostItemType) => {
 
-    const {_id, createdAt} = postDetail;
+    const { createdAt} = postDetail;
     const { title, body } = JSON.parse(postDetail.title);
     const channelName = postDetail.channel.name;
     const authorName = postDetail.author.fullName;
@@ -38,7 +38,9 @@ const PostlItem = ({postDetail,index} : PostItemType) => {
 
     useEffect(() => {
         (async () => {
-        const request = await getUserInform(_id);
+        const request = await getUserInform(postDetail.author._id);
+        console.log(postDetail.author._id);
+        console.log(request);
         if (!request.image) setUserImg(null);
         setUserImg(request.image);
         setTimeout(() => setIsLoading(true), index * 120);

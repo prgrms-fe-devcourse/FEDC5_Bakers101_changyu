@@ -30,14 +30,6 @@ type AuthorType = {
     _id: string;
   };
 
-// const createPost = async(token : string, fomrData : FormData) =>{
-//     await axiosInstance
-//     .post('/posts/create',{'title' : fomrData},
-//       {headers: {'Authorization': `bearer ${token}`,'Content-Type': 'multipart/form-data'}})
-//       .then((req)=>console.log(req));
-// }
-
-
 const createPost = async(token : string, formData : FormData) =>{
   await axiosInstance
   .post('/posts/create', formData,
@@ -53,9 +45,6 @@ const deletePost = async(token : string, id:string)=>{
   })
     .then((req)=>console.log(req));
 }
-//   headers: {'Authorization': `bearer ${token}`},
-//   params: {'id' : id},
-// })
 
 const getPostDetail = async(postId : number) => {
     const request = await axiosInstance

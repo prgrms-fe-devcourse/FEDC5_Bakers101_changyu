@@ -6,7 +6,6 @@ import { createPost } from '@/apis/postApis';
 import { getChannelInform } from '@/apis/channelApis';
 import { AdminLogin } from '@/apis/mockingApis';
 import FileUploadIcon from '@/assets/icons/fileUpload.svg'
-
 import handleImageFormData from '@/utils/handleImageFormData';
 
 
@@ -28,11 +27,11 @@ const CreatePost = ({setNowCreate} : CreatePostTypes) =>{
     const onClickEnrollPost = async() => {
         if (selectedBread === null)
             return ;
+
         const token = await AdminLogin();
         const channelId = await getChannelInform(selectedBread);
-        if(file == null)
-            return ;
         const formData = handleImageFormData({ imageFile: file as File, title : title, type :'Post',body: detail, channelId : channelId._id});
+        
         createPost(token,formData);
         setNowCreate(false);
     }
@@ -41,14 +40,16 @@ const CreatePost = ({setNowCreate} : CreatePostTypes) =>{
         const fileInput = document.createElement('input');
         fileInput.type = 'file';
         fileInput.accept = 'image/gif, image/jpeg,image/png,image/jpg';
-        fileInput.onchange = (e) => {
-            e.preventDefault();
-            if (!e.target.files[0])
-                return ;
-            setFile(e.target.files[0]);
+        
+        fileInput.onchange = (e: Event) => {
+            if (!e.target) return ;
+            const target = e.target as HTMLInputElement;
+            if (!target.files || !target.files[0]) return ;
+
+            setFile(target.files[0]);
         };
         fileInput.click();
-}
+    }
 
     return (
         <div className = "w-screen">

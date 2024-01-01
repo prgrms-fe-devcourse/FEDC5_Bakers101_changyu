@@ -1,9 +1,9 @@
 import axiosInstance from './api';
 
-async function getUserInform(id : string)
+const getUserInform = async (id : string) =>
 {
     const request = await axiosInstance
-    .get(`/channels/${encodeURIComponent(id)}`);
+    .get(`/users/${encodeURIComponent(id)}`);
 
     return request.data;
 }
