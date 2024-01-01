@@ -1,8 +1,12 @@
 import { useState, useEffect } from 'react';
+
 import ChannelSelectionModal from './components/channelSelectionsModal';
 import PostList from './components/feed/PostList';
 import HomeHeader from './components/header';
 import CreatePost from './components/createPost';
+import HomeBottomNavBar from './components/bottom-navbar';
+
+
 type nowChannelType = {
     name : string,
     id?: string,
@@ -24,9 +28,7 @@ const Home = () =>{
                 : 
                 <HomeHeader 
                     selectedChannel = {nowChannel.name} 
-                    onClickChanneList={()=>{setIsChannelSelectionsModalOpen((isOpen)=>!isOpen)}}
-                    onClickCreate={()=>setNowCreate(true)}/>
-                
+                    onClickChanneList={()=>{setIsChannelSelectionsModalOpen((isOpen)=>!isOpen)}}/>                
             }
             {isChannelSelectionsModalOpen ? 
                 <ChannelSelectionModal setNowChannel ={setNowChannel} setIsChannelSelectionsModalOpen = {setIsChannelSelectionsModalOpen}/>
@@ -34,7 +36,10 @@ const Home = () =>{
             }
             {
                 !nowCreate ?
-                     <PostList title = {nowChannel.name} id = {nowChannel.id}/>
+                     <div>
+                        <PostList title = {nowChannel.name} id = {nowChannel.id}/>
+                        <HomeBottomNavBar onClickCreate={()=>setNowCreate(true)}/>                
+                     </div>
                      : null
             }
         </div>

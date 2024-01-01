@@ -6,11 +6,10 @@ import TriangleIcon from '@/assets/icons/triangle.svg'
 type HomeHeaderProps = {
     selectedChannel : string,
     onClickChanneList: () => void;
-    onClickCreate : () => void;
   };
 
   
-const HomeHeader = ({selectedChannel, onClickChanneList,onClickCreate} : HomeHeaderProps) =>{
+const HomeHeader = ({selectedChannel, onClickChanneList} : HomeHeaderProps) =>{
 
     useEffect(()=>{
 
@@ -29,7 +28,7 @@ const HomeHeader = ({selectedChannel, onClickChanneList,onClickCreate} : HomeHea
                     <img src ={SearchIcon}/>
                 </button>
        
-                <button onClick ={onClickCreate}>
+                <button>
                     <img src ={AlarmIcon}/>
                 </button>
             </div>
