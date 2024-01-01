@@ -1,7 +1,9 @@
 import tw, { styled } from 'twin.macro'
+
 import EditIcon from '../EditIcon'
-import { useProfileStore } from '@/stores/userProfileStore'
 import UploadImageButton from './UploadImageButton'
+
+import { useProfileStore } from '@/stores/userProfileStore'
 
 const CoverImageWrapper = styled.div`
   ${tw`relative`}

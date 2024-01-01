@@ -1,8 +1,10 @@
 import tw, { styled } from 'twin.macro'
+
 import ProfileInput from './ProfileInput'
+
+import updateName from '@/apis/updateName'
 import { useProfileStore } from '@/stores/userProfileStore'
 import useForm from '@/hooks/useForm'
-import updateName from '@/apis/updateName'
 
 const Form = styled.form`
   ${tw`w-full flex flex-col`}

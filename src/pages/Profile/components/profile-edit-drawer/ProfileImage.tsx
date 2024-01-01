@@ -1,7 +1,9 @@
 import tw, { styled } from 'twin.macro'
+
 import EditIcon from '../EditIcon'
-import { useProfileStore } from '@/stores/userProfileStore'
 import UploadImageButton from './UploadImageButton'
+
+import { useProfileStore } from '@/stores/userProfileStore'
 
 const ProfileImageWrapper = styled.div`
   ${tw`relative overflow-hidden rounded-full`}

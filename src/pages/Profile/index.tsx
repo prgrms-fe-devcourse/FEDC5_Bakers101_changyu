@@ -1,11 +1,13 @@
-import getProfile from '@/apis/profile'
 import { useEffect, useState } from 'react'
 import tw, { styled } from 'twin.macro'
+
 import UserProfileImage from './components/profile/UserProfileImage'
 import UserProfileInfo from './components/profile/UserProfileInfo'
 import Header from './components/Header'
 import PostList from './components/profile/PostList'
 import Drawer from './components/profile-edit-drawer/Drawer'
+
+import getProfile from '@/apis/profile'
 import { useProfileStore } from '@/stores/userProfileStore'
 
 const ProfileContainer = styled.main`

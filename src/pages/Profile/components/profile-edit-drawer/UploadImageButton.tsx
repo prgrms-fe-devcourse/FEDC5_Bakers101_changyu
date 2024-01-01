@@ -1,5 +1,7 @@
 import { ChangeEvent, useCallback, useRef } from 'react'
+
 import tw, { styled } from 'twin.macro'
+
 import handleImageFormData from '@/utils/handleImageFormData'
 import uploadImage from '@/apis/uploadImage'
 import { useProfileStore } from '@/stores/userProfileStore'
