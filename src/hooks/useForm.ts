@@ -1,6 +1,8 @@
 import { useState } from 'react'
 
-type Value = Record<string, string>
+interface Value {
+  [key: string]: string
+}
 
 interface IUseForm {
   initialValue: Value
