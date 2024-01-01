@@ -44,6 +44,7 @@ function Profile() {
     fetchMyProfile()
   }, [])
 
+  /* 로직만 참고해주세요. */
   useEffect(() => {
     const checkIsFollowedUser = () => {
       const res = myProfile?.following.some(
