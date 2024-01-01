@@ -1,4 +1,3 @@
-// icon:edit | Feathericons https://feathericons.com/ | Cole Bemis
 import * as React from 'react'
 
 function EditIcon(props: React.SVGProps<SVGSVGElement>) {
