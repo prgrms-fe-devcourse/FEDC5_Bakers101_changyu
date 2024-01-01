@@ -17,6 +17,7 @@ interface User {
   email: string
   createdAt: string
   updatedAt: string
+  username?: string
 }
 
 interface Channel {
