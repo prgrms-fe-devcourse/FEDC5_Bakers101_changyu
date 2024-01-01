@@ -1,4 +1,3 @@
-// icon:heart | Feathericons https://feathericons.com/ | Cole Bemis
 import * as React from 'react'
 
 function FollowButton(props: React.SVGProps<SVGSVGElement>) {
