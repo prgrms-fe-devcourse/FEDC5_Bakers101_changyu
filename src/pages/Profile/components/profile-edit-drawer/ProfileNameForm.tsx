@@ -1,4 +1,3 @@
-import React, { useState } from 'react'
 import tw, { styled } from 'twin.macro'
 import ProfileInput from './ProfileInput'
 import { useProfileStore } from '@/stores/userProfileStore'

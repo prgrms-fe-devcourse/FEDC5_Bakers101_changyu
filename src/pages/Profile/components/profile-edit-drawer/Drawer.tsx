@@ -1,5 +1,4 @@
 import tw, { styled } from 'twin.macro'
-import { useState } from 'react'
 import DrawerSide from './DrawerSide'
 
 const DrawerContainer = styled.div``
