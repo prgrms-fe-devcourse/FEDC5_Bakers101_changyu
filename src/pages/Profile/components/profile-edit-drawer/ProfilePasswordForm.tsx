@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import ProfileInput from './ProfileInput'
 import tw, { styled } from 'twin.macro'
+import useForm from '@/hooks/useForm'
 
 const Form = styled.form`
   ${tw`w-full flex flex-col`}
@@ -16,47 +17,47 @@ const SubmitButton = styled.button`
   font-size: 0.8rem;
 `
 function ProfilePasswordForm() {
-  const [password, setPassword] = useState<string>('')
-  const [confirmPassword, setConfirmPassword] = useState<string>('')
-  const [isPasswordMatch, setIsPasswordMatch] = useState<boolean>(true)
+  const { values, errors, isLoading, handleChange, handleSubmit } = useForm({
+    initialValue: {
+      password: '',
+      confirmPassword: ''
+    },
+    onSubmit: () => {},
+    validate: ({ password, confirmPassword }) => {
+      const errors = {
+        confirmPassword: ''
+      }
+      if (password !== confirmPassword) {
+        errors.confirmPassword = '비밀번호가 일치하지 않습니다.'
+      }
 
-  const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value)
-  }
+      return errors
+    }
+  })
 
-  const handleChangeConfirmPassword = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const { value } = e.target
-    setConfirmPassword(value)
-    setIsPasswordMatch(password === value)
-  }
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-  }
-
+  console.log(errors)
   return (
     <Form onSubmit={handleSubmit}>
       <ProfileInput
         labelName="비밀번호"
-        value={password}
+        value={values.password}
+        name="password"
         placeholder="새로운 비밀번호를 입력해주세요."
         type="password"
-        onChangeInput={handleChangePassword}
+        onChangeInput={handleChange}
       />
       <ProfileInput
         labelName="비밀번호 확인"
-        value={confirmPassword}
+        value={values.confirmPassword}
+        name="confirmPassword"
         placeholder="비밀번호를 다시 입력해주세요."
         type="password"
-        onChangeInput={handleChangeConfirmPassword}
+        onChangeInput={handleChange}
       />
-      {!isPasswordMatch && (
-        <span className="text-xs text-[crimson] px-1 py-2 w-fit">
-          비밀번호가 일치하지 않습니다.
-        </span>
-      )}
+      <span className="text-xs text-[crimson] px-1 py-2 w-fit">
+        {values.password !== values.confirmPassword &&
+          '비밀번호가 일치하지 않습니다.'}
+      </span>
       <SubmitButton type="submit">변경</SubmitButton>
     </Form>
   )

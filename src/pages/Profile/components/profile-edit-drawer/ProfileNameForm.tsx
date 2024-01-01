@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import tw, { styled } from 'twin.macro'
 import ProfileInput from './ProfileInput'
 import { useProfileStore } from '@/stores/userProfileStore'
+import useForm from '@/hooks/useForm'
 
 const Form = styled.form`
   ${tw`w-full flex flex-col`}
@@ -19,37 +20,36 @@ const SubmitButton = styled.button`
 
 function ProfileNameForm() {
   const { profile } = useProfileStore()
-  const [userName, setUserName] = useState<string>(profile?.username ?? '')
-  const [fullName, setFullName] = useState<string>(profile?.fullName ?? '')
-
-  const handleChangeUserName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUserName(e.target.value)
-  }
-  const handleChangeFullName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFullName(e.target.value)
-  }
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-  }
+  const { values, errors, isLoading, handleChange, handleSubmit } = useForm({
+    initialValue: {
+      fullName: profile?.fullName || '',
+      userName: profile?.username || ''
+    },
+    onSubmit: () => {},
+    validate: () => {}
+  })
 
   return (
     <Form onSubmit={handleSubmit}>
       <ProfileInput
         labelName="사용자 명"
-        value={userName}
+        value={values.userName}
+        name="userName"
         placeholder="사용자 명을 입력해주세요."
         type="text"
-        onChangeInput={handleChangeUserName}
+        onChangeInput={handleChange}
       />
       <ProfileInput
         labelName="실명"
-        value={fullName}
+        value={values.fullName}
+        name="fullName"
         placeholder="실명을 입력해주세요."
         type="text"
-        onChangeInput={handleChangeFullName}
+        onChangeInput={handleChange}
       />
-      <SubmitButton type="submit">변경</SubmitButton>
+      <SubmitButton type="submit">
+        {isLoading ? '변경 중' : '변경'}
+      </SubmitButton>
     </Form>
   )
 }
