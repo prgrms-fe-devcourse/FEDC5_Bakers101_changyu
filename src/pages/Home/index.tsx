@@ -1,11 +1,9 @@
 import { useState, useEffect } from 'react';
-
 import ChannelSelectionModal from './components/channelSelectionsModal';
 import PostList from './components/feed/PostList';
 import HomeHeader from './components/header';
 import CreatePost from './components/createPost';
 import HomeBottomNavBar from './components/bottom-navbar';
-
 
 type nowChannelType = {
     name : string,

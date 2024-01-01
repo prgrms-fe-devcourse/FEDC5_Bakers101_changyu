@@ -8,7 +8,6 @@ import { AdminLogin } from '@/apis/mockingApis';
 import FileUploadIcon from '@/assets/icons/fileUpload.svg'
 import handleImageFormData from '@/utils/handleImageFormData';
 
-
 type CreatePostTypes = {
     setNowCreate : React.Dispatch<React.SetStateAction<boolean>>; 
   };
@@ -18,6 +17,7 @@ type BreadType = '조리빵'|'특수빵'|'식빵'|'과자빵'| null;
 const CreatePost = ({setNowCreate} : CreatePostTypes) =>{
 
     const breadType = ['조리빵','특수빵','식빵','과자빵'];
+
 
     const [title,setTitle] = useState<string>('');
     const [detail,setDetail] = useState<string>('');
@@ -31,8 +31,7 @@ const CreatePost = ({setNowCreate} : CreatePostTypes) =>{
         const token = await AdminLogin();
         const channelId = await getChannelInform(selectedBread);
         const formData = handleImageFormData({ imageFile: file as File, title : title, type :'Post',body: detail, channelId : channelId._id});
-        
-        createPost(token,formData);
+        await createPost(token,formData);
         setNowCreate(false);
     }
 

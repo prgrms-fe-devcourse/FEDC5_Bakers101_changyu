@@ -8,18 +8,7 @@ import NoImage from '@/assets/temp/noImage.png'
 
 type PostItemType = {
 
-    postDetail : {
-    comments : Comment[],
-    likes : Like[],
-    image : string | null,
-    imagePublicId : string | null,
-    title : string,
-    channel : Channel,
-    author : User,
-    _id : string,
-    createdAt: string,
-    updatedAt: string,
-    },
+    postDetail : Post,
     index : number
 }
 

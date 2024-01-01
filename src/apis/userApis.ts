@@ -1,10 +1,13 @@
 import axiosInstance from './api';
 
+import { GET_USER_PROFILE_PATH } from '@/utils/api_paths';
+
+
 const getUserInform = async (id : string) =>
 {
     try{
         const request = await axiosInstance
-        .get(`/users/${encodeURIComponent(id)}`);
+        .get(`${GET_USER_PROFILE_PATH}/${encodeURIComponent(id)}`);
 
         return request.data;
     } catch (error) {

@@ -1,30 +1,16 @@
 import { useState,useEffect } from 'react';
+
 import {getPostList,getAllPostList} from '@/apis/postApis';
 import PostlItem from './PostItem';
-
 
 type nowChannelType = {
     title : string,
     id?: string,
 }
 
-type PostListItemType = {
-    comments : Comment[],
-    likes : Like[],
-    image : string | null,
-    imagePublicId : string | null,
-    title : string,
-    channel : Channel,
-    author : User,
-    _id : string,
-    createdAt: string,
-    updatedAt: string,
-}
-
-
 const PostList = ({title, id} : nowChannelType) => {
 
-    const [postList,setPostList] = useState<PostListItemType[]>([]);
+    const [postList,setPostList] = useState<Post[]>([]);
 
     const fetchPostList = async () =>
     {
@@ -40,10 +26,12 @@ const PostList = ({title, id} : nowChannelType) => {
                 setPostList(channeListRequest);
             })()
         }
+        //setIsChange(false);
     }
     useEffect(()=>{
         fetchPostList();
     },[title]);
+
 
     return (
         <div className ="relative">
