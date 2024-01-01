@@ -42,7 +42,7 @@ const DrawerControlLabel = styled.label``
 function Profile() {
   const { profile, setProfile } = useProfileStore()
   const [isMyProfile, setIsMyProfile] = useState<boolean>(false)
-  const [myInfo, setMyInfo] = useState<User | null>(null)
+  const [userInfo, setUserInfo] = useState<User | null>(null)
   const [isFollowed, setIsFollowed] = useState<boolean>(false)
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
@@ -52,28 +52,28 @@ function Profile() {
 
   useEffect(() => {
     const fetchUserInfo = async () => {
-      const data = await getProfile(import.meta.env.VITE_ADMIN_ID)
-      setProfile(data)
-      setIsMyProfile(profile?._id === import.meta.env.VITE_ADMIN_ID)
+      const data = await getProfile(import.meta.env.VITE_USER_ID)
+      setUserInfo(data)
     }
     fetchUserInfo()
 
     const fetchMyProfile = async () => {
-      const data = await getProfile(import.meta.env.VITE_ADMIN_ID)
-      setMyInfo(data)
+      const data = await getProfile(import.meta.env.VITE_USER_ID)
+      setProfile(data)
+      setIsMyProfile(profile?._id === import.meta.env.VITE_USER_ID)
     }
     fetchMyProfile()
   }, [profile?._id, setProfile])
 
   useEffect(() => {
     const checkIsFollowedUser = () => {
-      const res = myInfo?.following.some(
-        (item) => item.user === import.meta.env.VITE_ADMIN_ID
+      const res = profile?.following.some(
+        (item) => item.user === import.meta.env.VITE_USER_ID
       )
       setIsFollowed(res!)
     }
     checkIsFollowedUser()
-  }, [myInfo])
+  }, [profile?.following])
 
   const handleClickFollowButton = () => {
     setIsFollowed((prev) => !prev)
@@ -107,7 +107,7 @@ function Profile() {
               </div>
               <UserProfileInfo
                 fullName={profile?.fullName}
-                userName={'User'}
+                userName={profile?.username || 'User'}
                 email={profile?.email}
                 isOnline={profile?.isOnline}
                 followers={profile?.followers}
