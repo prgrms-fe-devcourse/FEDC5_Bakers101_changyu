@@ -2,10 +2,14 @@ import axiosInstance from './api';
 
 const getUserInform = async (id : string) =>
 {
-    const request = await axiosInstance
-    .get(`/users/${encodeURIComponent(id)}`);
+    try{
+        const request = await axiosInstance
+        .get(`/users/${encodeURIComponent(id)}`);
 
-    return request.data;
+        return request.data;
+    } catch (error) {
+    throw new Error(`${error}`)
+    }
 }
 
 export {getUserInform};
