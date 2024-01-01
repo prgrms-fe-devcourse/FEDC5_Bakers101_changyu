@@ -56,7 +56,9 @@ function ProfilePasswordForm() {
         onChangeInput={handleChange}
       />
       <span className="text-xs text-[crimson] px-1 py-2 w-fit">
-        {values.password !== values.confirmPassword &&
+        {values.password.length === 0 && values.confirmPassword.length !== 0 && '비밀번호를 입력해주세요.'}
+        {values.password.length !== 0 &&
+          values.password !== values.confirmPassword &&
           '비밀번호가 일치하지 않습니다.'}
       </span>
       <SubmitButton type="submit">
