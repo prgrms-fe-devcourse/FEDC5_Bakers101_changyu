@@ -22,7 +22,6 @@ interface ImageFormData {
         formData.append('title', JSON.stringify({title : String(title),body : String(body)}))
         formData.append('channelId',String(channelId));
     }
-    console.log(formData);
     return formData
   }
   

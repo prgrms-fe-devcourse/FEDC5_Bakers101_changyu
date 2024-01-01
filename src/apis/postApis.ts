@@ -34,7 +34,6 @@ const createPost = async(token : string, formData : FormData) =>{
   await axiosInstance
   .post('/posts/create', formData,
     {headers: {'Authorization': `bearer ${token}`,'Content-Type': 'multipart/form-data'}})
-    .then((req)=>console.log(req));
 }
 
 const deletePost = async(token : string, id:string)=>{
@@ -43,13 +42,11 @@ const deletePost = async(token : string, id:string)=>{
     headers: {'Authorization': `bearer ${token}`},
     data: {'id': id},
   })
-    .then((req)=>console.log(req));
 }
 
 const getPostDetail = async(postId : number) => {
     const request = await axiosInstance
     .get(`/posts/${postId}`);
-    console.log(request.data);
     return request.data;
 }
 

@@ -4,6 +4,7 @@ import { getUserInform } from '@/apis/userApis';
 
 import CommentIcon from '@/assets/icons/comment.svg'
 import HeartIcon from '@/assets/icons/following.svg'
+import NoImage from '@/assets/temp/noImage.png'
 
 type PostItemType = {
 
@@ -39,8 +40,6 @@ const PostlItem = ({postDetail,index} : PostItemType) => {
     useEffect(() => {
         (async () => {
         const request = await getUserInform(postDetail.author._id);
-        console.log(postDetail.author._id);
-        console.log(request);
         if (!request.image) setUserImg(null);
         setUserImg(request.image);
         setTimeout(() => setIsLoading(true), index * 120);
@@ -86,7 +85,9 @@ const PostlItem = ({postDetail,index} : PostItemType) => {
                     <img 
                         src={postImage}
                         className ='w-[6rem] h-[5.5rem] bg-white rounded-md my-1'/>
-                    : null
+                    :<img 
+                        src={NoImage}
+                        className ='w-[6rem] h-[5.5rem] bg-white rounded-md my-1 border-1'/>
                 }
                 <div className ="max-h-[4rem]">
                     <p className = "w-[11rem] max-h-[2rem] overflow-hidden text-ellipsis">{title}</p>

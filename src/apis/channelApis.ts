@@ -10,7 +10,6 @@ const createChannel = async (token: string, channelName : string, description : 
 
     await axiosInstance
       .post('/channels/create',{'authRequired' : false ,'description' : `${description}`, 'name' : `${channelName}`},{headers: {'Authorization': `bearer ${token}`}})
-      .then((res) => console.log(res));
 }
 
 const getChannelInform = async (channel : string) =>
