@@ -4,14 +4,17 @@ import ProfileInput from './ProfileInput'
 import { useProfileStore } from '@/stores/userProfileStore'
 
 const Form = styled.form`
-  ${tw`w-full mb-36 flex flex-col gap-3`}
+  ${tw`w-full mb-36 flex flex-col`}
 `
 
 const SubmitButton = styled.button`
-  padding: 10px 20px;
+  padding: 8px 15px;
   border-radius: 30px;
   background: #fff;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  align-self: flex-end;
+  font-size: 0.8rem;
 `
 
 function ProfileInputForm() {
@@ -54,7 +57,7 @@ function ProfileInputForm() {
       <ProfileInput
         labelName="비밀번호"
         value={password}
-        placeholder="비밀번호를 입력해주세요."
+        placeholder="새로운 비밀번호를 입력해주세요."
         type="password"
         onChangeInput={handleChangePassword}
       />
