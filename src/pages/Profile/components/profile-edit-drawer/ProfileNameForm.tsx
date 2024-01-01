@@ -17,21 +17,16 @@ const SubmitButton = styled.button`
   font-size: 0.8rem;
 `
 
-function ProfileInputForm() {
+function ProfileNameForm() {
   const { profile } = useProfileStore()
   const [userName, setUserName] = useState<string>(profile?.username ?? '')
   const [fullName, setFullName] = useState<string>(profile?.fullName ?? '')
-  const [password, setPassword] = useState<string>('')
 
   const handleChangeUserName = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserName(e.target.value)
   }
   const handleChangeFullName = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFullName(e.target.value)
-  }
-
-  const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value)
   }
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -54,16 +49,9 @@ function ProfileInputForm() {
         type="text"
         onChangeInput={handleChangeFullName}
       />
-      <ProfileInput
-        labelName="비밀번호"
-        value={password}
-        placeholder="새로운 비밀번호를 입력해주세요."
-        type="password"
-        onChangeInput={handleChangePassword}
-      />
-      <SubmitButton type="submit">수정하기</SubmitButton>
+      <SubmitButton type="submit">변경</SubmitButton>
     </Form>
   )
 }
 
-export default ProfileInputForm
+export default ProfileNameForm

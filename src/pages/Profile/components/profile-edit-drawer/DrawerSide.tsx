@@ -1,7 +1,8 @@
 import tw, { styled } from 'twin.macro'
 import CoverImage from './CoverImage'
 import ProfileImage from './ProfileImage'
-import ProfileInputForm from './ProfileInputForm'
+import ProfileNameForm from './ProfileNameForm'
+import ProfilePasswordForm from './ProfilePasswordForm'
 
 const ProfileDrawerSide = styled.div``
 
@@ -36,7 +37,8 @@ function DrawerSide({ onToggle }: DrawerSideProps) {
         <CoverImage />
         <DetailSection>
           <ProfileImage />
-          <ProfileInputForm />
+          <ProfileNameForm />
+          <ProfilePasswordForm />
         </DetailSection>
       </Container>
     </ProfileDrawerSide>
