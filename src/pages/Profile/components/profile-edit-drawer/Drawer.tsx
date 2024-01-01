@@ -25,7 +25,9 @@ function Drawer({ children, isOpen, onToggle }: DrawerProps) {
         checked={isOpen}
         onChange={onToggle}
       />
-      <DrawerContent className="drawer-content">{children}</DrawerContent>
+      {!isOpen && (
+        <DrawerContent className="drawer-content">{children}</DrawerContent>
+      )}
       <DrawerSide onToggle={onToggle} />
     </DrawerContainer>
   )
