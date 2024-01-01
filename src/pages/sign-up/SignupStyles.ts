@@ -2,7 +2,7 @@ import tw from 'twin.macro';
 
 export const container = tw.div`flex items-center justify-center h-screen bg-white`;
 
-export const form = tw.form`max-w-4xl w-full p-8`;
+export const form = tw.div`max-w-4xl w-full p-8`;
 
 export const Label = tw.label`text-sm mb-1 block text-gray-600`;
 

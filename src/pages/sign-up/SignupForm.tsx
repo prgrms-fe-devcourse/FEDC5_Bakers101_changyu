@@ -4,7 +4,7 @@ import * as styles from './SignupStyles';
 
 type Props = {};
 
-function SignUp({}: Props) {
+function SignUpForm({}: Props) {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
@@ -39,7 +39,7 @@ function SignUp({}: Props) {
     return isValid;
   };
 
-  const handleSumbit = async () => {
+  const handleSignUpSumbit = async () => {
     try {
       const isEmailValid = validateEmail(email);
       const isNameValid = validateName(name);
@@ -110,10 +110,10 @@ function SignUp({}: Props) {
           />
           {confirmPasswordError && <styles.error>{confirmPasswordError}</styles.error>}
         </styles.inputContainer>
-        <styles.button onClick={handleSumbit}>JOIN</styles.button>
+        <styles.button onClick={handleSignUpSumbit}>JOIN</styles.button>
       </styles.form>
     </styles.container>
   );
 }
 
-export default SignUp;
+export default SignUpForm;
