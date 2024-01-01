@@ -20,6 +20,10 @@ const SubmitButton = styled.button`
   font-size: 0.8rem;
 `
 
+const sleep = () => {
+  return new Promise((resolve) => setTimeout(resolve, 1000))
+}
+
 function ProfileNameForm() {
   const { profile, setProfile } = useProfileStore()
   const { values, isLoading, handleChange, handleSubmit } = useForm({
@@ -28,6 +32,7 @@ function ProfileNameForm() {
       username: profile?.username || ''
     },
     onSubmit: async (values) => {
+      await sleep()
       const data = await updateName(values)
       setProfile(data)
     }

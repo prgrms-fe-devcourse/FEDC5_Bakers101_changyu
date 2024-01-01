@@ -18,13 +18,19 @@ const SubmitButton = styled.button`
   align-self: flex-end;
   font-size: 0.8rem;
 `
+
+const sleep = () => {
+  return new Promise((resolve) => setTimeout(resolve, 1000));
+};
+
 function ProfilePasswordForm() {
-  const { values, isLoading, handleChange, handleSubmit } = useForm({
+  const { values, errors, isLoading, handleChange, handleSubmit } = useForm({
     initialValue: {
       password: '',
       confirmPassword: ''
     },
     onSubmit: async (values) => {
+      await sleep()
       await updatePassword({
         password: values.password
       })
