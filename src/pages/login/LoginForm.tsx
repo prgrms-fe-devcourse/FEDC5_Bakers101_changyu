@@ -12,6 +12,7 @@ function LoginForm({}: Props) {
     try {
       const response = await login(email, password);
       console.log('response:', response);
+      localStorage.setItem('token', JSON.stringify(response.token))
     } catch (error) {
       console.log(error);
     }
