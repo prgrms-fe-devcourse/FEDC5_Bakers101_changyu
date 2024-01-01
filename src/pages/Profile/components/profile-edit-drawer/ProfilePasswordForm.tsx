@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
 import ProfileInput from './ProfileInput'
 import tw, { styled } from 'twin.macro'
 import useForm from '@/hooks/useForm'
+import updatePassword from '@/apis/updatePassword'
 
 const Form = styled.form`
   ${tw`w-full flex flex-col`}
@@ -17,25 +17,18 @@ const SubmitButton = styled.button`
   font-size: 0.8rem;
 `
 function ProfilePasswordForm() {
-  const { values, errors, isLoading, handleChange, handleSubmit } = useForm({
+  const { values, isLoading, handleChange, handleSubmit } = useForm({
     initialValue: {
       password: '',
       confirmPassword: ''
     },
-    onSubmit: () => {},
-    validate: ({ password, confirmPassword }) => {
-      const errors = {
-        confirmPassword: ''
-      }
-      if (password !== confirmPassword) {
-        errors.confirmPassword = '비밀번호가 일치하지 않습니다.'
-      }
-
-      return errors
-    }
+    onSubmit: async (values) => {
+      await updatePassword({
+        password: values.password
+      })
+    },
   })
 
-  console.log(errors)
   return (
     <Form onSubmit={handleSubmit}>
       <ProfileInput
@@ -58,7 +51,9 @@ function ProfilePasswordForm() {
         {values.password !== values.confirmPassword &&
           '비밀번호가 일치하지 않습니다.'}
       </span>
-      <SubmitButton type="submit">변경</SubmitButton>
+      <SubmitButton type="submit">
+        {isLoading ? '변경 중' : '변경'}
+      </SubmitButton>
     </Form>
   )
 }
