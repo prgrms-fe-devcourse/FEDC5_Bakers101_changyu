@@ -18,16 +18,13 @@ const useForm = ({ initialValue, onSubmit, validate }: IUseForm) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
     setValues({ ...values, [name]: value })
-    console.log(values)
   }
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     setIsLoading(true)
     e.preventDefault()
-
     const newErros = validate ? validate(values) : {}
     if (Object.keys(newErros).length === 0) {
-      console.log('submit')
       await onSubmit(values)
     }
     setErrors(newErros)
