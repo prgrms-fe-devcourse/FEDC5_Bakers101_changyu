@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import tw, { styled } from 'twin.macro'
 import ProfileInput from './ProfileInput'
+import { useProfileStore } from '@/stores/userProfileStore'
 
 const Form = styled.form`
   ${tw`w-full mb-36 flex flex-col gap-3`}
@@ -14,8 +15,9 @@ const SubmitButton = styled.button`
 `
 
 function ProfileInputForm() {
-  const [userName, setUserName] = useState<string>('')
-  const [fullName, setFullName] = useState<string>('')
+  const { profile } = useProfileStore()
+  const [userName, setUserName] = useState<string>(profile?.username ?? '')
+  const [fullName, setFullName] = useState<string>(profile?.fullName ?? '')
   const [password, setPassword] = useState<string>('')
 
   const handleChangeUserName = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,7 +34,7 @@ function ProfileInputForm() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
   }
-    
+
   return (
     <Form onSubmit={handleSubmit}>
       <ProfileInput
