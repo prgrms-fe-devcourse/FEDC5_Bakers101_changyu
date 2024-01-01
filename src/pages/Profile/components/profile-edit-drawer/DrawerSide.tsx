@@ -3,6 +3,8 @@ import CoverImage from './CoverImage'
 import ProfileImage from './ProfileImage'
 import ProfileNameForm from './ProfileNameForm'
 import ProfilePasswordForm from './ProfilePasswordForm'
+import UploadImageButton from './UploadImageButton'
+import EditIcon from '../EditIcon'
 
 const ProfileDrawerSide = styled.div``
 
@@ -34,9 +36,21 @@ function DrawerSide({ onToggle }: DrawerSideProps) {
         <PrevButton onClick={onToggle} />
       </HeaderContainer>
       <Container className="bg-base-200">
-        <CoverImage />
+        <CoverImage>
+          <UploadImageButton
+            className="absolute bottom-3 right-2"
+            isCover>
+            <EditIcon className="w-5 h-5 text-[#fff]" />
+          </UploadImageButton>
+        </CoverImage>
         <DetailSection>
-          <ProfileImage />
+          <ProfileImage>
+            <UploadImageButton
+              className="absolute -bottom-12 w-full h-20 flex justify-center bg-[#000]/30 rounded-b-full"
+              isCover={false}>
+              <EditIcon className="w-5 h-5 mt-1 text-[#fff]" />
+            </UploadImageButton>
+          </ProfileImage>
           <ProfileNameForm />
           <ProfilePasswordForm />
         </DetailSection>

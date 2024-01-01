@@ -1,15 +1,16 @@
 import tw, { styled } from 'twin.macro'
 
-import EditIcon from '../EditIcon'
-import UploadImageButton from './UploadImageButton'
-
 import { useProfileStore } from '@/stores/userProfileStore'
 
 const CoverImageWrapper = styled.div`
   ${tw`relative`}
 `
 
-function CoverImage() {
+interface CoverImageProps {
+  children?: React.ReactNode
+}
+
+function CoverImage({ children }: CoverImageProps) {
   const { profile } = useProfileStore()
 
   return (
@@ -19,9 +20,7 @@ function CoverImage() {
         alt="profile"
         className="w-full h-64 object-cover p-0 rounded-none brightness-50"
       />
-      <UploadImageButton className="absolute bottom-3 right-2" isCover>
-      <EditIcon className="w-5 h-5 text-[#fff]" />
-      </UploadImageButton>
+      {children}
     </CoverImageWrapper>
   )
 }

@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import tw, { styled } from 'twin.macro'
 
-import UserProfileImage from './components/profile/UserProfileImage'
 import UserProfileInfo from './components/profile/UserProfileInfo'
 import Header from './components/Header'
 import PostList from './components/profile/PostList'
@@ -9,6 +8,8 @@ import Drawer from './components/profile-edit-drawer/Drawer'
 
 import getProfile from '@/apis/profile'
 import { useProfileStore } from '@/stores/userProfileStore'
+import ProfileImage from './components/profile-edit-drawer/ProfileImage'
+import CoverImage from './components/profile-edit-drawer/CoverImage'
 
 const ProfileContainer = styled.main`
   ${tw`w-full h-screen relative`}
@@ -16,10 +17,6 @@ const ProfileContainer = styled.main`
 
 const UserProfileSection = styled.section`
   ${tw`w-full h-full`}
-`
-
-const CoverImage = styled.img`
-  ${tw`w-full h-64 object-cover`}
 `
 
 const DetailSection = styled.div`
@@ -88,14 +85,11 @@ function Profile() {
       <ProfileContainer>
         <Header />
         <UserProfileSection>
-          <CoverImage src={`${profile?.coverImage}`} />
+          <CoverImage />
           <DetailSection>
             <main className="w-full flex flex-col gap-2">
               <div className="w-full flex justify-between">
-                <UserProfileImage
-                  imgSrc={profile?.image}
-                  isMyProfile={isMyProfile}
-                />
+                <ProfileImage />
                 {isMyProfile && (
                   <DrawerControlLabel
                     htmlFor="my-drawer"
