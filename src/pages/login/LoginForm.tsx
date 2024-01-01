@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
 import { login } from '@/apis/login';
-import * as styles from './LoginStyles';
+import * as styles from '@/pages/login/LoginStyles';
 
 type Props = {};
 
-function Login({}: Props) {
+function LoginForm({}: Props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSumbit = async () => {
+  const handleLoginSubmit = async () => {
     try {
       const response = await login(email, password);
       console.log('response:', response);
     } catch (error) {
-      console.error(error);
+      console.log(error);
     }
   };
 
@@ -32,11 +32,11 @@ function Login({}: Props) {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <styles.button onClick={handleSumbit}>Login</styles.button>
+        <styles.button onClick={handleLoginSubmit}>Login</styles.button>
         <styles.button>계정이 없으신가요?</styles.button>
       </styles.form>
     </styles.container>
   );
 }
 
-export default Login;
+export default LoginForm;
