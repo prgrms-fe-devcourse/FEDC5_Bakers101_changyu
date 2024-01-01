@@ -4,7 +4,7 @@ import ProfileInput from './ProfileInput'
 import { useProfileStore } from '@/stores/userProfileStore'
 
 const Form = styled.form`
-  ${tw`w-full mb-36 flex flex-col`}
+  ${tw`w-full flex flex-col`}
 `
 
 const SubmitButton = styled.button`
