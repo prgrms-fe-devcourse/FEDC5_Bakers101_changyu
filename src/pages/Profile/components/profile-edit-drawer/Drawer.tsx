@@ -1,12 +1,16 @@
 import tw, { styled } from 'twin.macro'
 import DrawerSide from './DrawerSide'
 
-const DrawerContainer = styled.div``
+const DrawerContainer = styled.div`
+  ${tw`drawer drawer-end`}
+`
 
-const DrawerControl = styled.input``
+const DrawerControl = styled.input`
+  ${tw`drawer-toggle`}
+`
 
 const DrawerContent = styled.div`
-  ${tw`flex flex-col items-center justify-center`}
+  ${tw`flex flex-col items-center justify-center drawer-content`}
 `
 
 interface DrawerProps {
@@ -17,17 +21,14 @@ interface DrawerProps {
 
 function Drawer({ children, isOpen, onToggle }: DrawerProps) {
   return (
-    <DrawerContainer className="drawer drawer-end">
+    <DrawerContainer>
       <DrawerControl
         id="my-drawer"
         type="checkbox"
-        className="drawer-toggle"
         checked={isOpen}
         onChange={onToggle}
       />
-      {!isOpen && (
-        <DrawerContent className="drawer-content">{children}</DrawerContent>
-      )}
+      {!isOpen && <DrawerContent>{children}</DrawerContent>}
       <DrawerSide onToggle={onToggle} />
     </DrawerContainer>
   )
