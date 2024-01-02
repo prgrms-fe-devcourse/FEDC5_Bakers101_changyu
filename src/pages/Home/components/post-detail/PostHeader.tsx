@@ -13,11 +13,11 @@ const PostHeader = ({title, author, createAt, profileImg} : PostHeaderType) =>{
         <div className ="w-fit mx-auto">
             <div className = "w-[4rem] h-[4rem] overflow-hidden mx-auto rounded-full">
                 <img 
-                    className ="w-[4rem] h-[4rem] object-cover "
+                    className ="w-[4rem] h-[4rem] object-cover bg-black "
                     src ={profileImg} 
                     alt="profileimg"/>
             </div>
-            <div className ="flex mx-auto gap-1 w-fit">          
+            <div className ="flex mx-auto gap-2 w-fit">          
                 <p className ="font-semibold text-[1.1rem]">{author}</p>
                 <p className ="text-[0.65rem] my-auto text-purple-500 font-medium">팔로잉 중</p>
             </div>
