@@ -2,7 +2,7 @@ import tw, { styled } from 'twin.macro'
 
 import ProfileInput from './ProfileInput'
 
-import updateName from '@/apis/updateName'
+import updateName from '@/apis/profile/updateName'
 import { useProfileStore } from '@/stores/userProfileStore'
 import useForm from '@/hooks/useForm'
 

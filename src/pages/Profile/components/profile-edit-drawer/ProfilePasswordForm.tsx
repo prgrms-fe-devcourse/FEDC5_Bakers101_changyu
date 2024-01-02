@@ -2,7 +2,7 @@ import tw, { styled } from 'twin.macro'
 
 import ProfileInput from './ProfileInput'
 
-import updatePassword from '@/apis/updatePassword'
+import updatePassword from '@/apis/profile/updatePassword'
 import useForm from '@/hooks/useForm'
 
 const Form = styled.form`

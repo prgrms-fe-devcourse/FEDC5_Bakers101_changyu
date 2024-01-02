@@ -1,5 +1,5 @@
 import { UPDATE_MY_PROFILE_PATH } from '@/utils/api_paths'
-import axiosInstance from './api'
+import axiosInstance from '../api'
 
 interface Data {
   [key: string]: string
