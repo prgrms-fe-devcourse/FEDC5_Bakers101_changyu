@@ -23,8 +23,9 @@ const PostDetail = ({id} : PostDetail) => {
             {postDetails ? 
                 <div>
                     <PostHeader title ={JSON.parse(postDetails.title).title} author={postDetails.author.fullName} createAt={postDetails.createdAt} profileImg={postDetails.image}/>
-                    <hr className ="w-4/5 mx-auto my-8"/>
+                    <hr className ="w-4/5 mx-auto my-8 px-2"/>
                     <PostBody body = {JSON.parse(postDetails.title).body} likeNum = {postDetails.likes.length} commentNum={postDetails.comments.length}/>
+                    <hr className ="w-4/5 mx-auto mb-8 mt-2 px-2"/>
                 </div>
                  : null
             }
