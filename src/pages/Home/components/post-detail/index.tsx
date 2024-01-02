@@ -23,7 +23,7 @@ const PostDetail = ({id} : PostDetail) => {
                 <div>
                     <PostHeader title ={JSON.parse(postDetails.title).title} author={postDetails.author.fullName} createAt={postDetails.createdAt} profileImg={postDetails.image}/>
                     <hr className ="w-4/5 mx-auto my-8"/>
-                   
+                    <PostBody body = {JSON.parse(postDetails.title).body} likeNum = {postDetails.likes.length} commentNum={postDetails.comments.length}/>
                 </div>
                  : null
             }
