@@ -14,6 +14,7 @@ const PostDetail = ({id} : PostDetail) => {
         (async()=>{
             const details = await getPostDetail(id);
             await setPostDetails(details);
+            console.log(JSON.parse(details.title))
         })();
     },[]);
 
