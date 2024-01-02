@@ -1,5 +1,9 @@
+import LoginForm from '@/pages/login/LoginForm'
+
 function App() {
-  return <></>;
+  return <>
+  <LoginForm />
+  </>;
 }
 
 export default App;

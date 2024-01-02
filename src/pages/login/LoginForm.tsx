@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { login } from '@/apis/login';
-import * as styles from '@/pages/login/LoginStyles';
+import * as Styles from '@/pages/login/LoginStyles';
 
 type Props = {};
 
@@ -11,7 +11,6 @@ function LoginForm({}: Props) {
   const handleLoginSubmit = async () => {
     try {
       const response = await login(email, password);
-      console.log('response:', response);
       localStorage.setItem('token', JSON.stringify(response.token))
     } catch (error) {
       console.log(error);
@@ -19,24 +18,24 @@ function LoginForm({}: Props) {
   };
 
   return (
-    <styles.container>
-      <styles.form>
-        <styles.input
+    <Styles.Container>
+      <Styles.Form>
+        <Styles.Input
           type="email"
           placeholder="이메일 주소"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        <styles.input
+        <Styles.Input
           type="password"
           placeholder="비밀번호"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <styles.button onClick={handleLoginSubmit}>Login</styles.button>
-        <styles.button>계정이 없으신가요?</styles.button>
-      </styles.form>
-    </styles.container>
+        <Styles.Button onClick={handleLoginSubmit}>Login</Styles.Button>
+        <Styles.Button>계정이 없으신가요?</Styles.Button>
+      </Styles.Form>
+    </Styles.Container>
   );
 }
 
