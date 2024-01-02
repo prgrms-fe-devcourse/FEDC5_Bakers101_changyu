@@ -2,9 +2,7 @@ import { useState } from 'react';
 import { login } from '@/apis/login';
 import * as Styles from '@/pages/login/LoginStyles';
 
-type Props = {};
-
-function LoginForm({}: Props) {
+function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
