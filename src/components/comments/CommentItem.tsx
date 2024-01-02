@@ -1,6 +1,6 @@
 import { CommentProps } from '@/components/comments/CommentList'
 import commentDeleteIcon from '@/assets/icons/commentDelete.svg'
-import formatDate from '@/utils/functions/formatDate'
+import formatDate from '@/utils/formatDate'
 
 interface Props {
   comment: CommentProps
