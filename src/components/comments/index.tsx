@@ -7,9 +7,7 @@ import CommentList from './CommentList'
 // apis
 import { getPostDetail } from '@/apis/post'
 
-type Props = {}
-
-const Comments = (props: Props) => {
+const Comments = () => {
   const [comments, setComments] = useState<Comment[]>([])
 
   // postId에 대한 댓글 데이터를 가져오는 함수 - 임시🔨

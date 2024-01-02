@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
+import CommentItem from '@/components/comments/CommentItem'
 import { deleteComment } from '@/apis/commnents'
-import commentDeleteIcon from '@/assets/icons/commentDelete.svg'
 
-interface CommentProps {
+export interface CommentProps {
   _id: string
   comment: string
   author: {
@@ -22,14 +22,6 @@ interface CommentProps {
 
 interface Props {
   comments: CommentProps[]
-}
-
-const formatDate = (dateString: string) => {
-  const date = new Date(dateString)
-  const year = date.getFullYear()
-  const month = (date.getMonth() + 1).toString().padStart(2, '0')
-  const day = date.getDate().toString().padStart(2, '0')
-  return `${year}.${month}.${day}`
 }
 
 const CommentList = ({ comments: initialComments }: Props) => {
@@ -54,28 +46,12 @@ const CommentList = ({ comments: initialComments }: Props) => {
     <div className="flex flex-col">
       {comments.length > 0 ? (
         <ul className="w-full my-3">
-          {comments.map(({ _id, author, createdAt, comment }) => (
-            <li
-              key={_id}
-              className="mb-4 mx-8">
-              <div className="flex flex-col justify-between">
-                <div className="flex justify-between items-center">
-                  <div className="font-medium">{author.fullName}</div>
-                  <div className="text-sm text-gray-500">
-                    {formatDate(createdAt)}
-                  </div>
-                </div>
-                <div className="flex justify-between items-center">
-                  <div className="py-2">{comment}</div>
-                  <img
-                    className="cursor-pointer"
-                    src={commentDeleteIcon}
-                    alt="댓글 삭제 아이콘"
-                    onClick={() => handleCommentDelete(_id)}
-                  />
-                </div>
-              </div>
-            </li>
+          {comments.map((comment) => (
+            <CommentItem
+              key={comment._id}
+              comment={comment}
+              onDelete={handleCommentDelete}
+            />
           ))}
         </ul>
       ) : (
