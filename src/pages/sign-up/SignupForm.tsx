@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { signUp } from '@/apis/signup';
-import * as styles from './SignupStyles';
+import * as Styles from './SignupStyles';
+import isPasswordValid from '@/utils/passwordValidator';
 
-type Props = {};
-
-function SignUpForm({}: Props) {
+const SignUpForm = () => {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
@@ -22,8 +21,8 @@ function SignUpForm({}: Props) {
   };
 
   const validatePassword = (input: string): boolean => {
-    const isValid = input.length >= 6;
-    setPasswordError(isValid ? '' : '비밀번호는 최소 6자리 이상이어야 합니다.');
+    const isValid = isPasswordValid(input);
+    setPasswordError(isValid ? '' : '최소 8자리 이상, 영문 대소문자 + 숫자, 특수문자 포함');
     return isValid;
   };
 
@@ -47,8 +46,7 @@ function SignUpForm({}: Props) {
       const isConfirmPasswordValid = validateConfirmPassword(confirmPassword);
 
       if (isEmailValid && isNameValid && isPasswordValid && isConfirmPasswordValid) {
-        const response = await signUp(email, name, password);
-        console.log('response:', response);
+        await signUp(email, name, password);
       }
     } catch (error) {
       console.error(error);
@@ -56,11 +54,11 @@ function SignUpForm({}: Props) {
   };
 
   return (
-    <styles.container>
-      <styles.form>
-        <styles.inputContainer>
-          <styles.Label>Email</styles.Label>
-          <styles.input
+    <Styles.Container>
+      <Styles.Form>
+        <Styles.InputContainer>
+          <Styles.Label>Email</Styles.Label>
+          <Styles.Input
             type="email"
             placeholder="이메일 주소"
             value={email}
@@ -69,11 +67,11 @@ function SignUpForm({}: Props) {
               validateEmail(e.target.value);
             }}
           />
-          {emailError && <styles.error>{emailError}</styles.error>}
-        </styles.inputContainer>
-        <styles.inputContainer>
-          <styles.Label>Name</styles.Label>
-          <styles.input
+          {emailError && <Styles.Error>{emailError}</Styles.Error>}
+        </Styles.InputContainer>
+        <Styles.InputContainer>
+          <Styles.Label>Name</Styles.Label>
+          <Styles.Input
             type="text"
             placeholder="이름"
             value={name}
@@ -82,11 +80,11 @@ function SignUpForm({}: Props) {
               validateName(e.target.value);
             }}
           />
-          {nameError && <styles.error>{nameError}</styles.error>}
-        </styles.inputContainer>
-        <styles.inputContainer>
-          <styles.Label>Password</styles.Label>
-          <styles.input
+          {nameError && <Styles.Error>{nameError}</Styles.Error>}
+        </Styles.InputContainer>
+        <Styles.InputContainer>
+          <Styles.Label>Password</Styles.Label>
+          <Styles.Input
             type="password"
             placeholder="비밀번호"
             value={password}
@@ -95,11 +93,11 @@ function SignUpForm({}: Props) {
               validatePassword(e.target.value);
             }}
           />
-          {passwordError && <styles.error>{passwordError}</styles.error>}
-        </styles.inputContainer>
-        <styles.inputContainer>
-          <styles.Label>Confirm Password</styles.Label>
-          <styles.input
+          {passwordError && <Styles.Error>{passwordError}</Styles.Error>}
+        </Styles.InputContainer>
+        <Styles.InputContainer>
+          <Styles.Label>Confirm Password</Styles.Label>
+          <Styles.Input
             type="password"
             placeholder="비밀번호 확인"
             value={confirmPassword}
@@ -108,11 +106,11 @@ function SignUpForm({}: Props) {
               validateConfirmPassword(e.target.value);
             }}
           />
-          {confirmPasswordError && <styles.error>{confirmPasswordError}</styles.error>}
-        </styles.inputContainer>
-        <styles.button onClick={handleSignUpSumbit}>JOIN</styles.button>
-      </styles.form>
-    </styles.container>
+          {confirmPasswordError && <Styles.Error>{confirmPasswordError}</Styles.Error>}
+        </Styles.InputContainer>
+        <Styles.Button onClick={handleSignUpSumbit}>JOIN</Styles.Button>
+      </Styles.Form>
+    </Styles.Container>
   );
 }
 
