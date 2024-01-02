@@ -51,7 +51,7 @@ interface Like {
   updatedAt: string
 }
 
-interface Commnet {
+interface Comment {
   _id: string
   comment: string
   author: User
