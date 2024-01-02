@@ -19,7 +19,7 @@ interface DrawerProps {
   onToggle: () => void
 }
 
-function Drawer({ children, isOpen, onToggle }: DrawerProps) {
+const Drawer = ({ children, isOpen, onToggle }: DrawerProps) => {
   return (
     <DrawerContainer>
       <DrawerControl

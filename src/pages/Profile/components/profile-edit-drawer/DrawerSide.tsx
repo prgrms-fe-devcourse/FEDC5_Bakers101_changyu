@@ -29,7 +29,7 @@ interface DrawerSideProps {
   onToggle: () => void
 }
 
-function DrawerSide({ onToggle }: DrawerSideProps) {
+const DrawerSide = ({ onToggle }: DrawerSideProps) => {
   return (
     <ProfileDrawerSide className="drawer-side">
       <HeaderContainer className="z-10">

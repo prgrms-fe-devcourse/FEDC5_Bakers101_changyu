@@ -18,14 +18,14 @@ const Label = styled.label`
   ${tw`label`}
 `
 
-function ProfileInput({
+const ProfileInput = ({
   labelName,
   name,
   value,
   placeholder,
   type,
   onChangeInput
-}: InputProps) {
+}: InputProps) => {
   return (
     <div>
       <Label>{labelName}</Label>

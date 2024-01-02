@@ -17,11 +17,11 @@ interface UploadImageButtonProps {
   isCover: boolean
 }
 
-function UploadImageButton({
+const UploadImageButton = ({
   children,
   className,
   isCover
-}: UploadImageButtonProps) {
+}: UploadImageButtonProps) => {
   const inputRef = useRef<HTMLInputElement | null>(null)
   const { setProfile } = useProfileStore()
 

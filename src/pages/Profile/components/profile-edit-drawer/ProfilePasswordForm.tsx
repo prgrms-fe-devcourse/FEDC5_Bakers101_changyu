@@ -23,7 +23,7 @@ const sleep = () => {
   return new Promise((resolve) => setTimeout(resolve, 1000));
 };
 
-function ProfilePasswordForm() {
+const ProfilePasswordForm = () => {
   const { values, errors, isLoading, handleChange, handleSubmit } = useForm({
     initialValue: {
       password: '',

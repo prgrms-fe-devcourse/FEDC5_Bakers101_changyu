@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-function FollowButton(props: React.SVGProps<SVGSVGElement>) {
+const FollowButton = (props: React.SVGProps<SVGSVGElement>) => {
   return (
     <svg
       fill={props.fill || 'none'}

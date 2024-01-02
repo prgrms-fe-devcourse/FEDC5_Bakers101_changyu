@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-function EditIcon(props: React.SVGProps<SVGSVGElement>) {
+const EditIcon = (props: React.SVGProps<SVGSVGElement>) => {
   return (
     <svg
       fill="none"

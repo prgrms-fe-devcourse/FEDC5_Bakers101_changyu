@@ -38,7 +38,7 @@ const EditButton = styled.button`
 
 const DrawerControlLabel = styled.label``
 
-function Profile() {
+const Profile = () => {
   const { profile, setProfile } = useProfileStore()
   const [isMyProfile, setIsMyProfile] = useState<boolean>(false)
   const [userInfo, setUserInfo] = useState<User | null>(null)

@@ -10,7 +10,7 @@ interface CoverImageProps {
   children?: React.ReactNode
 }
 
-function CoverImage({ children }: CoverImageProps) {
+const CoverImage = ({ children }: CoverImageProps) => {
   const { profile } = useProfileStore()
 
   return (

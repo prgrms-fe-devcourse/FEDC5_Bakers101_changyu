@@ -12,7 +12,7 @@ const PostListTitle = styled.h1`
   ${tw`text-lg font-bold mb-4`}
 `
 
-function PostList({ posts, listTitle }: PostListProps) {
+const PostList = ({ posts, listTitle }: PostListProps) => {
   return (
     <PostListContainer>
       <PostListTitle>{listTitle}</PostListTitle>

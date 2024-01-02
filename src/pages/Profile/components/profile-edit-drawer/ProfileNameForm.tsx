@@ -24,7 +24,7 @@ const sleep = () => {
   return new Promise((resolve) => setTimeout(resolve, 1000))
 }
 
-function ProfileNameForm() {
+const ProfileNameForm = () => {
   const { profile, setProfile } = useProfileStore()
   const { values, isLoading, handleChange, handleSubmit } = useForm({
     initialValue: {

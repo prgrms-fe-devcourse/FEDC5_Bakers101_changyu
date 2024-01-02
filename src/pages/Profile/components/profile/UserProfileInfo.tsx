@@ -36,7 +36,7 @@ const ChatButton = styled.button`
   ${tw`w-6 h-6`}
 `
 
-function UserProfileInfo({
+const UserProfileInfo = ({
   fullName,
   userName,
   email,
@@ -46,7 +46,7 @@ function UserProfileInfo({
   isMyProfile,
   isFollowed,
   onClickFollowButton
-}: UserProfileInfoProps) {
+}: UserProfileInfoProps) => {
   return (
     <UserProfileInfoWrapper>
       <ProfileInfo>

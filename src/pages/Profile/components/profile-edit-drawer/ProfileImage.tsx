@@ -10,7 +10,7 @@ interface ProfileImageProps {
   children?: React.ReactNode
 }
 
-function ProfileImage({ children }: ProfileImageProps) {
+const ProfileImage = ({ children }: ProfileImageProps) => {
   const { profile } = useProfileStore()
 
   return (

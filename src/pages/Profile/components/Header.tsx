@@ -9,7 +9,7 @@ const PrevButton = styled.button`
   ${tw`w-12 h-12`}
 `
 
-function Header() {
+const Header = () => {
   return (
     <HeaderContainer>
       <PrevButton />
