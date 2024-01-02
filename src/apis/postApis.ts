@@ -25,7 +25,7 @@ const deletePost = async(token : string, id:string)=>{
   }
 }
 
-const getPostDetail = async(postId : number) => {
+const getPostDetail = async(postId : string) => {
   try {
     const request = await axiosInstance
     .get(`${GET_DETAIL_POST_PATH}/${postId}`);

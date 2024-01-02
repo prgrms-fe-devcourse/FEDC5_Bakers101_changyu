@@ -4,7 +4,7 @@ import PostList from './components/feed/PostList';
 import HomeHeader from './components/header';
 import CreatePost from './components/createPost';
 import HomeBottomNavBar from './components/bottom-navbar';
-import PostDetail from './components/postDetail';
+import PostDetail from './components/post-detail';
 
 type nowChannelType = {
     name : string,
