@@ -5,6 +5,7 @@ import { getUserInform } from '@/apis/userApis';
 import CommentIcon from '@/assets/icons/comment.svg'
 import HeartIcon from '@/assets/icons/following.svg'
 import NoImage from '@/assets/temp/noImage.png'
+import getPostLiveTime from '@/utils/getPostCreateTime';
 
 type PostItemType = {
 
@@ -14,14 +15,13 @@ type PostItemType = {
 
 const PostlItem = ({postDetail,index} : PostItemType) => {
 
-    const { createdAt} = postDetail;
     const { title, body } = JSON.parse(postDetail.title);
     const channelName = postDetail.channel.name;
     const authorName = postDetail.author.fullName;
     const likesNum = postDetail.likes.length; 
     const commentsNum = postDetail.comments.length; 
     const postImage = postDetail.image;
-    const timeString = getPostLiveTime();
+    const timeString = getPostLiveTime(postDetail.createdAt);
 
     const [isLoading, setIsLoading] = useState(false);
     const [userImg, setUserImg] = useState(null);
@@ -35,25 +35,7 @@ const PostlItem = ({postDetail,index} : PostItemType) => {
         })();
       }, []);
 
-    function getPostLiveTime() {
-        const nowTime = new Date();
-        const createdTime = new Date(createdAt);
 
-        const compareTime = (nowTime.getFullYear() * 525600) -  (createdTime.getFullYear() * 525600) +
-                            (nowTime.getMonth() * 43800) -  (createdTime.getMonth() * 43800) + 
-                            (nowTime.getDate() * 1440) -  (createdTime.getDate() * 1440) + 
-                            (nowTime.getHours() * 60) -  (createdTime.getHours() * 60) + 
-                            (nowTime.getMinutes()) -  (createdTime.getMinutes());
-        if (compareTime < 60 && compareTime >= 0) {
-            return compareTime === 0 ? '0분 전' : `${Math.floor(compareTime)}분 전`
-        }    
-        else if (compareTime < 1440) {
-            return `${Math.floor(compareTime / 60)}시간 전`
-        }
-        else {
-            return `${createdTime.getFullYear().toString().slice(2,4)}.${createdTime.getMonth()+1}.${createdTime.getDate()}`;
-        }
-    }
 
     return (
         <div className ={`w-[21.5rem] h-[11.3rem] mx-auto bg-white my-8 transition-all duration-700 ease-in-out transform ${isLoading ? 'translate-y-[0%] opacaity-100':'translate-y-[80%] opacity-0'}`}>
