@@ -23,9 +23,8 @@ const Home = () =>{
             <HomeHeader 
                 selectedChannel = {nowChannel.name} 
                 onClickChannelList={()=>{setIsChannelSelectionsModalOpen((isOpen)=>!isOpen)}}/>                
-            {isChannelSelectionsModalOpen ? 
+            {isChannelSelectionsModalOpen &&
                 <ChannelSelectionModal setNowChannel ={setNowChannel} setIsChannelSelectionsModalOpen = {setIsChannelSelectionsModalOpen}/>
-                : null
             }
             <div>
                 <PostList title = {nowChannel.name} id = {nowChannel.id}/>
