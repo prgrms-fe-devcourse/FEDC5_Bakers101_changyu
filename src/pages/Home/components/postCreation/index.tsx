@@ -16,7 +16,7 @@ type BreadType = '조리빵'|'특수빵'|'식빵'|'과자빵'| null;
 
 const CreatePost = ({setNowCreate} : CreatePostTypes) =>{
 
-    const breadType = ['조리빵','특수빵','식빵','과자빵'];
+    const breadOptions = ['조리빵','특수빵','식빵','과자빵'];
 
     const [title,setTitle] = useState<string>('');
     const [detail,setDetail] = useState<string>('');
@@ -78,7 +78,7 @@ const CreatePost = ({setNowCreate} : CreatePostTypes) =>{
                 <div>
                     <p className ="text-[0.625rem] mt-6 mb-1 text-[#959595]">어떤 종류의 빵인가요?* 1개 선택</p>
                     <div className ='flex gap-2'>
-                        {breadType.map((item, index)=>(
+                        {breadOptions.map((item, index)=>(
                             <button 
                                 className ={`w-16 py-1 font-bold rounded-full ${selectedBread === item ? 'bg-[#9F8170] text-white' : 'bg-[#F3F3F3] text-[#926B58]'}`}
                                 key ={index}
