@@ -1,5 +1,6 @@
 import tw, { styled } from 'twin.macro'
 import FilteredUser from './FilteredUser'
+import FilteredPost from './FilteredPost'
 
 interface FilteredListProps {
   type: 'user' | 'all'
@@ -21,6 +22,25 @@ const FilteredList = ({ type, users, posts }: FilteredListProps) => {
             email={user.email}
           />
         ))}
+      {type === 'all' && (
+        <>
+          {users?.map((user) => (
+            <FilteredUser
+              image={user.image}
+              fullName={user.fullName}
+              email={user.email}
+            />
+          ))}
+          {posts?.map((post) => (
+            <FilteredPost
+              thumbnail={post.image}
+              title={post.title}
+              commentsNum={post.comments.length}
+              likesNum={post.likes.length}
+            />
+          ))}
+        </>
+      )}
     </Container>
   )
 }

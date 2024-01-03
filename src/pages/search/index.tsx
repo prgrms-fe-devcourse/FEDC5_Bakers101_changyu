@@ -63,6 +63,7 @@ const Search = () => {
         <FilteredList
           type={type as 'user' | 'all'}
           users={searchedUser}
+          posts={searchedPost}
         />
       </div>
     </div>
