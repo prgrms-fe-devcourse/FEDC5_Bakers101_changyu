@@ -1,25 +1,59 @@
+import tw, { styled } from 'twin.macro'
 import PrevIcon from './PrevIcon'
+import SearchIcon from './SearchIcon'
 
-const SearchBar = () => {
+interface SearchBarProps {
+  keyword: string
+  onClickPrevButton: () => void
+  onSearch: (value: string) => void
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  onKeyPress: (e: React.KeyboardEvent<HTMLInputElement>, query: string) => void
+}
+
+const Container = styled.div`
+  ${tw`flex items-center gap-2 mt-20`}
+`
+
+const PrevButton = styled.button`
+  ${tw`flex justify-center items-center`}
+`
+
+const SearchButton = styled.button`
+  ${tw`flex justify-end`}
+`
+
+const Input = styled.input`
+  ${tw`grow border-b outline-none p-2`}
+`
+const Main = styled.div`
+  ${tw`flex items-center gap-2 grow border-b border-brand-primary mr-4`}
+`
+
+const SearchBar = ({
+  keyword,
+  onClickPrevButton,
+  onSearch,
+  onChange,
+  onKeyPress
+}: SearchBarProps) => {
   return (
-    <div className="flex items-center gap-2 mt-20">
-      <button className="flex justify-center items-center">
+    <Container>
+      <PrevButton onClick={onClickPrevButton}>
         <PrevIcon className=" text-brand-primary text-[38px]" />
-      </button>
-      <div className="flex items-center gap-2 grow border-b border-brand-primary mr-4">
-        <input
+      </PrevButton>
+      <Main>
+        <Input
           type="text"
-          className="border-b grow outline-none p-2"
+          placeholder="검색어를 입력하세요"
+          value={keyword}
+          onChange={onChange}
+          onKeyDown={(e) => onKeyPress(e, keyword)}
         />
-        <button className="flex justify-end">
-          <img
-            src="src/assets/icons/search.svg"
-            alt="search"
-            className="w-[25px] h-[25px]"
-          />
-        </button>
-      </div>
-    </div>
+        <SearchButton onClick={() => onSearch(keyword)}>
+          <SearchIcon className="text-brand-primary text-[25px]" />
+        </SearchButton>
+      </Main>
+    </Container>
   )
 }
 
