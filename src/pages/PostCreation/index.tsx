@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import tw, {styled} from "twin.macro"
+import { useHistory } from 'react-router-dom';
 
 import CreatePostHeader from './Header';
 
@@ -55,6 +56,7 @@ const PostCreation = () =>{
         const channelId = await getChannelInform(selectedBread);
         const formData = handleImageFormData({ imageFile: file as File, title : title, type :'Post',body: detail, channelId : channelId._id});
         await createPost(token,formData);
+        useHistory.push('/');
     }
 
     const onClickUploadImage = () =>{
