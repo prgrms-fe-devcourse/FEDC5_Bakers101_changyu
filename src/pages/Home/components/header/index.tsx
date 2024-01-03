@@ -17,11 +17,15 @@ const HomeHeader = ({selectedChannel, onClickChanneList} : HomeHeaderProps) =>{
     },[]);
 
     return (
-        <div className="flex justify-between mx-4">
+        <div className ="flex justify-between mx-4">
             <div className ="flex gap-2 mt-3">
-                <p className ="text-[#957969] text-[1.375rem] font-bold">{selectedChannel}</p>
-                <button onClick ={onClickChanneList}> 
-                    <img src ={TriangleIcon}/>
+                <button
+                    className = "flex gap-2" 
+                    onClick ={onClickChanneList}> 
+                    <p className ="text-[#957969] text-[1.375rem] font-bold">{selectedChannel}</p>
+                    <img
+                        className ="h-fit my-auto" 
+                        src ={TriangleIcon}/>
                 </button>
             </div>
             <div className ="flex gap-3">
