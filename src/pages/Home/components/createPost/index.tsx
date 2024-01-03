@@ -18,6 +18,9 @@ const CreatePost = ({setNowCreate} : CreatePostTypes) =>{
 
     const breadType = ['조리빵','특수빵','식빵','과자빵'];
 
+    const UploadImageTitle = styled.p`
+    ${tw`mt-2 mx-2 w-[16.8rem] text-[#959595] overflow-hidden text-ellipsis`}
+`
 
     const [title,setTitle] = useState<string>('');
     const [detail,setDetail] = useState<string>('');
