@@ -24,15 +24,14 @@ const HomeHeader = ({selectedChannel, onClickChannelList} : HomeHeaderProps) =>{
                     onClick ={onClickChannelList}> 
                     <p className ="text-[#957969] text-[1.375rem] font-bold">{selectedChannel}</p>
                     <img
-                        className ="h-fit my-auto " 
+                        className ="h-fit my-[0.6rem] " 
                         src ={TriangleIcon}/>
                 </button>
             </div>
-            <div className ="flex gap-3">
+            <div className ="flex gap-3 h-fit my-[1.3rem]">
                 <button>
                     <img src ={SearchIcon}/>
                 </button>
-       
                 <button>
                     <img src ={AlarmIcon}/>
                 </button>
