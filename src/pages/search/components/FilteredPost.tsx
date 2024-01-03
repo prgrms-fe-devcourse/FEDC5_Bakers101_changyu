@@ -1,4 +1,7 @@
 import tw, { styled } from 'twin.macro'
+import CommentIcon from './CommentIcon'
+import { comment } from 'postcss'
+import HeartIcon from './HeartIcon'
 
 interface FilteredPostProps {
   thumbnail?: string
@@ -8,7 +11,7 @@ interface FilteredPostProps {
 }
 
 const Container = styled.section`
-  ${tw`h-[100px]`}
+  ${tw`h-[280px]`}
 `
 
 const FilteredPost = ({
@@ -32,16 +35,23 @@ const FilteredPost = ({
 
   return (
     <Container>
-      <div className="relative h-full">
+      <div className="relative h-full bg-slate-500 rounded-xl overflow-hidden">
         <img
-          src={thumbnail}
+          src={'src/assets/19.jpg'}
           alt="썸네일"
+          className="h-full rounded-xl"
         />
-        <div className="absolute">
-          <div>{formatTitle(title)}</div>
-          <div className="flex items-center gap-2">
-            <div>{commentsNum}</div>
-            <div>{likesNum}</div>
+        <div className="absolute w-3/4 bottom-2 left-2 p-3 bg-white/30 backdrop-blur-md rounded-lg">
+          <div className="w-full font-bold truncate">{formatTitle(title)}</div>
+          <div className="flex items-center gap-2 text-xs">
+            <div className="flex items-center gap-1">
+              <CommentIcon />
+              <span>{commentsNum}</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <HeartIcon />
+              <span>{likesNum}</span>
+            </div>
           </div>
         </div>
       </div>
