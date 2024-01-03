@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import tw, {styled} from 'twin.macro';
 
 import { getChannelList } from '@/apis/channelApis';
 
@@ -12,9 +13,14 @@ type ChannelListItemType = {
     _id?: string,
 }
 
+const ChannelSelectionModalContainer = styled.div`
+    ${tw`absolute z-10 w-36 h-fit mx-2  bg-white flex flex-col drop-shadow-2xl`}
+    `
+
 const ChannelSelectionModal = ({setNowChannel, setIsChannelSelectionsModalOpen} : ChannelSelectionModal) => {
 
     const [channelList, setChannelList] = useState<ChannelListItemType[]>([]);
+
     useEffect(()=>{
          const getChannels = async () =>{
             const channelListRequest = await getChannelList();
@@ -32,7 +38,7 @@ const ChannelSelectionModal = ({setNowChannel, setIsChannelSelectionsModalOpen} 
     }
 
     return (
-        <div className ="absolute z-10 w-36 h-fit mx-2  bg-white flex flex-col drop-shadow-2xl">
+        <ChannelSelectionModalContainer>
             { channelList.length > 1 &&
                 channelList.map(({name} : ChannelListItemType, index)=>(
                     <button 
@@ -43,7 +49,7 @@ const ChannelSelectionModal = ({setNowChannel, setIsChannelSelectionsModalOpen} 
                     </button>
                 )) 
             }
-        </div>
+        </ChannelSelectionModalContainer>
     );
 }
 
