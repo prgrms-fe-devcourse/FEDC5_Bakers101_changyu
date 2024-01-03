@@ -1,13 +1,14 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home';
-import PostCreation from './pages/PostCreation';
+import PostDetail from './pages/PostDetail';
 
 function App() {
+
   return (
-  <BrowserRouter>
+    <BrowserRouter>
     <Routes>
       <Route path="/" element={<Home/>} />
-      <Route path="/postcreation" element={<PostCreation/>} />
+      <Route path="/PostDetail/:id" element={<PostDetail/>} />
     </Routes>
   </BrowserRouter>
   );

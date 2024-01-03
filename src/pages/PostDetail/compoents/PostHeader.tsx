@@ -1,4 +1,4 @@
-import getPostLiveTime from "@/utils/getPostCreateTime";
+import getPostLiveTime from '@/utils/getPostCreateTime';
 
 type PostHeaderType = {
     title : string,
