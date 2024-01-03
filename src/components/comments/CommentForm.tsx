@@ -12,7 +12,7 @@ const CommentForm = ({ postId, onCommentAdded }: Props) => {
 
   const handleUploadIconClick = async () => {
     try {
-      const response = await createComment(comment, postId)
+      await createComment(comment, postId)
       setComment('')
 
       if (onCommentAdded) {
