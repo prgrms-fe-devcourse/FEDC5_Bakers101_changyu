@@ -26,7 +26,6 @@ const PostList = ({title, id} : nowChannelType) => {
                 setPostList(channeListRequest);
             })()
         }
-        //setIsChange(false);
     }
     useEffect(()=>{
         fetchPostList();
