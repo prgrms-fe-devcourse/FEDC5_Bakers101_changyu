@@ -48,7 +48,7 @@ const SearchBar = ({
   return (
     <Container>
       <PrevButton onClick={onClickPrevButton}>
-        <PrevIcon className="text-brand-primary text-[38px]" />
+        <PrevIcon className="text-brand-primary text-[35px]" />
       </PrevButton>
       <Main>
         <Wrapper>

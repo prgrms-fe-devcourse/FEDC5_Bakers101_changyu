@@ -1,7 +1,7 @@
 import tw, { styled } from 'twin.macro'
 
 const FilterContainer = styled.div`
-  ${tw`flex items-center gap-3 mt-6 ml-3`}
+  ${tw`flex items-center gap-3`}
 `
 
 const FilterItem = styled.button(({ isSelected }) => [
