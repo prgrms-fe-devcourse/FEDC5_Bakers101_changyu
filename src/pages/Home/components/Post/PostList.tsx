@@ -6,10 +6,9 @@ import PostlItem from './PostItem';
 type nowChannelType = {
     title : string,
     id?: string,
-    onClickPostItem : (id : string) => void
  }
 
-const PostList = ({title, id, onClickPostItem} : nowChannelType) => {
+const PostList = ({title, id} : nowChannelType) => {
 
     const [postList,setPostList] = useState<Post[]>([]);
 
@@ -27,7 +26,6 @@ const PostList = ({title, id, onClickPostItem} : nowChannelType) => {
                 setPostList(channeListRequest);
             })()
         }
-        //setIsChange(false);
     }
     useEffect(()=>{
         fetchPostList();

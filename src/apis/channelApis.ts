@@ -2,7 +2,7 @@ import axiosInstance from './api';
 
 import { CREATE_CHANNEL_BY_ADMIN_PATH,GET_CHANNEL_LIST_PATH,AUTH_CHECK  } from '@/utils/api_paths';
 
-const createChannel = async (token: string, channelName : string, description : string)=>
+async function createChannel(token: string, channelName : string, description : string)
 {
     try {
         const adminCheck = await axiosInstance
@@ -18,7 +18,7 @@ const createChannel = async (token: string, channelName : string, description : 
     }
 }
 
-const getChannelInform = async (channel : string) =>
+async function getChannelInform(channel : string)
 {
     try {
         const request = await axiosInstance
@@ -30,7 +30,7 @@ const getChannelInform = async (channel : string) =>
     }
 }
 
-const getChannelList = async () =>
+async function getChannelList()
 {
     try {
         const request = await axiosInstance
@@ -40,4 +40,5 @@ const getChannelList = async () =>
         throw new Error(`${error}`)
     }
 }
+
 export {createChannel,getChannelInform,getChannelList};
