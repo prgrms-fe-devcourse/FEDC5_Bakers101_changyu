@@ -1,5 +1,11 @@
+import Profile from '@/pages/profile'
+
 function App() {
-  return <></>;
+  return (
+    <>
+      <Profile />
+    </>
+  )
 }
 
-export default App;
+export default App
