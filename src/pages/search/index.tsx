@@ -53,7 +53,10 @@ const Search = () => {
         onPressEnter={handleSearch}
         onClickPrevButton={handleClickPrevButton}
       />
-      <Filter onClickFilter={handleClickFilter} />
+      <Filter
+        onClickFilter={handleClickFilter}
+        selectedFilterItem={type as 'user' | 'all'}
+      />
     </div>
   )
 }
