@@ -3,6 +3,7 @@ import searchUser from '@/apis/search/searchUser'
 import { useEffect, useState } from 'react'
 import SearchBar from './components/SearchBar'
 import useSearch from '@/hooks/useSearch'
+import Filter from './components/Filter'
 
 const Search = () => {
   const [searchedPost, setSearchedPost] = useState<Post[]>([])
@@ -52,6 +53,7 @@ const Search = () => {
         onPressEnter={handleSearch}
         onClickPrevButton={handleClickPrevButton}
       />
+      <Filter onClickFilter={handleClickFilter} />
     </div>
   )
 }
