@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 
 // components
-import AddCommentForm from './AddCommentForm'
+import CommentForm from './CommentForm'
 import CommentList from './CommentList'
 
 // apis
@@ -32,7 +32,7 @@ const Comments = () => {
 
   return (
     <div>
-      <AddCommentForm
+      <CommentForm
         postId={import.meta.env.VITE_POST_ID}
         onCommentAdded={handleCommentAdded}
       />

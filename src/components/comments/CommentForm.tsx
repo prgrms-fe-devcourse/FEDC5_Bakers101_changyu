@@ -7,7 +7,7 @@ type Props = {
   onCommentAdded: () => void
 }
 
-const AddCommentForm = ({ postId, onCommentAdded }: Props) => {
+const CommentForm = ({ postId, onCommentAdded }: Props) => {
   const [comment, setComment] = useState('')
 
   const handleUploadIconClick = async () => {
@@ -41,4 +41,4 @@ const AddCommentForm = ({ postId, onCommentAdded }: Props) => {
   )
 }
 
-export default AddCommentForm
+export default CommentForm

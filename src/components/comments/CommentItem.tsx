@@ -11,9 +11,7 @@ const CommentItem = ({ comment, onDelete }: Props) => {
   const { _id, author, createdAt, comment: commentText } = comment
 
   return (
-    <li
-      key={_id}
-      className="mb-4 mx-8">
+    <li className="mb-4 mx-8">
       <div className="flex flex-col justify-between">
         <div className="flex justify-between items-center">
           <div className="font-medium">{author.fullName}</div>
