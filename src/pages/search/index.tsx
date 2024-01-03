@@ -1,10 +1,11 @@
 import searchAll from '@/apis/search/searchAll'
 import searchUser from '@/apis/search/searchUser'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import SearchBar from './components/SearchBar'
 import useSearch from '@/hooks/useSearch'
 import Filter from './components/Filter'
 import FilteredList from './components/FilteredList'
+import FilteredUser from './components/FilteredUser'
 
 const Search = () => {
   const [searchedPost, setSearchedPost] = useState<Post[]>([])
@@ -54,12 +55,15 @@ const Search = () => {
         onPressEnter={handleSearch}
         onClickPrevButton={handleClickPrevButton}
       />
-      <div className='pl-3 flex flex-col gap-5'>
+      <div className="pl-3 flex flex-col gap-5">
         <Filter
           onClickFilter={handleClickFilter}
           selectedFilterItem={type as 'user' | 'all'}
         />
-        <FilteredList />
+        <FilteredList
+          type={type as 'user' | 'all'}
+          users={searchedUser}
+        />
       </div>
     </div>
   )
