@@ -33,7 +33,7 @@ const ChannelSelectionModal = ({setNowChannel, setIsChannelSelectionsModalOpen} 
 
     return (
         <div className ="absolute z-10 w-36 h-fit mx-2  bg-white flex flex-col drop-shadow-2xl">
-            { channelList.length > 1 ? 
+            { channelList.length > 1 &&
                 channelList.map(({name} : ChannelListItemType, index)=>(
                     <button 
                         key ={index}
@@ -41,8 +41,7 @@ const ChannelSelectionModal = ({setNowChannel, setIsChannelSelectionsModalOpen} 
                         className ="h-8">
                         {name}
                     </button>
-                )) : 
-                null
+                )) 
             }
         </div>
     );
