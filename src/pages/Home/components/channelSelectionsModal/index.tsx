@@ -26,8 +26,8 @@ const ChannelSelectionModal = ({setNowChannel, setIsChannelSelectionsModalOpen} 
     
     const onClickChannelButton = async(index : number) =>
     {
-        const selectedChannelName = {name : channelList[index].name ,id : channelList[index]._id};
-        setNowChannel(selectedChannelName);
+        const selectedChannelInfo = {name : channelList[index].name ,id : channelList[index]._id};
+        setNowChannel(selectedChannelInfo);
         setIsChannelSelectionsModalOpen(false);
     }
 
