@@ -1,23 +1,24 @@
-import { getPostDetail } from '@/apis/postApis';
 import { useState,useEffect } from 'react';
+import { useParams } from 'react-router-dom'
+
 import PostHeader from './compoents/PostHeader';
 import PostBody from './compoents/PostBody';
+
+import { getPostDetail } from '@/apis/postApis';
+
 //import PostEdit from './PostEdit';
 
 
-type PostDetail = {
-    id?: string,
-}
-
-const PostDetail = ({id} : PostDetail) => {
+const PostDetail = () => {
 
     const [postDetails, setPostDetails] =useState<Post>();
+    const params = useParams();
+    const productId = params.id;
 
     useEffect(()=>{
         (async()=>{
-            if (!id) return;
-
-            const details = await getPostDetail(id);
+            if (!productId) return;
+            const details = await getPostDetail(productId);
             await setPostDetails(details);
             console.log(JSON.parse(details.title))
         })();

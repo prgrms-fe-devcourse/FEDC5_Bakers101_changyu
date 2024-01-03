@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import tw ,{styled} from 'twin.macro'
 
 import { getUserInform } from '@/apis/userApis';
@@ -42,6 +43,8 @@ const PostlItem = ({postDetail,index} : PostItemType) => {
     const postImage = postDetail.image;
     const timeString = getPostLiveTime(postDetail.createdAt);
 
+    const navigate = useNavigate();
+
     const [isLoading, setIsLoading] = useState(false);
     const [userImg, setUserImg] = useState(null);
 
@@ -57,7 +60,8 @@ const PostlItem = ({postDetail,index} : PostItemType) => {
 
 
     return (
-        <PostItemContainer isLoading ={isLoading}>
+        <PostItemContainer isLoading ={isLoading}
+            onClick ={()=>navigate(`/postdetail/${postDetail._id}`)}>
             <PostItemHeader>
                 <div className ="flex gap-2">
                     {userImg ?

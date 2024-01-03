@@ -1,3 +1,4 @@
+
 import CommentIcon from '@/assets/icons/comment.svg'
 import HeartIcon from '@/assets/icons/following.svg'
 import BookMarkIcon from '@/assets/icons/bookmark.svg'
@@ -10,6 +11,7 @@ type PostBodyType = {
 
 
 const PostBody = ({body, likeNum, commentNum} : PostBodyType) =>{
+
     return (
         <section className ="w-4/5 mx-auto px-2">
             <div className ="min-h-[26rem]">
