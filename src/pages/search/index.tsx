@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import SearchBar from './components/SearchBar'
 import useSearch from '@/hooks/useSearch'
 import Filter from './components/Filter'
+import FilteredList from './components/FilteredList'
 
 const Search = () => {
   const [searchedPost, setSearchedPost] = useState<Post[]>([])
@@ -44,7 +45,7 @@ const Search = () => {
   const handleClickPrevButton = () => {}
 
   return (
-    <div className="w-11/12 h-screen mx-auto">
+    <div className="w-11/12 h-screen mx-auto flex flex-col gap-4">
       <SearchBar
         keyword={value}
         error={error}
@@ -53,10 +54,13 @@ const Search = () => {
         onPressEnter={handleSearch}
         onClickPrevButton={handleClickPrevButton}
       />
-      <Filter
-        onClickFilter={handleClickFilter}
-        selectedFilterItem={type as 'user' | 'all'}
-      />
+      <div className='pl-3 flex flex-col gap-5'>
+        <Filter
+          onClickFilter={handleClickFilter}
+          selectedFilterItem={type as 'user' | 'all'}
+        />
+        <FilteredList />
+      </div>
     </div>
   )
 }
