@@ -14,6 +14,7 @@ const useSearch = ({ initialValue, onSearch, validate }: IUseSearch) => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target
+    if (value.length > 1) setError('')
     setValue(value)
   }
 
