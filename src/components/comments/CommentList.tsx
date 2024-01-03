@@ -20,11 +20,11 @@ export interface CommentProps {
   __v: number
 }
 
-interface Props {
+interface CommentListProps {
   comments: CommentProps[]
 }
 
-const CommentList = ({ comments: initialComments }: Props) => {
+const CommentList = ({ comments: initialComments }: CommentListProps) => {
   const [comments, setComments] = useState(initialComments)
 
   useEffect(() => {

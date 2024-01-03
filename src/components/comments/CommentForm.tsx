@@ -2,12 +2,12 @@ import { useState } from 'react'
 import { createComment } from '@/apis/commnents'
 import commentUploadIcon from '@/assets/icons/commentUpload.svg'
 
-type Props = {
+type CommentFormProps = {
   postId: string
   onCommentAdded: () => void
 }
 
-const CommentForm = ({ postId, onCommentAdded }: Props) => {
+const CommentForm = ({ postId, onCommentAdded }: CommentFormProps) => {
   const [comment, setComment] = useState('')
 
   const handleUploadIconClick = async () => {

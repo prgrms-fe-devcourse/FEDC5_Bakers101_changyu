@@ -2,12 +2,12 @@ import { CommentProps } from '@/components/comments/CommentList'
 import commentDeleteIcon from '@/assets/icons/commentDelete.svg'
 import formatDate from '@/utils/formatDate'
 
-interface Props {
+interface CommentItemProps {
   comment: CommentProps
   onDelete: (commentId: string) => void
 }
 
-const CommentItem = ({ comment, onDelete }: Props) => {
+const CommentItem = ({ comment, onDelete }: CommentItemProps) => {
   const { _id, author, createdAt, comment: commentText } = comment
 
   return (
