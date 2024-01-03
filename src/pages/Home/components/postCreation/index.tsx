@@ -18,10 +18,6 @@ const CreatePost = ({setNowCreate} : CreatePostTypes) =>{
 
     const breadType = ['조리빵','특수빵','식빵','과자빵'];
 
-    const UploadImageTitle = styled.p`
-    ${tw`mt-2 mx-2 w-[16.8rem] text-[#959595] overflow-hidden text-ellipsis`}
-`
-
     const [title,setTitle] = useState<string>('');
     const [detail,setDetail] = useState<string>('');
     const [file,setFile] = useState<File|null>(null);
@@ -54,14 +50,14 @@ const CreatePost = ({setNowCreate} : CreatePostTypes) =>{
     }
 
     return (
-        <div className = "w-screen">
+        <div className ="w-screen">
             <CreatePostHeader onClickCreate ={()=>setNowCreate(false)}/>
             <div className ="w-fit mx-auto">
                 <div className ="mb-[2.7rem]">               
                      <input 
-                        placeholder='어떤 레시피인가요?'
+                        placeholder ='어떤 레시피인가요?'
                         className ="mb-2 mx-2 min-w-[19rem]"
-                        onChange={(e)=>setTitle(e.target.value)}/>
+                        onChange ={(e)=>setTitle(e.target.value)}/>
                     <hr/>
                 </div>
                 <div>
@@ -74,7 +70,7 @@ const CreatePost = ({setNowCreate} : CreatePostTypes) =>{
                         <button 
                             className ="pb-2"
                             onClick ={onClickUploadImage}>
-                            <img src={FileUploadIcon}/>
+                            <img src ={FileUploadIcon}/>
                         </button>
                     </div>
                     <hr/>
@@ -84,8 +80,8 @@ const CreatePost = ({setNowCreate} : CreatePostTypes) =>{
                     <div className ='flex gap-2'>
                         {breadType.map((item, index)=>(
                             <button 
-                                className = {`w-16 py-1 font-bold rounded-full ${selectedBread === item ? 'bg-[#9F8170] text-white' : 'bg-[#F3F3F3] text-[#926B58]'}`}
-                                key={index}
+                                className ={`w-16 py-1 font-bold rounded-full ${selectedBread === item ? 'bg-[#9F8170] text-white' : 'bg-[#F3F3F3] text-[#926B58]'}`}
+                                key ={index}
                                 onClick ={()=>setSelectedBread(item as BreadType)}>
                                 {item}
                             </button>
@@ -93,9 +89,9 @@ const CreatePost = ({setNowCreate} : CreatePostTypes) =>{
                     </div>
                 </div>
             <input 
-                placeholder="레시피를 알려주세요."
+                placeholder ="레시피를 알려주세요."
                 className ="w-[20rem] min-h-[39rem] mt-6 border-1 border-[#959595] placeholder-start"
-                onChange={(e)=>setDetail(e.target.value)}
+                onChange ={(e)=>setDetail(e.target.value)}
                 />
             </div>
             <button 

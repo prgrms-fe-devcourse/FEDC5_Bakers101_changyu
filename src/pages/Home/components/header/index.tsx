@@ -1,5 +1,3 @@
-import { useEffect } from 'react'
-
 import AlarmIcon from '@/assets/icons/notification.svg'
 import SearchIcon from '@/assets/icons/search.svg'
 import TriangleIcon from '@/assets/icons/triangle.svg'
