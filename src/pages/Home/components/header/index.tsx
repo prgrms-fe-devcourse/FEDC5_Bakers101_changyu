@@ -6,11 +6,11 @@ import TriangleIcon from '@/assets/icons/triangle.svg'
 
 type HomeHeaderProps = {
     selectedChannel : string,
-    onClickChanneList: () => void;
+    onClickChannelList: () => void;
   };
 
   
-const HomeHeader = ({selectedChannel, onClickChanneList} : HomeHeaderProps) =>{
+const HomeHeader = ({selectedChannel, onClickChannelList} : HomeHeaderProps) =>{
 
     useEffect(()=>{
 
@@ -21,10 +21,10 @@ const HomeHeader = ({selectedChannel, onClickChanneList} : HomeHeaderProps) =>{
             <div className ="flex gap-2 mt-3">
                 <button
                     className = "flex gap-2" 
-                    onClick ={onClickChanneList}> 
+                    onClick ={onClickChannelList}> 
                     <p className ="text-[#957969] text-[1.375rem] font-bold">{selectedChannel}</p>
                     <img
-                        className ="h-fit my-auto" 
+                        className ="h-fit my-auto " 
                         src ={TriangleIcon}/>
                 </button>
             </div>

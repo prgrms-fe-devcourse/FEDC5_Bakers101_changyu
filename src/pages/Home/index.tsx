@@ -26,7 +26,7 @@ const Home = () =>{
                 : 
                 <HomeHeader 
                     selectedChannel = {nowChannel.name} 
-                    onClickChanneList={()=>{setIsChannelSelectionsModalOpen((isOpen)=>!isOpen)}}/>                
+                    onClickChannelList={()=>{setIsChannelSelectionsModalOpen((isOpen)=>!isOpen)}}/>                
             }
             {isChannelSelectionsModalOpen ? 
                 <ChannelSelectionModal setNowChannel ={setNowChannel} setIsChannelSelectionsModalOpen = {setIsChannelSelectionsModalOpen}/>
