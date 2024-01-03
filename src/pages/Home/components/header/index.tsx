@@ -12,10 +12,6 @@ type HomeHeaderProps = {
   
 const HomeHeader = ({selectedChannel, onClickChannelList} : HomeHeaderProps) =>{
 
-    useEffect(()=>{
-
-    },[]);
-
     return (
         <div className ="flex justify-between mx-4">
             <div className ="flex gap-2 mt-3">
