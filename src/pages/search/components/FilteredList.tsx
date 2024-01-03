@@ -31,14 +31,16 @@ const FilteredList = ({ type, users, posts }: FilteredListProps) => {
               email={user.email}
             />
           ))}
-          {posts?.map((post) => (
-            <FilteredPost
-              thumbnail={post.image}
-              title={post.title}
-              commentsNum={post.comments.length}
-              likesNum={post.likes.length}
-            />
-          ))}
+          <div className='border-t-2 pt-5 grid grid-cols-2 gap-2'>
+            {posts?.map((post) => (
+              <FilteredPost
+                thumbnail={post.image}
+                title={post.title}
+                commentsNum={post.comments.length}
+                likesNum={post.likes.length}
+              />
+            ))}
+          </div>
         </>
       )}
     </Container>
