@@ -17,6 +17,19 @@ const FilteredPost = ({
   commentsNum,
   likesNum
 }: FilteredPostProps) => {
+  const formatTitle = (title: string) => {
+    if (title === '[object FormData]') {
+      return 'FormData 형식 오류'
+    } else {
+      const tmp = JSON.parse(title)
+      if (tmp === 'undefined') {
+        return title
+      } else {
+        return tmp.title
+      }
+    }
+  }
+
   return (
     <Container>
       <div className="relative h-full">
@@ -24,8 +37,8 @@ const FilteredPost = ({
           src={thumbnail}
           alt="썸네일"
         />
-        <div className="absolute bottom-3 left-3">
-          <div>{title}</div>
+        <div className="absolute">
+          <div>{formatTitle(title)}</div>
           <div className="flex items-center gap-2">
             <div>{commentsNum}</div>
             <div>{likesNum}</div>
