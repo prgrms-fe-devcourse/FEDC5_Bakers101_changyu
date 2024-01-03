@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import ChannelSelectionModal from './components/channelSelectionsModal';
 import PostList from './components/post/PostList';
 import HomeHeader from './components/header';
-import CreatePost from './components/createPost';
+import CreatePost from './components/postCreation';
 import HomeBottomNavBar from './components/bottom-navbar';
 
 type nowChannelType = {
