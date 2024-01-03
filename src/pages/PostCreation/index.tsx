@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import tw, {styled} from "twin.macro"
 
 import CreatePostHeader from './Header';
 
@@ -7,6 +8,26 @@ import { getChannelInform } from '@/apis/channelApis';
 import { AdminLogin } from '@/apis/mockingApis';
 import FileUploadIcon from '@/assets/icons/fileUpload.svg'
 import handleImageFormData from '@/utils/handleImageFormData';
+
+
+const PostCreateContainer = styled.div`
+    ${tw`w-screen`}
+`
+const PostBodyInput = styled.input`
+    ${tw`w-[20rem] min-h-[39rem] mt-6 border-2 border-[#959595]`}
+`
+const PostInputsWrapper = styled.div`
+    ${tw`w-fit mx-auto`}
+`
+const ChannelOptionsWrapper = styled.div`
+`
+
+const PostTitleImageInputWrapper = styled.div`
+    ${tw`flex mb-1`}
+`
+const PostTitleInputWrapper = styled.div`
+    ${tw`mb-[2.7rem]`}
+`
 
 
 type BreadType = '조리빵'|'특수빵'|'식빵'|'과자빵'| null;
@@ -46,32 +67,30 @@ const PostCreation = () =>{
     }
 
     return (
-        <div className ="w-screen">
+        <PostCreateContainer>
             <CreatePostHeader/>
-            <div className ="w-fit mx-auto">
-                <div className ="mb-[2.7rem]">               
+            <PostInputsWrapper>
+                <PostTitleInputWrapper>               
                      <input 
                         placeholder ='어떤 레시피인가요?'
                         className ="mb-2 mx-2 min-w-[19rem]"
                         onChange ={(e)=>setTitle(e.target.value)}/>
                     <hr/>
-                </div>
-                <div>
-                    <div className ="flex mb-1">
-                        <p className ="mt-2 mx-2 w-[16.8rem] text-[#959595] overflow-hidden text-ellipsis">
-                            {
-                                file ? file.name : '빵 이미지를 첨부 해주세요.'
-                            }
-                        </p>
-                        <button 
-                            className ="pb-2"
-                            onClick ={onClickUploadImage}>
+                </PostTitleInputWrapper>
+                <PostTitleImageInputWrapper>
+                    <p className ="mt-2 mx-2 w-[16.8rem] text-[#959595] overflow-hidden text-ellipsis">
+                    {
+                        file ? file.name : '빵 이미지를 첨부 해주세요.'
+                    }
+                    </p>
+                    <button 
+                        className ="pb-2"
+                        onClick ={onClickUploadImage}>
                             <img src ={FileUploadIcon}/>
-                        </button>
-                    </div>
-                    <hr/>
-                </div>
-                <div>
+                    </button>
+                </PostTitleImageInputWrapper>
+                <hr/>
+                <ChannelOptionsWrapper>
                     <p className ="text-[0.625rem] mt-6 mb-1 text-[#959595]">어떤 종류의 빵인가요?* 1개 선택</p>
                     <div className ='flex gap-2'>
                         {breadOptions.map((item, index)=>(
@@ -83,17 +102,17 @@ const PostCreation = () =>{
                             </button>
                         ))}
                     </div>
-                </div>
-            <input 
-                placeholder ="레시피를 알려주세요."
-                className ="w-[20rem] min-h-[39rem] mt-6 border-1 border-[#959595] placeholder-start"
-                onChange ={(e)=>setDetail(e.target.value)}
-                />
-            </div>
+                </ChannelOptionsWrapper>
+                <PostBodyInput 
+                    placeholder ="레시피를 알려주세요."
+                    onChange ={(e)=>setDetail(e.target.value)}/>
+                </PostInputsWrapper>
             <button 
                 onClick ={onClickEnrollPost}
-                className ="fixed w-fit left-1/2 transform -translate-x-1/2 bottom-4 text-[1.1rem] font-bold px-6 py-2 rounded-full drop-shadow-lg border-1 border-slate-100 ">등록하기</button>
-        </div>
+                className ="fixed w-fit left-1/2 transform -translate-x-1/2 bottom-4 text-[1.1rem] font-bold px-6 py-2 rounded-full drop-shadow-lg border-1 border-slate-100 ">
+                    등록하기
+            </button>
+        </PostCreateContainer>
     )
 }
 export default PostCreation;
