@@ -114,7 +114,7 @@ const PostCreation = () =>{
                 </PostInputsWrapper>
             <button 
                 onClick ={onClickEnrollPost}
-                className ="fixed w-fit left-1/2 transform -translate-x-1/2 bottom-4 text-[1.1rem] font-bold px-6 py-2 rounded-full drop-shadow-lg border-1 border-slate-100 ">
+                className ="fixed w-fit left-1/2 transform -translate-x-1/2 bottom-4 text-[1.1rem] bg-white font-bold px-6 py-2 rounded-full drop-shadow-lg border-1 border-slate-100 ">
                     등록하기
             </button>
         </PostCreateContainer>
