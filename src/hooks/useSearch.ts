@@ -3,7 +3,7 @@ import { useState } from 'react'
 interface IUseSearch {
   initialValue: string
   onSearch: (value: string) => Promise<void>
-  validate?: (value: string) => any
+  validate?: (value: string) => string
 }
 
 const useSearch = ({ initialValue, onSearch, validate }: IUseSearch) => {
