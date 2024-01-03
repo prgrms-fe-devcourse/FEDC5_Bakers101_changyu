@@ -10,6 +10,8 @@ import FileUploadIcon from '@/assets/icons/fileUpload.svg'
 import handleImageFormData from '@/utils/handleImageFormData';
 
 
+const breadOptions = ['조리빵','특수빵','식빵','과자빵'];
+
 const PostCreateContainer = styled.div`
     ${tw`w-screen`}
 `
@@ -29,12 +31,16 @@ const PostTitleInputWrapper = styled.div`
     ${tw`mb-[2.7rem]`}
 `
 
+const ChannelButton = styled.button(({indexItem, selectedBread})=>[
+    tw`w-16 py-1 font-bold rounded-full`,
+    indexItem ===  selectedBread ? tw`bg-[#9F8170] text-white` : tw`bg-[#F3F3F3] text-[#926B58]`
+])
+
 
 type BreadType = '조리빵'|'특수빵'|'식빵'|'과자빵'| null;
 
 const PostCreation = () =>{
 
-    const breadOptions = ['조리빵','특수빵','식빵','과자빵'];
 
     const [title,setTitle] = useState<string>('');
     const [detail,setDetail] = useState<string>('');
@@ -94,12 +100,11 @@ const PostCreation = () =>{
                     <p className ="text-[0.625rem] mt-6 mb-1 text-[#959595]">어떤 종류의 빵인가요?* 1개 선택</p>
                     <div className ='flex gap-2'>
                         {breadOptions.map((item, index)=>(
-                            <button 
-                                className ={`w-16 py-1 font-bold rounded-full ${selectedBread === item ? 'bg-[#9F8170] text-white' : 'bg-[#F3F3F3] text-[#926B58]'}`}
+                            <ChannelButton indexItem ={item} selectedBread ={selectedBread}
                                 key ={index}
                                 onClick ={()=>setSelectedBread(item as BreadType)}>
                                 {item}
-                            </button>
+                            </ChannelButton>
                         ))}
                     </div>
                 </ChannelOptionsWrapper>
