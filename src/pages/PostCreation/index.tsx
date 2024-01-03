@@ -8,13 +8,10 @@ import { AdminLogin } from '@/apis/mockingApis';
 import FileUploadIcon from '@/assets/icons/fileUpload.svg'
 import handleImageFormData from '@/utils/handleImageFormData';
 
-type CreatePostTypes = {
-    setNowCreate : React.Dispatch<React.SetStateAction<boolean>>; 
-  };
 
 type BreadType = '조리빵'|'특수빵'|'식빵'|'과자빵'| null;
 
-const CreatePost = ({setNowCreate} : CreatePostTypes) =>{
+const PostCreation = () =>{
 
     const breadOptions = ['조리빵','특수빵','식빵','과자빵'];
 
@@ -31,7 +28,6 @@ const CreatePost = ({setNowCreate} : CreatePostTypes) =>{
         const channelId = await getChannelInform(selectedBread);
         const formData = handleImageFormData({ imageFile: file as File, title : title, type :'Post',body: detail, channelId : channelId._id});
         await createPost(token,formData);
-        setNowCreate(false);
     }
 
     const onClickUploadImage = () =>{
@@ -51,7 +47,7 @@ const CreatePost = ({setNowCreate} : CreatePostTypes) =>{
 
     return (
         <div className ="w-screen">
-            <CreatePostHeader onClickCreate ={()=>setNowCreate(false)}/>
+            <CreatePostHeader/>
             <div className ="w-fit mx-auto">
                 <div className ="mb-[2.7rem]">               
                      <input 
@@ -100,4 +96,4 @@ const CreatePost = ({setNowCreate} : CreatePostTypes) =>{
         </div>
     )
 }
-export default CreatePost;
+export default PostCreation;
