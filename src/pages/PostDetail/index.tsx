@@ -20,7 +20,6 @@ const PostDetail = () => {
             if (!productId) return;
             const details = await getPostDetail(productId);
             await setPostDetails(details);
-            console.log(JSON.parse(details.title))
         })();
     },[]);
 

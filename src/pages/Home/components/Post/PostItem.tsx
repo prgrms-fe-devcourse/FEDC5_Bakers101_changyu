@@ -57,8 +57,6 @@ const PostlItem = ({postDetail,index} : PostItemType) => {
         })();
       }, []);
 
-
-
     return (
         <PostItemContainer isLoading ={isLoading}
             onClick ={()=>navigate(`/postdetail/${postDetail._id}`)}>
