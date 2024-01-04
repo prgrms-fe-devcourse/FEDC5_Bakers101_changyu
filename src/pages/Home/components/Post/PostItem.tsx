@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import tw ,{styled} from 'twin.macro'
+import { Link } from 'react-router-dom';
 
 import { getUserInform } from '@/apis/userApis';
 
@@ -78,11 +79,12 @@ const PostlItem = ({postDetail,index} : PostItemType) => {
         <PostItemContainer isLoading ={isLoading}>
             <PostItemHeader>
                 <div className ="flex gap-2">
-                    {userImg ?
-                     <img src ={userImg as string}
-                        className ="'w-[1.4rem] h-[1.4rem] rounded-full"/>
-                     : <p className ='w-[1.4rem] h-[1.4rem] bg-yellow-300 rounded-full '></p>}
-                    <p className = "font-bold">{authorName}</p>
+                    <Link to ={`/profile/${postDetail.author._id}`} className ="flex gap-2">
+                        {userImg ?
+                            <img src ={userImg as string} className ="'w-[1.4rem] h-[1.4rem] rounded-full"/>
+                            : <p className ='w-[1.4rem] h-[1.4rem] bg-yellow-300 rounded-full '></p>}
+                        <p className = "font-bold">{authorName}</p>
+                    </Link>
                     <p className ="my-auto font-bold text-purple-500 text-[0.6rem] ">팔로우 중</p>
                 </div>
                 <p className ="text-[0.7rem] font-semibold">{channelName}</p>
