@@ -40,8 +40,7 @@ const ChannelButton = styled.button(({indexItem, selectedBread})=>[
 
 type BreadType = '조리빵'|'특수빵'|'식빵'|'과자빵'| null;
 
-const PostCreation = () =>{
-
+const PostCreation = () => {
 
     const [title,setTitle] = useState<string>('');
     const [detail,setDetail] = useState<string>('');
