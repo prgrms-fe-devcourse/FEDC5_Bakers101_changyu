@@ -15,7 +15,6 @@ const PostDetail = () => {
     ;(async () => {
       if (!productId) return
       const details = await getPostDetail(productId)
-      console.log(details)
       await setPostDetails(details)
     })()
   }, [])
