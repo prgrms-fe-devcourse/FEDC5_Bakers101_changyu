@@ -19,7 +19,7 @@ const PostAuthorProfileWrapper = styled.div`
 
 type PostHeaderType = {
   title: string
-  author: string
+  author: User
   createAt: string
   profileImg?: string
   postId: string
@@ -30,7 +30,6 @@ const PostHeader = ({
   title,
   author,
   createAt,
-  profileImg,
   postId,
   isOwner
 }: PostHeaderType) => {
@@ -52,12 +51,12 @@ const PostHeader = ({
         <div className="w-[4rem] h-[4rem] overflow-hidden mx-auto rounded-full">
           <img
             className="w-[4rem] h-[4rem] object-cover"
-            src={profileImg ? profileImg : peopleIcon}
+            src={author.image ? author.image : peopleIcon}
             alt="profileimg"
           />
         </div>
         <div className="flex mx-auto gap-2 w-fit">
-          <p className="font-semibold text-[1.1rem]">{author}</p>
+          <p className="font-semibold text-[1.1rem] my-1">{author.fullName}</p>
           <p className="text-[0.65rem] my-auto text-purple-500 font-medium">
             팔로잉 중
           </p>

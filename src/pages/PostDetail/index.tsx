@@ -26,7 +26,7 @@ const PostDetail = () => {
           <PostHeader
             postId={postDetails._id}
             title={JSON.parse(postDetails.title).title}
-            author={postDetails.author.fullName}
+            author={postDetails.author}
             createAt={postDetails.createdAt}
             profileImg={postDetails.image}
             isOwner={postDetails.author._id === import.meta.env.VITE_USER_ID}
