@@ -54,7 +54,7 @@ const Search = () => {
         onPressEnter={handleSearch}
         onClickPrevButton={handleClickPrevButton}
       />
-      <div className="pl-3 flex flex-col gap-5">
+      <div className="pl-3 flex flex-col gap-5 grow">
         <Filter
           onClickFilter={handleClickFilter}
           selectedFilterItem={type as 'user' | 'all'}
