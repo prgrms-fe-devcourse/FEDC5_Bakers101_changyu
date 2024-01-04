@@ -1,5 +1,8 @@
-import getPostLiveTime from '@/utils/getPostCreateTime'
 import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+
+import getPostLiveTime from '@/utils/getPostCreateTime'
+import { deletePost } from '@/apis/postApis'
 
 type PostHeaderType = {
   title: string
@@ -16,6 +19,13 @@ const PostHeader = ({
   profileImg,
   postId
 }: PostHeaderType) => {
+  const navigate = useNavigate()
+
+  const onClickDeleteButton = async () => {
+    await deletePost(import.meta.env.VITE_API_KEY, postId)
+    navigate('/')
+  }
+
   return (
     <div className="w-fit mx-auto">
       <div className="w-[4rem] h-[4rem] overflow-hidden mx-auto rounded-full">
@@ -41,7 +51,9 @@ const PostHeader = ({
           className="border-slate-200 border-1 px-3 py-1 rounded-lg bg-[#efb98b]">
           수정
         </Link>
-        <button className="border-slate-200 border-1 px-3 py-1 rounded-lg bg-[#efb98b]">
+        <button
+          onClick={onClickDeleteButton}
+          className="border-slate-200 border-1 px-3 py-1 rounded-lg bg-[#efb98b]">
           삭제
         </button>
       </div>
