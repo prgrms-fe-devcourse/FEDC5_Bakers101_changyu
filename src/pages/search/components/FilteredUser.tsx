@@ -1,4 +1,5 @@
 import tw, { styled } from 'twin.macro'
+import NoProfileThumbnailIcon from './NoProfileThumbnailIcon'
 
 interface FilteredUserProps {
   image?: string
@@ -21,13 +22,16 @@ const FilteredUser = ({
   return (
     // TODO: 추후 라우터를 이용하여 해당 유저의 프로필 페이지로 이동하는 기능 추가
     <Container isHidden={isHidden}>
-      <aside className='py-2 px-2'>
-        <div className="ring-offset-2 ring-2 ring-indigo-500 rounded-full overflow-hidden w-[75px] h-[75px]">
-          <img
-            src={image}
-            alt="프로필 이미지"
-            className="w-full h-full rounded-full"
-          />
+      <aside className="py-2 px-2">
+        <div className="border border-[#5a5a5a28] rounded-full overflow-hidden w-[75px] h-[75px]">
+          {image === undefined && <NoProfileThumbnailIcon className='w-full h-full text-[#ddd]'/>}
+          {image && (
+            <img
+              src={image}
+              alt="프로필 이미지"
+              className="w-full h-full rounded-full"
+            />
+          )}
         </div>
       </aside>
       <aside>
