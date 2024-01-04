@@ -24,7 +24,7 @@ const PostDetail = () => {
 
   return (
     <div>
-      {postDetails ? (
+      {postDetails && (
         <div>
           <PostHeader
             postId={postDetails._id}
@@ -42,7 +42,7 @@ const PostDetail = () => {
           />
           <hr className="w-4/5 mx-auto mb-8 mt-2 px-2" />
         </div>
-      ) : null}
+      )}
     </div>
   )
 }
