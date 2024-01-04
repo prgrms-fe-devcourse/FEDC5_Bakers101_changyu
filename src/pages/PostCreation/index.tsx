@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import tw, {styled} from "twin.macro"
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import CreatePostHeader from './Header';
 
@@ -42,6 +42,7 @@ type BreadType = '조리빵'|'특수빵'|'식빵'|'과자빵'| null;
 
 const PostCreation = () =>{
 
+    const navigate = useNavigate();
 
     const [title,setTitle] = useState<string>('');
     const [detail,setDetail] = useState<string>('');
@@ -56,7 +57,7 @@ const PostCreation = () =>{
         const channelId = await getChannelInform(selectedBread);
         const formData = handleImageFormData({ imageFile: file as File, title : title, type :'Post',body: detail, channelId : channelId._id});
         await createPost(token,formData);
-        useHistory.push('/');
+        navigate('/');
     }
 
     const onClickUploadImage = () =>{

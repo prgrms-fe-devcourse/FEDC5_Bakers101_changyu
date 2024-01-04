@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home';
 import PostCreation from './pages/PostCreation';
-import Profile from '@/pages/profile'
+import Profile from './pages/Profile'
         
 function App() {
   return (
@@ -9,7 +9,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Home/>} />
       <Route path="/postcreation" element={<PostCreation/>} />
-      <Route path='/profile' element={<Profile/>} />
+      <Route path='/profile/:id' element={<Profile/>} />
     </Routes>
   </BrowserRouter>
   );
