@@ -17,11 +17,15 @@ const PostEditHeader = ({ onClickSubmitButtn }: PostEditHeader) => {
     <PostEditHeaderContainer>
       <Link
         to="/"
-        className="w-screen my-2 h-[3.125rem]">
+        className="w-fit my-2 h-[3.125rem]">
         <img src={PrevBrownIcon} />
       </Link>
+
+      <h1 className="h-fit my-auto text-[1.4rem] font-semibold">페이지 수정</h1>
+
       <button onClick={onClickSubmitButtn}>
         <img
+          className="w-8 h-8 mr-8"
           src={EditIcon}
           alt="edit"
         />
