@@ -1,3 +1,5 @@
+import tw, { styled } from 'twin.macro'
+
 import CommentIcon from '@/assets/icons/comment.svg'
 import HeartIcon from '@/assets/icons/following.svg'
 import BookMarkIcon from '@/assets/icons/bookmark.svg'
@@ -8,13 +10,24 @@ type PostBodyType = {
   commentNum: number
 }
 
+const PostBodyContainer = styled.div`
+  ${tw`w-4/5 mx-auto px-2`}
+`
+const PostDetailWrapper = styled.div`
+  ${tw`min-h-[26rem]`}
+`
+
+const PostBottomNavWrapper = styled.div`
+  ${tw`flex justify-between mt-6`}
+`
+
 const PostBody = ({ body, likeNum, commentNum }: PostBodyType) => {
   return (
-    <section className="w-4/5 mx-auto px-2">
-      <div className="min-h-[26rem]">
+    <PostBodyContainer>
+      <PostDetailWrapper>
         <p className="">{body}</p>
-      </div>
-      <div className="flex justify-between mt-6">
+      </PostDetailWrapper>
+      <PostBottomNavWrapper>
         <div className="flex gap-2">
           <div className="flex gap-1">
             <img
@@ -35,8 +48,8 @@ const PostBody = ({ body, likeNum, commentNum }: PostBodyType) => {
           className="w-5 h-5"
           src={BookMarkIcon}
         />
-      </div>
-    </section>
+      </PostBottomNavWrapper>
+    </PostBodyContainer>
   )
 }
 

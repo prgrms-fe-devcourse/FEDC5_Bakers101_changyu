@@ -1,3 +1,4 @@
+import tw, { styled } from 'twin.macro'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 
@@ -5,12 +6,23 @@ import prevIcon from '@/assets/icons/prev_brown.svg'
 import getPostLiveTime from '@/utils/getPostCreateTime'
 import { deletePost } from '@/apis/postApis'
 
+const PostHeaderContainer = styled.div`
+  ${tw``}
+`
+const PostEditDeleteButtonsWrapper = styled.div`
+  ${tw`flex w-fit mx-auto gap-3 mt-3`}
+`
+
+const PostAuthorProfileWrapper = styled.div`
+  ${tw`w-fit mx-auto`}
+`
+
 type PostHeaderType = {
   title: string
   author: string
   createAt: string
   profileImg?: string
-  postId: string,
+  postId: string
   isOwner: boolean
 }
 
@@ -30,13 +42,13 @@ const PostHeader = ({
   }
 
   return (
-    <div>
+    <PostHeaderContainer>
       <Link
         to="/"
         className="my-2 mb-4">
         <img src={prevIcon} />
       </Link>
-      <div className="w-fit mx-auto">
+      <PostAuthorProfileWrapper>
         <div className="w-[4rem] h-[4rem] overflow-hidden mx-auto rounded-full">
           <img
             className="w-[4rem] h-[4rem] object-cover bg-black "
@@ -54,22 +66,22 @@ const PostHeader = ({
         <p className="my-2 w-fit mx-auto text-[0.8rem]">
           {getPostLiveTime(createAt)}
         </p>
-        { isOwner &&
-        <div className="flex w-fit mx-auto gap-3 mt-3">
-          <Link
-            to={`/post-edit/${postId}`}
-            className="border-slate-200 border-1 px-3 py-1 rounded-lg bg-[#efb98b]">
-            수정
-          </Link>
-          <button
-            onClick={onClickDeleteButton}
-            className="border-slate-200 border-1 px-3 py-1 rounded-lg bg-[#efb98b]">
-            삭제
-          </button>
-        </div>
-        }
-      </div>
-    </div>
+        {isOwner && (
+          <PostEditDeleteButtonsWrapper>
+            <Link
+              to={`/post-edit/${postId}`}
+              className="border-slate-200 border-1 px-3 py-1 rounded-lg bg-[#efb98b]">
+              수정
+            </Link>
+            <button
+              onClick={onClickDeleteButton}
+              className="border-slate-200 border-1 px-3 py-1 rounded-lg bg-[#efb98b]">
+              삭제
+            </button>
+          </PostEditDeleteButtonsWrapper>
+        )}
+      </PostAuthorProfileWrapper>
+    </PostHeaderContainer>
   )
 }
 
