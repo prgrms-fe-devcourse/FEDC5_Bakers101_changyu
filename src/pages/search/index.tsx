@@ -5,7 +5,6 @@ import SearchBar from './components/SearchBar'
 import useSearch from '@/hooks/useSearch'
 import Filter from './components/Filter'
 import FilteredList from './components/FilteredList'
-import FilteredUser from './components/FilteredUser'
 
 const Search = () => {
   const [searchedPost, setSearchedPost] = useState<Post[]>([])
