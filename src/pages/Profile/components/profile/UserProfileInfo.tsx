@@ -63,20 +63,16 @@ const UserProfileInfo = ({
       </ProfileInfo>
       <ButtonContainer className="items-center self-center mb-5">
         <ChatButton>
-          <ChatIcon className='w-full h-full'/>
+          <ChatIcon className="w-full h-full" />
         </ChatButton>
         {!isMyProfile && isFollowed && (
           <FollowButton
-            fill="#FF777F"
-            className="w-5 h-5"
+            isFilled
             onClick={onClickFollowButton}
           />
         )}
         {!isMyProfile && !isFollowed && (
-          <FollowButton
-            className="w-5 h-5"
-            onClick={onClickFollowButton}
-          />
+          <FollowButton onClick={onClickFollowButton} />
         )}
       </ButtonContainer>
     </UserProfileInfoWrapper>
