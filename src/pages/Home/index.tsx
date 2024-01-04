@@ -1,37 +1,47 @@
-import { useState, useEffect } from 'react';
-import ChannelSelectionModal from './components/channelSelectionsModal';
-import PostList from './components/Post/PostList';
-import HomeHeader from './components/header';
-import HomeBottomNavBar from './components/bottom-navbar';
+import { useState, useEffect } from 'react'
+import ChannelSelectionModal from './components/channel-selections-modal'
+import PostList from './components/post/PostList'
+import HomeHeader from './components/header'
+import HomeBottomNavBar from './components/bottom-navbar'
 
 type nowChannelType = {
-    name : string,
-    id?: string,
+  name: string
+  id?: string
 }
 
+const Home = () => {
+  const [isChannelSelectionsModalOpen, setIsChannelSelectionsModalOpen] =
+    useState(false)
+  const [nowChannel, setNowChannel] = useState<nowChannelType>({
+    name: '전체 채널',
+    id: undefined
+  })
 
-const Home = () =>{
+  useEffect(() => {}, [nowChannel])
 
-    const [isChannelSelectionsModalOpen,setIsChannelSelectionsModalOpen] = useState(false);
-    const [nowChannel,setNowChannel] = useState<nowChannelType>({name :'전체 채널', id : undefined});
-
-    useEffect(()=>{
-    },[nowChannel]);
-
-    return (
-        <div>
-            <HomeHeader 
-                selectedChannel = {nowChannel.name} 
-                onClickChannelList={()=>{setIsChannelSelectionsModalOpen((isOpen)=>!isOpen)}}/>                
-            {isChannelSelectionsModalOpen &&
-                <ChannelSelectionModal setNowChannel ={setNowChannel} setIsChannelSelectionsModalOpen = {setIsChannelSelectionsModalOpen}/>
-            }
-            <div>
-                <PostList title = {nowChannel.name} id = {nowChannel.id}/>
-                <HomeBottomNavBar/>                
-            </div>
-        </div>
-    );
+  return (
+    <div className='w-11/12 mx-auto'>
+      <HomeHeader
+        selectedChannel={nowChannel.name}
+        onClickChannelList={() => {
+          setIsChannelSelectionsModalOpen((isOpen) => !isOpen)
+        }}
+      />
+      {isChannelSelectionsModalOpen && (
+        <ChannelSelectionModal
+          setNowChannel={setNowChannel}
+          setIsChannelSelectionsModalOpen={setIsChannelSelectionsModalOpen}
+        />
+      )}
+      <div>
+        <PostList
+          title={nowChannel.name}
+          id={nowChannel.id}
+        />
+        <HomeBottomNavBar />
+      </div>
+    </div>
+  )
 }
 
-export default Home;
+export default Home
