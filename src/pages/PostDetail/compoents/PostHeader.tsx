@@ -1,6 +1,5 @@
 import tw, { styled } from 'twin.macro'
-import { Link } from 'react-router-dom'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 
 import prevIcon from '@/assets/icons/prev_brown.svg'
 import getPostLiveTime from '@/utils/getPostCreateTime'

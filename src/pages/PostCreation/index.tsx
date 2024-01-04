@@ -1,9 +1,8 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import tw, { styled } from 'twin.macro'
-import { useHistory } from 'react-router-dom'
 
 import CreatePostHeader from './Header'
-
 import { createPost } from '@/apis/postApis'
 import { getChannelInform } from '@/apis/channelApis'
 import FileUploadIcon from '@/assets/icons/fileUpload.svg'
@@ -39,6 +38,7 @@ const ChannelButton = styled.button(({ indexItem, selectedBread }) => [
 type BreadType = '조리빵' | '특수빵' | '식빵' | '과자빵' | null
 
 const PostCreation = () => {
+  const navigate = useNavigate()
   const [title, setTitle] = useState<string>('')
   const [detail, setDetail] = useState<string>('')
   const [file, setFile] = useState<File | null>(null)
@@ -56,7 +56,7 @@ const PostCreation = () => {
       channelId: channelId._id
     })
     await createPost(import.meta.env.VITE_API_KEY, formData)
-    useHistory.push('/')
+    navigate('/')
   }
 
   const onClickUploadImage = () => {

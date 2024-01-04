@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
-import { useNavigate } from 'react-router-dom'
 import PostEditHeader from './components/Header'
 import handleImageFormData from '@/utils/handleImageFormData'
 import { getPostDetail, updatePost } from '@/apis/postApis'

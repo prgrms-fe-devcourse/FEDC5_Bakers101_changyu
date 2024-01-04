@@ -6,8 +6,6 @@ import PostBody from './compoents/PostBody'
 
 import { getPostDetail } from '@/apis/postApis'
 
-//import PostEdit from './PostEdit';
-
 const PostDetail = () => {
   const [postDetails, setPostDetails] = useState<Post>()
   const params = useParams()

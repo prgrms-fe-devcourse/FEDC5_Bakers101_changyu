@@ -1,21 +1,25 @@
-const getPostLiveTime = (createdAt : string) => {
-    const nowTime = new Date();
-    const createdTime = new Date(createdAt);
+function getPostLiveTime(createdAt: string) {
+  const MINUTE = 60
+  const HOUR = MINUTE * 60
+  const DAY = HOUR * 24
 
-    const compareTime = (nowTime.getFullYear() * 525600) -  (createdTime.getFullYear() * 525600) +
-                        (nowTime.getMonth() * 43800) -  (createdTime.getMonth() * 43800) + 
-                        (nowTime.getDate() * 1440) -  (createdTime.getDate() * 1440) + 
-                        (nowTime.getHours() * 60) -  (createdTime.getHours() * 60) + 
-                        (nowTime.getMinutes()) -  (createdTime.getMinutes());
-    if (compareTime < 60 && compareTime >= 0) {
-        return compareTime === 0 ? '0분 전' : `${Math.floor(compareTime)}분 전`
-    }    
-    else if (compareTime < 1440) {
-        return `${Math.floor(compareTime / 60)}시간 전`
-    }
-    else {
-        return `${createdTime.getFullYear().toString().slice(2,4)}.${createdTime.getMonth()+1}.${createdTime.getDate()}`;
-    }
+  const createTime = new Date(createdAt)
+  const nowTime = new Date()
+
+  const compareTime = Math.floor(
+    (nowTime.getTime() - createTime.getTime()) / 1000
+  )
+  if (compareTime < MINUTE) {
+    return compareTime === 0 ? '방금 전' : `${compareTime}분 전`
+  } else if (compareTime < HOUR) {
+    return `${Math.floor(compareTime / MINUTE)}시간 전`
+  } else if (compareTime < DAY) {
+    return `${Math.floor(compareTime / HOUR)}일 전`
+  } else {
+    return `${createTime.getFullYear().toString().slice(2, 4)}.${
+      createTime.getMonth() + 1
+    }.${createTime.getDate()}`
+  }
 }
 
-export default getPostLiveTime;
+export default getPostLiveTime
