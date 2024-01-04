@@ -1,9 +1,13 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import { signUp } from '@/apis/signup';
 import * as Styles from './SignupStyles';
 import isPasswordValid from '@/utils/passwordValidator';
 
 const SignUpForm = () => {
+
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
@@ -47,6 +51,7 @@ const SignUpForm = () => {
 
       if (isEmailValid && isNameValid && isPasswordValid && isConfirmPasswordValid) {
         await signUp(email, name, password);
+        navigate('/login');
       }
     } catch (error) {
       console.error(error);
