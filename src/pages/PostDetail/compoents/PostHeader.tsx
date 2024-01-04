@@ -10,7 +10,8 @@ type PostHeaderType = {
   author: string
   createAt: string
   profileImg?: string
-  postId: string
+  postId: string,
+  isOwner: boolean
 }
 
 const PostHeader = ({
@@ -18,7 +19,8 @@ const PostHeader = ({
   author,
   createAt,
   profileImg,
-  postId
+  postId,
+  isOwner
 }: PostHeaderType) => {
   const navigate = useNavigate()
 
@@ -52,7 +54,8 @@ const PostHeader = ({
         <p className="my-2 w-fit mx-auto text-[0.8rem]">
           {getPostLiveTime(createAt)}
         </p>
-        <div className="flex w-fit mx-auto gap-3 my-3">
+        { isOwner &&
+        <div className="flex w-fit mx-auto gap-3 mt-3">
           <Link
             to={`/post-edit/${postId}`}
             className="border-slate-200 border-1 px-3 py-1 rounded-lg bg-[#efb98b]">
@@ -64,6 +67,7 @@ const PostHeader = ({
             삭제
           </button>
         </div>
+        }
       </div>
     </div>
   )

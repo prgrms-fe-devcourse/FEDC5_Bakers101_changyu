@@ -17,6 +17,7 @@ const PostDetail = () => {
     ;(async () => {
       if (!productId) return
       const details = await getPostDetail(productId)
+      console.log(details)
       await setPostDetails(details)
     })()
   }, [])
@@ -31,6 +32,7 @@ const PostDetail = () => {
             author={postDetails.author.fullName}
             createAt={postDetails.createdAt}
             profileImg={postDetails.image}
+            isOwner={postDetails.author._id === import.meta.env.VITE_USER_ID}
           />
           <hr className="w-4/5 mx-auto my-8 px-2" />
           <PostBody
