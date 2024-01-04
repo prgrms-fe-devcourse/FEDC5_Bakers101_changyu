@@ -1,13 +1,15 @@
 import tw, { styled } from 'twin.macro'
 import { Link } from 'react-router-dom'
+
 import PrevBrownIcon from '@/assets/icons/prev_brown.svg'
+import EditIcon from '@/assets/icons/edit.svg'
 
 type PostEditHeader = {
   onClickSubmitButtn: () => void
 }
 
 const PostEditHeaderContainer = styled.div`
-  ${tw`flex justify-between`}
+  ${tw`px-4 flex justify-between`}
 `
 
 const PostEditHeader = ({ onClickSubmitButtn }: PostEditHeader) => {
@@ -15,10 +17,15 @@ const PostEditHeader = ({ onClickSubmitButtn }: PostEditHeader) => {
     <PostEditHeaderContainer>
       <Link
         to="/"
-        className="mx-2 my-2 h-[3.125rem]">
+        className="w-screen my-2 h-[3.125rem]">
         <img src={PrevBrownIcon} />
       </Link>
-      <button onClick={onClickSubmitButtn}>제출</button>
+      <button onClick={onClickSubmitButtn}>
+        <img
+          src={EditIcon}
+          alt="edit"
+        />
+      </button>
     </PostEditHeaderContainer>
   )
 }

@@ -1,11 +1,14 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
+import { useNavigate } from 'react-router-dom'
 import PostEditHeader from './components/Header'
 import handleImageFormData from '@/utils/handleImageFormData'
 import { getPostDetail, updatePost } from '@/apis/postApis'
 
 const PostEdit = () => {
+  const navigate = useNavigate()
+
   const [title, setTitle] = useState<string>('')
   const [details, setDetails] = useState<string>('')
   const [postDetails, setPostDetails] = useState<Post>()
@@ -22,34 +25,32 @@ const PostEdit = () => {
     })()
   }, [])
 
-  function onClickEditButton() {
-    // const formData = handleImageFormData({ imageFile: file as File, title : title, type :'Post',body: detail, channelId : channelId._id});
-
+  async function onClickEditButton() {
     const formData = handleImageFormData({
-      imageFile: '',
+      imageFile: postDetails?.image,
       title: title,
       type: 'Post',
       body: details,
       channelId: postDetails?.channel._id,
       postId: postDetails?._id
     })
-    updatePost(import.meta.env.VITE_API_KEY, formData)
+    await updatePost(import.meta.env.VITE_API_KEY, formData)
+    navigate(`/postdetail/${postDetails?._id}`)
   }
 
   return (
-    <div className="w-fit mx-auto">
+    <div>
       <PostEditHeader onClickSubmitButtn={onClickEditButton} />
-      <div>
-        <div className="w-[10rem] h-[4rem] overflow-hidden mx-auto rounded-full"></div>
+      <div className="w-fit mx-auto">
         <input
-          className="w-[16rem] mx-auto  my-2 text-[1.4rem] border-1 border-black font-medium"
+          className="w-[20rem] mx-auto  my-2 text-[1.4rem] border-2 border-gray-300 font-medium"
           onChange={(e) => setTitle(e.target.value)}
           value={title}
         />
       </div>
-      <div className="mx-auto">
+      <div className="mx-auto w-fit">
         <input
-          className="w-[16rem] mx-auto min-h-[26rem] border-1 border-black"
+          className="w-[20rem] mx-auto min-h-[40rem] border-2 border-gray-300"
           onChange={(e) => setDetails(e.target.value)}
           value={details}
         />

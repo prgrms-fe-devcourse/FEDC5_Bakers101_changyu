@@ -18,7 +18,7 @@ function handleImageFormData({
   postId
 }: ImageFormData): FormData {
   const formData = new FormData()
-  formData.append('image', '')
+  formData.append('image', imageFile)
   if (type === 'Profile') formData.append('isCover', String(isCover))
   if (type === 'Post') {
     formData.append('postId', String(postId))
