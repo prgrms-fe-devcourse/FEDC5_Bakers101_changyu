@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom'
 
 import { useEffect } from 'react'
 import prevIcon from '@/assets/icons/prev_brown.svg'
+import peopleIcon from '@/assets/icons/profile.svg'
 import getPostLiveTime from '@/utils/getPostCreateTime'
 import { deletePost } from '@/apis/postApis'
 
@@ -52,7 +53,7 @@ const PostHeader = ({
         <div className="w-[4rem] h-[4rem] overflow-hidden mx-auto rounded-full">
           <img
             className="w-[4rem] h-[4rem] object-cover"
-            src={profileImg}
+            src={profileImg ? profileImg : peopleIcon}
             alt="profileimg"
           />
         </div>
