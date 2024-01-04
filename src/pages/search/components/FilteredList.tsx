@@ -44,7 +44,6 @@ const FilteredList = ({ type, users, posts }: FilteredListProps) => {
               />
             ))}
           </HorizontalSlide>
-          {users!.length === 0 && posts!.length === 0 && <NoResult />}
           {users!.length > 0 ||
             (posts!.length > 0 && (
               <GridPostSection>
@@ -60,6 +59,7 @@ const FilteredList = ({ type, users, posts }: FilteredListProps) => {
             ))}
         </>
       )}
+      {users!.length === 0 && posts!.length === 0 && <NoResult />}
     </Container>
   )
 }
