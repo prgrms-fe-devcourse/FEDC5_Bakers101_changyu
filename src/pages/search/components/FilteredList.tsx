@@ -1,6 +1,7 @@
 import tw, { styled } from 'twin.macro'
 import FilteredUser from './FilteredUser'
 import FilteredPost from './FilteredPost'
+import NoResult from './NoResult'
 
 interface FilteredListProps {
   type: 'user' | 'all'
@@ -9,7 +10,7 @@ interface FilteredListProps {
 }
 
 const Container = styled.div`
-  ${tw`flex flex-col gap-3`}
+  ${tw`flex flex-col gap-3 grow`}
 `
 
 const HorizontalSlide = styled.div`
@@ -43,16 +44,20 @@ const FilteredList = ({ type, users, posts }: FilteredListProps) => {
               />
             ))}
           </HorizontalSlide>
-          <GridPostSection>
-            {posts?.map((post) => (
-              <FilteredPost
-                thumbnail={post.image}
-                title={post.title}
-                commentsNum={post.comments.length}
-                likesNum={post.likes.length}
-              />
+          {users!.length === 0 && posts!.length === 0 && <NoResult />}
+          {users!.length > 0 ||
+            (posts!.length > 0 && (
+              <GridPostSection>
+                {posts?.map((post) => (
+                  <FilteredPost
+                    thumbnail={post.image}
+                    title={post.title}
+                    commentsNum={post.comments.length}
+                    likesNum={post.likes.length}
+                  />
+                ))}
+              </GridPostSection>
             ))}
-          </GridPostSection>
         </>
       )}
     </Container>
