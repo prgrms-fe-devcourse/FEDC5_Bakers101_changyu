@@ -4,18 +4,25 @@ interface FilteredUserProps {
   image?: string
   fullName: string
   email: string
+  isHidden?: boolean
 }
 
-const Container = styled.div`
-  ${tw`flex items-center gap-3`}
-`
+const Container = styled.div(({ isHidden }) => [
+  !isHidden && tw`flex items-center gap-3`,
+  isHidden && tw`w-fit flex flex-col justify-center items-center gap-3`
+])
 
-const FilteredUser = ({ image, fullName, email }: FilteredUserProps) => {
+const FilteredUser = ({
+  image,
+  fullName,
+  email,
+  isHidden
+}: FilteredUserProps) => {
   return (
     // TODO: 추후 라우터를 이용하여 해당 유저의 프로필 페이지로 이동하는 기능 추가
-    <Container>
-      <aside>
-        <div className='rounded-full overflow-hidden w-[75px] h-[75px] border-1 border-[#000]'>
+    <Container isHidden={isHidden}>
+      <aside className='py-2 px-2'>
+        <div className="ring-offset-2 ring-2 ring-indigo-500 rounded-full overflow-hidden w-[75px] h-[75px]">
           <img
             src={image}
             alt="프로필 이미지"
@@ -24,8 +31,10 @@ const FilteredUser = ({ image, fullName, email }: FilteredUserProps) => {
         </div>
       </aside>
       <aside>
-        <div className='font-semibold text-lg'>{fullName}</div>
-        <div className='text-xs text-[#a9a9a9]'>{email}</div>
+        <div className={isHidden ? 'text-xs' : 'font-semibold text-lg'}>
+          {fullName}
+        </div>
+        {!isHidden && <div className="text-xs text-[#a9a9a9]">{email}</div>}
       </aside>
     </Container>
   )
