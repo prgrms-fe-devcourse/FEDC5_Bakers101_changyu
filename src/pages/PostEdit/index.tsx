@@ -42,7 +42,7 @@ const PostEdit = () => {
       <PostEditHeader onClickSubmitButtn={onClickEditButton} />
       <div className="w-fit mx-auto">
         <input
-          className="w-[20rem] mx-auto  my-2 text-[1.4rem] border-2 border-gray-300 font-medium"
+          className="w-[20rem] h-12 mx-auto px-2 my-2 text-[1.2rem] border-2 border-gray-300 font-medium"
           onChange={(e) => setTitle(e.target.value)}
           value={title}
         />

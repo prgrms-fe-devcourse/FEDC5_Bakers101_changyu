@@ -1,5 +1,5 @@
 interface ImageFormData {
-  imageFile: File
+  imageFile?: File | string
   type: 'Profile' | 'Post'
   isCover?: boolean
   channelId?: string
@@ -18,7 +18,7 @@ function handleImageFormData({
   postId
 }: ImageFormData): FormData {
   const formData = new FormData()
-  formData.append('image', imageFile)
+  if (imageFile) formData.append('image', imageFile)
   if (type === 'Profile') formData.append('isCover', String(isCover))
   if (type === 'Post') {
     formData.append('postId', String(postId))
