@@ -11,6 +11,15 @@ interface FilteredListProps {
 const Container = styled.div`
   ${tw`flex flex-col gap-3`}
 `
+
+const HorizontalSlide = styled.div`
+  ${tw`pb-3 flex items-center gap-3 overflow-x-scroll`}
+`
+
+const GridPostSection = styled.div`
+  ${tw`grid grid-cols-2 gap-2`}
+`
+
 const FilteredList = ({ type, users, posts }: FilteredListProps) => {
   return (
     <Container>
@@ -24,14 +33,17 @@ const FilteredList = ({ type, users, posts }: FilteredListProps) => {
         ))}
       {type === 'all' && (
         <>
-          {users?.map((user) => (
-            <FilteredUser
-              image={user.image}
-              fullName={user.fullName}
-              email={user.email}
-            />
-          ))}
-          <div className='border-t-2 pt-5 grid grid-cols-2 gap-2'>
+          <HorizontalSlide>
+            {users?.map((user) => (
+              <FilteredUser
+                image={user.image}
+                fullName={user.fullName}
+                email={user.email}
+                isHidden
+              />
+            ))}
+          </HorizontalSlide>
+          <GridPostSection>
             {posts?.map((post) => (
               <FilteredPost
                 thumbnail={post.image}
@@ -40,7 +52,7 @@ const FilteredList = ({ type, users, posts }: FilteredListProps) => {
                 likesNum={post.likes.length}
               />
             ))}
-          </div>
+          </GridPostSection>
         </>
       )}
     </Container>
