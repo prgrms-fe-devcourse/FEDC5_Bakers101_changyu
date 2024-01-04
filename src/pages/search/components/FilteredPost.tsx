@@ -15,7 +15,7 @@ const Container = styled.section`
 `
 
 const Wrapper = styled.div`
-  ${tw`relative h-full bg-slate-500 rounded-xl overflow-hidden`}
+  ${tw`relative h-full rounded-xl overflow-hidden shadow-md`}
 `
 
 const Content = styled.div`
@@ -32,6 +32,10 @@ const Social = styled.div`
 
 const SocialButton = styled.button`
   ${tw`flex items-center gap-1`}
+`
+
+const Thumbnail = styled.div`
+  ${tw`w-full h-full flex justify-center items-center`}
 `
 
 const FilteredPost = ({
@@ -57,11 +61,22 @@ const FilteredPost = ({
     // TODO: 추후 라우터를 이용하여 해당 포스트의 상세 페이지로 이동하는 기능 추가
     <Container>
       <Wrapper>
-        <img
-          src={'src/assets/19.jpg'}
-          alt="썸네일"
-          className="h-full rounded-xl"
-        />
+        <Thumbnail>
+          {thumbnail && (
+            <img
+              src={thumbnail}
+              alt="썸네일"
+              className="bg-cover rounded-xl"
+            />
+          )}
+          {!thumbnail && (
+            <img
+              src={'src/assets/NoThumbnail.png'}
+              alt="썸네일"
+              className="w-20 h-20 rounded-xl"
+            />
+          )}
+        </Thumbnail>
         <Content>
           <Title>{formatTitle(title)}</Title>
           <Social>
