@@ -45,6 +45,7 @@ const SearchBar = ({
   onChange,
   onPressEnter
 }: SearchBarProps) => {
+  // TODO: 추후 라우터를 이용하여 이전 페이지로 돌아가는 기능 추가
   return (
     <Container>
       <PrevButton onClick={onClickPrevButton}>
@@ -63,7 +64,7 @@ const SearchBar = ({
             <SearchIcon className="text-brand-primary text-[25px]" />
           </SearchButton>
         </Wrapper>
-        {error && <p className='text-[crimson] text-xs mt-2'>{error}</p>}
+        {error && <p className="text-[crimson] text-xs mt-2">{error}</p>}
       </Main>
     </Container>
   )
