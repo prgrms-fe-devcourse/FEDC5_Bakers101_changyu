@@ -7,6 +7,7 @@ interface FilteredListProps {
   type: 'user' | 'all'
   users?: User[]
   posts?: Post[]
+  isSearched?: boolean
 }
 
 const Container = styled.div`
@@ -21,7 +22,12 @@ const GridPostSection = styled.div`
   ${tw`grid grid-cols-2 gap-2`}
 `
 
-const FilteredList = ({ type, users, posts }: FilteredListProps) => {
+const FilteredList = ({
+  type,
+  users,
+  posts,
+  isSearched
+}: FilteredListProps) => {
   return (
     <Container>
       {type === 'user' &&
@@ -59,7 +65,7 @@ const FilteredList = ({ type, users, posts }: FilteredListProps) => {
             ))}
         </>
       )}
-      {users!.length === 0 && posts!.length === 0 && <NoResult />}
+      {isSearched && users!.length === 0 && posts!.length === 0 && <NoResult />}
     </Container>
   )
 }

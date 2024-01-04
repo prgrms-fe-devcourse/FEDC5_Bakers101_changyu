@@ -9,6 +9,7 @@ import FilteredList from './components/FilteredList'
 const Search = () => {
   const [searchedPost, setSearchedPost] = useState<Post[]>([])
   const [searchedUser, setSearchedUser] = useState<User[]>([])
+  const [isSearched, setIsSearched] = useState(false)
 
   const {
     value,
@@ -24,13 +25,12 @@ const Search = () => {
       if (type === 'user') {
         const { users } = await searchUser({ query })
         setSearchedUser(users)
-        return
       } else if (type === 'all') {
         const { posts, users } = await searchAll({ query })
         setSearchedPost(posts)
         setSearchedUser(users)
-        return
       }
+      setIsSearched(true)
     },
     validate: (query) => {
       if (query.trim().length === 0) {
@@ -63,6 +63,7 @@ const Search = () => {
           type={type as 'user' | 'all'}
           users={searchedUser}
           posts={searchedPost}
+          isSearched={isSearched}
         />
       </div>
     </div>
