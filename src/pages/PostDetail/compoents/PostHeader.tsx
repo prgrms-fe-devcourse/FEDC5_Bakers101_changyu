@@ -1,6 +1,7 @@
 import tw, { styled } from 'twin.macro'
 import { useNavigate, Link } from 'react-router-dom'
 
+import { useEffect } from 'react'
 import prevIcon from '@/assets/icons/prev_brown.svg'
 import getPostLiveTime from '@/utils/getPostCreateTime'
 import { deletePost } from '@/apis/postApis'
@@ -50,7 +51,7 @@ const PostHeader = ({
       <PostAuthorProfileWrapper>
         <div className="w-[4rem] h-[4rem] overflow-hidden mx-auto rounded-full">
           <img
-            className="w-[4rem] h-[4rem] object-cover bg-black "
+            className="w-[4rem] h-[4rem] object-cover"
             src={profileImg}
             alt="profileimg"
           />
