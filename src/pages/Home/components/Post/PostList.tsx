@@ -31,7 +31,7 @@ const PostList = ({ title, id }: nowChannelType) => {
   return (
     <div className="relative flex flex-col">
       {postList.map((item, index) => (
-        <button key={index}>
+        <button key={item._id}>
           <PostlItem
             postDetail={item}
             index={index}
