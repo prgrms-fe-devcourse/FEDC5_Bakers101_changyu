@@ -31,8 +31,9 @@ const FilteredList = ({
   return (
     <Container>
       {type === 'user' &&
-        users?.map(({ image, fullName, email }) => (
+        users?.map(({ _id, image, fullName, email }) => (
           <FilteredUser
+            id={_id}
             image={image}
             fullName={fullName}
             email={email}
@@ -41,8 +42,9 @@ const FilteredList = ({
       {type === 'all' && (
         <>
           <HorizontalSlide>
-            {users?.map(({ image, fullName, email }) => (
+            {users?.map(({ _id, image, fullName, email }) => (
               <FilteredUser
+                id={_id}
                 image={image}
                 fullName={fullName}
                 email={email}
