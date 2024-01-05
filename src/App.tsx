@@ -4,6 +4,7 @@ import PostCreation from './pages/post-creation'
 import Profile from './pages/profile'
 import LoginForm from './pages/login/LoginForm'
 import SignUpForm from './pages/sign-up/SignupForm'
+import Search from './pages/search'
 
 function App() {
   return (
@@ -28,6 +29,10 @@ function App() {
         <Route
           path="/profile/:id"
           element={<Profile />}
+        />
+        <Route
+          path="/search"
+          element={<Search />}
         />
       </Routes>
     </BrowserRouter>
