@@ -45,13 +45,14 @@ const PostlItem = ({ postDetail, index }: PostItemType) => {
   const [isLoading, setIsLoading] = useState(false)
   const [userImg, setUserImg] = useState(null)
 
+  const fetchUserInform = async () => {
+    const response = await getUserInform(postDetail.author._id)
+    setUserImg(response.image || null)
+  }
+
   useEffect(() => {
-    ;(async () => {
-      const request = await getUserInform(postDetail.author._id)
-      if (!request.image) setUserImg(null)
-      setUserImg(request.image)
-      setTimeout(() => setIsLoading(true), index * 120)
-    })()
+    fetchUserInform()
+    setTimeout(() => setIsLoading(true), index * 120)
   }, [])
 
   return (
