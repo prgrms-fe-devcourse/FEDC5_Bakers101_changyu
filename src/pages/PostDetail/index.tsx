@@ -36,6 +36,7 @@ const PostDetail = () => {
             body={JSON.parse(postDetails.title).body}
             likeNum={postDetails.likes.length}
             commentNum={postDetails.comments.length}
+            postId={postDetails._id}
           />
           <hr className="w-4/5 mx-auto mb-8 mt-2 px-2" />
         </div>

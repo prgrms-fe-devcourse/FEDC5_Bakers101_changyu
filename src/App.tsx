@@ -24,7 +24,7 @@ function App() {
           element={<SignUpForm />}
         />
         <Route
-          path="/postcreation"
+          path="/post-creation"
           element={<PostCreation />}
         />
         <Route
