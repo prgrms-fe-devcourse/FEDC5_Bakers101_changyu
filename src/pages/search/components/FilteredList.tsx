@@ -31,21 +31,21 @@ const FilteredList = ({
   return (
     <Container>
       {type === 'user' &&
-        users?.map((user) => (
+        users?.map(({ image, fullName, email }) => (
           <FilteredUser
-            image={user.image}
-            fullName={user.fullName}
-            email={user.email}
+            image={image}
+            fullName={fullName}
+            email={email}
           />
         ))}
       {type === 'all' && (
         <>
           <HorizontalSlide>
-            {users?.map((user) => (
+            {users?.map(({ image, fullName, email }) => (
               <FilteredUser
-                image={user.image}
-                fullName={user.fullName}
-                email={user.email}
+                image={image}
+                fullName={fullName}
+                email={email}
                 isHidden
               />
             ))}
@@ -53,12 +53,12 @@ const FilteredList = ({
           {users!.length > 0 ||
             (posts!.length > 0 && (
               <GridPostSection>
-                {posts?.map((post) => (
+                {posts?.map(({ image, title, comments, likes }) => (
                   <FilteredPost
-                    thumbnail={post.image}
-                    title={post.title}
-                    commentsNum={post.comments.length}
-                    likesNum={post.likes.length}
+                    thumbnail={image}
+                    title={title}
+                    commentsNum={comments.length}
+                    likesNum={likes.length}
                   />
                 ))}
               </GridPostSection>
