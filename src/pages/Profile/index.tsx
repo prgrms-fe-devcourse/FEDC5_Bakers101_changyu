@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import tw, { styled } from 'twin.macro'
 
 import UserProfileInfo from './components/profile/UserProfileInfo'
@@ -41,6 +41,7 @@ const DrawerControlLabel = styled.label``
 const Profile = () => {
   const { id } = useParams()
   const { profile, setProfile } = useProfileStore()
+  const [currentProfile, setCurrentProfile] = useState<User>()
   const [isMyProfile, setIsMyProfile] = useState<boolean>(id === profile?._id)
   const [isFollowed, setIsFollowed] = useState<boolean>(false)
   const [isOpen, setIsOpen] = useState<boolean>(false)
@@ -49,13 +50,17 @@ const Profile = () => {
     setIsOpen(!isOpen)
   }
 
-  useEffect(() => {
-    const fetchProfile = async () => {
-      const data = await getProfile(id as string)
+  const fetchProfile = useCallback(async () => {
+    const data = await getProfile(id as string)
+    if (id === profile?._id) {
       setProfile(data)
     }
+    setCurrentProfile(data)
+  }, [id, profile?._id, setProfile])
+
+  useEffect(() => {
     fetchProfile()
-  }, [id, profile?._id, setProfile, isMyProfile])
+  }, [isOpen, fetchProfile])
 
   useEffect(() => {
     const checkIsFollowedUser = () => {
@@ -76,11 +81,11 @@ const Profile = () => {
       <ProfileContainer>
         <Header />
         <UserProfileSection>
-          <CoverImage />
+          <CoverImage imgSrc={currentProfile?.coverImage ?? null} />
           <DetailSection>
             <main className="w-full flex flex-col gap-2">
               <div className="w-full flex justify-between">
-                <ProfileImage />
+                <ProfileImage imgSrc={currentProfile?.image ?? null} />
                 {isMyProfile && (
                   <DrawerControlLabel
                     htmlFor="my-drawer"
@@ -94,12 +99,12 @@ const Profile = () => {
                 )}
               </div>
               <UserProfileInfo
-                fullName={profile?.fullName}
-                userName={profile?.username || 'User'}
-                email={profile?.email}
-                isOnline={profile?.isOnline}
-                followers={profile?.followers}
-                following={profile?.following}
+                fullName={currentProfile?.fullName}
+                userName={currentProfile?.username || 'User'}
+                email={currentProfile?.email}
+                isOnline={currentProfile?.isOnline}
+                followers={currentProfile?.followers}
+                following={currentProfile?.following}
                 isMyProfile={isMyProfile}
                 isFollowed={isFollowed}
                 onClickFollowButton={handleClickFollowButton}
@@ -109,11 +114,11 @@ const Profile = () => {
           <Divider />
           <PostSection>
             <PostList
-              posts={profile?.posts}
+              posts={currentProfile?.posts}
               listTitle="작성한 포스트"
             />
             <PostList
-              posts={profile?.likes}
+              posts={currentProfile?.likes}
               listTitle="좋아요한 포스트"
             />
           </PostSection>
