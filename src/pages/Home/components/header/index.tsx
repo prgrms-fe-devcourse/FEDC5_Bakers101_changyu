@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import tw, { styled } from 'twin.macro'
 
 import AlarmIcon from '@/assets/icons/notification.svg'
@@ -41,9 +42,11 @@ const HomeHeader = ({
         </button>
       </ChannelSelectButtonsWrapper>
       <HomeHeaderButtonsWrapper>
-        <button>
-          <img src={SearchIcon} />
-        </button>
+        <Link to='/search' className='flex items-center'>
+          <button>
+            <img src={SearchIcon} />
+          </button>
+        </Link>
         <button>
           <img src={AlarmIcon} />
         </button>

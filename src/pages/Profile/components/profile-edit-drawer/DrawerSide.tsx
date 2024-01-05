@@ -1,11 +1,12 @@
 import tw, { styled } from 'twin.macro'
-import CoverImage from './CoverImage'
-import ProfileImage from './ProfileImage'
+import CoverImage from '../CoverImage'
+import ProfileImage from '../ProfileImage'
 import ProfileNameForm from './ProfileNameForm'
 import ProfilePasswordForm from './ProfilePasswordForm'
 import UploadImageButton from './UploadImageButton'
 import EditIcon from '../EditIcon'
 import PrevIcon from '../PrevIcon'
+import { useProfileStore } from '@/stores/userProfileStore'
 
 const ProfileDrawerSide = styled.div``
 
@@ -30,6 +31,7 @@ interface DrawerSideProps {
 }
 
 const DrawerSide = ({ onToggle }: DrawerSideProps) => {
+  const { profile } = useProfileStore()
   return (
     <ProfileDrawerSide className="drawer-side">
       <HeaderContainer className="z-10">
@@ -38,7 +40,7 @@ const DrawerSide = ({ onToggle }: DrawerSideProps) => {
         </PrevButton>
       </HeaderContainer>
       <Container className="bg-base-200">
-        <CoverImage>
+        <CoverImage imgSrc={profile?.coverImage}>
           <UploadImageButton
             className="absolute bottom-3 right-2"
             isCover>
@@ -46,7 +48,7 @@ const DrawerSide = ({ onToggle }: DrawerSideProps) => {
           </UploadImageButton>
         </CoverImage>
         <DetailSection>
-          <ProfileImage>
+          <ProfileImage imgSrc={profile?.image}>
             <UploadImageButton
               className="absolute -bottom-12 w-full h-20 flex justify-center bg-[#000]/30 rounded-b-full"
               isCover={false}>

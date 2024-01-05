@@ -15,7 +15,7 @@ interface SearchBarProps {
 }
 
 const Container = styled.div`
-  ${tw`flex gap-2 mt-20`}
+  ${tw`flex gap-2 mt-6`}
 `
 
 const Wrapper = styled.div`
@@ -33,6 +33,7 @@ const SearchButton = styled.button`
 const Input = styled.input`
   ${tw`grow border-b outline-none p-2`}
 `
+
 const Main = styled.div`
   ${tw`flex flex-col grow`}
 `
@@ -45,7 +46,6 @@ const SearchBar = ({
   onChange,
   onPressEnter
 }: SearchBarProps) => {
-  // TODO: 추후 라우터를 이용하여 이전 페이지로 돌아가는 기능 추가
   return (
     <Container>
       <PrevButton onClick={onClickPrevButton}>
