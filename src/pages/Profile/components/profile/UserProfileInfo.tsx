@@ -1,6 +1,7 @@
 import tw, { styled } from 'twin.macro'
 import ButtonContainer from './ButtonContainer'
 import FollowButton from './FollowButton'
+import ChatIcon from './ChatIcon'
 
 interface UserProfileInfoProps {
   fullName?: string
@@ -32,8 +33,7 @@ const OnlineIndicator = styled.div(({ isOnline }) => [
 ])
 
 const ChatButton = styled.button`
-  background: url('src/assets/icons/chat.svg') no-repeat center center;
-  ${tw`w-6 h-6`}
+  ${tw`w-5 h-5`}
 `
 
 const UserProfileInfo = ({
@@ -62,19 +62,17 @@ const UserProfileInfo = ({
         </ButtonContainer>
       </ProfileInfo>
       <ButtonContainer className="items-center self-center mb-5">
-        <ChatButton />
+        <ChatButton>
+          <ChatIcon className="w-full h-full" />
+        </ChatButton>
         {!isMyProfile && isFollowed && (
           <FollowButton
-            fill="#FF777F"
-            className="w-5 h-5"
+            isFilled
             onClick={onClickFollowButton}
           />
         )}
         {!isMyProfile && !isFollowed && (
-          <FollowButton
-            className="w-5 h-5"
-            onClick={onClickFollowButton}
-          />
+          <FollowButton onClick={onClickFollowButton} />
         )}
       </ButtonContainer>
     </UserProfileInfoWrapper>

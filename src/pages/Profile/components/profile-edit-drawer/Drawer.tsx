@@ -10,7 +10,7 @@ const DrawerControl = styled.input`
 `
 
 const DrawerContent = styled.div`
-  ${tw`flex flex-col items-center justify-center drawer-content`}
+  ${tw`w-screen h-full flex flex-col items-center justify-center drawer-content`}
 `
 
 interface DrawerProps {
