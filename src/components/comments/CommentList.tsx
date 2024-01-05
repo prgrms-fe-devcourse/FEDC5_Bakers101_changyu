@@ -17,7 +17,6 @@ export interface CommentProps {
   post: string
   createdAt: string
   updatedAt: string
-  __v: number
 }
 
 interface CommentListProps {

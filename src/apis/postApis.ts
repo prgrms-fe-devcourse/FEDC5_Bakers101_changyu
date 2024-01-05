@@ -4,12 +4,25 @@ import {
   CREATE_POST_PATH,
   DELETE_POST_PATH,
   GET_DETAIL_POST_PATH,
-  GET_POST_LIST_BY_CHANNEL_PATH
+  GET_POST_LIST_BY_CHANNEL_PATH,
+  UPDATE_POST_PATH
 } from '@/utils/api_paths'
 
 async function createPost(token: string, formData: FormData) {
   try {
     await axiosInstance.post(CREATE_POST_PATH, formData, {
+      headers: {
+        Authorization: `bearer ${token}`,
+        'Content-Type': 'multipart/form-data'
+      }
+    })
+  } catch (error) {
+    throw new Error(`${error}`)
+  }
+}
+async function updatePost(token: string, formData: FormData) {
+  try {
+    await axiosInstance.put(UPDATE_POST_PATH, formData, {
       headers: {
         Authorization: `bearer ${token}`,
         'Content-Type': 'multipart/form-data'
@@ -31,7 +44,7 @@ async function deletePost(token: string, id: string) {
   }
 }
 
-async function getPostDetail(postId: number) {
+const getPostDetail = async (postId: string) => {
   try {
     const request = await axiosInstance.get(`${GET_DETAIL_POST_PATH}/${postId}`)
     return request.data
@@ -70,4 +83,12 @@ async function getAllPostList() {
     throw new Error(`${error}`)
   }
 }
-export { deletePost, createPost, getPostDetail, getPostList, getAllPostList }
+
+export {
+  deletePost,
+  createPost,
+  getPostDetail,
+  updatePost,
+  getPostList,
+  getAllPostList
+}

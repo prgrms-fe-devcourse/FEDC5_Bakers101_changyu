@@ -2,9 +2,9 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/home'
 import PostCreation from './pages/post-creation'
 import Profile from './pages/profile'
+import PostDetail from './pages/PostDetail'
 import LoginForm from './pages/login/LoginForm'
 import SignUpForm from './pages/sign-up/SignupForm'
-import Search from './pages/search'
 
 function App() {
   return (
@@ -23,7 +23,7 @@ function App() {
           element={<SignUpForm />}
         />
         <Route
-          path="/postcreation"
+          path="/post-creation"
           element={<PostCreation />}
         />
         <Route
@@ -33,6 +33,14 @@ function App() {
         <Route
           path="/search"
           element={<Search />}
+        />
+        <Route
+          path="/post-detail/:id"
+          element={<PostDetail />}
+        />
+        <Route
+          path="/post-edit/:id"
+          element={<PostEdit />}
         />
       </Routes>
     </BrowserRouter>

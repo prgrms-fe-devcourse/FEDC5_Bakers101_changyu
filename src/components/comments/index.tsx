@@ -5,12 +5,15 @@ import CommentForm from './CommentForm'
 import CommentList from './CommentList'
 
 // apis
-import { getPostDetail } from '@/apis/post'
+import { getPostDetail } from '@/apis/postApis'
 
-const Comments = () => {
+type CommentsProps = {
+  postId: string
+}
+
+const Comments = ({ postId }: CommentsProps) => {
   const [comments, setComments] = useState<Comment[]>([])
 
-  // postId에 대한 댓글 데이터를 가져오는 함수 - 임시🔨
   const fetchCommentsData = async (postId: string) => {
     try {
       const response = await getPostDetail(postId)
@@ -21,19 +24,17 @@ const Comments = () => {
   }
 
   const handleCommentAdded = () => {
-    const postId = import.meta.env.VITE_POST_ID
     fetchCommentsData(postId)
   }
 
   useEffect(() => {
-    const postId = import.meta.env.VITE_POST_ID
     fetchCommentsData(postId)
   }, [])
 
   return (
     <div>
       <CommentForm
-        postId={import.meta.env.VITE_POST_ID}
+        postId={postId}
         onCommentAdded={handleCommentAdded}
       />
       <CommentList comments={comments} />
