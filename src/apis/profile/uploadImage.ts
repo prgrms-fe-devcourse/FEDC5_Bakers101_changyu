@@ -3,12 +3,14 @@ import axiosInstance from '../api'
 
 async function uploadImage(formData: FormData) {
   try {
+    const token = localStorage.getItem('token')
+    const parsedToken = JSON.parse(token as string)
     const response = await axiosInstance.post(
       UPDATE_PROFILE_IMAGE_PATH,
       formData,
       {
         headers: {
-          Authorization: `Bearer ${import.meta.env.VITE_TOKEN}`,
+          Authorization: `Bearer ${parsedToken}`,
           'Content-Type': 'multipart/form-data'
         }
       }

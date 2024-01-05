@@ -9,9 +9,11 @@ interface UpdateResponse extends User {}
 
 async function updateName(data: Data): Promise<UpdateResponse> {
   try {
+    const token = localStorage.getItem('token')
+    const parsedToken = JSON.parse(token as string)
     const response = await axiosInstance.put(UPDATE_MY_PROFILE_PATH, data, {
       headers: {
-        Authorization: `Bearer ${import.meta.env.VITE_TOKEN}`
+        Authorization: `Bearer ${parsedToken}`
       }
     })
 
