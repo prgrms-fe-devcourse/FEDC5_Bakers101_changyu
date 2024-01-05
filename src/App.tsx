@@ -1,5 +1,11 @@
+import LikeButton from '@/components/likes'
+
 function App() {
-  return <></>;
+  return (
+    <>
+      <LikeButton />
+    </>
+  )
 }
 
-export default App;
+export default App
