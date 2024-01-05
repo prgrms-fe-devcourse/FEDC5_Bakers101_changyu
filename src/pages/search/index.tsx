@@ -1,12 +1,14 @@
-import searchAll from '@/apis/search/searchAll'
-import searchUser from '@/apis/search/searchUser'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import SearchBar from './components/SearchBar'
-import useSearch from '@/hooks/useSearch'
 import Filter from './components/Filter'
 import FilteredList from './components/FilteredList'
+import searchAll from '@/apis/search/searchAll'
+import searchUser from '@/apis/search/searchUser'
+import useSearch from '@/hooks/useSearch'
 
 const Search = () => {
+  const navigate = useNavigate()
   const [searchedPost, setSearchedPost] = useState<Post[]>([])
   const [searchedUser, setSearchedUser] = useState<User[]>([])
   const [isSearched, setIsSearched] = useState(false)
@@ -42,7 +44,9 @@ const Search = () => {
   })
 
   // TODO: 추후 라우터를 이용하여 이전 페이지로 돌아가는 기능 추가
-  const handleClickPrevButton = () => {}
+  const handleClickPrevButton = () => {
+    navigate(-1)
+  }
 
   return (
     <div className="w-11/12 h-screen mx-auto flex flex-col gap-4">
