@@ -8,8 +8,8 @@ import Drawer from './components/profile-edit-drawer/Drawer'
 import EditIcon from './components/EditIcon'
 import getProfile from '@/apis/profile/profile'
 import { useProfileStore } from '@/stores/userProfileStore'
-import ProfileImage from './components/profile-edit-drawer/ProfileImage'
-import CoverImage from './components/profile-edit-drawer/CoverImage'
+import ProfileImage from './components/ProfileImage'
+import CoverImage from './components/CoverImage'
 import { useParams } from 'react-router-dom'
 
 const ProfileContainer = styled.main`
@@ -42,7 +42,7 @@ const Profile = () => {
   const { id } = useParams()
   const { profile, setProfile } = useProfileStore()
   const [currentProfile, setCurrentProfile] = useState<User>()
-  const [isMyProfile, setIsMyProfile] = useState<boolean>(id === profile?._id)
+  const isMyProfile = id === profile?._id
   const [isFollowed, setIsFollowed] = useState<boolean>(false)
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
@@ -81,11 +81,11 @@ const Profile = () => {
       <ProfileContainer>
         <Header />
         <UserProfileSection>
-          <CoverImage imgSrc={currentProfile?.coverImage ?? null} />
+          <CoverImage imgSrc={currentProfile?.coverImage ?? undefined} />
           <DetailSection>
             <main className="w-full flex flex-col gap-2">
               <div className="w-full flex justify-between">
-                <ProfileImage imgSrc={currentProfile?.image ?? null} />
+                <ProfileImage imgSrc={currentProfile?.image ?? undefined} />
                 {isMyProfile && (
                   <DrawerControlLabel
                     htmlFor="my-drawer"

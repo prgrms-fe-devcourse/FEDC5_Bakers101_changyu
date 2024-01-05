@@ -1,6 +1,6 @@
 import tw, { styled } from 'twin.macro'
-import CoverImage from './CoverImage'
-import ProfileImage from './ProfileImage'
+import CoverImage from '../CoverImage'
+import ProfileImage from '../ProfileImage'
 import ProfileNameForm from './ProfileNameForm'
 import ProfilePasswordForm from './ProfilePasswordForm'
 import UploadImageButton from './UploadImageButton'
