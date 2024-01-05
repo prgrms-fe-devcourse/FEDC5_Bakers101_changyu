@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react'
-import ChannelSelectionModal from './components/channel-selections-modal'
+import { useState } from 'react'
+import ChannelSelectionModal from './components/channelSelectionsModal'
 import PostList from './components/post/PostList'
 import HomeHeader from './components/header'
 import HomeBottomNavBar from './components/bottom-navbar'
@@ -17,10 +17,8 @@ const Home = () => {
     id: undefined
   })
 
-  useEffect(() => {}, [nowChannel])
-
   return (
-    <div className='w-11/12 mx-auto'>
+    <div>
       <HomeHeader
         selectedChannel={nowChannel.name}
         onClickChannelList={() => {

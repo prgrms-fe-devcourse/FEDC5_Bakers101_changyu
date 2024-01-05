@@ -16,7 +16,9 @@ const HomeBottomNavBar = () => {
   const { profile } = useProfileStore()
   return (
     <HomeBottomNavBarContainer>
-      <Link to={`/profile/${profile?._id}`} className='h-fit my-auto'>
+      <Link
+        to={`/profile/${profile?._id}`}
+        className="h-fit my-auto">
         <img
           className="w-5 h-5"
           src={ProfileIcon}
