@@ -1,10 +1,11 @@
 import tw, { styled } from 'twin.macro'
-import { useNavigate, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { useState } from 'react'
 
 import prevIcon from '@/assets/icons/prev_brown.svg'
 import peopleIcon from '@/assets/icons/profile.svg'
 import getPostLiveTime from '@/utils/getPostCreateTime'
-import { deletePost } from '@/apis/postApis'
+import DeleteCheckModal from './DeleteCheckModal'
 
 const PostHeaderContainer = styled.div`
   ${tw``}
@@ -33,12 +34,7 @@ const PostHeader = ({
   postId,
   isOwner
 }: PostHeaderType) => {
-  const navigate = useNavigate()
-
-  const onClickDeleteButton = async () => {
-    await deletePost(import.meta.env.VITE_API_KEY, postId)
-    navigate('/')
-  }
+  const [isOpenDeleteCheckModal, setIsOpenDeleteCheckModal] = useState(false)
 
   return (
     <PostHeaderContainer>
@@ -73,13 +69,19 @@ const PostHeader = ({
               수정
             </Link>
             <button
-              onClick={onClickDeleteButton}
+              onClick={() => setIsOpenDeleteCheckModal(true)}
               className="border-slate-200 border-1 px-3 py-1 rounded-lg bg-[#efb98b]">
               삭제
             </button>
           </PostEditDeleteButtonsWrapper>
         )}
       </PostAuthorProfileWrapper>
+      {isOpenDeleteCheckModal && (
+        <DeleteCheckModal
+          setIsDeleteModalOpen={setIsOpenDeleteCheckModal}
+          postId={postId}
+        />
+      )}
     </PostHeaderContainer>
   )
 }
