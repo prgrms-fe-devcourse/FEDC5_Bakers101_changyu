@@ -55,8 +55,9 @@ const FilteredList = ({
           {users!.length > 0 ||
             (posts!.length > 0 && (
               <GridPostSection>
-                {posts?.map(({ image, title, comments, likes }) => (
+                {posts?.map(({ _id, image, title, comments, likes }) => (
                   <FilteredPost
+                    id={_id}
                     thumbnail={image}
                     title={title}
                     commentsNum={comments.length}

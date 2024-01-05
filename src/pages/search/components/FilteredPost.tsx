@@ -1,9 +1,11 @@
+import { Link } from 'react-router-dom'
 import tw, { styled } from 'twin.macro'
 import CommentIcon from './CommentIcon'
 import HeartIcon from './HeartIcon'
 import { useCallback } from 'react'
 
 interface FilteredPostProps {
+  id: string
   thumbnail?: string
   title: string
   commentsNum: number
@@ -39,6 +41,7 @@ const Thumbnail = styled.div`
 `
 
 const FilteredPost = ({
+  id,
   thumbnail,
   title,
   commentsNum,
@@ -59,39 +62,41 @@ const FilteredPost = ({
 
   return (
     // TODO: 추후 라우터를 이용하여 해당 포스트의 상세 페이지로 이동하는 기능 추가
-    <Container>
-      <Wrapper>
-        <Thumbnail>
-          {thumbnail && (
-            <img
-              src={thumbnail}
-              alt="썸네일"
-              className="bg-cover rounded-xl"
-            />
-          )}
-          {!thumbnail && (
-            <img
-              src={'src/assets/NoThumbnail.png'}
-              alt="썸네일"
-              className="w-20 h-20 rounded-xl"
-            />
-          )}
-        </Thumbnail>
-        <Content>
-          <Title>{formatTitle(title)}</Title>
-          <Social>
-            <SocialButton>
-              <CommentIcon />
-              <span>{commentsNum}</span>
-            </SocialButton>
-            <SocialButton>
-              <HeartIcon />
-              <span>{likesNum}</span>
-            </SocialButton>
-          </Social>
-        </Content>
-      </Wrapper>
-    </Container>
+    <Link to={`/post-detail/${id}`}>
+      <Container>
+        <Wrapper>
+          <Thumbnail>
+            {thumbnail && (
+              <img
+                src={thumbnail}
+                alt="썸네일"
+                className="bg-cover rounded-xl"
+              />
+            )}
+            {!thumbnail && (
+              <img
+                src={'src/assets/NoThumbnail.png'}
+                alt="썸네일"
+                className="w-20 h-20 rounded-xl"
+              />
+            )}
+          </Thumbnail>
+          <Content>
+            <Title>{formatTitle(title)}</Title>
+            <Social>
+              <SocialButton>
+                <CommentIcon />
+                <span>{commentsNum}</span>
+              </SocialButton>
+              <SocialButton>
+                <HeartIcon />
+                <span>{likesNum}</span>
+              </SocialButton>
+            </Social>
+          </Content>
+        </Wrapper>
+      </Container>
+    </Link>
   )
 }
 
