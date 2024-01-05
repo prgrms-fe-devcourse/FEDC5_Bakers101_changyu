@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import ChannelSelectionModal from './components/channelSelectionsModal'
-import PostList from './components/Post/PostList'
+import PostList from './components/post/PostList'
 import HomeHeader from './components/header'
 import HomeBottomNavBar from './components/bottom-navbar'
 

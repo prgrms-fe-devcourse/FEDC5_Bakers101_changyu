@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Home from './pages/Home'
-import PostDetail from './pages/PostDetail'
-import PostEdit from './pages/PostEdit'
+import Home from './pages/home'
+import PostDetail from './pages/postdetail'
+import PostEdit from './pages/postedit'
 
 function App() {
   return (
