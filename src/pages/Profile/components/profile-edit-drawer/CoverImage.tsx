@@ -1,25 +1,25 @@
 import tw, { styled } from 'twin.macro'
 
-import { useProfileStore } from '@/stores/userProfileStore'
-
 const CoverImageWrapper = styled.div`
-  ${tw`relative`}
+  ${tw`relative h-64`}
 `
 
 interface CoverImageProps {
+  imgSrc?: string
   children?: React.ReactNode
 }
 
-const CoverImage = ({ children }: CoverImageProps) => {
-  const { profile } = useProfileStore()
-
+const CoverImage = ({ imgSrc, children }: CoverImageProps) => {
   return (
     <CoverImageWrapper>
-      <img
-        src={profile?.coverImage}
-        alt="profile"
-        className="w-full h-64 object-cover p-0 rounded-none brightness-50"
-      />
+      {imgSrc && (
+        <img
+          src={imgSrc}
+          alt="profile"
+          className="w-full h-full object-cover p-0 rounded-none brightness-50"
+        />
+      )}
+      {!imgSrc && <div className='w-full h-full bg-[#eaeaea]'></div>}
       {children}
     </CoverImageWrapper>
   )

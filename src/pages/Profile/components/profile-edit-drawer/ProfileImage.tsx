@@ -1,25 +1,29 @@
 import tw, { styled } from 'twin.macro'
 
-import { useProfileStore } from '@/stores/userProfileStore'
+import NoProfileThumbnailIcon from '@/pages/search/components/NoProfileThumbnailIcon'
 
 const ProfileImageWrapper = styled.div`
-  ${tw`relative overflow-hidden rounded-full`}
+  ${tw`relative overflow-hidden rounded-full w-32 h-32`}
 `
 
 interface ProfileImageProps {
+  imgSrc?: string
   children?: React.ReactNode
 }
 
-const ProfileImage = ({ children }: ProfileImageProps) => {
-  const { profile } = useProfileStore()
-
+const ProfileImage = ({ imgSrc, children }: ProfileImageProps) => {
   return (
     <ProfileImageWrapper>
-      <img
-        src={profile?.image}
-        alt="profile"
-        className="w-32 h-32 rounded-full object-cover z-10 bg-white"
-      />
+      {imgSrc && (
+        <img
+          src={imgSrc}
+          alt="profile"
+          className="w-full h-full rounded-full object-cover z-10 bg-white"
+        />
+      )}
+      {!imgSrc && (
+        <NoProfileThumbnailIcon className="w-full h-full rounded-full text-[#ddd] bg-[#fff]" />
+      )}
       {children}
     </ProfileImageWrapper>
   )
