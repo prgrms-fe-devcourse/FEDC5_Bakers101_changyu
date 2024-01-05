@@ -51,8 +51,8 @@ const UserProfileInfo = ({
     <UserProfileInfoWrapper>
       <ProfileInfo>
         <UserNameWrapper>
-          <p className="font-bold text-2xl">{userName || 'User'}</p>
-          <p className="text-sm text-[#333] self-end">{fullName}</p>
+          <p className="font-bold text-2xl">{fullName}</p>
+          <p className="text-sm text-[#333] self-end">{userName || 'User'}</p>
           <OnlineIndicator isOnline={isOnline} />
         </UserNameWrapper>
         <p className="text-[#333]">{email}</p>
