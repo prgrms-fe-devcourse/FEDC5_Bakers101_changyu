@@ -5,11 +5,12 @@ import UserProfileInfo from './components/profile/UserProfileInfo'
 import Header from './components/Header'
 import PostList from './components/profile/PostList'
 import Drawer from './components/profile-edit-drawer/Drawer'
-
+import EditIcon from './components/EditIcon'
 import getProfile from '@/apis/profile/profile'
 import { useProfileStore } from '@/stores/userProfileStore'
 import ProfileImage from './components/profile-edit-drawer/ProfileImage'
 import CoverImage from './components/profile-edit-drawer/CoverImage'
+import { useParams } from 'react-router-dom'
 
 const ProfileContainer = styled.main`
   ${tw`w-full h-screen relative`}
@@ -32,16 +33,15 @@ const PostSection = styled.section`
 `
 
 const EditButton = styled.button`
-  background: url('src/assets/icons/edit.svg') no-repeat center center;
-  ${tw`w-6 h-6 self-end mb-3`}
+  ${tw`w-5 h-5 self-end mb-3`}
 `
 
 const DrawerControlLabel = styled.label``
 
 const Profile = () => {
+  const { id } = useParams()
   const { profile, setProfile } = useProfileStore()
-  const [isMyProfile, setIsMyProfile] = useState<boolean>(false)
-  const [userInfo, setUserInfo] = useState<User | null>(null)
+  const [isMyProfile, setIsMyProfile] = useState<boolean>(id === profile?._id)
   const [isFollowed, setIsFollowed] = useState<boolean>(false)
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
@@ -50,29 +50,20 @@ const Profile = () => {
   }
 
   useEffect(() => {
-    const fetchUserInfo = async () => {
-      const data = await getProfile(import.meta.env.VITE_USER_ID)
-      setUserInfo(data)
-    }
-    fetchUserInfo()
-
-    const fetchMyProfile = async () => {
-      const data = await getProfile(import.meta.env.VITE_USER_ID)
+    const fetchProfile = async () => {
+      const data = await getProfile(id as string)
       setProfile(data)
-      setIsMyProfile(profile?._id === import.meta.env.VITE_USER_ID)
     }
-    fetchMyProfile()
-  }, [profile?._id, setProfile])
+    fetchProfile()
+  }, [id, profile?._id, setProfile, isMyProfile])
 
   useEffect(() => {
     const checkIsFollowedUser = () => {
-      const res = profile?.following.some(
-        (item) => item.user === import.meta.env.VITE_USER_ID
-      )
+      const res = profile?.following.some((item) => item.user === id)
       setIsFollowed(res!)
     }
     checkIsFollowedUser()
-  }, [profile?.following])
+  }, [profile?.following, id])
 
   const handleClickFollowButton = () => {
     setIsFollowed((prev) => !prev)
@@ -96,8 +87,9 @@ const Profile = () => {
                     className="h-fit self-end">
                     <EditButton
                       id="my-drawer"
-                      onClick={handleToggleDrawer}
-                    />
+                      onClick={handleToggleDrawer}>
+                      <EditIcon className="w-full h-full" />
+                    </EditButton>
                   </DrawerControlLabel>
                 )}
               </div>

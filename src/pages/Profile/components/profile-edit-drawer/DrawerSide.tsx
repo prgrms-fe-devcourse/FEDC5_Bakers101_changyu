@@ -5,16 +5,16 @@ import ProfileNameForm from './ProfileNameForm'
 import ProfilePasswordForm from './ProfilePasswordForm'
 import UploadImageButton from './UploadImageButton'
 import EditIcon from '../EditIcon'
+import PrevIcon from '../PrevIcon'
 
 const ProfileDrawerSide = styled.div``
 
 const HeaderContainer = styled.header`
-  ${tw`w-full h-16 absolute top-0 left-0 hover:bg-inherit`}
+  ${tw`w-full h-16 absolute top-2 left-1 hover:bg-inherit`}
 `
 
 const PrevButton = styled.button`
-  background: url('src/assets/icons/prev_white.svg') no-repeat center center;
-  ${tw`w-12 h-12 drawer-toggle opacity-100`}
+  ${tw`w-10 h-10 drawer-toggle opacity-100`}
 `
 
 const Container = styled.div`
@@ -33,7 +33,9 @@ const DrawerSide = ({ onToggle }: DrawerSideProps) => {
   return (
     <ProfileDrawerSide className="drawer-side">
       <HeaderContainer className="z-10">
-        <PrevButton onClick={onToggle} />
+        <PrevButton onClick={onToggle}>
+          <PrevIcon className="w-full h-full text-[#fff]" />
+        </PrevButton>
       </HeaderContainer>
       <Container className="bg-base-200">
         <CoverImage>

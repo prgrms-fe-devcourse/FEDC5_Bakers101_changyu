@@ -1,19 +1,26 @@
-import { useState } from 'react';
-import { login } from '@/apis/login';
-import * as Styles from '@/pages/login/LoginStyles';
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { login } from '@/apis/login'
+import * as Styles from '@/pages/login/LoginStyles'
+import { useProfileStore } from '@/stores/userProfileStore'
 
 function LoginForm() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const { setProfile } = useProfileStore()
+  const navigate = useNavigate()
 
   const handleLoginSubmit = async () => {
     try {
-      const response = await login(email, password);
+      const response = await login(email, password)
       localStorage.setItem('token', JSON.stringify(response.token))
+      setProfile(response.user)
+      navigate('/')
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
-  };
+  }
 
   return (
     <Styles.Container>
@@ -31,10 +38,12 @@ function LoginForm() {
           onChange={(e) => setPassword(e.target.value)}
         />
         <Styles.Button onClick={handleLoginSubmit}>Login</Styles.Button>
-        <Styles.Button>계정이 없으신가요?</Styles.Button>
+        <Styles.Button onClick={() => navigate('/sign-up')}>
+          계정이 없으신가요?
+        </Styles.Button>
       </Styles.Form>
     </Styles.Container>
-  );
+  )
 }
 
-export default LoginForm;
+export default LoginForm
