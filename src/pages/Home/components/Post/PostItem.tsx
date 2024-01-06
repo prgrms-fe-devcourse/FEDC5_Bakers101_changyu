@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 
 import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import tw, { styled } from 'twin.macro'
 
 import { getUserInform } from '@/apis/userApis'
@@ -8,7 +9,6 @@ import CommentIcon from '@/assets/icons/comment.svg'
 import HeartIcon from '@/assets/icons/following.svg'
 import NoImage from '@/assets/temp/noImage.png'
 import getPostLiveTime from '@/utils/getPostCreateTime'
-import { Link } from 'react-router-dom'
 
 const PostItemContainer = styled.div(({ isLoading }) => [
   tw`flex flex-col gap-4 bg-white transition-all duration-700 ease-in-out transform rounded-lg p-2 shadow-lg`,

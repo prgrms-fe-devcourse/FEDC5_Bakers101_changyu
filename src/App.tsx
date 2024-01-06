@@ -6,7 +6,7 @@ import PostDetail from './pages/post-detail'
 import LoginForm from './pages/login/LoginForm'
 import SignUpForm from './pages/sign-up/SignupForm'
 import Search from './pages/search'
-import PostEdit from './pages/PostEdit'
+import PostEdit from './pages/post-edit'
 
 function App() {
   return (
