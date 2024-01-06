@@ -6,15 +6,15 @@ import SearchIcon from '@/assets/icons/search.svg'
 import TriangleIcon from '@/assets/icons/triangle.svg'
 
 const HomeHeaderContainer = styled.div`
-  ${tw`flex justify-between mx-4`}
+  ${tw`flex justify-between items-center my-6`}
 `
 
 const HomeHeaderButtonsWrapper = styled.div`
-  ${tw`flex gap-3 h-fit my-[1.3rem]`}
+  ${tw`flex gap-3 h-fit`}
 `
 
 const ChannelSelectButtonsWrapper = styled.div`
-  ${tw`flex gap-2 mt-3`}
+  ${tw`flex gap-2`}
 `
 
 type HomeHeaderProps = {
