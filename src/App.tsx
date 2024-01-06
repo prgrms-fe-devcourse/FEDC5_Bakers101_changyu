@@ -2,9 +2,11 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/home'
 import PostCreation from './pages/post-creation'
 import Profile from './pages/profile'
-import PostDetail from './pages/PostDetail'
+import PostDetail from './pages/post-detail'
 import LoginForm from './pages/login/LoginForm'
 import SignUpForm from './pages/sign-up/SignupForm'
+import Search from './pages/search'
+import PostEdit from './pages/PostEdit'
 
 function App() {
   return (
