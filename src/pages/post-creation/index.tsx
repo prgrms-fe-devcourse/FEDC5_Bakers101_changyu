@@ -57,7 +57,9 @@ const PostCreation = () => {
       body: detail,
       channelId: channelId._id
     })
-    await createPost(import.meta.env.VITE_ADMIN_TOKEN, formData)
+    const token = localStorage.getItem('token')
+    const parsedToken = JSON.parse(token as string)
+    await createPost(parsedToken, formData)
     navigate('/')
   }
 
