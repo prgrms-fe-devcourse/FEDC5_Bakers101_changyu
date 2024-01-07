@@ -64,10 +64,6 @@ const PostCreation = () => {
     navigate('/')
   }
 
-  useEffect(() => {
-    console.log(detail)
-  }, [detail])
-
   const onClickUploadImage = () => {
     const fileInput = document.createElement('input')
     fileInput.type = 'file'
@@ -107,7 +103,7 @@ const PostCreation = () => {
         </PostTitleImageInputWrapper>
         <hr />
         <ChannelOptionsWrapper>
-          <p className="text-[0.625rem] mt-6 mb-1 text-[#959595]">
+          <p className="text-[0.625rem] mt-6 mb-2 text-[#959595]">
             어떤 종류의 빵인가요?* 1개 선택
           </p>
           <div className="flex gap-2">
@@ -122,9 +118,10 @@ const PostCreation = () => {
             ))}
           </div>
         </ChannelOptionsWrapper>
-        <div className="my-12">
-          <TextEditor setText={setDetail} />
-        </div>
+        <TextEditor
+          setText={setDetail}
+          className="my-4 w-full h-[30rem] min-h-[30rem]"
+        />
       </PostInputsWrapper>
       <button
         onClick={onClickEnrollPost}

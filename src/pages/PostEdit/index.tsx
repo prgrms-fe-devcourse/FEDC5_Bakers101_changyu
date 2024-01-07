@@ -47,9 +47,8 @@ const PostEdit = () => {
           onChange={(e) => setTitle(e.target.value)}
           value={title}
         />
-      </div>
-      <div className="mx-auto w-fit">
         <TextEditor
+          className="w-full h-[36rem] min-h-[36rem]"
           setText={setDetails}
           value={details}
         />

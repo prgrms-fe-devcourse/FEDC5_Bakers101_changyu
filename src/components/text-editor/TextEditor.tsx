@@ -2,11 +2,12 @@ import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
 
 type TextEditorType = {
+  className?: string
   setText: React.Dispatch<React.SetStateAction<string>>
   value?: string
 }
 
-function TextEditor({ setText, value }: TextEditorType) {
+function TextEditor({ setText, value, className }: TextEditorType) {
   const modules = {
     toolbar: {
       container: [
@@ -17,16 +18,20 @@ function TextEditor({ setText, value }: TextEditorType) {
     }
   }
 
-  function handleChange(editor) {
+  function handleCange(editor) {
+    console.log(className)
     setText(editor)
   }
 
   return (
-    <ReactQuill
-      value={value}
-      onChange={handleChange}
-      modules={modules}
-    />
+    <div className={className}>
+      <ReactQuill
+        className="h-full w-full"
+        value={value}
+        onChange={handleCange}
+        modules={modules}
+      />
+    </div>
   )
 }
 
