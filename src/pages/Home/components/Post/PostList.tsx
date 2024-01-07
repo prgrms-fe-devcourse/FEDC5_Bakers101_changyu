@@ -29,7 +29,6 @@ const PostList = ({ title, id }: nowChannelType) => {
   }, [title])
 
   return (
-
     <div className="relative flex flex-col">
       {postList.map((item, index) => (
         <button key={item._id}>

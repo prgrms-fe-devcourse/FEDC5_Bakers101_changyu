@@ -17,6 +17,7 @@
     "react": "^18.2.0",
     "react-bootstrap": "^2.9.2",
     "react-dom": "^18.2.0",
+    "react-quill": "^2.0.0",
     "react-router-dom": "^6.21.1",
     "styled-components": "^6.1.4",
     "zustand": "^4.4.7"
