@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import tw, { styled } from 'twin.macro'
 import { useNavigate } from 'react-router-dom'
 
 import CreatePostHeader from './Header'
 
+import TextEditor from '@/components/text-editor/TextEditor'
 import { createPost } from '@/apis/postApis'
 import { getChannelInform } from '@/apis/channelApis'
 import FileUploadIcon from '@/assets/icons/fileUpload.svg'
@@ -42,7 +43,7 @@ const PostCreation = () => {
   const navigate = useNavigate()
 
   const [title, setTitle] = useState<string>('')
-  const [detail, setDetail] = useState<string>('')
+  const [detail, setDetail] = useState<string>('abcd')
   const [file, setFile] = useState<File | null>(null)
   const [selectedBread, setSelectedBread] = useState<BreadType>(null)
 
@@ -57,9 +58,15 @@ const PostCreation = () => {
       body: detail,
       channelId: channelId._id
     })
-    await createPost(import.meta.env.VITE_ADMIN_TOKEN, formData)
+    console.log(import.meta.env.VITE_API_KEY)
+
+    await createPost(import.meta.env.VITE_API_KEY, formData)
     navigate('/')
   }
+
+  useEffect(() => {
+    console.log(detail)
+  }, [detail])
 
   const onClickUploadImage = () => {
     const fileInput = document.createElement('input')
@@ -115,10 +122,9 @@ const PostCreation = () => {
             ))}
           </div>
         </ChannelOptionsWrapper>
-        <PostBodyInput
-          placeholder="레시피를 알려주세요."
-          onChange={(e) => setDetail(e.target.value)}
-        />
+        <div className="my-12">
+          <TextEditor setText={setDetail} />
+        </div>
       </PostInputsWrapper>
       <button
         onClick={onClickEnrollPost}

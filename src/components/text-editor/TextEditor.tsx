@@ -1,10 +1,11 @@
-import { useState } from 'react'
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
 
-function TextEditor() {
-  const [text, setText] = useState('')
+type TextEditorType = {
+  setText: React.Dispatch<React.SetStateAction<string>>
+}
 
+function TextEditor({ setText }: TextEditorType) {
   const modules = {
     toolbar: {
       container: [
