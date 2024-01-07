@@ -36,7 +36,7 @@ const PostBody = ({ body, likeNum, commentNum, postId }: PostBodyType) => {
   return (
     <PostBodyContainer>
       <PostDetailWrapper>
-        <p>{body}</p>
+        <div dangerouslySetInnerHTML={{ __html: body }} />
       </PostDetailWrapper>
       <PostBottomNavWrapper>
         <div className="flex gap-2">
