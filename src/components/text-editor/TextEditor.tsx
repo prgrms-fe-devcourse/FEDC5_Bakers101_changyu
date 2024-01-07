@@ -3,9 +3,10 @@ import 'react-quill/dist/quill.snow.css'
 
 type TextEditorType = {
   setText: React.Dispatch<React.SetStateAction<string>>
+  value?: string
 }
 
-function TextEditor({ setText }: TextEditorType) {
+function TextEditor({ setText, value }: TextEditorType) {
   const modules = {
     toolbar: {
       container: [
@@ -22,6 +23,7 @@ function TextEditor({ setText }: TextEditorType) {
 
   return (
     <ReactQuill
+      value={value}
       onChange={handleChange}
       modules={modules}
     />
