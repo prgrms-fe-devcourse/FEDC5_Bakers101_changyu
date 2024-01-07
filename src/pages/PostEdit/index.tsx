@@ -50,7 +50,7 @@ const PostEdit = () => {
         <TextEditor
           className="w-full h-[36rem] min-h-[36rem]"
           setText={setDetails}
-          value={details}
+          initialValue={details}
         />
       </div>
     </div>

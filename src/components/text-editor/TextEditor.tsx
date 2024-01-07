@@ -1,13 +1,17 @@
 import ReactQuill from 'react-quill'
+
+import { useState, useEffect } from 'react'
 import 'react-quill/dist/quill.snow.css'
 
 type TextEditorType = {
   className?: string
   setText: React.Dispatch<React.SetStateAction<string>>
-  value?: string
+  initialValue?: string
 }
 
-function TextEditor({ setText, value, className }: TextEditorType) {
+function TextEditor({ setText, initialValue, className }: TextEditorType) {
+  const [editorValue, setEditorValue] = useState('')
+
   const modules = {
     toolbar: {
       container: [
@@ -18,16 +22,22 @@ function TextEditor({ setText, value, className }: TextEditorType) {
     }
   }
 
-  function handleCange(editor) {
-    console.log(className)
-    setText(editor)
+  useEffect(() => {
+    if (initialValue) {
+      setEditorValue(initialValue)
+    }
+  }, [initialValue])
+
+  function handleCange(inputText: string) {
+    setEditorValue(inputText)
+    setText(inputText)
   }
 
   return (
     <div className={className}>
       <ReactQuill
         className="h-full w-full"
-        value={value}
+        value={editorValue}
         onChange={handleCange}
         modules={modules}
       />
