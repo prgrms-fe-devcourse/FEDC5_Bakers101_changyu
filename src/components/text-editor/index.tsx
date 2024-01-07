@@ -36,10 +36,11 @@ function TextEditor({ setText, initialValue, className }: TextEditorType) {
   return (
     <div className={className}>
       <ReactQuill
-        className="h-full w-full"
+        className="h-full w-full "
         value={editorValue}
         onChange={handleCange}
         modules={modules}
+        placeholder="글 내용을 작성해주세요."
       />
     </div>
   )
