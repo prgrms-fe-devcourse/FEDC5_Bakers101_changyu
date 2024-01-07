@@ -52,6 +52,12 @@ const PostlItem = ({ postDetail, index }: PostItemType) => {
     setUserImg(response.image || null)
   }
 
+  const getHtmlToTextString = (htmlString: string) => {
+    const tempDiv = document.createElement('div')
+    tempDiv.innerHTML = htmlString
+    return tempDiv.textContent
+  }
+
   useEffect(() => {
     fetchUserInform()
     setTimeout(() => setIsLoading(true), index * 120)
@@ -94,8 +100,8 @@ const PostlItem = ({ postDetail, index }: PostItemType) => {
           <p className="w-[11rem] max-h-[2rem] overflow-hidden text-ellipsis">
             {title}
           </p>
-          <p className="w-[11rem] max-h-[4rem] text-[0.7rem] overflow-hidden text-ellipsis">
-            {body}
+          <p className="w-[11rem] max-h-[4rem] px-2 my-1 text-[0.7rem] overflow-hidden text-ellipsis text-left">
+            {getHtmlToTextString(body)}
           </p>
         </div>
       </PostItemBody>
