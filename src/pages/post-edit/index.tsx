@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
-import TextEditor from '@/components/text-editor/TextEditor'
+import TextEditor from '@/components/text-editor'
 import PostEditHeader from './components/Header'
 import handleImageFormData from '@/utils/handleImageFormData'
 import { getPostDetail, updatePost } from '@/apis/postApis'

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 
 import CreatePostHeader from './Header'
 
-import TextEditor from '@/components/text-editor/TextEditor'
+import TextEditor from '@/components/text-editor'
 import { createPost } from '@/apis/postApis'
 import { getChannelInform } from '@/apis/channelApis'
 import FileUploadIcon from '@/assets/icons/fileUpload.svg'
