@@ -21,7 +21,7 @@ export async function createLike(postId: string): Promise<Like> {
   return response.data
 }
 
-export async function deleteLike(id: string): Promise<Like> {
+export async function deleteLike(postId: string): Promise<Like> {
   const config = {
     headers: {
       Authorization: `Bearer ${import.meta.env.VITE_TOKEN}`
@@ -29,7 +29,7 @@ export async function deleteLike(id: string): Promise<Like> {
   }
 
   const requestBody = {
-    id
+    id: postId
   }
 
   const response = await axiosInstance.post<Like>(

@@ -1,4 +1,4 @@
-import LikeButton from '@/components/likes'
+import LikeButton from '@/components/likes/Likes'
 
 function App() {
   return (
