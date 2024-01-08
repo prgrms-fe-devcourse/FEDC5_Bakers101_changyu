@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import tw, { styled } from 'twin.macro'
 
-import CreatePostHeader from './Header'
+import CreatePostHeader from './components/Header'
 import { createPost } from '@/apis/postApis'
 import { getChannelInform } from '@/apis/channelApis'
 import FileUploadIcon from '@/assets/icons/fileUpload.svg'
