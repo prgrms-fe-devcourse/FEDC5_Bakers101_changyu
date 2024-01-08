@@ -33,7 +33,7 @@ const PostEdit = () => {
   const [title, setTitle] = useState<string>('')
   const [details, setDetails] = useState<string>('')
   const [postDetails, setPostDetails] = useState<Post>()
-  const [file, setFile] = useState<File | null>(null)
+  const [image, setImage] = useState<string | File | undefined>()
   const [selectedBread, setSelectedBread] = useState<BreadType>(null)
   const params = useParams()
   const productId = params.id
@@ -44,8 +44,7 @@ const PostEdit = () => {
       const details = await getPostDetail(productId)
       setPostDetails(details)
       setSelectedBread(details.channel.name)
-      //setFile(details.)
-      console.log(details)
+      setImage(details.image)
       await setTitle(JSON.parse(details.title).title)
       await setDetails(JSON.parse(details.title).body)
     })()
@@ -53,7 +52,7 @@ const PostEdit = () => {
 
   async function onClickEditButton() {
     const formData = handleImageFormData({
-      imageFile: postDetails?.image,
+      imageFile: image,
       title: title,
       type: 'Post',
       body: details,
@@ -74,7 +73,7 @@ const PostEdit = () => {
       const target = e.target as HTMLInputElement
       if (!target.files || !target.files[0]) return
 
-      setFile(target.files[0])
+      setImage(target.files[0])
     }
     fileInput.click()
   }
@@ -93,7 +92,11 @@ const PostEdit = () => {
         <hr className="mb-4" />
         <PostTitleImageInputWrapper>
           <p className="mt-2 mx-2 w-[16.8rem] text-[#959595] overflow-hidden text-ellipsis">
-            {file ? file.name : '빵 이미지를 첨부 해주세요.'}
+            {image
+              ? image.name
+                ? image.name
+                : '등록된 이미지가 있습니다'
+              : '빵 이미지를 첨부 해주세요.'}
           </p>
           <button
             className="pb-2"
