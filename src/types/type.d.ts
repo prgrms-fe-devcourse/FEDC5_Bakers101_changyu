@@ -17,6 +17,7 @@ interface User {
   email: string
   createdAt: string
   updatedAt: string
+  username?: string
 }
 
 interface Channel {
@@ -50,7 +51,7 @@ interface Like {
   updatedAt: string
 }
 
-interface Commnet {
+interface Comment {
   _id: string
   comment: string
   author: User
