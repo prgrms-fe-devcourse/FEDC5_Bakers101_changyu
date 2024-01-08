@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
 import PostEditHeader from './components/Header'
+import onGetImageFile from '@/utils/onGetImageFile'
 
 import handleImageFormData from '@/utils/handleImageFormData'
 import { getPostDetail, updatePost } from '@/apis/postApis'
@@ -63,21 +64,6 @@ const PostEdit = () => {
     navigate(`/post-detail/${postDetails?._id}`)
   }
 
-  const onClickUploadImage = () => {
-    const fileInput = document.createElement('input')
-    fileInput.type = 'file'
-    fileInput.accept = 'image/gif, image/jpeg,image/png,image/jpg'
-
-    fileInput.onchange = (e: Event) => {
-      if (!e.target) return
-      const target = e.target as HTMLInputElement
-      if (!target.files || !target.files[0]) return
-
-      setImage(target.files[0])
-    }
-    fileInput.click()
-  }
-
   return (
     <div>
       <PostEditHeader onClickSubmitButtn={onClickEditButton} />
@@ -100,7 +86,7 @@ const PostEdit = () => {
           </p>
           <button
             className="pb-2"
-            onClick={onClickUploadImage}>
+            onClick={() => onGetImageFile((newImage) => setImage(newImage))}>
             <img src={FileUploadIcon} />
           </button>
         </PostTitleImageInputWrapper>
