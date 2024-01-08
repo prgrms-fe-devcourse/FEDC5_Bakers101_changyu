@@ -37,7 +37,7 @@ const HomeBottomNavBar = () => {
         />
       </button>
       <Link
-        to="/postcreation"
+        to="/post-creation"
         className="h-fit my-auto">
         <img
           className="w-7 h-6"
