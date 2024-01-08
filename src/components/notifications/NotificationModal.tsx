@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react'
-import tw from 'twin.macro'
-import styled from 'styled-components'
+import tw, { styled } from 'twin.macro'
+
 import NotificationList from './NotificationList'
 import { updateNotifications } from '@/apis/notifications'
 
 const ModalOverlay = styled.div`
-  ${tw`fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full`}
+  ${tw`fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-20`}
 `
 
 const ModalContainer = styled.div`
@@ -13,7 +13,7 @@ const ModalContainer = styled.div`
 `
 
 const ButtonContainer = styled.div`
-  ${tw`flex justify-between items-center sticky top-0 bg-white z-10 p-2`}
+  ${tw`flex justify-between items-center sticky top-0 bg-white p-2`}
 `
 
 const AllReadCheckbox = styled.input.attrs({ type: 'checkbox' })`

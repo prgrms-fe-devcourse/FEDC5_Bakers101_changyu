@@ -1,21 +1,16 @@
-import { useState } from 'react'
 import NotificationModal from './NotificationModal'
 
-const Notifications = () => {
-  const [isModalOpen, setModalOpen] = useState(false)
+type NotificationsProps = {
+  isOpen: boolean
+  onClose: () => void
+}
 
-  const toggleModal = () => {
-    setModalOpen(!isModalOpen)
-  }
-
+const Notifications = ({ isOpen, onClose }: NotificationsProps) => {
   return (
-    <div>
-      <button onClick={toggleModal}>알림 보기</button>
-      <NotificationModal
-        isOpen={isModalOpen}
-        onClose={toggleModal}
-      />
-    </div>
+    <NotificationModal
+      isOpen={isOpen}
+      onClose={onClose}
+    />
   )
 }
 

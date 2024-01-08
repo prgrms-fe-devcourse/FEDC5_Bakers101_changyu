@@ -1,7 +1,10 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import tw, { styled } from 'twin.macro'
 
-import AlarmIcon from '@/assets/icons/notification.svg'
+import Notifications from '@/components/notifications'
+
+import NotificationIcon from '@/assets/icons/notification.svg'
 import SearchIcon from '@/assets/icons/search.svg'
 import TriangleIcon from '@/assets/icons/triangle.svg'
 
@@ -26,6 +29,12 @@ const HomeHeader = ({
   selectedChannel,
   onClickChannelList
 }: HomeHeaderProps) => {
+  const [isNotificationModalOpen, setNotificationModalOpen] = useState(false)
+
+  const toggleNotificationModal = () => {
+    setNotificationModalOpen(!isNotificationModalOpen)
+  }
+
   return (
     <HomeHeaderContainer>
       <ChannelSelectButtonsWrapper>
@@ -42,14 +51,20 @@ const HomeHeader = ({
         </button>
       </ChannelSelectButtonsWrapper>
       <HomeHeaderButtonsWrapper>
-        <Link to='/search' className='flex items-center'>
+        <Link
+          to="/search"
+          className="flex items-center">
           <button>
             <img src={SearchIcon} />
           </button>
         </Link>
-        <button>
-          <img src={AlarmIcon} />
+        <button onClick={toggleNotificationModal}>
+          <img src={NotificationIcon} />
         </button>
+        <Notifications
+          isOpen={isNotificationModalOpen}
+          onClose={toggleNotificationModal}
+        />
       </HomeHeaderButtonsWrapper>
     </HomeHeaderContainer>
   )
