@@ -2,7 +2,11 @@ import { useState, useEffect } from 'react'
 import NotificationItem from './NotificationItem'
 import { getNotifications } from '@/apis/notifications'
 
-const NotificationList = () => {
+type NotificationListProps = {
+  allRead: boolean
+}
+
+const NotificationList = ({ allRead }: NotificationListProps) => {
   const [notifications, setNotifications] = useState<Notification[]>([])
 
   const getNotificationData = async () => {
@@ -17,7 +21,7 @@ const NotificationList = () => {
 
   useEffect(() => {
     getNotificationData()
-  }, [])
+  }, [allRead])
 
   return (
     <div className="flex-grow overflow-auto text-sm">

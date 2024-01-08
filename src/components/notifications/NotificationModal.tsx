@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import tw, { styled } from 'twin.macro'
-
 import NotificationList from './NotificationList'
 import { updateNotifications } from '@/apis/notifications'
 
@@ -35,7 +34,7 @@ const NotificationModal = ({ isOpen, onClose }: NotificationModalProps) => {
   const handleAllReadChange = async () => {
     try {
       await updateNotifications()
-      setAllRead(!allRead)
+      setAllRead(true)
     } catch (error) {
       console.error('알림 읽음 처리 실패: ', error)
     }
@@ -50,6 +49,12 @@ const NotificationModal = ({ isOpen, onClose }: NotificationModalProps) => {
   const handleModalClick = (event: React.MouseEvent) => {
     event.stopPropagation()
   }
+
+  useEffect(() => {
+    if (isOpen) {
+      setAllRead(false)
+    }
+  }, [isOpen])
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -85,7 +90,7 @@ const NotificationModal = ({ isOpen, onClose }: NotificationModalProps) => {
           </label>
           <CloseButton onClick={onClose}>&times;</CloseButton>
         </ButtonContainer>
-        <NotificationList />
+        <NotificationList allRead={allRead} />
       </ModalContainer>
     </ModalOverlay>
   )
