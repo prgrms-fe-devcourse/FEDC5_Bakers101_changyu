@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import tw, { styled } from 'twin.macro'
+import { useNavigate } from 'react-router-dom'
 
 import CreatePostHeader from './components/Header'
 import { createPost } from '@/apis/postApis'
@@ -14,7 +14,7 @@ const PostCreateContainer = styled.div`
   ${tw`w-screen`}
 `
 const PostBodyInput = styled.input`
-  ${tw`w-[20rem] min-h-[39rem] mt-6 border-2 border-[#959595]`}
+  ${tw`w-[20rem] min-h-[39rem] mt-6 border-2 border-[#959595] mb-10`}
 `
 const PostInputsWrapper = styled.div`
   ${tw`w-fit mx-auto`}
@@ -39,6 +39,7 @@ type BreadType = '조리빵' | '특수빵' | '식빵' | '과자빵' | null
 
 const PostCreation = () => {
   const navigate = useNavigate()
+
   const [title, setTitle] = useState<string>('')
   const [detail, setDetail] = useState<string>('')
   const [file, setFile] = useState<File | null>(null)
@@ -55,7 +56,9 @@ const PostCreation = () => {
       body: detail,
       channelId: channelId._id
     })
-    await createPost(import.meta.env.VITE_API_KEY, formData)
+    const token = localStorage.getItem('token')
+    const parsedToken = JSON.parse(token as string)
+    await createPost(parsedToken, formData)
     navigate('/')
   }
 

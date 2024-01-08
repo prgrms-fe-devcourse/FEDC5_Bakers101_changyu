@@ -1,0 +1,45 @@
+import { useEffect, useState } from 'react'
+
+// components
+import CommentForm from './CommentForm'
+import CommentList from './CommentList'
+
+// apis
+import { getPostDetail } from '@/apis/postApis'
+
+type CommentsProps = {
+  postId: string
+}
+
+const Comments = ({ postId }: CommentsProps) => {
+  const [comments, setComments] = useState<Comment[]>([])
+
+  const fetchCommentsData = async (postId: string) => {
+    try {
+      const response = await getPostDetail(postId)
+      setComments(response.comments)
+    } catch (error) {
+      console.error('댓글을 불러오는 중 오류가 발생했습니다:', error)
+    }
+  }
+
+  const handleCommentAdded = () => {
+    fetchCommentsData(postId)
+  }
+
+  useEffect(() => {
+    fetchCommentsData(postId)
+  }, [])
+
+  return (
+    <div>
+      <CommentForm
+        postId={postId}
+        onCommentAdded={handleCommentAdded}
+      />
+      <CommentList comments={comments} />
+    </div>
+  )
+}
+
+export default Comments

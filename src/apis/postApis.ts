@@ -83,6 +83,7 @@ async function getAllPostList() {
     throw new Error(`${error}`)
   }
 }
+
 export {
   deletePost,
   createPost,
