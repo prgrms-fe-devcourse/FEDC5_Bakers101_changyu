@@ -41,34 +41,29 @@ const NotificationModal = ({ isOpen, onClose }: NotificationModalProps) => {
     }
   }
 
-  // 모달 바깥 영역 클릭 시 닫기
   const handleOverlayClick = (event: React.MouseEvent) => {
     if (event.target === event.currentTarget) {
       onClose()
     }
   }
 
-  // 모달 컨텐츠 클릭 시 이벤트 버블링 방지
   const handleModalClick = (event: React.MouseEvent) => {
     event.stopPropagation()
   }
 
   useEffect(() => {
-    // ESC 키를 누를 때 모달 닫기
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         onClose()
       }
     }
 
-    // 모달이 열릴 때 스크롤을 비활성화하고, ESC 키 이벤트 리스너를 추가
     const originalStyle = window.getComputedStyle(document.body).overflow
     document.body.style.overflow = isOpen ? 'hidden' : originalStyle
     if (isOpen) {
       document.addEventListener('keydown', handleKeyDown)
     }
 
-    // cleanup 함수
     return () => {
       document.removeEventListener('keydown', handleKeyDown)
       document.body.style.overflow = originalStyle
