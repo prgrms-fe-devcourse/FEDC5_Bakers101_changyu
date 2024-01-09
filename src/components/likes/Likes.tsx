@@ -2,34 +2,24 @@ import { useState } from 'react'
 import { createLike, deleteLike } from '@/apis/likes'
 import LikedButton from '@/components/likes/LikedButton'
 import UnLikedButton from '@/components/likes/UnLikedButton'
-
-export interface LikeProps {
-  _id: string
-  user: string // 사용자 id
-  post: string // 포스트 id
-  createdAt: string
-  updatedAt: string
-}
 interface Props {
-  likes: LikeProps[]
+  postId: string
 }
 
-const LikeButton = ({ likes }: Props) => {
+const LikeButton = ({ postId }: Props) => {
   const [likeCount, setLikeCount] = useState(0)
   const [isLiked, setIsLiked] = useState(false)
+  const [likeId, setLikeId] = useState('')
 
   const handleLike = async () => {
     try {
       if (!isLiked) {
-        // 좋아요 누르기
-        await createLike(postId)
+        const response = await createLike(postId)
+        setLikeId(response._id)
         setLikeCount((prevCount) => prevCount + 1)
-        setIsLiked(true)
       } else {
-        // 좋아요 취소하기
-        await deleteLike(_id)
+        await deleteLike(likeId as string)
         setLikeCount((prevCount) => prevCount - 1)
-        setIsLiked(false)
       }
     } catch (error) {
       console.error('좋아요 처리 중 에러 발생:', error)
@@ -38,19 +28,19 @@ const LikeButton = ({ likes }: Props) => {
   }
 
   return (
-    <div className="flex items-center">
+    <div className="flex items-center gap-1">
       {isLiked ? (
         <LikedButton
-          className="cursor-pointer border-none flex items-center fill-#9F8170"
+          className="cursor-pointer border-none w-5 h-5 flex items-center"
           onClick={handleLike}
         />
       ) : (
         <UnLikedButton
-          className="cursor-pointer border-none flex items-center fill-#9F8170"
+          className="cursor-pointer w-5 h-5 flex items-center"
           onClick={handleLike}
         />
       )}
-      <span>{likeCount}</span>
+      <span className="text-[0.9rem] text-[#767676]">{likeCount}</span>
     </div>
   )
 }

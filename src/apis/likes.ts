@@ -21,7 +21,7 @@ export async function createLike(postId: string): Promise<Like> {
   return response.data
 }
 
-export async function deleteLike(postId: string): Promise<Like> {
+export async function deleteLike(likeId: string): Promise<Like> {
   const config = {
     headers: {
       Authorization: `Bearer ${import.meta.env.VITE_TOKEN}`
@@ -29,13 +29,12 @@ export async function deleteLike(postId: string): Promise<Like> {
   }
 
   const requestBody = {
-    id: postId
+    id: likeId
   }
 
-  const response = await axiosInstance.post<Like>(
-    UNLIKE_POST_PATH,
-    requestBody,
-    config
-  )
+  const response = await axiosInstance.delete<Like>(UNLIKE_POST_PATH, {
+    data: requestBody,
+    ...config
+  })
   return response.data
 }
