@@ -1,5 +1,5 @@
 import { memo } from 'react'
-import formatDate from '@/utils/formatData'
+import formatDate from '@/utils/formatDate'
 
 type NotificationItemProps = {
   notification: Notification
