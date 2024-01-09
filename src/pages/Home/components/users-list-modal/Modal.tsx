@@ -10,7 +10,11 @@ interface UsersListProps {
   onToggle: () => void
 }
 
-const ModalContainer = styled.div(({ isOpen }) => [
+interface ModalContainerProps {
+  isOpen: boolean
+}
+
+const ModalContainer = styled.div<ModalContainerProps>(({ isOpen }) => [
   tw`modal modal-bottom`,
   isOpen && tw`modal-open`
 ])
