@@ -11,6 +11,7 @@ const TabItem = ({ title, checked }: TabItemProps) => {
       role="tab"
       className="tab"
       aria-label={title}
+      readOnly
       checked={checked}
     />
   )
