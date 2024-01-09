@@ -70,6 +70,7 @@ const PostlItem = ({ postDetail, index }: PostItemType) => {
         <div className="flex gap-2 items-center">
           <Link
             to={`/profile/${postDetail.author._id}`}
+            onClick={(event) => event.stopPropagation()}
             className="flex gap-2 items-center">
             {userImg ? (
               <img
