@@ -1,6 +1,7 @@
-import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import tw, { styled } from 'twin.macro'
+
+import useModal from '@/hooks/useModal'
 
 import Notifications from '@/components/notifications'
 
@@ -24,16 +25,11 @@ type HomeHeaderProps = {
   selectedChannel: string
   onClickChannelList: () => void
 }
-
 const HomeHeader = ({
   selectedChannel,
   onClickChannelList
 }: HomeHeaderProps) => {
-  const [isNotificationModalOpen, setNotificationModalOpen] = useState(false)
-
-  const toggleNotificationModal = () => {
-    setNotificationModalOpen(!isNotificationModalOpen)
-  }
+  const { isOpen, toggleModal } = useModal()
 
   return (
     <HomeHeaderContainer>
@@ -45,7 +41,7 @@ const HomeHeader = ({
             {selectedChannel}
           </p>
           <img
-            className="h-fit my-[0.6rem] "
+            className="h-fit my-[0.6rem]"
             src={TriangleIcon}
           />
         </button>
@@ -58,12 +54,12 @@ const HomeHeader = ({
             <img src={SearchIcon} />
           </button>
         </Link>
-        <button onClick={toggleNotificationModal}>
+        <button onClick={toggleModal}>
           <img src={NotificationIcon} />
         </button>
         <Notifications
-          isOpen={isNotificationModalOpen}
-          onClose={toggleNotificationModal}
+          isOpen={isOpen}
+          toggleModal={toggleModal}
         />
       </HomeHeaderButtonsWrapper>
     </HomeHeaderContainer>

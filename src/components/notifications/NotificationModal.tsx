@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react'
 import tw, { styled } from 'twin.macro'
+
 import NotificationList from './NotificationList'
 import { updateNotifications } from '@/apis/notifications'
+import { NotificationsProps } from './index'
 
 const ModalOverlay = styled.div`
   ${tw`fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-20`}
@@ -23,12 +25,7 @@ const CloseButton = styled.button`
   ${tw`text-2xl font-semibold`}
 `
 
-type NotificationModalProps = {
-  isOpen: boolean
-  onClose: () => void
-}
-
-const NotificationModal = ({ isOpen, onClose }: NotificationModalProps) => {
+const NotificationModal = ({ isOpen, toggleModal }: NotificationsProps) => {
   const [allRead, setAllRead] = useState(false)
 
   const handleAllReadChange = async () => {
@@ -42,7 +39,7 @@ const NotificationModal = ({ isOpen, onClose }: NotificationModalProps) => {
 
   const handleOverlayClick = (event: React.MouseEvent) => {
     if (event.target === event.currentTarget) {
-      onClose()
+      toggleModal()
     }
   }
 
@@ -51,29 +48,8 @@ const NotificationModal = ({ isOpen, onClose }: NotificationModalProps) => {
   }
 
   useEffect(() => {
-    if (isOpen) {
-      setAllRead(false)
-    }
+    setAllRead(false)
   }, [isOpen])
-
-  useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        onClose()
-      }
-    }
-
-    const originalStyle = window.getComputedStyle(document.body).overflow
-    document.body.style.overflow = isOpen ? 'hidden' : originalStyle
-    if (isOpen) {
-      document.addEventListener('keydown', handleKeyDown)
-    }
-
-    return () => {
-      document.removeEventListener('keydown', handleKeyDown)
-      document.body.style.overflow = originalStyle
-    }
-  }, [isOpen, onClose])
 
   if (!isOpen) return null
 
@@ -88,7 +64,7 @@ const NotificationModal = ({ isOpen, onClose }: NotificationModalProps) => {
             />
             모두 읽음
           </label>
-          <CloseButton onClick={onClose}>&times;</CloseButton>
+          <CloseButton onClick={toggleModal}>&times;</CloseButton>
         </ButtonContainer>
         <NotificationList allRead={allRead} />
       </ModalContainer>

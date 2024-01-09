@@ -12,7 +12,6 @@ const NotificationList = ({ allRead }: NotificationListProps) => {
   const getNotificationData = async () => {
     try {
       const response = await getNotifications()
-      console.log(response)
       setNotifications(response)
     } catch (error) {
       console.error('알림 목록 조회 실패: ', error)

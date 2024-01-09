@@ -1,15 +1,15 @@
 import NotificationModal from './NotificationModal'
 
-type NotificationsProps = {
+export type NotificationsProps = {
   isOpen: boolean
-  onClose: () => void
+  toggleModal: () => void
 }
 
-const Notifications = ({ isOpen, onClose }: NotificationsProps) => {
+const Notifications = ({ isOpen, toggleModal }: NotificationsProps) => {
   return (
     <NotificationModal
       isOpen={isOpen}
-      onClose={onClose}
+      toggleModal={toggleModal}
     />
   )
 }
