@@ -1,7 +1,7 @@
+import { useEffect, useState } from 'react'
 import tw, { styled } from 'twin.macro'
 import TabItem from './TabItem'
 import TabContent from './TabContent'
-import { useEffect, useState } from 'react'
 import getAllUsers from '@/apis/user/getAllUsers'
 import getOnlineUsers from '@/apis/user/getOnlineUsers'
 

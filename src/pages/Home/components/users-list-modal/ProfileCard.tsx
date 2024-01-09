@@ -1,6 +1,6 @@
-import NoProfileThumbnailIcon from '@/pages/search/components/NoProfileThumbnailIcon'
 import { Link } from 'react-router-dom'
 import tw, { styled } from 'twin.macro'
+import NoProfileThumbnailIcon from '@/pages/search/components/NoProfileThumbnailIcon'
 
 interface ProfileCardProps {
   id: string
@@ -18,22 +18,24 @@ const ProfileImageWrapper = styled.div`
 
 const ProfileCard = ({ id, fullName, profileImage }: ProfileCardProps) => {
   return (
-    <Link to={`/profile/${id}`} className="w-full h-full">
-    <Container>
-      <ProfileImageWrapper>
-        {profileImage && (
-          <img
-            src={profileImage}
-            alt="프로필 이미지"
-            className="w-full h-full rounded-full object-cover z-10 bg-white"
-          />
-        )}
-        {!profileImage && (
-          <NoProfileThumbnailIcon className="w-full h-full rounded-full text-[#ddd] bg-[#fff]" />
-        )}
-      </ProfileImageWrapper>
-      <div className='text-xs'>{fullName}</div>
-    </Container>
+    <Link
+      to={`/profile/${id}`}
+      className="w-full h-full">
+      <Container>
+        <ProfileImageWrapper>
+          {profileImage && (
+            <img
+              src={profileImage}
+              alt="프로필 이미지"
+              className="w-full h-full rounded-full object-cover z-10 bg-white"
+            />
+          )}
+          {!profileImage && (
+            <NoProfileThumbnailIcon className="w-full h-full rounded-full text-[#ddd] bg-[#fff]" />
+          )}
+        </ProfileImageWrapper>
+        <div className="text-xs">{fullName}</div>
+      </Container>
     </Link>
   )
 }
