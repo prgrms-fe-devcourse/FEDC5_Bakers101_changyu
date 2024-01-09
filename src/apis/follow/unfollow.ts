@@ -5,9 +5,9 @@ interface Data {
   [key: string]: string
 }
 
-interface FollowResponse extends Following {}
+interface UnFollowResponse extends Following {}
 
-async function unfollow(data: Data): Promise<FollowResponse> {
+async function unfollow(data: Data): Promise<UnFollowResponse> {
   try {
     const token = localStorage.getItem('token')
     const parsedToken = JSON.parse(token as string)
