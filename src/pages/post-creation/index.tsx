@@ -58,6 +58,7 @@ const PostCreation = () => {
     await createPost(import.meta.env.VITE_API_KEY, formData)
     navigate('/')
   }
+  
 
   const onClickUploadImage = () => {
     const fileInput = document.createElement('input')
