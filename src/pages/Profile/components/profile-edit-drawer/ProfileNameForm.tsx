@@ -1,10 +1,15 @@
 import tw, { styled } from 'twin.macro'
-
 import ProfileInput from './ProfileInput'
-
 import updateName from '@/apis/profile/updateName'
-import { useProfileStore } from '@/stores/userProfileStore'
 import useForm from '@/hooks/useForm'
+import { useProfileStore } from '@/stores/userProfileStore'
+
+const ERRORS = {
+  EMPTY_FULLNAME: '실명을 입력해주세요.',
+  TOO_LONG_FULLNAME: '실명은 6자 이내로 입력해주세요.',
+  EMPTY_USERNAME: '사용자 명을 입력해주세요.',
+  TOO_LONG_USERNAME: '사용자 명은 8자 이내로 입력해주세요.'
+}
 
 const Form = styled.form`
   ${tw`w-full flex flex-col`}
@@ -40,15 +45,15 @@ const ProfileNameForm = () => {
       const errors = {} as Record<string, string>
 
       if (values.fullName.length === 0) {
-        errors.fullName = '실명을 입력해주세요.'
+        errors.fullName = ERRORS.EMPTY_FULLNAME
       } else if (values.fullName.length > 6) {
-        errors.fullName = '실명은 6자 이내로 입력해주세요.'
+        errors.fullName = ERRORS.TOO_LONG_FULLNAME
       }
 
       if (values.username.length === 0) {
-        errors.username = '사용자 명을 입력해주세요.'
+        errors.username = ERRORS.EMPTY_USERNAME
       } else if (values.username.length > 8) {
-        errors.username = '사용자 명은 8자 이내로 입력해주세요.'
+        errors.username = ERRORS.TOO_LONG_USERNAME
       }
 
       return errors
