@@ -1,18 +1,17 @@
 import { useCallback, useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 import tw, { styled } from 'twin.macro'
-
 import UserProfileInfo from './components/profile/UserProfileInfo'
 import Header from './components/Header'
 import PostList from './components/profile/PostList'
 import Drawer from './components/profile-edit-drawer/Drawer'
 import EditIcon from './components/EditIcon'
 import getProfile from '@/apis/profile/profile'
-import { useProfileStore } from '@/stores/userProfileStore'
 import ProfileImage from './components/ProfileImage'
 import CoverImage from './components/CoverImage'
-import { useParams } from 'react-router-dom'
 import follow from '@/apis/follow/follow'
 import unfollow from '@/apis/follow/unfollow'
+import { useProfileStore } from '@/stores/userProfileStore'
 
 const ProfileContainer = styled.main`
   ${tw`w-full h-screen relative`}
