@@ -46,11 +46,18 @@ const PostlItem = ({ postDetail, index }: PostItemType) => {
   const [isLoading, setIsLoading] = useState(false)
   const [userImg, setUserImg] = useState(null)
 
+  const fetchUserInform = async () => {
+    const response = await getUserInform(postDetail.author._id)
+    setUserImg(response.image || null)
+  }
+
+  const getHtmlToTextString = (htmlString: string) => {
+    const tempDiv = document.createElement('div')
+    tempDiv.innerHTML = htmlString
+    return tempDiv.textContent
+  }
+
   useEffect(() => {
-    const fetchUserInform = async () => {
-      const response = await getUserInform(postDetail.author._id)
-      setUserImg(response.image || null)
-    }
     fetchUserInform()
     setTimeout(() => setIsLoading(true), index * 120)
   }, [postDetail.author._id, index])
@@ -98,7 +105,9 @@ const PostlItem = ({ postDetail, index }: PostItemType) => {
         </div>
         <div className="min-w-0 max-h-full grow flex flex-col">
           <p className="font-bold text-xl truncate mb-2 shrink-0">{title}</p>
-          <p className="line-clamp-3 pr-2">{body}</p>
+          <p className="line-clamp-3 pr-2 text-left mx-1">
+            {getHtmlToTextString(body)}
+          </p>
         </div>
       </PostItemBody>
       <PostItemBottomNav>
