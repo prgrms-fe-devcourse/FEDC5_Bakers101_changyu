@@ -15,6 +15,10 @@ interface UserProfileInfoProps {
   onClickFollowButton: () => void
 }
 
+interface OnlineIndicatorProps {
+  isOnline?: boolean
+}
+
 const UserProfileInfoWrapper = styled.div`
   ${tw`flex justify-between gap-3`}
 `
@@ -27,7 +31,7 @@ const UserNameWrapper = styled.div`
   ${tw`flex items-center gap-2`}
 `
 
-const OnlineIndicator = styled.div(({ isOnline }) => [
+const OnlineIndicator = styled.div<OnlineIndicatorProps>(({ isOnline }) => [
   tw`w-2 h-2 rounded-full bg-[crimson] self-end mb-1`,
   isOnline && tw`bg-[limegreen]`
 ])
@@ -65,14 +69,11 @@ const UserProfileInfo = ({
         <ChatButton>
           <ChatIcon className="w-full h-full" />
         </ChatButton>
-        {!isMyProfile && isFollowed && (
+        {!isMyProfile && (
           <FollowButton
-            isFilled
+            isFilled={isFollowed}
             onClick={onClickFollowButton}
           />
-        )}
-        {!isMyProfile && !isFollowed && (
-          <FollowButton onClick={onClickFollowButton} />
         )}
       </ButtonContainer>
     </UserProfileInfoWrapper>
