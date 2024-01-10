@@ -18,7 +18,7 @@ const Home = () => {
   })
 
   return (
-    <div className='w-11/12 mx-auto pb-5'>
+    <div className="w-11/12 mx-auto pb-5">
       <HomeHeader
         selectedChannel={nowChannel.name}
         onClickChannelList={() => {
