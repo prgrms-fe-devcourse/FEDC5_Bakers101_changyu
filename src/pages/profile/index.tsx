@@ -6,10 +6,12 @@ import Header from './components/Header'
 import PostList from './components/profile/PostList'
 import Drawer from './components/profile-edit-drawer/Drawer'
 import EditIcon from './components/EditIcon'
-import getProfile from '@/apis/profile/profile'
 import ProfileImage from './components/ProfileImage'
 import CoverImage from './components/CoverImage'
 import { useProfileStore } from '@/stores/userProfileStore'
+import getProfile from '@/apis/profile/profile'
+import unfollow from '@/apis/follow/unfollow'
+import follow from '@/apis/follow/follow'
 
 const ProfileContainer = styled.main`
   ${tw`w-full h-screen relative`}
@@ -41,9 +43,9 @@ const Profile = () => {
   const { id } = useParams()
   const { profile, setProfile } = useProfileStore()
   const [currentProfile, setCurrentProfile] = useState<User>()
-  const isMyProfile = id === profile?._id
   const [isFollowed, setIsFollowed] = useState<boolean>(false)
   const [isOpen, setIsOpen] = useState<boolean>(false)
+  const isMyProfile = id === profile?._id
 
   const handleToggleDrawer = () => {
     setIsOpen(!isOpen)
@@ -69,10 +71,24 @@ const Profile = () => {
     checkIsFollowedUser()
   }, [profile?.following, id])
 
-  const handleClickFollowButton = () => {
+  const handleClickFollowButton = async () => {
+    let data = null
+
+    if (!isFollowed) {
+      data = await follow({ userId: id as string })
+    } else {
+      const filteredFollowing = profile?.following.find(
+        (item) => item.user === id
+      )
+      data = await unfollow({ id: filteredFollowing?._id as string }) // 팔로우 모델에서 _id필드를 id로 넣어야 함
+    }
+
+    const updatedProfile = await getProfile(data.follower)
+    setProfile(updatedProfile)
+
     setIsFollowed((prev) => !prev)
   }
-
+  
   return (
     <Drawer
       isOpen={isOpen}
