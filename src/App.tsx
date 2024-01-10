@@ -5,6 +5,7 @@ import PostDetail from './pages/post-detail'
 import SignUpForm from './pages/sign-up/SignupForm'
 import Search from './pages/search'
 import PostEdit from './pages/post-edit'
+import Profile from './pages/profile'
 
 function App() {
   return (
@@ -25,6 +26,10 @@ function App() {
         <Route
           path="/search"
           element={<Search />}
+        />
+        <Route
+          path="/profile/:id"
+          element={<Profile />}
         />
         <Route
           path="/post-detail/:id"

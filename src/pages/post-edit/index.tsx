@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
+import TextEditor from '@/components/text-editor'
 import PostEditHeader from './components/Header'
 import handleImageFormData from '@/utils/handleImageFormData'
 import { getPostDetail, updatePost } from '@/apis/postApis'
@@ -46,12 +47,10 @@ const PostEdit = () => {
           onChange={(e) => setTitle(e.target.value)}
           value={title}
         />
-      </div>
-      <div className="mx-auto w-fit">
-        <input
-          className="w-[20rem] mx-auto min-h-[40rem] border-2 border-gray-300"
-          onChange={(e) => setDetails(e.target.value)}
-          value={details}
+        <TextEditor
+          className="w-full h-[36rem] min-h-[36rem]"
+          setText={setDetails}
+          initialValue={details}
         />
       </div>
     </div>

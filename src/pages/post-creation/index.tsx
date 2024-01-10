@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 
 import CreatePostHeader from './components/header'
 
+import TextEditor from '@/components/text-editor'
 import { createPost } from '@/apis/postApis'
 import { getChannelInform } from '@/apis/channelApis'
 import FileUploadIcon from '@/assets/icons/fileUpload.svg'
@@ -13,9 +14,6 @@ const breadOptions = ['조리빵', '특수빵', '식빵', '과자빵']
 
 const PostCreateContainer = styled.div`
   ${tw`w-screen`}
-`
-const PostBodyInput = styled.input`
-  ${tw`w-[20rem] min-h-[39rem] mt-6 border-2 border-[#959595] mb-10`}
 `
 const PostInputsWrapper = styled.div`
   ${tw`w-fit mx-auto`}
@@ -42,7 +40,7 @@ const PostCreation = () => {
   const navigate = useNavigate()
 
   const [title, setTitle] = useState<string>('')
-  const [detail, setDetail] = useState<string>('')
+  const [detail, setDetail] = useState<string>('abcd')
   const [file, setFile] = useState<File | null>(null)
   const [selectedBread, setSelectedBread] = useState<BreadType>(null)
 
@@ -57,11 +55,10 @@ const PostCreation = () => {
       body: detail,
       channelId: channelId._id
     })
-    const token = localStorage.getItem('token')
-    const parsedToken = JSON.parse(token as string)
-    await createPost(parsedToken, formData)
+    await createPost(import.meta.env.VITE_API_KEY, formData)
     navigate('/')
   }
+  
 
   const onClickUploadImage = () => {
     const fileInput = document.createElement('input')
@@ -102,7 +99,7 @@ const PostCreation = () => {
         </PostTitleImageInputWrapper>
         <hr />
         <ChannelOptionsWrapper>
-          <p className="text-[0.625rem] mt-6 mb-1 text-[#959595]">
+          <p className="text-[0.625rem] mt-6 mb-2 text-[#959595]">
             어떤 종류의 빵인가요?* 1개 선택
           </p>
           <div className="flex gap-2">
@@ -117,9 +114,9 @@ const PostCreation = () => {
             ))}
           </div>
         </ChannelOptionsWrapper>
-        <PostBodyInput
-          placeholder="레시피를 알려주세요."
-          onChange={(e) => setDetail(e.target.value)}
+        <TextEditor
+          setText={setDetail}
+          className="my-4 w-full h-[30rem] min-h-[30rem]"
         />
       </PostInputsWrapper>
       <button
