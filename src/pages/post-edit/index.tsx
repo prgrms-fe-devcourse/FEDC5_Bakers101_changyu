@@ -2,6 +2,7 @@ import tw, { styled } from 'twin.macro'
 import { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
+import TextEditor from '@/components/text-editor'
 import PostEditHeader from './components/Header'
 import onGetImageFile from '@/utils/onGetImageFile'
 
