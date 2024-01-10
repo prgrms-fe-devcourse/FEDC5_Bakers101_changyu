@@ -29,6 +29,7 @@ const HomeHeader = ({
   selectedChannel,
   onClickChannelList
 }: HomeHeaderProps) => {
+
   const { isOpen, toggleModal } = useModal()
 
   return (
