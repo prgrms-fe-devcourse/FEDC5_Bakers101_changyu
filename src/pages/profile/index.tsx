@@ -34,7 +34,7 @@ const PostSection = styled.section`
 `
 
 const EditButton = styled.button`
-  ${tw`w-5 h-5 self-end mb-3`}
+  ${tw`w-5 h-5 self-end flex items-center justify-center`}
 `
 
 const DrawerControlLabel = styled.label``
@@ -88,7 +88,7 @@ const Profile = () => {
 
     setIsFollowed((prev) => !prev)
   }
-  
+
   return (
     <Drawer
       isOpen={isOpen}
@@ -105,11 +105,17 @@ const Profile = () => {
                   <DrawerControlLabel
                     htmlFor="my-drawer"
                     className="h-fit self-end">
-                    <EditButton
-                      id="my-drawer"
-                      onClick={handleToggleDrawer}>
-                      <EditIcon className="w-full h-full" />
-                    </EditButton>
+                    <div className="flex items-center gap-2 justify-center mb-3">
+                      <button className="text-[10px] underline underline-offset-2 text-[#747474] self-end">
+                        로그아웃
+                      </button>
+                      <EditButton
+                        id="my-drawer"
+                        onClick={handleToggleDrawer}
+                        className="">
+                        <EditIcon className="w-full h-full" />
+                      </EditButton>
+                    </div>
                   </DrawerControlLabel>
                 )}
               </div>
