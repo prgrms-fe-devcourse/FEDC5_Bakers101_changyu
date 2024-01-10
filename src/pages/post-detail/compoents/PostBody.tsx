@@ -2,14 +2,14 @@ import tw, { styled } from 'twin.macro'
 import { useState } from 'react'
 
 import Comments from '@/components/comments'
+import LikeButton from '@/components/likes/Likes'
 
 import CommentIcon from '@/assets/icons/comment.svg'
 import BookMarkIcon from '@/assets/icons/bookmark.svg'
 
-import LikeButton from '@/components/likes/Likes'
-
 type PostBodyType = {
   body: string
+  likeNum: number
   commentNum: number
   postId: string
 }
@@ -26,7 +26,7 @@ const PostBottomNavWrapper = styled.div`
   ${tw`flex justify-between mt-6`}
 `
 
-const PostBody = ({ body, commentNum, postId }: PostBodyType) => {
+const PostBody = ({ body, likeNum, commentNum, postId }: PostBodyType) => {
   const [showComments, setShowComments] = useState(false)
 
   const handleCommentIconClick = () => {
@@ -41,7 +41,10 @@ const PostBody = ({ body, commentNum, postId }: PostBodyType) => {
       <PostBottomNavWrapper>
         <div className="flex gap-2">
           <div className="flex gap-1">
-            <LikeButton postId={postId} />
+            <LikeButton
+              postId={postId}
+              likeNum={likeNum}
+            />
           </div>
           <div
             className="flex gap-1"

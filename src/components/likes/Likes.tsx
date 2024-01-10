@@ -4,10 +4,11 @@ import LikedButton from '@/components/likes/LikedButton'
 import UnLikedButton from '@/components/likes/UnLikedButton'
 interface Props {
   postId: string
+  likeNum: number
 }
 
-const LikeButton = ({ postId }: Props) => {
-  const [likeCount, setLikeCount] = useState(0)
+const LikeButton = ({ postId, likeNum }: Props) => {
+  const [likeCount, setLikeCount] = useState(likeNum)
   const [isLiked, setIsLiked] = useState(false)
   const [likeId, setLikeId] = useState('')
 
