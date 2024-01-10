@@ -26,7 +26,7 @@ const sleep = () => {
 
 const ProfileNameForm = () => {
   const { profile, setProfile } = useProfileStore()
-  const { values, isLoading, handleChange, handleSubmit } = useForm({
+  const { values, errors, isLoading, handleChange, handleSubmit } = useForm({
     initialValue: {
       fullName: profile?.fullName || '',
       username: profile?.username || ''
@@ -35,6 +35,23 @@ const ProfileNameForm = () => {
       await sleep()
       const data = await updateName(values)
       setProfile(data)
+    },
+    validate: (values) => {
+      const errors = {} as Record<string, string>
+
+      if (values.fullName.length === 0) {
+        errors.fullName = '실명을 입력해주세요.'
+      } else if (values.fullName.length > 6) {
+        errors.fullName = '실명은 6자 이내로 입력해주세요.'
+      }
+
+      if (values.username.length === 0) {
+        errors.username = '사용자 명을 입력해주세요.'
+      } else if (values.username.length > 8) {
+        errors.username = '사용자 명은 8자 이내로 입력해주세요.'
+      }
+
+      return errors
     }
   })
 
@@ -47,6 +64,7 @@ const ProfileNameForm = () => {
         placeholder="사용자 명을 입력해주세요."
         type="text"
         onChangeInput={handleChange}
+        error={errors.username}
       />
       <ProfileInput
         labelName="실명"
@@ -55,6 +73,7 @@ const ProfileNameForm = () => {
         placeholder="실명을 입력해주세요."
         type="text"
         onChangeInput={handleChange}
+        error={errors.fullName}
       />
       <SubmitButton type="submit">
         {isLoading ? '변경 중' : '변경'}
