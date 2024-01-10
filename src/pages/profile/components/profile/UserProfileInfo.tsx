@@ -65,14 +65,11 @@ const UserProfileInfo = ({
         <ChatButton>
           <ChatIcon className="w-full h-full" />
         </ChatButton>
-        {!isMyProfile && isFollowed && (
+        {!isMyProfile && (
           <FollowButton
-            isFilled
+            isFilled={isFollowed}
             onClick={onClickFollowButton}
           />
-        )}
-        {!isMyProfile && !isFollowed && (
-          <FollowButton onClick={onClickFollowButton} />
         )}
       </ButtonContainer>
     </UserProfileInfoWrapper>
