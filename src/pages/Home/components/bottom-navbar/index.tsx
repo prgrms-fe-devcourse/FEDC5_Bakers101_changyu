@@ -8,7 +8,7 @@ import ProfileIcon from '@/assets/icons/profile.svg'
 import ScrollTopIcon from '@/assets/icons/scrollTop.svg'
 import { useProfileStore } from '@/stores/userProfileStore'
 import { useState } from 'react'
-import Modal from '@/pages/Home/components/users-list-modal/Modal'
+import Modal from '@/pages/home/components/users-list-modal/Modal'
 
 const HomeBottomNavBarContainer = styled.div`
   ${tw`fixed left-1/2 transform -translate-x-1/2 bottom-4 flex z-10 bg-white w-56 h-12 justify-evenly rounded-full shadow-lg`}
