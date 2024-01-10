@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { createComment } from '@/apis/commnents'
+import { createNotification } from '@/apis/notifications'
 import commentUploadIcon from '@/assets/icons/commentUpload.svg'
 
 type CommentFormProps = {
@@ -12,8 +13,16 @@ const CommentForm = ({ postId, onCommentAdded }: CommentFormProps) => {
 
   const handleUploadIconClick = async () => {
     try {
-      await createComment(comment, postId)
+      const response = await createComment(comment, postId)
       setComment('')
+
+      // TODO: 사용자가 댓글 달았을 때는 알림 생성 제외 구현하기
+      await createNotification(
+        'COMMENT',
+        response._id,
+        response.author._id,
+        postId
+      )
 
       if (onCommentAdded) {
         onCommentAdded()
