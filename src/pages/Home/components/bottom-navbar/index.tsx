@@ -1,12 +1,11 @@
 import { Link } from 'react-router-dom'
-import styled from 'styled-components'
-import tw from 'twin.macro'
+import tw, { styled } from 'twin.macro'
+import { useProfileStore } from '@/stores/userProfileStore'
 
 import WriteIcon from '@/assets/icons/write.svg'
 import UserListIcon from '@/assets/icons/userlist.svg'
 import ProfileIcon from '@/assets/icons/profile.svg'
 import ScrollTopIcon from '@/assets/icons/scrollTop.svg'
-import { useProfileStore } from '@/stores/userProfileStore'
 
 const HomeBottomNavBarContainer = styled.div`
   ${tw`fixed left-1/2 transform -translate-x-1/2 bottom-4 flex z-10 bg-white w-56 h-12 justify-evenly rounded-full shadow-lg`}
