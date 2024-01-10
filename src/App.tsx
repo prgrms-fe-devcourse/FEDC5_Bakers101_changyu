@@ -39,6 +39,10 @@ function App() {
           path="/post-edit/:id"
           element={<PostEdit />}
         />
+        <Route
+          path="/postcreation"
+          element={<PostCreation />}
+        />
       </Routes>
     </BrowserRouter>
   )
