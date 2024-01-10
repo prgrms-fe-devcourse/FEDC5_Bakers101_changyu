@@ -17,14 +17,14 @@ const HomeBottomNavBarContainer = styled.div`
 const HomeBottomNavBar = () => {
   const { profile } = useProfileStore()
   const [isUsersListModalOpen, setIsUsersListModalOpen] = useState(false)
-  const {openModal} = useAuthModalStore()
+  const {isLogin,openModal} = useAuthModalStore()
 
   const handleUsersListModal = () => {
     setIsUsersListModalOpen((prev) => !prev)
   }
 
   const checkingLogin= (event : React.MouseEvent<HTMLAnchorElement>) => {
-    if (!profile)
+    if (!isLogin)
     {
       event.preventDefault();
       openModal()
@@ -35,6 +35,7 @@ const HomeBottomNavBar = () => {
     <>
       <HomeBottomNavBarContainer>
         <Link
+          onClick={checkingLogin}
           to={`/profile/${profile?._id}`}
           className="h-fit my-auto">
           <img
