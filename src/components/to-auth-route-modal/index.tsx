@@ -1,22 +1,30 @@
 import tw, {styled} from 'twin.macro'
 import { Link } from 'react-router-dom'
+import ReactDOM from 'react-dom';
+
 
 const AuthRouteModalContainer = styled.div`
-  ${tw`fixed`}
+  ${tw`fixed bg-white`}
 `
 
-const AuthRouteModal = () =>{
+interface AuthRouteModal {
+  closeModal : ()=> void,
+}
+
+const AuthRouteModal = ({ closeModal} : AuthRouteModal) =>{
   
-  return (
+  return ReactDOM.createPortal(
     <AuthRouteModalContainer>
+      <button onClick ={closeModal}> </button>
       <p> 아직 Bakers101 회원이 아니신가요?</p>
-      <Link to ='/login'>
+      <Link to ='/login' onClick={closeModal}>
         로그인
       </Link>
-      <Link to ='/sign-up'>
+      <Link to ='/sign-up' onClick={closeModal}>
         회원가입
       </Link>
-    </AuthRouteModalContainer>
+    </AuthRouteModalContainer>,
+    document.getElementById('modal-root')as HTMLElement
   )
 }
 
