@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import useModal from './hooks/useModal'
+import { useAuthModalStore } from '@/stores/useAuthModalStore'
 import AuthRouteModal from './components/to-auth-route-modal'
 
 import Home from './pages/home'
@@ -12,8 +12,8 @@ import Profile from './pages/profile'
 import LoginForm from './pages/login/LoginForm'
 
 function App() {
-  const {isOpen,closeModal}= useModal(true)
-
+  const {isOpen,closeModal}= useAuthModalStore()
+  
   return (
     <BrowserRouter>
       {isOpen &&  <AuthRouteModal closeModal={closeModal}/>  }
