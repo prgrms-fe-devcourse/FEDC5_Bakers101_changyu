@@ -1,7 +1,11 @@
 import { Link } from 'react-router-dom'
 import tw, { styled } from 'twin.macro'
 
-import AlarmIcon from '@/assets/icons/notification.svg'
+import useModal from '@/hooks/useModal'
+
+import Notifications from '@/components/notifications'
+
+import NotificationIcon from '@/assets/icons/notification.svg'
 import SearchIcon from '@/assets/icons/search.svg'
 import TriangleIcon from '@/assets/icons/triangle.svg'
 
@@ -21,11 +25,12 @@ type HomeHeaderProps = {
   selectedChannel: string
   onClickChannelList: () => void
 }
-
 const HomeHeader = ({
   selectedChannel,
   onClickChannelList
 }: HomeHeaderProps) => {
+  const { isOpen, toggleModal } = useModal()
+
   return (
     <HomeHeaderContainer>
       <ChannelSelectButtonsWrapper>
@@ -36,20 +41,26 @@ const HomeHeader = ({
             {selectedChannel}
           </p>
           <img
-            className="h-fit my-[0.6rem] "
+            className="h-fit my-[0.6rem]"
             src={TriangleIcon}
           />
         </button>
       </ChannelSelectButtonsWrapper>
       <HomeHeaderButtonsWrapper>
-        <Link to='/search' className='flex items-center'>
+        <Link
+          to="/search"
+          className="flex items-center">
           <button>
             <img src={SearchIcon} />
           </button>
         </Link>
-        <button>
-          <img src={AlarmIcon} />
+        <button onClick={toggleModal}>
+          <img src={NotificationIcon} />
         </button>
+        <Notifications
+          isOpen={isOpen}
+          toggleModal={toggleModal}
+        />
       </HomeHeaderButtonsWrapper>
     </HomeHeaderContainer>
   )

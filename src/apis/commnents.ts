@@ -7,34 +7,16 @@ const config = {
   }
 }
 
-interface Author {
-  _id: string
-}
-
-interface Comment {
-  _id: string
-  comment: string
-  author: Author
-  post: string
-  createdAt: string
-  updatedAt: string
-  __v: number
-}
-
-interface CommentResponse {
-  data: Comment
-}
-
 export async function createComment(
   comment: string,
   postId: string
-): Promise<CommentResponse> {
+): Promise<Comment> {
   const requestBody = {
     comment,
     postId
   }
 
-  const response = await axiosInstance.post<CommentResponse>(
+  const response = await axiosInstance.post<Comment>(
     CREATE_COMMENT_PATH,
     requestBody,
     config
@@ -42,14 +24,14 @@ export async function createComment(
   return response.data
 }
 
-export async function deleteComment(id: string): Promise<CommentResponse> {
+export async function deleteComment(id: string): Promise<Comment> {
   const requestBody = {
     id
   }
 
-  const response = await axiosInstance.delete<CommentResponse>(
-    DELETE_COMMENT_PATH,
-    { data: requestBody, ...config }
-  )
+  const response = await axiosInstance.delete<Comment>(DELETE_COMMENT_PATH, {
+    data: requestBody,
+    ...config
+  })
   return response.data
 }

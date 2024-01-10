@@ -1,12 +1,11 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/home'
 import PostCreation from './pages/post-creation'
-import Profile from './pages/profile'
 import PostDetail from './pages/post-detail'
-import LoginForm from './pages/login/LoginForm'
 import SignUpForm from './pages/sign-up/SignupForm'
 import Search from './pages/search'
 import PostEdit from './pages/post-edit'
+import Profile from './pages/profile'
 
 function App() {
   return (
@@ -17,10 +16,6 @@ function App() {
           element={<Home />}
         />
         <Route
-          path="/login"
-          element={<LoginForm />}
-        />
-        <Route
           path="/sign-up"
           element={<SignUpForm />}
         />
@@ -29,12 +24,12 @@ function App() {
           element={<PostCreation />}
         />
         <Route
-          path="/profile/:id"
-          element={<Profile />}
-        />
-        <Route
           path="/search"
           element={<Search />}
+        />
+        <Route
+          path="/profile/:id"
+          element={<Profile />}
         />
         <Route
           path="/post-detail/:id"
@@ -43,6 +38,10 @@ function App() {
         <Route
           path="/post-edit/:id"
           element={<PostEdit />}
+        />
+        <Route
+          path="/postcreation"
+          element={<PostCreation />}
         />
       </Routes>
     </BrowserRouter>
