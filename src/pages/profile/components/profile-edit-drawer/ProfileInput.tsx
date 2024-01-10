@@ -8,7 +8,6 @@ interface InputProps {
   placeholder: string
   type: string
   onChangeInput: (e: React.ChangeEvent<HTMLInputElement>) => void
-  error?: string
 }
 
 const Input = styled.input`
@@ -25,15 +24,11 @@ const ProfileInput = ({
   value,
   placeholder,
   type,
-  onChangeInput,
-  error
+  onChangeInput
 }: InputProps) => {
   return (
     <div>
-      <div className="flex justify-between items-center">
-        <Label>{labelName}</Label>
-        <p className="text-xs text-[crimson] px-1 py-2 w-fit">{error}</p>
-      </div>
+      <Label>{labelName}</Label>
       <Input
         type={type}
         name={name}
@@ -46,4 +41,3 @@ const ProfileInput = ({
 }
 
 export default ProfileInput
-  

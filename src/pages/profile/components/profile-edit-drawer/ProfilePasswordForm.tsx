@@ -4,7 +4,6 @@ import ProfileInput from './ProfileInput'
 
 import updatePassword from '@/apis/profile/updatePassword'
 import useForm from '@/hooks/useForm'
-import isPasswordValid from '@/utils/passwordValidator'
 
 const Form = styled.form`
   ${tw`w-full flex flex-col`}
@@ -21,8 +20,8 @@ const SubmitButton = styled.button`
 `
 
 const sleep = () => {
-  return new Promise((resolve) => setTimeout(resolve, 1000))
-}
+  return new Promise((resolve) => setTimeout(resolve, 1000));
+};
 
 const ProfilePasswordForm = () => {
   const { values, errors, isLoading, handleChange, handleSubmit } = useForm({
@@ -36,19 +35,6 @@ const ProfilePasswordForm = () => {
         password: values.password
       })
     },
-    validate: (values) => {
-      const errors = {} as Record<string, string>
-      if (!isPasswordValid(values.password)) {
-        errors.password =
-          '비밀번호는 8자 이상, 특수문자, 대문자, 숫자를 포함해야 합니다.'
-      }
-
-      if (values.password !== values.confirmPassword) {
-        errors.confirmPassword = '비밀번호가 일치하지 않습니다.'
-      }
-
-      return errors
-    }
   })
 
   return (
@@ -60,7 +46,6 @@ const ProfilePasswordForm = () => {
         placeholder="새로운 비밀번호를 입력해주세요."
         type="password"
         onChangeInput={handleChange}
-        error={errors.password}
       />
       <ProfileInput
         labelName="비밀번호 확인"
@@ -69,8 +54,13 @@ const ProfilePasswordForm = () => {
         placeholder="비밀번호를 다시 입력해주세요."
         type="password"
         onChangeInput={handleChange}
-        error={errors.confirmPassword}
       />
+      <span className="text-xs text-[crimson] px-1 py-2 w-fit">
+        {values.password.length === 0 && values.confirmPassword.length !== 0 && '비밀번호를 입력해주세요.'}
+        {values.password.length !== 0 &&
+          values.password !== values.confirmPassword &&
+          '비밀번호가 일치하지 않습니다.'}
+      </span>
       <SubmitButton type="submit">
         {isLoading ? '변경 중' : '변경'}
       </SubmitButton>

@@ -19,7 +19,7 @@ const CoverImage = ({ imgSrc, children }: CoverImageProps) => {
           className="w-full h-full object-cover p-0 rounded-none brightness-50"
         />
       )}
-      {!imgSrc && <div className="w-full h-full bg-[#eaeaea]"></div>}
+      {!imgSrc && <div className='w-full h-full bg-[#eaeaea]'></div>}
       {children}
     </CoverImageWrapper>
   )
