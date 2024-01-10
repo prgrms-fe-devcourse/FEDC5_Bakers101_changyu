@@ -6,15 +6,21 @@ import commentUploadIcon from '@/assets/icons/commentUpload.svg'
 type CommentFormProps = {
   postId: string
   onCommentAdded: () => void
+  setCommentNumber: React.Dispatch<React.SetStateAction<number>>
 }
 
-const CommentForm = ({ postId, onCommentAdded }: CommentFormProps) => {
+const CommentForm = ({
+  postId,
+  onCommentAdded,
+  setCommentNumber
+}: CommentFormProps) => {
   const [comment, setComment] = useState('')
 
   const handleUploadIconClick = async () => {
     try {
       const response = await createComment(comment, postId)
       setComment('')
+      setCommentNumber((prev) => prev + 1)
 
       // TODO: 사용자가 댓글 달았을 때는 알림 생성 제외 구현하기
       await createNotification(
