@@ -43,4 +43,3 @@ const PostList = ({ title, id }: nowChannelType) => {
 }
 
 export default PostList
-	

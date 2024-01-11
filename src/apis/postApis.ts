@@ -78,7 +78,11 @@ async function getAllPostList() {
     })
     const postList = (await Promise.all(postListPromises)).flat()
     postList.sort(
-      (a: Post, b: Post) => Number(b.createdAt) - Number(a.createdAt)
+      (a: Post, b: Post) => {
+        const dateA = new Date(a.createdAt).getTime()
+        const dateB = new Date(b.createdAt).getTime()
+        return dateB- dateA
+      }
     )
     return postList
   } catch (error) {
