@@ -11,7 +11,7 @@ interface Props {
 
 const LikeButton = ({ postId, likeNum }: Props) => {
   const [likeCount, setLikeCount] = useState(likeNum)
-  const [isLiked, setIsLiked] = useState(false) // 좋아요 누른 여부
+  const [isLiked, setIsLiked] = useState(false)
   const [likeId, setLikeId] = useState('')
   const { profile, setProfile } = useProfileStore()
 
@@ -30,6 +30,7 @@ const LikeButton = ({ postId, likeNum }: Props) => {
       console.error('좋아요 처리 중 에러 발생:', error)
     }
     setIsLiked((prevIsLiked) => !prevIsLiked)
+
     const updatedProfile = await getProfile(response?.user as string)
     setProfile(updatedProfile)
   }
