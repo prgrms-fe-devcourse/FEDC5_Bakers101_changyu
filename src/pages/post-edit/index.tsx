@@ -108,14 +108,11 @@ const PostEdit = () => {
             ))}
           </div>
         </ChannelOptionsWrapper>
-
-        <div className="mx-auto w-fit mt-6">
-          <input
-            className="w-[20rem] mx-auto min-h-[40rem] border-2 border-gray-300"
-            onChange={(e) => setDetails(e.target.value)}
-            value={details}
-          />
-        </div>
+        <TextEditor
+          setText={setDetails}
+          initialValue={details}
+          className="h-[40rem] mt-6 w-full mx-auto"
+        />
       </PostInputsWrapper>
     </div>
   )
