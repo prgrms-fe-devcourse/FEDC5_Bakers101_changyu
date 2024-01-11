@@ -21,11 +21,11 @@ const Container = styled.div`
 `
 
 const Wrapper = styled.div`
-  ${tw`flex items-center gap-2 grow border-b border-brand-primary mr-4`}
+  ${tw`flex items-center gap-2 grow bg-[#eee]`}
 `
 
 const PrevButton = styled.button`
-  ${tw`flex justify-center items-center h-fit`}
+  ${tw`flex justify-center items-center`}
 `
 
 const SearchButton = styled.button`
@@ -33,11 +33,11 @@ const SearchButton = styled.button`
 `
 
 const Input = styled.input`
-  ${tw`grow border-b outline-none p-2`}
+  ${tw`grow border-b outline-none p-2 pl-4 bg-[#eee] text-sm`}
 `
 
 const Main = styled.div`
-  ${tw`flex flex-col grow`}
+  ${tw`flex flex-col grow rounded-3xl overflow-hidden`}
 `
 
 const ResetButton = styled.button`
@@ -53,7 +53,7 @@ const SearchBar = ({
   onPressEnter
 }: SearchBarProps) => {
   const inputRef = useRef<HTMLInputElement>(null)
-  
+
   return (
     <Container>
       <PrevButton onClick={onClickPrevButton}>
@@ -79,7 +79,7 @@ const SearchBar = ({
             <ResetIcon className="text-[#9e9e9e] text-[12px]" />
           </ResetButton>
           <SearchButton onClick={() => onSearch(keyword)}>
-            <SearchIcon className="text-brand-primary text-[25px]" />
+            <SearchIcon className="text-[#9e9e9e] text-[20px] mr-4" />
           </SearchButton>
         </Wrapper>
         {error && <p className="text-[crimson] text-xs mt-2">{error}</p>}

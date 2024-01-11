@@ -5,7 +5,7 @@ const FilterContainer = styled.div`
 `
 
 const FilterItem = styled.button(({ isSelected }) => [
-  tw`rounded-3xl bg-[#eee] text-brand-primary py-2 px-4 font-bold`,
+  tw`rounded-3xl bg-[#eee] text-sm text-brand-primary py-2 px-4 font-bold`,
   isSelected && tw`bg-brand-primary text-white`
 ])
 
