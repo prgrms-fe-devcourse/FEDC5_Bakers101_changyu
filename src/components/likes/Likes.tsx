@@ -1,7 +1,9 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { createLike, deleteLike } from '@/apis/likes'
 import LikedButton from '@/components/likes/LikedButton'
 import UnLikedButton from '@/components/likes/UnLikedButton'
+import { useProfileStore } from '@/stores/userProfileStore'
+import getProfile from '@/apis/profile/profile'
 interface Props {
   postId: string
   likeNum: number
@@ -9,24 +11,40 @@ interface Props {
 
 const LikeButton = ({ postId, likeNum }: Props) => {
   const [likeCount, setLikeCount] = useState(likeNum)
-  const [isLiked, setIsLiked] = useState(false)
+  const [isLiked, setIsLiked] = useState(false) // 좋아요 누른 여부
   const [likeId, setLikeId] = useState('')
+  const { profile, setProfile } = useProfileStore()
 
   const handleLike = async () => {
+    let response = null
     try {
       if (!isLiked) {
-        const response = await createLike(postId)
+        response = await createLike(postId)
         setLikeId(response._id)
         setLikeCount((prevCount) => prevCount + 1)
       } else {
-        await deleteLike(likeId as string)
+        response = await deleteLike(likeId as string)
         setLikeCount((prevCount) => prevCount - 1)
       }
     } catch (error) {
       console.error('좋아요 처리 중 에러 발생:', error)
     }
     setIsLiked((prevIsLiked) => !prevIsLiked)
+    const updatedProfile = await getProfile(response?.user as string)
+    setProfile(updatedProfile)
   }
+
+  useEffect(() => {
+    const likes = profile?.likes
+    const isLikedItem = likes?.find((like) => like.post === postId)
+
+    if (isLikedItem) {
+      setIsLiked(true)
+      setLikeId(isLikedItem._id)
+    } else {
+      setIsLiked(false)
+    }
+  }, [postId, profile?.likes])
 
   return (
     <div className="flex items-center gap-1">

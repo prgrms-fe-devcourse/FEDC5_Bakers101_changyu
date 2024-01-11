@@ -1,9 +1,8 @@
 import tw, { styled } from 'twin.macro'
 import { useState } from 'react'
-
-import Comments from '@/components/comments'
+import dompurify from 'dompurify'
 import LikeButton from '@/components/likes/Likes'
-
+import Comments from '@/components/comments'
 import CommentIcon from '@/assets/icons/comment.svg'
 import BookMarkIcon from '@/assets/icons/bookmark.svg'
 
@@ -36,7 +35,9 @@ const PostBody = ({ body, likeNum, commentNum, postId }: PostBodyType) => {
   return (
     <PostBodyContainer>
       <PostDetailWrapper>
-        <p>{body}</p>
+        <div
+          dangerouslySetInnerHTML={{ __html: dompurify.sanitize(String(body)) }}
+        />
       </PostDetailWrapper>
       <PostBottomNavWrapper>
         <div className="flex gap-2">
