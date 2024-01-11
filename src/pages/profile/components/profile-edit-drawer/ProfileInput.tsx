@@ -16,7 +16,7 @@ const Input = styled.input`
 `
 
 const Label = styled.label`
-  ${tw`label`}
+  ${tw`label grow shrink-0`}
 `
 
 const ProfileInput = ({
@@ -32,7 +32,7 @@ const ProfileInput = ({
     <div>
       <div className="flex justify-between items-center">
         <Label>{labelName}</Label>
-        <p className="text-xs text-[crimson] px-1 py-2 w-fit">{error}</p>
+        <p className="text-xs text-[crimson] px-1 py-2">{error}</p>
       </div>
       <Input
         type={type}
