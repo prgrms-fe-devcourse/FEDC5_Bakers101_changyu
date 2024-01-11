@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 
 import { getPostList, getAllPostList } from '@/apis/postApis'
 import PostlItem from './PostItem'
+import NonePost from './NonePost'
 
 type nowChannelType = {
   title: string
@@ -30,14 +31,18 @@ const PostList = ({ title, id }: nowChannelType) => {
 
   return (
     <div className="relative flex flex-col gap-4">
-      {postList.map((item, index) => (
-        <button key={item._id}>
-          <PostlItem
-            postDetail={item}
-            index={index}
-          />
-        </button>
-      ))}
+      {postList.length ? (
+        postList.map((item, index) => (
+          <button key={item._id}>
+            <PostlItem
+              postDetail={item}
+              index={index}
+            />
+          </button>
+        ))
+      ) : (
+        <NonePost />
+      )}
     </div>
   )
 }
