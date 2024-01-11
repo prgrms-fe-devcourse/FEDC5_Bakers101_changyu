@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 
 import { useNavigate, Link } from 'react-router-dom'
 import tw, { styled } from 'twin.macro'
+import { useProfileStore } from '@/stores/userProfileStore'
 
 import { getUserInform } from '@/apis/userApis'
 import CommentIcon from '@/assets/icons/comment.svg'
@@ -51,6 +52,15 @@ const PostlItem = ({ postDetail, index }: PostItemType) => {
 
   const [isLoading, setIsLoading] = useState(false)
   const [userImg, setUserImg] = useState(null)
+  const [isFollow, setIsFollow] = useState(false)
+  const { profile } = useProfileStore()
+
+  const getIsFollow = () => {
+    return postDetail.author.following.some(
+      (authorFollowId) =>
+        profile?.followers.some(({ _id }) => authorFollowId === _id)
+    )
+  }
 
   const fetchUserInform = async () => {
     const response = await getUserInform(postDetail.author._id)
@@ -65,6 +75,7 @@ const PostlItem = ({ postDetail, index }: PostItemType) => {
 
   useEffect(() => {
     fetchUserInform()
+    setIsFollow(getIsFollow())
     setTimeout(() => setIsLoading(true), index * 120)
   }, [postDetail.author._id, index])
 
@@ -89,7 +100,7 @@ const PostlItem = ({ postDetail, index }: PostItemType) => {
             <p className="font-bold">{authorName}</p>
           </Link>
           <p className="my-auto font-bold text-purple-500 text-[0.6rem]">
-            팔로우 중
+            {isFollow ? '팔로우 중' : null}
           </p>
         </div>
         <p className="text-xs font-semibold pr-2 rounded-xl bg-brand-primary p-1 px-2 text-[#fff]">
