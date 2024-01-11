@@ -22,11 +22,13 @@ async function createPost(formData: FormData) {
     throw new Error(`${error}`)
   }
 }
-async function updatePost(token: string, formData: FormData) {
+async function updatePost(formData: FormData) {
   try {
+    const token = localStorage.getItem('token')
+    const parsedToken = JSON.parse(token as string)
     await axiosInstance.put(UPDATE_POST_PATH, formData, {
       headers: {
-        Authorization: `bearer ${token}`,
+        Authorization: `bearer ${parsedToken}`,
         'Content-Type': 'multipart/form-data'
       }
     })
@@ -35,10 +37,12 @@ async function updatePost(token: string, formData: FormData) {
   }
 }
 
-async function deletePost(token: string, id: string) {
+async function deletePost(id: string) {
   try {
+    const token = localStorage.getItem('token')
+    const parsedToken = JSON.parse(token as string)
     await axiosInstance.delete(DELETE_POST_PATH, {
-      headers: { Authorization: `bearer ${token}` },
+      headers: { Authorization: `bearer ${parsedToken}` },
       data: { id: id }
     })
   } catch (error) {
@@ -77,13 +81,11 @@ async function getAllPostList() {
       return getPostList(_id)
     })
     const postList = (await Promise.all(postListPromises)).flat()
-    postList.sort(
-      (a: Post, b: Post) => {
-        const dateA = new Date(a.createdAt).getTime()
-        const dateB = new Date(b.createdAt).getTime()
-        return dateB- dateA
-      }
-    )
+    postList.sort((a: Post, b: Post) => {
+      const dateA = new Date(a.createdAt).getTime()
+      const dateB = new Date(b.createdAt).getTime()
+      return dateB - dateA
+    })
     return postList
   } catch (error) {
     throw new Error(`${error}`)

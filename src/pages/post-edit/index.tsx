@@ -61,7 +61,7 @@ const PostEdit = () => {
       channelId: postDetails?.channel._id,
       postId: postDetails?._id
     })
-    await updatePost(import.meta.env.VITE_API_KEY, formData)
+    await updatePost(formData)
     navigate(`/post-detail/${postDetails?._id}`)
   }
 

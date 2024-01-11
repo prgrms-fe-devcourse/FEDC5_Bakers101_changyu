@@ -18,7 +18,7 @@ export default function DeleteCheckModal({
   const navigate = useNavigate()
 
   const onClickDeleteButton = async () => {
-    await deletePost(import.meta.env.VITE_API_KEY, postId)
+    await deletePost(postId)
     setIsDeleteModalOpen(false)
     navigate('/')
   }
