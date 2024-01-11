@@ -17,10 +17,10 @@ const CommentItem = ({ comment, onDelete }: CommentItemProps) => {
           <div className="font-medium">{author.fullName}</div>
           <div className="text-sm text-gray-500">{formatDate(createdAt)}</div>
         </div>
-        <div className="flex justify-between items-center">
-          <div className="py-2">{commentText}</div>
+        <div className="flex justify-between items-center min-w-0">
+          <div className="py-1">{commentText}</div>
           <img
-            className="cursor-pointer"
+            className="cursor-pointer ml-4"
             src={commentDeleteIcon}
             alt="댓글 삭제 아이콘"
             onClick={() => onDelete(_id)}
