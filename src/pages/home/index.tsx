@@ -36,7 +36,7 @@ const Home = () => {
           title={nowChannel.name}
           id={nowChannel.id}
         />
-        <HomeBottomNavBar />
+        <HomeBottomNavBar  />
       </div>
     </div>
   )
