@@ -24,7 +24,7 @@ const CommentItem = ({ comment, onDelete }: CommentItemProps) => {
           <div className="text-sm text-gray-500">{formatDate(createdAt)}</div>
         </div>
         <div className="flex justify-between items-center min-w-0">
-          <div className="py-1">{commentText}</div>
+          <div className="py-1 flex-grow overflow-hidden">{commentText}</div>
           {canDeleteComment() && (
             <img
               className="cursor-pointer ml-4"
