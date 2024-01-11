@@ -28,6 +28,7 @@ const CloseButton = styled.button`
 const NotificationModal = ({ isOpen, toggleModal }: NotificationsProps) => {
   const [allRead, setAllRead] = useState(false)
 
+
   const handleAllReadChange = async () => {
     try {
       await updateNotifications()

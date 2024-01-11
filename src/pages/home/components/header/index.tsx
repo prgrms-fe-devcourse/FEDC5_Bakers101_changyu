@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import tw, { styled } from 'twin.macro'
 
 import useModal from '@/hooks/useModal'
+import { useAuthModalStore } from '@/stores/useAuthModalStore'
 
 import Notifications from '@/components/notifications'
 
@@ -31,6 +32,7 @@ const HomeHeader = ({
 }: HomeHeaderProps) => {
 
   const { isOpen, toggleModal } = useModal()
+  const {isLogin, openModal} = useAuthModalStore()
 
   return (
     <HomeHeaderContainer>
@@ -55,7 +57,7 @@ const HomeHeader = ({
             <img src={SearchIcon} />
           </button>
         </Link>
-        <button onClick={toggleModal}>
+        <button onClick={isLogin ? toggleModal :openModal}>
           <img src={NotificationIcon} />
         </button>
         <Notifications
