@@ -10,6 +10,7 @@ function LoginForm() {
   const [password, setPassword] = useState('')
   const [emailError, setEmailError] = useState('')
   const [passwordError, setPasswordError] = useState('')
+  const [loginError, setLoginError] = useState('')
 
   const validateEmail = (input: string): boolean => {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
@@ -41,7 +42,7 @@ function LoginForm() {
         navigate('/')
       }
     } catch (error) {
-      console.log(error)
+      setLoginError('이메일 또는 비밀번호가 올바르지 않습니다.')
     }
   }
 
@@ -63,6 +64,7 @@ function LoginForm() {
             onChange={(e) => {
               setEmail(e.target.value)
               validateEmail(e.target.value)
+              setLoginError('')
             }}
             onKeyDown={handleKeyDown}
           />
@@ -76,16 +78,23 @@ function LoginForm() {
             onChange={(e) => {
               setPassword(e.target.value)
               validatePassword(e.target.value)
+              setLoginError('')
             }}
             onKeyDown={handleKeyDown}
           />
           {passwordError && <Styles.Error>{passwordError}</Styles.Error>}
         </Styles.InputContainer>
+
         <Styles.Button onClick={handleLoginSubmit}>Login</Styles.Button>
         <Styles.Button onClick={() => navigate('/sign-up')}>
           계정이 없으신가요?
         </Styles.Button>
       </Styles.Form>
+      {loginError && (
+        <Styles.LoginErrorContainer>
+          <Styles.LoginError>{loginError}</Styles.LoginError>
+        </Styles.LoginErrorContainer>
+      )}
     </Styles.Container>
   )
 }
