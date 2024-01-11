@@ -9,7 +9,7 @@ const TabContent = ({ users }: TabContentProps) => {
       role="tabpanel"
       className="tab-content bg-base-100 border-base-300 rounded-box px-2 py-3 w-full min-w-0">
       {users.length > 0 && (
-        <div className="w-full h-full grid grid-flow-col-dense grid-cols-4 grid-rows-10 gap-3">
+        <div className="p-2 grid grid-flow-dense grid-cols-5 gap-3">
           {users.map(({ _id, fullName, image }) => (
             <ProfileCard
               id={_id}
