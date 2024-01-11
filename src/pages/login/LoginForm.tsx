@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+
 import { login } from '@/apis/login'
 import * as Styles from '@/pages/login/LoginStyles'
 import { useProfileStore } from '@/stores/userProfileStore'
@@ -8,8 +9,14 @@ function LoginForm() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const { setProfile } = useProfileStore()
+  const { profile, setProfile } = useProfileStore()
   const navigate = useNavigate()
+
+  useEffect(() => {
+    if (profile) {
+      navigate('/')
+    }
+  }, [])
 
   const handleLoginSubmit = async () => {
     try {
