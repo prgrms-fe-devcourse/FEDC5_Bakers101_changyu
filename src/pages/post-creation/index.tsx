@@ -2,7 +2,6 @@ import { useState } from 'react'
 import tw, { styled } from 'twin.macro'
 import { useNavigate } from 'react-router-dom'
 
-
 import CreatePostHeader from './components/header'
 import TextEditor from '@/components/text-editor'
 
@@ -11,6 +10,13 @@ import { getChannelInform } from '@/apis/channelApis'
 import FileUploadIcon from '@/assets/icons/fileUpload.svg'
 import handleImageFormData from '@/utils/handleImageFormData'
 import onGetImageFile from '@/utils/onGetImageFile'
+
+type BreadType = '조리빵' | '특수빵' | '식빵' | '과자빵' | null
+
+type ChannelButtonType = {
+  indexItem: string
+  selectedBread: BreadType
+}
 
 const breadOptions = ['조리빵', '특수빵', '식빵', '과자빵']
 
@@ -29,14 +35,14 @@ const PostTitleInputWrapper = styled.div`
   ${tw`mb-[2.7rem]`}
 `
 
-const ChannelButton = styled.button(({ indexItem, selectedBread }) => [
-  tw`w-16 py-1 font-bold rounded-full`,
-  indexItem === selectedBread
-    ? tw`bg-[#9F8170] text-white`
-    : tw`bg-[#F3F3F3] text-[#926B58]`
-])
-
-type BreadType = '조리빵' | '특수빵' | '식빵' | '과자빵' | null
+const ChannelButton = styled.button<ChannelButtonType>(
+  ({ indexItem, selectedBread }) => [
+    tw`w-16 py-1 font-bold rounded-full`,
+    indexItem === selectedBread
+      ? tw`bg-[#9F8170] text-white`
+      : tw`bg-[#F3F3F3] text-[#926B58]`
+  ]
+)
 
 const PostCreation = () => {
   const navigate = useNavigate()
@@ -60,7 +66,6 @@ const PostCreation = () => {
     await createPost(formData)
     navigate('/')
   }
-  
 
   return (
     <PostCreateContainer>

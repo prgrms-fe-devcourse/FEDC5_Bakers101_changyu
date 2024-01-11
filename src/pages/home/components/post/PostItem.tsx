@@ -9,10 +9,16 @@ import HeartIcon from '@/assets/icons/following.svg'
 import NoImage from '@/assets/temp/noImage.png'
 import getPostLiveTime from '@/utils/getPostCreateTime'
 
-const PostItemContainer = styled.div(({ isLoading }) => [
-  tw`flex flex-col gap-4 bg-white transition-all duration-700 ease-in-out transform rounded-lg p-2 shadow-lg`,
-  isLoading ? tw`translate-y-[0%]` : tw`translate-y-[80%] opacity-0`
-])
+type PostItemContainerProps = {
+  isLoading: boolean
+}
+
+const PostItemContainer = styled.div<PostItemContainerProps>(
+  ({ isLoading }) => [
+    tw`flex flex-col gap-4 bg-white transition-all duration-700 ease-in-out transform rounded-lg p-2 shadow-lg`,
+    isLoading ? tw`translate-y-[0%]` : tw`translate-y-[80%] opacity-0`
+  ]
+)
 
 const PostItemHeader = styled.div`
   ${tw`flex justify-between items-center px-2 py-2`}
