@@ -32,7 +32,6 @@ const useSearch = ({ initialValue, onSearch, validate }: IUseSearch) => {
         const newError = validate ? validate(value) : ''
         if (newError.length === 0) {
           await onSearch(value)
-          setValue('')
         }
         setError(newError)
         setIsLoading(false)
