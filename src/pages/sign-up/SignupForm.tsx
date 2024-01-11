@@ -70,6 +70,13 @@ const SignUpForm = () => {
     }
   }
 
+  const handleKeyDown = async (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      e.preventDefault()
+      await handleSignUpSumbit()
+    }
+  }
+
   return (
     <Styles.Container>
       <Styles.Form>
@@ -122,6 +129,7 @@ const SignUpForm = () => {
               setConfirmPassword(e.target.value)
               validateConfirmPassword(e.target.value)
             }}
+            onKeyDown={handleKeyDown}
           />
           {confirmPasswordError && (
             <Styles.Error>{confirmPasswordError}</Styles.Error>
