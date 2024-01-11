@@ -57,7 +57,7 @@ const PostCreation = () => {
       body: detail,
       channelId: channelId._id
     })
-    await createPost(import.meta.env.VITE_API_KEY, formData)
+    await createPost(import.meta.env.VITE_TOKEN, formData)
     navigate('/')
   }
   
