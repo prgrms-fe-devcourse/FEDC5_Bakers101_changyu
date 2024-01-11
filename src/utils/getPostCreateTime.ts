@@ -10,7 +10,6 @@ function getPostLiveTime(createdAt: string) {
   const compareTime = Math.floor(
     (nowTime.getTime() - createTime.getTime()) / 1000
   )
-  console.log(nowTime.getTime(),  createTime.getTime(),  compareTime);
   if (compareTime < MINUTE) {
     return compareTime === 0 ? '방금 전' : `${compareTime}초 전`
   } else if (compareTime < HOUR) {

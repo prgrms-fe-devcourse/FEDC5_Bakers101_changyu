@@ -8,11 +8,13 @@ import {
   UPDATE_POST_PATH
 } from '@/utils/api_paths'
 
-async function createPost(token: string, formData: FormData) {
+async function createPost(formData: FormData) {
   try {
+    const token = localStorage.getItem('token')
+    const parsedToken = JSON.parse(token as string)
     await axiosInstance.post(CREATE_POST_PATH, formData, {
       headers: {
-        Authorization: `bearer ${token}`,
+        Authorization: `bearer ${parsedToken}`,
         'Content-Type': 'multipart/form-data'
       }
     })
