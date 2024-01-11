@@ -26,14 +26,10 @@ const CommentForm = ({
   const handleUploadIconClick = async () => {
     try {
       const response = await createComment(comment, postId)
-      console.log(response)
       setComment('')
       setCommentNumber((prev) => prev + 1)
 
-      // TODO: 사용자가 댓글 달았을 때는 알림 생성 제외 구현하기
-      console.log(response.author._id, profile?._id)
       if (postUserId !== profile?._id) {
-        console.log('!!')
         await createNotification('COMMENT', response._id, postUserId, postId)
       }
 
