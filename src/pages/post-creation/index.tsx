@@ -73,8 +73,8 @@ const PostCreation = () => {
       <PostInputsWrapper>
         <PostTitleInputWrapper>
           <input
-            placeholder="어떤 레시피인가요?"
-            className="mb-2 mx-2 min-w-[19rem]"
+            placeholder="* 어떤 레시피인가요?"
+            className="mb-2 mx-2 min-w-[19rem] focus:outline-none"
             onChange={(e) => setTitle(e.target.value)}
           />
           <hr />
