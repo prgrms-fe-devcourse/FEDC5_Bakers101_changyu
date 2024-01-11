@@ -53,6 +53,7 @@ const ProfilePasswordForm = () => {
 
   return (
     <Form onSubmit={handleSubmit}>
+      <h1 className='font-bold text-lg mt-3'>비밀번호 변경</h1>
       <ProfileInput
         labelName="비밀번호"
         value={values.password}
