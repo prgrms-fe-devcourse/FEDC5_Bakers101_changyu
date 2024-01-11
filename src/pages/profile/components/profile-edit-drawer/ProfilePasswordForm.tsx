@@ -40,7 +40,7 @@ const ProfilePasswordForm = () => {
       const errors = {} as Record<string, string>
       if (!isPasswordValid(values.password)) {
         errors.password =
-          '비밀번호는 8자 이상, 특수문자, 대문자, 숫자를 포함해야 합니다.'
+          '*8자 이상, 특수문자, 대문자, 숫자'
       }
 
       if (values.password !== values.confirmPassword) {
@@ -72,12 +72,6 @@ const ProfilePasswordForm = () => {
         error={errors.confirmPassword}
       />
       <span className="text-xs text-[crimson] px-1 py-2 w-fit">
-        {values.password.length === 0 &&
-          values.confirmPassword.length !== 0 &&
-          '비밀번호를 입력해주세요.'}
-        {values.password.length !== 0 &&
-          values.password !== values.confirmPassword &&
-          '비밀번호가 일치하지 않습니다.'}
       </span>
       <SubmitButton type="submit">
         {isLoading ? '변경 중' : '변경'}
