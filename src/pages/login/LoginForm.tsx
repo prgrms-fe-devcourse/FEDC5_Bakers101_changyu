@@ -45,6 +45,13 @@ function LoginForm() {
     }
   }
 
+  const handleKeyDown = async (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      e.preventDefault()
+      await handleLoginSubmit()
+    }
+  }
+
   return (
     <Styles.Container>
       <Styles.Form>
@@ -57,6 +64,7 @@ function LoginForm() {
               setEmail(e.target.value)
               validateEmail(e.target.value)
             }}
+            onKeyDown={handleKeyDown}
           />
           {emailError && <Styles.Error>{emailError}</Styles.Error>}
         </Styles.InputContainer>
@@ -69,6 +77,7 @@ function LoginForm() {
               setPassword(e.target.value)
               validatePassword(e.target.value)
             }}
+            onKeyDown={handleKeyDown}
           />
           {passwordError && <Styles.Error>{passwordError}</Styles.Error>}
         </Styles.InputContainer>
