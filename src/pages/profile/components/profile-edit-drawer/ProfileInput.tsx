@@ -16,7 +16,7 @@ const Input = styled.input`
 `
 
 const Label = styled.label`
-  ${tw`label grow shrink-0`}
+  ${tw`label grow shrink-0 text-sm`}
 `
 
 const ProfileInput = ({
