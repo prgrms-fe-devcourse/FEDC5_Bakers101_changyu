@@ -1,26 +1,21 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-
 import { login } from '@/apis/login'
 import * as Styles from '@/pages/login/LoginStyles'
 import { useProfileStore } from '@/stores/userProfileStore'
 import isPasswordValid from '@/utils/passwordValidator'
-import { useAuthModalStore } from '@/stores/useAuthModalStore'
-
 function LoginForm() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [emailError, setEmailError] = useState('')
   const [passwordError, setPasswordError] = useState('')
   const [loginError, setLoginError] = useState('')
-
   const validateEmail = (input: string): boolean => {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
     const isValid = emailRegex.test(input)
     setEmailError(isValid ? '' : '올바른 이메일 주소를 입력하세요.')
     return isValid
   }
-
   const validatePassword = (input: string): boolean => {
     const isValid = isPasswordValid(input)
     setPasswordError(
@@ -28,20 +23,16 @@ function LoginForm() {
     )
     return isValid
   }
-
-  const { setProfile } = useProfileStore()
+  const { setProfile, profile } = useProfileStore()
   const navigate = useNavigate()
-
   useEffect(() => {
     if (profile) {
       navigate('/')
     }
   }, [])
-
   const handleLoginSubmit = async () => {
     const isEmailValid = validateEmail(email)
     const isPasswordValid = validatePassword(password)
-
     if (isEmailValid && isPasswordValid) {
       try {
         const response = await login(email, password)
@@ -53,14 +44,12 @@ function LoginForm() {
       }
     }
   }
-
   const handleKeyDown = async (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       e.preventDefault()
       handleLoginSubmit()
     }
   }
-
   return (
     <Styles.Container>
       <Styles.Form>
@@ -92,7 +81,6 @@ function LoginForm() {
           />
           {passwordError && <Styles.Error>{passwordError}</Styles.Error>}
         </Styles.InputContainer>
-
         <Styles.Button onClick={handleLoginSubmit}>Login</Styles.Button>
         <Styles.Button onClick={() => navigate('/sign-up')}>
           계정이 없으신가요?
@@ -106,5 +94,4 @@ function LoginForm() {
     </Styles.Container>
   )
 }
-
 export default LoginForm

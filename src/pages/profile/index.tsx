@@ -7,17 +7,19 @@ import { useProfileStore } from '@/stores/userProfileStore'
 
 import UserProfileInfo from './components/profile/UserProfileInfo'
 import Header from './components/Header'
-import PostList from './components/profile/PostList'
 import Drawer from './components/profile-edit-drawer/Drawer'
 import EditIcon from './components/EditIcon'
 import ProfileImage from './components/ProfileImage'
 import CoverImage from './components/CoverImage'
+import LikedPostList from './components/profile/LikedPostList'
+import MyPostList from './components/profile/MyPostList'
 
 import getProfile from '@/apis/profile/profile'
 import unfollow from '@/apis/follow/unfollow'
 import follow from '@/apis/follow/follow'
 import logout from '@/apis/logout'
 import { createNotification } from '@/apis/notifications'
+import { getPostDetail } from '@/apis/postApis'
 
 const ProfileContainer = styled.main`
   ${tw`w-full h-screen relative`}
@@ -60,6 +62,7 @@ const Profile = () => {
   const isMyProfile = id === profile?._id
   const [followerCount, setFollowerCount] = useState<number>(0)
   const [followingCount, setFollowingCount] = useState<number>(0)
+  const [likedPosts, setLikedPosts] = useState<Post[]>([])
 
   const handleToggleDrawer = () => {
     setIsOpen(!isOpen)
@@ -75,17 +78,13 @@ const Profile = () => {
     setFollowingCount(data.following.length)
   }, [id, profile?._id, setProfile])
 
-  useEffect(() => {
-    fetchProfile()
-  }, [isOpen, fetchProfile])
-
-  useEffect(() => {
-    const checkIsFollowedUser = () => {
-      const res = profile?.following.some((item) => item.user === id)
-      setIsFollowed(res!)
-    }
-    checkIsFollowedUser()
-  }, [profile?.following, id])
+  const fetchLikedPosts = useCallback(async () => {
+    const likedPostsId = profile?.likes.map((item) => item.post)
+    likedPostsId?.forEach(async (postId) => {
+      const data = await getPostDetail(postId)
+      setLikedPosts((prev) => [...prev, data])
+    })
+  }, [profile?.likes])
 
   const handleClickFollowButton = async () => {
     let data = null
@@ -103,7 +102,7 @@ const Profile = () => {
       const filteredFollowing = profile?.following.find(
         (item) => item.user === id
       )
-      data = await unfollow({ id: filteredFollowing?._id as string }) // 팔로우 모델에서 _id필드를 id로 넣어야 함
+      data = await unfollow({ id: filteredFollowing?._id as string })
       fetchProfile()
       setFollowerCount((prev) => prev - 1)
     }
@@ -119,6 +118,22 @@ const Profile = () => {
     localStorage.removeItem('token')
     navigate('/')
   }
+
+  useEffect(() => {
+    fetchProfile()
+  }, [isOpen, fetchProfile])
+
+  useEffect(() => {
+    fetchLikedPosts()
+  }, [])
+
+  useEffect(() => {
+    const checkIsFollowedUser = () => {
+      const res = profile?.following.some((item) => item.user === id)
+      setIsFollowed(res!)
+    }
+    checkIsFollowedUser()
+  }, [profile?.following, id])
 
   return (
     <Drawer
@@ -165,12 +180,12 @@ const Profile = () => {
           </DetailSection>
           <Divider />
           <PostSection>
-            <PostList
+            <MyPostList
               posts={currentProfile?.posts}
               listTitle="작성한 포스트"
             />
-            <PostList
-              posts={currentProfile?.likes}
+            <LikedPostList
+              posts={likedPosts}
               listTitle="좋아요한 포스트"
             />
           </PostSection>
