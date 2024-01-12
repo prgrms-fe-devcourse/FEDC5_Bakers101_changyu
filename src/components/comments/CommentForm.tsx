@@ -23,14 +23,13 @@ const CommentForm = ({
   const { profile } = useProfileStore()
 
   const [comment, setComment] = useState('')
-  const {isLogin, openModal} = useAuthModalStore();
+  const { isLogin, openModal } = useAuthModalStore()
 
   const handleUploadIconClick = async () => {
     try {
-      if (!isLogin)
-      {
+      if (!isLogin) {
         openModal()
-        return 
+        return
       }
       const response = await createComment(comment, postId)
       setComment('')
@@ -48,6 +47,12 @@ const CommentForm = ({
     }
   }
 
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      handleUploadIconClick()
+    }
+  }
+
   return (
     <div className="flex items-center space-x-3 m-2 p-2 border-b border-black">
       <input
@@ -55,6 +60,7 @@ const CommentForm = ({
         placeholder="댓글을 입력해 주세요."
         value={comment}
         onChange={(e) => setComment(e.target.value)}
+        onKeyDown={handleKeyDown}
       />
       <img
         className="cursor-pointer"
