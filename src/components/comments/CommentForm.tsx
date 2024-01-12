@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { useProfileStore } from '@/stores/userProfileStore'
 import { useAuthModalStore } from '@/stores/useAuthModalStore'
 import { createComment } from '@/apis/commnents'

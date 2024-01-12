@@ -52,7 +52,6 @@ const CommentList = ({
         <ul className="w-full my-3">
           {comments.map((comment) => (
             <CommentItem
-              key={comment._id}
               comment={comment}
               onDelete={handleCommentDelete}
             />

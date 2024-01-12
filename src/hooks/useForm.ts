@@ -17,7 +17,7 @@ interface Value {
 interface IUseForm {
   initialValue: Value
   onSubmit: (values: Value) => Promise<void>
-  validate?: (values: Value) => any
+  validate?: (values: Value) => Record<string, string>
 }
 
 const useForm = ({ initialValue, onSubmit, validate }: IUseForm) => {

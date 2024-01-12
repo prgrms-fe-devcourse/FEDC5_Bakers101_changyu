@@ -26,7 +26,6 @@ const NotificationList = ({ allRead }: NotificationListProps) => {
     <div className="flex-grow overflow-auto text-sm">
       {notifications.map((notification) => (
         <NotificationItem
-          key={notification._id}
           notification={notification}
         />
       ))}

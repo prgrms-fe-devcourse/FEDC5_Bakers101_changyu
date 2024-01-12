@@ -33,7 +33,7 @@ const Modal = ({ isOpen, onToggle }: UsersListProps) => {
 
   useEffect(() => {
     const fetchAllUsers = async () => {
-      const data: User[] = await getAllUsers({})
+      const data: User[] = await getAllUsers()
       setAllUsers(data)
     }
 
