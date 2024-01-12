@@ -25,6 +25,7 @@ function LoginForm() {
   }
   const { setProfile, profile } = useProfileStore()
   const navigate = useNavigate()
+  
   useEffect(() => {
     if (profile) {
       navigate('/')
