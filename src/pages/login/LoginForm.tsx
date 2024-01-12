@@ -10,6 +10,7 @@ function LoginForm() {
   const [password, setPassword] = useState('')
 
   const { setProfile } = useProfileStore()
+
   const authModalStore = useAuthModalStore()
   const navigate = useNavigate()
 

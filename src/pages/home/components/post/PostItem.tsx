@@ -56,9 +56,8 @@ const PostlItem = ({ postDetail, index }: PostItemType) => {
   const { profile } = useProfileStore()
 
   const getIsFollowed = () => {
-    return postDetail.author.following.some(
-      (authorFollowId) =>
-        profile?.followers.some(({ _id }) => authorFollowId === _id)
+    return Boolean(
+      profile?.following.some((item) => item.user === postDetail.author._id)
     )
   }
 
