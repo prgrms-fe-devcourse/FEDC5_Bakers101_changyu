@@ -6,14 +6,12 @@ import {
   AUTH_CHECK
 } from '@/utils/api_paths'
 
-async function createChannel(
-  token: string,
-  channelName: string,
-  description: string
-) {
+async function createChannel(channelName: string, description: string) {
   try {
+    const token = localStorage.getItem('token')
+    const parsedToken = JSON.parse(token as string)
     const adminCheck = await axiosInstance.get(AUTH_CHECK, {
-      headers: { Authorization: `bearer ${token}` }
+      headers: { Authorization: `bearer ${parsedToken}` }
     })
 
     if (adminCheck.data.role !== 'SuperAdmin')
@@ -26,7 +24,7 @@ async function createChannel(
         description: `${description}`,
         name: `${channelName}`
       },
-      { headers: { Authorization: `bearer ${token}` } }
+      { headers: { Authorization: `bearer ${parsedToken}` } }
     )
   } catch (error) {
     throw new Error(`${error}`)
