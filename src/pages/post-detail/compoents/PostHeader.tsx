@@ -1,5 +1,5 @@
 import tw, { styled } from 'twin.macro'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 
 import prevIcon from '@/assets/icons/prev_brown.svg'
@@ -35,14 +35,15 @@ const PostHeader = ({
   isOwner
 }: PostHeaderType) => {
   const [isOpenDeleteCheckModal, setIsOpenDeleteCheckModal] = useState(false)
+  const navigate = useNavigate()
 
   return (
     <PostHeaderContainer>
-      <Link
-        to="/"
+      <button
+        onClick={() => navigate(-1)}
         className="my-2 mb-4">
         <img src={prevIcon} />
-      </Link>
+      </button>
       <PostAuthorProfileWrapper>
         <div className="w-[4rem] h-[4rem] overflow-hidden mx-auto rounded-full">
           <img
