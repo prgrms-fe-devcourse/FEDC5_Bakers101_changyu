@@ -25,13 +25,11 @@ function LoginForm() {
   }
   const { setProfile, profile } = useProfileStore()
   const navigate = useNavigate()
-  
   useEffect(() => {
     if (profile) {
       navigate('/')
     }
   }, [])
-
   const handleLoginSubmit = async () => {
     const isEmailValid = validateEmail(email)
     const isPasswordValid = validatePassword(password)
