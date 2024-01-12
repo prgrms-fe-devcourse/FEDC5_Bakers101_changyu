@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import tw, { styled } from 'twin.macro'
+
 import UserProfileInfo from './components/profile/UserProfileInfo'
 import Header from './components/Header'
 import PostList from './components/profile/PostList'
@@ -8,10 +9,14 @@ import Drawer from './components/profile-edit-drawer/Drawer'
 import EditIcon from './components/EditIcon'
 import ProfileImage from './components/ProfileImage'
 import CoverImage from './components/CoverImage'
+
 import { useProfileStore } from '@/stores/userProfileStore'
+
 import getProfile from '@/apis/profile/profile'
 import unfollow from '@/apis/follow/unfollow'
 import follow from '@/apis/follow/follow'
+import logout from '@/apis/logout'
+import { createNotification } from '@/apis/notifications'
 
 const ProfileContainer = styled.main`
   ${tw`w-full h-screen relative`}
@@ -34,13 +39,18 @@ const PostSection = styled.section`
 `
 
 const EditButton = styled.button`
-  ${tw`w-5 h-5 self-end mb-3`}
+  ${tw`w-5 h-5 self-end flex items-center justify-center`}
 `
 
 const DrawerControlLabel = styled.label``
 
+const LogoutButton = styled.button`
+  ${tw`text-[10px] underline underline-offset-2 text-[#747474] self-end`}
+`
+
 const Profile = () => {
   const { id } = useParams()
+  const navigate = useNavigate()
   const { profile, setProfile } = useProfileStore()
   const [currentProfile, setCurrentProfile] = useState<User>()
   const [isFollowed, setIsFollowed] = useState<boolean>(false)
@@ -81,6 +91,9 @@ const Profile = () => {
     if (!isFollowed) {
       data = await follow({ userId: id as string })
       setFollowerCount((prev) => prev + 1)
+      if (profile) {
+        await createNotification('FOLLOW', data._id, data.user, null)
+      }
     } else {
       const filteredFollowing = profile?.following.find(
         (item) => item.user === id
@@ -93,6 +106,13 @@ const Profile = () => {
     setProfile(updatedProfile)
 
     setIsFollowed((prev) => !prev)
+  }
+
+  const handleLogout = async () => {
+    await logout()
+    setProfile(null)
+    localStorage.removeItem('token')
+    navigate('/')
   }
 
   return (
@@ -111,11 +131,17 @@ const Profile = () => {
                   <DrawerControlLabel
                     htmlFor="my-drawer"
                     className="h-fit self-end">
-                    <EditButton
-                      id="my-drawer"
-                      onClick={handleToggleDrawer}>
-                      <EditIcon className="w-full h-full" />
-                    </EditButton>
+                    <div className="flex items-center gap-2 justify-center mb-3">
+                      <LogoutButton onClick={handleLogout}>
+                        로그아웃
+                      </LogoutButton>
+                      <EditButton
+                        id="my-drawer"
+                        onClick={handleToggleDrawer}
+                        className="">
+                        <EditIcon className="w-full h-full" />
+                      </EditButton>
+                    </div>
                   </DrawerControlLabel>
                 )}
               </div>
