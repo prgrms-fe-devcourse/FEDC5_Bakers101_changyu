@@ -64,7 +64,6 @@ const PostEdit = () => {
   async function onClickEditButton() {
     if (selectedBread === null || title.length < 2 || details.length < 2) {
       setIsOpenInputWarningModal(true)
-      console.log(details)
       return
     }
 

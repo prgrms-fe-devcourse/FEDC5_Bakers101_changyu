@@ -57,7 +57,6 @@ const PostCreation = () => {
   const onClickEnrollPost = async () => {
     if (selectedBread === null || title.length < 2 || detail.length < 2) {
       setIsOpenInputWarningModal(true)
-      console.log(detail)
       return
     }
     const channelId = await getChannelInform(selectedBread)
