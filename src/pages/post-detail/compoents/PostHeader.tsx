@@ -1,9 +1,9 @@
 import tw, { styled } from 'twin.macro'
 import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
+import NoProfileThumbnailIcon from '@/pages/search/components/NoProfileThumbnailIcon'
 
 import prevIcon from '@/assets/icons/prev_brown.svg'
-import peopleIcon from '@/assets/icons/profile.svg'
 import getPostLiveTime from '@/utils/getPostCreateTime'
 import DeleteCheckModal from './DeleteCheckModal'
 
@@ -15,7 +15,7 @@ const PostEditDeleteButtonsWrapper = styled.div`
 `
 
 const PostAuthorProfileWrapper = styled.div`
-  ${tw`w-fit mx-auto`}
+  ${tw`w-fit mx-auto my-2`}
 `
 
 type PostHeaderType = {
@@ -46,11 +46,15 @@ const PostHeader = ({
       </button>
       <PostAuthorProfileWrapper>
         <div className="w-[4rem] h-[4rem] overflow-hidden mx-auto rounded-full">
-          <img
-            className="w-[4rem] h-[4rem] object-cover"
-            src={author.image ? author.image : peopleIcon}
-            alt="profileimg"
-          />
+          {author.image ? (
+            <img
+              className="w-[4rem] h-[4rem] object-cover"
+              src={author.image}
+              alt="profileimg"
+            />
+          ) : (
+            <NoProfileThumbnailIcon className="w-[4rem] h-[4rem] rounded-full text-[#ddd] bg-[#fff]" />
+          )}
         </div>
         <div className="flex mx-auto gap-2 w-fit">
           <p className="font-semibold text-[1.1rem] my-1">{author.fullName}</p>
