@@ -17,19 +17,19 @@ const HomeBottomNavBarContainer = styled.div`
 const HomeBottomNavBar = () => {
   const { profile } = useProfileStore()
   const [isUsersListModalOpen, setIsUsersListModalOpen] = useState(false)
-  const {isLogin,openModal} = useAuthModalStore()
+  const { isLogin, openModal } = useAuthModalStore()
 
   const onClickOpenUserListModal = () => {
     setIsUsersListModalOpen((prev) => !prev)
   }
 
-  const checkingLogin= (event : React.MouseEvent<HTMLAnchorElement>) => {
-    if (!isLogin)
-    {
-      event.preventDefault();
+  const checkingLogin = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    if (!isLogin) {
+      event.preventDefault()
       openModal()
     }
   }
+
   const onClickRefeshButton = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
@@ -60,7 +60,7 @@ const HomeBottomNavBar = () => {
         </button>
         <Link
           to="/post-creation"
-          onClick ={checkingLogin}
+          onClick={checkingLogin}
           className="h-fit my-auto">
           <img
             className="w-7 h-6"
