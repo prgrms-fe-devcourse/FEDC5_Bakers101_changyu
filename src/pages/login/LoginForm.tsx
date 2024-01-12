@@ -31,25 +31,25 @@ function LoginForm() {
   const navigate = useNavigate()
 
   const handleLoginSubmit = async () => {
-    try {
-      const isEmailValid = validateEmail(email)
-      const isPasswordValid = validatePassword(password)
+    const isEmailValid = validateEmail(email)
+    const isPasswordValid = validatePassword(password)
 
-      if (isEmailValid && isPasswordValid) {
+    if (isEmailValid && isPasswordValid) {
+      try {
         const response = await login(email, password)
         localStorage.setItem('token', JSON.stringify(response.token))
         setProfile(response.user)
         navigate('/')
+      } catch (error) {
+        setLoginError('이메일 또는 비밀번호가 올바르지 않습니다.')
       }
-    } catch (error) {
-      setLoginError('이메일 또는 비밀번호가 올바르지 않습니다.')
     }
   }
 
   const handleKeyDown = async (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       e.preventDefault()
-      await handleLoginSubmit()
+      handleLoginSubmit()
     }
   }
 
