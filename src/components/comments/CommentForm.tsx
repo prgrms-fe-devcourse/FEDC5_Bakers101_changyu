@@ -1,10 +1,8 @@
 import { useState } from 'react'
-
 import { useProfileStore } from '@/stores/userProfileStore'
-
+import { useAuthModalStore } from '@/stores/useAuthModalStore'
 import { createComment } from '@/apis/commnents'
 import { createNotification } from '@/apis/notifications'
-import { useAuthModalStore } from '@/stores/useAuthModalStore'
 import commentUploadIcon from '@/assets/icons/commentUpload.svg'
 
 type CommentFormProps = {
@@ -31,6 +29,7 @@ const CommentForm = ({
         openModal()
         return
       }
+
       const response = await createComment(comment, postId)
       setComment('')
       setCommentNumber((prev) => prev + 1)
@@ -47,8 +46,9 @@ const CommentForm = ({
     }
   }
 
-  const handleKeyDown = (event) => {
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
+      event.preventDefault()
       handleUploadIconClick()
     }
   }
