@@ -1,9 +1,12 @@
 import { useState } from 'react'
-import tw, { styled } from 'twin.macro'
+
 import dompurify from 'dompurify'
+import LikeButton from '@/components/likes/Likes'
+
+import tw, { styled } from 'twin.macro'
+
 import Comments from '@/components/comments'
 import CommentIcon from '@/assets/icons/comment.svg'
-import HeartIcon from '@/assets/icons/following.svg'
 import BookMarkIcon from '@/assets/icons/bookmark.svg'
 
 type PostBodyType = {
@@ -50,12 +53,10 @@ const PostBody = ({
       <PostBottomNavWrapper>
         <div className="flex gap-2">
           <div className="flex gap-1">
-            <img
-              className="w-5 h-5 my-auto"
-              src={HeartIcon}
-              alt="Heart Icon"
+            <LikeButton
+              postId={postId}
+              likeNum={likeNum}
             />
-            <p className="text-[0.9rem] text-[#767676]">{likeNum}</p>
           </div>
           <div
             className="flex gap-1"
