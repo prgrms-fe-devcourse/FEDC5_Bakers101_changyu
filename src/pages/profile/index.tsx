@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import tw, { styled } from 'twin.macro'
 
 import UserProfileInfo from './components/profile/UserProfileInfo'
@@ -15,6 +15,7 @@ import { useProfileStore } from '@/stores/userProfileStore'
 import getProfile from '@/apis/profile/profile'
 import unfollow from '@/apis/follow/unfollow'
 import follow from '@/apis/follow/follow'
+import logout from '@/apis/logout'
 import { createNotification } from '@/apis/notifications'
 
 const ProfileContainer = styled.main`
@@ -38,13 +39,18 @@ const PostSection = styled.section`
 `
 
 const EditButton = styled.button`
-  ${tw`w-5 h-5 self-end mb-3`}
+  ${tw`w-5 h-5 self-end flex items-center justify-center`}
 `
 
 const DrawerControlLabel = styled.label``
 
+const LogoutButton = styled.button`
+  ${tw`text-[10px] underline underline-offset-2 text-[#747474] self-end`}
+`
+
 const Profile = () => {
   const { id } = useParams()
+  const navigate = useNavigate()
   const { profile, setProfile } = useProfileStore()
   const [currentProfile, setCurrentProfile] = useState<User>()
   const [isFollowed, setIsFollowed] = useState<boolean>(false)
@@ -97,6 +103,13 @@ const Profile = () => {
     setIsFollowed((prev) => !prev)
   }
 
+  const handleLogout = async () => {
+    await logout()
+    setProfile(null)
+    localStorage.removeItem('token')
+    navigate('/')
+  }
+
   return (
     <Drawer
       isOpen={isOpen}
@@ -113,11 +126,17 @@ const Profile = () => {
                   <DrawerControlLabel
                     htmlFor="my-drawer"
                     className="h-fit self-end">
-                    <EditButton
-                      id="my-drawer"
-                      onClick={handleToggleDrawer}>
-                      <EditIcon className="w-full h-full" />
-                    </EditButton>
+                    <div className="flex items-center gap-2 justify-center mb-3">
+                      <LogoutButton onClick={handleLogout}>
+                        로그아웃
+                      </LogoutButton>
+                      <EditButton
+                        id="my-drawer"
+                        onClick={handleToggleDrawer}
+                        className="">
+                        <EditIcon className="w-full h-full" />
+                      </EditButton>
+                    </div>
                   </DrawerControlLabel>
                 )}
               </div>
