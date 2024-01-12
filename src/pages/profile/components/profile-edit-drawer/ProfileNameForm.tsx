@@ -64,6 +64,7 @@ const ProfileNameForm = () => {
 
   return (
     <Form onSubmit={handleSubmit}>
+      <h1 className='font-bold text-lg mt-3'>프로필 정보 변경</h1>
       <ProfileInput
         labelName="사용자 명"
         value={values.username}

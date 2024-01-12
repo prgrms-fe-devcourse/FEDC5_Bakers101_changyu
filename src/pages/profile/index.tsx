@@ -56,6 +56,8 @@ const Profile = () => {
   const [isFollowed, setIsFollowed] = useState<boolean>(false)
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const isMyProfile = id === profile?._id
+  const [followerCount, setFollowerCount] = useState<number>(0)
+  const [followingCount, setFollowingCount] = useState<number>(0)
 
   const handleToggleDrawer = () => {
     setIsOpen(!isOpen)
@@ -67,6 +69,8 @@ const Profile = () => {
       setProfile(data)
     }
     setCurrentProfile(data)
+    setFollowerCount(data.followers.length)
+    setFollowingCount(data.following.length)
   }, [id, profile?._id, setProfile])
 
   useEffect(() => {
@@ -86,7 +90,7 @@ const Profile = () => {
 
     if (!isFollowed) {
       data = await follow({ userId: id as string })
-
+      setFollowerCount((prev) => prev + 1)
       if (profile) {
         await createNotification('FOLLOW', data._id, data.user, null)
       }
@@ -95,6 +99,7 @@ const Profile = () => {
         (item) => item.user === id
       )
       data = await unfollow({ id: filteredFollowing?._id as string }) // 팔로우 모델에서 _id필드를 id로 넣어야 함
+      setFollowerCount((prev) => prev - 1)
     }
 
     const updatedProfile = await getProfile(data.follower)
@@ -145,8 +150,8 @@ const Profile = () => {
                 userName={currentProfile?.username || 'User'}
                 email={currentProfile?.email}
                 isOnline={currentProfile?.isOnline}
-                followers={currentProfile?.followers}
-                following={currentProfile?.following}
+                followers={followerCount}
+                following={followingCount}
                 isMyProfile={isMyProfile}
                 isFollowed={isFollowed}
                 onClickFollowButton={handleClickFollowButton}
