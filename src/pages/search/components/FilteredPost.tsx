@@ -70,7 +70,7 @@ const FilteredPost = ({
               <img
                 src={thumbnail}
                 alt="썸네일"
-                className="bg-cover rounded-xl"
+                className="w-full h-full object-cover rounded-xl"
               />
             )}
             {!thumbnail && (

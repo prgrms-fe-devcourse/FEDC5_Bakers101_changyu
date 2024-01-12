@@ -14,6 +14,7 @@ interface SearchBarProps {
     query: string,
     e: React.KeyboardEvent<HTMLInputElement>
   ) => void
+  onReset: () => void
 }
 
 const Container = styled.div`
@@ -50,9 +51,10 @@ const SearchBar = ({
   onClickPrevButton,
   onSearch,
   onChange,
-  onPressEnter
+  onPressEnter,
+  onReset
 }: SearchBarProps) => {
-  const inputRef = useRef<HTMLInputElement>(null)
+  // const inputRef = useRef<HTMLInputElement>(null)
 
   return (
     <Container>
@@ -62,20 +64,14 @@ const SearchBar = ({
       <Main>
         <Wrapper>
           <Input
-            ref={inputRef}
+            // ref={inputRef}
             type="text"
             placeholder="검색어를 입력하세요"
             value={keyword}
             onChange={onChange}
             onKeyDown={(e) => onPressEnter(keyword, e)}
           />
-          <ResetButton
-            onClick={() => {
-              if (inputRef.current) {
-                inputRef.current.value = ''
-                inputRef.current.focus()
-              }
-            }}>
+          <ResetButton onClick={onReset}>
             <ResetIcon className="text-[#9e9e9e] text-[12px]" />
           </ResetButton>
           <SearchButton onClick={() => onSearch(keyword)}>

@@ -20,6 +20,7 @@ const Search = () => {
     isLoading,
     handleChange,
     handleSearch,
+    handleResetButton,
     handleClickFilter
   } = useSearch({
     initialValue: '',
@@ -57,6 +58,7 @@ const Search = () => {
         onSearch={handleSearch}
         onPressEnter={handleSearch}
         onClickPrevButton={handleClickPrevButton}
+        onReset={handleResetButton}
       />
       <div className="pl-3 flex flex-col gap-5 grow">
         <Filter

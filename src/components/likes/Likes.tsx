@@ -2,16 +2,19 @@ import { useEffect, useState } from 'react'
 import { useProfileStore } from '@/stores/userProfileStore'
 
 import { createLike, deleteLike } from '@/apis/likes'
+import { createNotification } from '@/apis/notifications'
 import getProfile from '@/apis/profile/profile'
 
 import LikedButton from '@/components/likes/LikedButton'
-//import UnLikedButton from '@/components/likes/UnLikedButton'
+// import UnLikedButton from '@/components/likes/UnLikedButton'
+
 interface Props {
+  postUserId: string
   postId: string
   likeNum: number
 }
 
-const LikeButton = ({ postId, likeNum }: Props) => {
+const LikeButton = ({ postUserId, postId, likeNum }: Props) => {
   const [likeCount, setLikeCount] = useState(likeNum)
   const [isLiked, setIsLiked] = useState(false)
   const [likeId, setLikeId] = useState('')
@@ -25,6 +28,10 @@ const LikeButton = ({ postId, likeNum }: Props) => {
         setLikeId(response._id)
         setLikeCount((prevCount) => prevCount + 1)
         setIsLiked(true)
+
+        if (postUserId !== profile?._id) {
+          await createNotification('LIKE', response._id, postUserId, postId)
+        }
       } else {
         response = await deleteLike(likeId as string)
         setLikeCount((prevCount) => prevCount - 1)
