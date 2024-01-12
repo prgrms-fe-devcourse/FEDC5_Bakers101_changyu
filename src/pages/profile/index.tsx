@@ -70,7 +70,6 @@ const Profile = () => {
     if (id === profile?._id) {
       setProfile(data)
     }
-    console.log(data)
     setCurrentProfile(data)
     setFollowerCount(data.followers.length)
     setFollowingCount(data.following.length)
