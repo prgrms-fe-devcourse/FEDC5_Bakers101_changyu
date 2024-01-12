@@ -5,6 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import TextEditor from '@/components/text-editor'
 import PostEditHeader from './components/Header'
 import onGetImageFile from '@/utils/onGetImageFile'
+import InputWarningModal from '../post-creation/components/InputWarningModal'
 
 import handleImageFormData from '@/utils/handleImageFormData'
 import { getPostDetail, updatePost } from '@/apis/postApis'
@@ -44,6 +45,7 @@ const PostEdit = () => {
   const [postDetails, setPostDetails] = useState<Post>()
   const [image, setImage] = useState<string | File | undefined>()
   const [selectedBread, setSelectedBread] = useState<BreadType>(null)
+  const [isOpenInputWarningModal, setIsOpenInputWarningModal] = useState(false)
   const params = useParams()
   const productId = params.id
 
@@ -60,6 +62,11 @@ const PostEdit = () => {
   }, [])
 
   async function onClickEditButton() {
+    if (selectedBread === null || title.length < 2 || details.length < 2) {
+      setIsOpenInputWarningModal(true)
+      return
+    }
+
     const formData = handleImageFormData({
       imageFile: image,
       title: title,
@@ -120,6 +127,14 @@ const PostEdit = () => {
           initialValue={details}
           className="h-[40rem] mt-6 w-full mx-auto"
         />
+        {isOpenInputWarningModal && (
+          <InputWarningModal
+            setCloseModal={() => setIsOpenInputWarningModal(false)}
+            titleLength={title.length}
+            detailLength={details.length}
+            selectedBread={selectedBread}
+          />
+        )}
       </PostInputsWrapper>
     </div>
   )

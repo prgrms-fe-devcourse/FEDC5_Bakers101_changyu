@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 
 import CreatePostHeader from './components/header'
 import TextEditor from '@/components/text-editor'
+import InputWarningModal from './components/InputWarningModal'
 
 import { createPost } from '@/apis/postApis'
 import { getChannelInform } from '@/apis/channelApis'
@@ -51,10 +52,13 @@ const PostCreation = () => {
   const [detail, setDetail] = useState<string>('')
   const [file, setFile] = useState<File | undefined>()
   const [selectedBread, setSelectedBread] = useState<BreadType>(null)
+  const [isOpenInputWarningModal, setIsOpenInputWarningModal] = useState(false)
 
   const onClickEnrollPost = async () => {
-    if (selectedBread === null) return
-
+    if (selectedBread === null || title.length < 2 || detail.length < 2) {
+      setIsOpenInputWarningModal(true)
+      return
+    }
     const channelId = await getChannelInform(selectedBread)
     const formData = handleImageFormData({
       imageFile: file as File,
@@ -73,8 +77,8 @@ const PostCreation = () => {
       <PostInputsWrapper>
         <PostTitleInputWrapper>
           <input
-            placeholder="어떤 레시피인가요?"
-            className="mb-2 mx-2 min-w-[19rem]"
+            placeholder="* 어떤 레시피인가요?"
+            className="mb-2 mx-2 min-w-[19rem] focus:outline-none"
             onChange={(e) => setTitle(e.target.value)}
           />
           <hr />
@@ -116,6 +120,14 @@ const PostCreation = () => {
         className="fixed w-fit left-1/2 transform -translate-x-1/2 bottom-4 text-[1.1rem] bg-white font-bold px-6 py-2 rounded-full drop-shadow-lg border-1 border-slate-100 ">
         등록하기
       </button>
+      {isOpenInputWarningModal && (
+        <InputWarningModal
+          titleLength={title.length}
+          detailLength={detail.length}
+          selectedBread={selectedBread}
+          setCloseModal={() => setIsOpenInputWarningModal(false)}
+        />
+      )}
     </PostCreateContainer>
   )
 }
