@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react'
+import { useProfileStore } from '@/stores/userProfileStore'
+
 import { createLike, deleteLike } from '@/apis/likes'
+import getProfile from '@/apis/profile/profile'
+
 import LikedButton from '@/components/likes/LikedButton'
 import UnLikedButton from '@/components/likes/UnLikedButton'
-import { useProfileStore } from '@/stores/userProfileStore'
-import getProfile from '@/apis/profile/profile'
 interface Props {
   postId: string
   likeNum: number
