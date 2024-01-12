@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-
+import { useProfileStore } from '@/stores/userProfileStore'
 import { signUp } from '@/apis/signup'
 import * as Styles from './SignupStyles'
 import isPasswordValid from '@/utils/passwordValidator'
+
 import { useProfileStore } from '@/stores/userProfileStore'
 
 const SignUpForm = () => {
@@ -17,6 +18,13 @@ const SignUpForm = () => {
   const [nameError, setNameError] = useState('')
   const [passwordError, setPasswordError] = useState('')
   const [confirmPasswordError, setConfirmPasswordError] = useState('')
+  const { profile } = useProfileStore()
+
+  useEffect(() => {
+    if (profile) {
+      navigate('/')
+    }
+  }, [])
 
   const validateEmail = (input: string): boolean => {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
@@ -48,6 +56,7 @@ const SignUpForm = () => {
   }
 
   const handleSignUpSumbit = async () => {
+
     const isEmailValid = validateEmail(email)
     const isNameValid = validateName(name)
     const isPasswordValid = validatePassword(password)
