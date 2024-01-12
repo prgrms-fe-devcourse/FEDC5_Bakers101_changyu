@@ -6,6 +6,7 @@ import SignUpForm from './pages/sign-up/SignupForm'
 import Search from './pages/search'
 import PostEdit from './pages/post-edit'
 import Profile from './pages/profile'
+import LoginForm from './pages/login/LoginForm'
 
 function App() {
   return (
@@ -14,6 +15,10 @@ function App() {
         <Route
           path="/"
           element={<Home />}
+        />
+        <Route
+          path="/login"
+          element={<LoginForm />}
         />
         <Route
           path="/sign-up"

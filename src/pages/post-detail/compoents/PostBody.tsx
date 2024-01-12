@@ -8,6 +8,7 @@ import BookMarkIcon from '@/assets/icons/bookmark.svg'
 
 type PostBodyType = {
   body: string
+  postUserId: string
   likeNum: number
   commentNum: number
   postId: string
@@ -25,7 +26,13 @@ const PostBottomNavWrapper = styled.div`
   ${tw`flex justify-between mt-6`}
 `
 
-const PostBody = ({ body, likeNum, commentNum, postId }: PostBodyType) => {
+const PostBody = ({
+  body,
+  postUserId,
+  likeNum,
+  commentNum,
+  postId
+}: PostBodyType) => {
   const [commentNumber, setCommentNumber] = useState<number>(commentNum)
   const [showComments, setShowComments] = useState(false)
 
@@ -69,6 +76,7 @@ const PostBody = ({ body, likeNum, commentNum, postId }: PostBodyType) => {
       </PostBottomNavWrapper>
       {showComments && (
         <Comments
+          postUserId={postUserId}
           postId={postId}
           setCommentNumber={setCommentNumber}
         />

@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import tw, { styled } from 'twin.macro'
+
 import UserProfileInfo from './components/profile/UserProfileInfo'
 import Header from './components/Header'
 import PostList from './components/profile/PostList'
@@ -8,11 +9,14 @@ import Drawer from './components/profile-edit-drawer/Drawer'
 import EditIcon from './components/EditIcon'
 import ProfileImage from './components/ProfileImage'
 import CoverImage from './components/CoverImage'
+
 import { useProfileStore } from '@/stores/userProfileStore'
+
 import getProfile from '@/apis/profile/profile'
 import unfollow from '@/apis/follow/unfollow'
 import follow from '@/apis/follow/follow'
 import logout from '@/apis/logout'
+import { createNotification } from '@/apis/notifications'
 
 const ProfileContainer = styled.main`
   ${tw`w-full h-screen relative`}
@@ -82,6 +86,10 @@ const Profile = () => {
 
     if (!isFollowed) {
       data = await follow({ userId: id as string })
+
+      if (profile) {
+        await createNotification('FOLLOW', data._id, data.user, null)
+      }
     } else {
       const filteredFollowing = profile?.following.find(
         (item) => item.user === id
