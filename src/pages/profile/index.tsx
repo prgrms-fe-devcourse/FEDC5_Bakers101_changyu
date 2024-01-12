@@ -3,6 +3,8 @@ import { useNavigate, useParams } from 'react-router-dom'
 import tw, { styled } from 'twin.macro'
 
 import { useAuthModalStore } from '@/stores/useAuthModalStore'
+import { useProfileStore } from '@/stores/userProfileStore'
+
 import UserProfileInfo from './components/profile/UserProfileInfo'
 import Header from './components/Header'
 import PostList from './components/profile/PostList'
@@ -10,8 +12,6 @@ import Drawer from './components/profile-edit-drawer/Drawer'
 import EditIcon from './components/EditIcon'
 import ProfileImage from './components/ProfileImage'
 import CoverImage from './components/CoverImage'
-
-import { useProfileStore } from '@/stores/userProfileStore'
 
 import getProfile from '@/apis/profile/profile'
 import unfollow from '@/apis/follow/unfollow'
@@ -56,7 +56,7 @@ const Profile = () => {
   const [currentProfile, setCurrentProfile] = useState<User>()
   const [isFollowed, setIsFollowed] = useState<boolean>(false)
   const [isOpen, setIsOpen] = useState<boolean>(false)
-  const { isLogin, openModal } = useAuthModalStore()
+  const { openModal } = useAuthModalStore()
   const isMyProfile = id === profile?._id
   const [followerCount, setFollowerCount] = useState<number>(0)
   const [followingCount, setFollowingCount] = useState<number>(0)
@@ -90,8 +90,7 @@ const Profile = () => {
 
   const handleClickFollowButton = async () => {
     let data = null
-
-    if (!isLogin) {
+    if (!profile) {
       openModal()
       return
     }

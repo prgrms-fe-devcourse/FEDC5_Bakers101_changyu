@@ -23,14 +23,13 @@ const CommentForm = ({
   const { profile } = useProfileStore()
 
   const [comment, setComment] = useState('')
-  const {isLogin, openModal} = useAuthModalStore();
+  const { openModal } = useAuthModalStore()
 
   const handleUploadIconClick = async () => {
     try {
-      if (!isLogin)
-      {
+      if (!profile) {
         openModal()
-        return 
+        return
       }
       const response = await createComment(comment, postId)
       setComment('')

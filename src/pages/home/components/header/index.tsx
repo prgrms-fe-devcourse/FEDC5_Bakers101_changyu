@@ -3,7 +3,7 @@ import tw, { styled } from 'twin.macro'
 
 import useModal from '@/hooks/useModal'
 import { useAuthModalStore } from '@/stores/useAuthModalStore'
-
+import { useProfileStore } from '@/stores/userProfileStore'
 import Notifications from '@/components/notifications'
 
 import NotificationIcon from '@/assets/icons/notification.svg'
@@ -30,9 +30,9 @@ const HomeHeader = ({
   selectedChannel,
   onClickChannelList
 }: HomeHeaderProps) => {
-
   const { isOpen, toggleModal } = useModal()
-  const {isLogin, openModal} = useAuthModalStore()
+  const { openModal } = useAuthModalStore()
+  const { profile } = useProfileStore()
 
   return (
     <HomeHeaderContainer>
@@ -57,7 +57,7 @@ const HomeHeader = ({
             <img src={SearchIcon} />
           </button>
         </Link>
-        <button onClick={isLogin ? toggleModal :openModal}>
+        <button onClick={profile ? toggleModal : openModal}>
           <img src={NotificationIcon} />
         </button>
         <Notifications
