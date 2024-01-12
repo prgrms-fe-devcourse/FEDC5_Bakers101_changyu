@@ -4,7 +4,7 @@ import { LIKE_POST_PATH, UNLIKE_POST_PATH } from '@/utils/api_paths'
 export async function createLike(postId: string): Promise<Like> {
   const config = {
     headers: {
-      Authorization: `Bearer ${import.meta.env.VITE_TOKEN}`
+      Authorization: `Bearer ${localStorage.getItem('token')}`
     }
   }
 
@@ -24,7 +24,7 @@ export async function createLike(postId: string): Promise<Like> {
 export async function deleteLike(likeId: string): Promise<Like> {
   const config = {
     headers: {
-      Authorization: `Bearer ${import.meta.env.VITE_TOKEN}`
+      Authorization: `Bearer ${localStorage.getItem('token')}`
     }
   }
 
