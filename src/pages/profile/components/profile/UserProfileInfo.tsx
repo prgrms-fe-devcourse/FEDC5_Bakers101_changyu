@@ -3,6 +3,7 @@ import ButtonContainer from './ButtonContainer'
 import FollowButton from './FollowButton'
 import ChatIcon from './ChatIcon'
 
+
 interface UserProfileInfoProps {
   fullName?: string
   userName?: string
@@ -51,6 +52,7 @@ const UserProfileInfo = ({
   isFollowed,
   onClickFollowButton
 }: UserProfileInfoProps) => {
+  
   return (
     <UserProfileInfoWrapper>
       <ProfileInfo>

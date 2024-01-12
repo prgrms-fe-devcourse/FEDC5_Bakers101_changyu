@@ -4,6 +4,7 @@ import { useProfileStore } from '@/stores/userProfileStore'
 
 import { createComment } from '@/apis/commnents'
 import { createNotification } from '@/apis/notifications'
+import { useAuthModalStore } from '@/stores/useAuthModalStore'
 import commentUploadIcon from '@/assets/icons/commentUpload.svg'
 
 type CommentFormProps = {
@@ -22,9 +23,15 @@ const CommentForm = ({
   const { profile } = useProfileStore()
 
   const [comment, setComment] = useState('')
+  const {isLogin, openModal} = useAuthModalStore();
 
   const handleUploadIconClick = async () => {
     try {
+      if (!isLogin)
+      {
+        openModal()
+        return 
+      }
       const response = await createComment(comment, postId)
       setComment('')
       setCommentNumber((prev) => prev + 1)

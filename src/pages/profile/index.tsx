@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import tw, { styled } from 'twin.macro'
 
+import { useAuthModalStore } from '@/stores/useAuthModalStore'
 import UserProfileInfo from './components/profile/UserProfileInfo'
 import Header from './components/Header'
 import PostList from './components/profile/PostList'
@@ -55,6 +56,7 @@ const Profile = () => {
   const [currentProfile, setCurrentProfile] = useState<User>()
   const [isFollowed, setIsFollowed] = useState<boolean>(false)
   const [isOpen, setIsOpen] = useState<boolean>(false)
+  const {isLogin,openModal} = useAuthModalStore()
   const isMyProfile = id === profile?._id
   const [followerCount, setFollowerCount] = useState<number>(0)
   const [followingCount, setFollowingCount] = useState<number>(0)
@@ -88,6 +90,10 @@ const Profile = () => {
   const handleClickFollowButton = async () => {
     let data = null
 
+    if (!isLogin){
+      openModal()
+      return 
+    }
     if (!isFollowed) {
       data = await follow({ userId: id as string })
       setFollowerCount((prev) => prev + 1)
