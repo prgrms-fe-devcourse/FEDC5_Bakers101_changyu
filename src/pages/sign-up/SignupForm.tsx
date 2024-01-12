@@ -5,8 +5,6 @@ import { signUp } from '@/apis/signup'
 import * as Styles from './SignupStyles'
 import isPasswordValid from '@/utils/passwordValidator'
 
-import { useProfileStore } from '@/stores/userProfileStore'
-
 const SignUpForm = () => {
   const { setProfile } = useProfileStore()
   const navigate = useNavigate()
@@ -56,7 +54,6 @@ const SignUpForm = () => {
   }
 
   const handleSignUpSumbit = async () => {
-
     const isEmailValid = validateEmail(email)
     const isNameValid = validateName(name)
     const isPasswordValid = validatePassword(password)
