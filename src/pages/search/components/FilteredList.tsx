@@ -52,20 +52,19 @@ const FilteredList = ({
               />
             ))}
           </HorizontalSlide>
-          {users!.length > 0 ||
-            (posts!.length > 0 && (
-              <GridPostSection>
-                {posts?.map(({ _id, image, title, comments, likes }) => (
-                  <FilteredPost
-                    id={_id}
-                    thumbnail={image}
-                    title={title}
-                    commentsNum={comments.length}
-                    likesNum={likes.length}
-                  />
-                ))}
-              </GridPostSection>
-            ))}
+          {posts!.length > 0 && (
+            <GridPostSection>
+              {posts?.map(({ _id, image, title, comments, likes }) => (
+                <FilteredPost
+                  id={_id}
+                  thumbnail={image}
+                  title={title}
+                  commentsNum={comments.length}
+                  likesNum={likes.length}
+                />
+              ))}
+            </GridPostSection>
+          )}
         </>
       )}
       {isSearched && users!.length === 0 && posts!.length === 0 && <NoResult />}
