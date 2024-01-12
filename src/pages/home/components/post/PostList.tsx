@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 
 import { getPostList, getAllPostList } from '@/apis/postApis'
-import PostlItem from './PostItem'
 import NonePost from './NonePost'
+import PostItem from './PostItem'
 
 type nowChannelType = {
   title: string
@@ -34,7 +34,7 @@ const PostList = ({ title, id }: nowChannelType) => {
       {postList.length ? (
         postList.map((item, index) => (
           <button key={item._id}>
-            <PostlItem
+            <PostItem
               postDetail={item}
               index={index}
             />
