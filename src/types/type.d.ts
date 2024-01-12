@@ -37,7 +37,7 @@ interface Post {
   image?: string
   imagePulicId?: string
   title: string
-  channel: Channel
+  channel: Channel | string
   author: User
   createdAt: string
   updatedAt: string
