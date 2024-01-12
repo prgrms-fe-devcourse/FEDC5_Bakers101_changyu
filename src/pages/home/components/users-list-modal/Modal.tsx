@@ -20,7 +20,7 @@ const ModalContainer = styled.div<ModalContainerProps>(({ isOpen }) => [
 ])
 
 const TabList = styled.div`
-  ${tw`tabs tabs-lifted tabs-md`}
+  ${tw`tabs tabs-lifted tabs-md md:tabs-lg`}
 `
 
 const ModalBackdrop = styled.form`
