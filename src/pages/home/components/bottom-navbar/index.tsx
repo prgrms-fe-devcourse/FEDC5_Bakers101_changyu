@@ -29,6 +29,7 @@ const HomeBottomNavBar = () => {
       event.preventDefault();
       openModal()
     }
+  }
   const onClickRefeshButton = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }

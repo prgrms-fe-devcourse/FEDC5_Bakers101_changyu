@@ -34,7 +34,7 @@ const ProfileCard = ({ id, fullName, profileImage }: ProfileCardProps) => {
             <NoProfileThumbnailIcon className="w-full h-full rounded-full text-[#ddd] bg-[#fff]" />
           )}
         </ProfileImageWrapper>
-        <div className="text-xs">{fullName}</div>
+        <div className="text-[10px] md:text-lg">{fullName}</div>
       </Container>
     </Link>
   )
