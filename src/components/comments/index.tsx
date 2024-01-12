@@ -31,7 +31,7 @@ const Comments = ({ postUserId, postId, setCommentNumber }: CommentsProps) => {
 
   useEffect(() => {
     fetchCommentsData(postId)
-  }, [])
+  }, [postId])
 
   return (
     <div>
