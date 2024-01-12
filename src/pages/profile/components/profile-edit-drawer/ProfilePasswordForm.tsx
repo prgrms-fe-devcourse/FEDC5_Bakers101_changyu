@@ -24,6 +24,11 @@ const sleep = () => {
   return new Promise((resolve) => setTimeout(resolve, 1000))
 }
 
+type PasswordError = {
+  password?: string
+  confirmPassword?: string
+}
+
 const ProfilePasswordForm = () => {
   const { values, errors, isLoading, handleChange, handleSubmit } = useForm({
     initialValue: {
@@ -39,8 +44,7 @@ const ProfilePasswordForm = () => {
     validate: (values) => {
       const errors = {} as Record<string, string>
       if (!isPasswordValid(values.password)) {
-        errors.password =
-          '*8자 이상, 특수문자, 대문자, 숫자'
+        errors.password = '*8자 이상, 특수문자, 대문자, 숫자'
       }
 
       if (values.password !== values.confirmPassword) {
@@ -53,7 +57,7 @@ const ProfilePasswordForm = () => {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <h1 className='font-bold text-lg mt-3'>비밀번호 변경</h1>
+      <h1 className="font-bold text-lg mt-3">비밀번호 변경</h1>
       <ProfileInput
         labelName="비밀번호"
         value={values.password}
@@ -61,7 +65,7 @@ const ProfilePasswordForm = () => {
         placeholder="새로운 비밀번호를 입력해주세요."
         type="password"
         onChangeInput={handleChange}
-        error={errors.password}
+        error={(errors as PasswordError).password}
       />
       <ProfileInput
         labelName="비밀번호 확인"
@@ -70,10 +74,9 @@ const ProfilePasswordForm = () => {
         placeholder="비밀번호를 다시 입력해주세요."
         type="password"
         onChangeInput={handleChange}
-        error={errors.confirmPassword}
+        error={(errors as PasswordError).confirmPassword}
       />
-      <span className="text-xs text-[crimson] px-1 py-2 w-fit">
-      </span>
+      <span className="text-xs text-[crimson] px-1 py-2 w-fit"></span>
       <SubmitButton type="submit">
         {isLoading ? '변경 중' : '변경'}
       </SubmitButton>

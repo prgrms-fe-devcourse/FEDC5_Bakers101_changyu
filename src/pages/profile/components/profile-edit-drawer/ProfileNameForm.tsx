@@ -27,6 +27,11 @@ const SubmitButton = styled.button`
   font-size: 0.8rem;
 `
 
+type NameError = {
+  username?: string
+  fullName?: string
+}
+
 const sleep = () => {
   return new Promise((resolve) => setTimeout(resolve, 1000))
 }
@@ -64,7 +69,7 @@ const ProfileNameForm = () => {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <h1 className='font-bold text-lg mt-3'>프로필 정보 변경</h1>
+      <h1 className="font-bold text-lg mt-3">프로필 정보 변경</h1>
       <ProfileInput
         labelName="사용자 명"
         value={values.username}
@@ -72,7 +77,7 @@ const ProfileNameForm = () => {
         placeholder="사용자 명을 입력해주세요."
         type="text"
         onChangeInput={handleChange}
-        error={errors.username}
+        error={(errors as NameError).username}
       />
       <ProfileInput
         labelName="실명"
@@ -81,7 +86,7 @@ const ProfileNameForm = () => {
         placeholder="실명을 입력해주세요."
         type="text"
         onChangeInput={handleChange}
-        error={errors.fullName}
+        error={(errors as NameError).fullName}
       />
       <SubmitButton type="submit">
         {isLoading ? '변경 중' : '변경'}

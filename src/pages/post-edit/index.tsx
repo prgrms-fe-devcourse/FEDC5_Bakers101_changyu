@@ -94,8 +94,8 @@ const PostEdit = () => {
         <PostTitleImageInputWrapper>
           <p className="mt-2 mx-2 w-[16.8rem] text-[#959595] overflow-hidden text-ellipsis">
             {image
-              ? image.name
-                ? image.name
+              ? (image as File).name
+                ? (image as File).name
                 : '등록된 이미지가 있습니다'
               : '빵 이미지를 첨부 해주세요.'}
           </p>
