@@ -5,9 +5,14 @@ import {
   UPDATE_NOTIFICATIONS_PATH
 } from '@/utils/api_paths'
 
+const getToken = () => {
+  const token = localStorage.getItem('token')
+  return JSON.parse(token as string)
+}
+
 const config = {
   headers: {
-    Authorization: `Bearer ${import.meta.env.VITE_TOKEN}`
+    Authorization: `Bearer ${getToken()}`
   }
 }
 

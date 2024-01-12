@@ -4,6 +4,7 @@ import { login } from '@/apis/login'
 import * as Styles from '@/pages/login/LoginStyles'
 import { useProfileStore } from '@/stores/userProfileStore'
 import isPasswordValid from '@/utils/passwordValidator'
+import { useAuthModalStore } from '@/stores/useAuthModalStore'
 
 function LoginForm() {
   const [email, setEmail] = useState('')
@@ -28,6 +29,7 @@ function LoginForm() {
   }
 
   const { setProfile } = useProfileStore()
+  const authModalStore = useAuthModalStore()
   const navigate = useNavigate()
 
   const handleLoginSubmit = async () => {

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import tw, { styled } from 'twin.macro'
 import { useProfileStore } from '@/stores/userProfileStore'
+import { useAuthModalStore } from '@/stores/useAuthModalStore'
 
 import WriteIcon from '@/assets/icons/write.svg'
 import UserListIcon from '@/assets/icons/userlist.svg'
@@ -16,15 +17,27 @@ const HomeBottomNavBarContainer = styled.div`
 const HomeBottomNavBar = () => {
   const { profile } = useProfileStore()
   const [isUsersListModalOpen, setIsUsersListModalOpen] = useState(false)
+  const {isLogin,openModal} = useAuthModalStore()
 
-  const handleUsersListModal = () => {
+  const onClickOpenUserListModal = () => {
     setIsUsersListModalOpen((prev) => !prev)
+  }
+
+  const checkingLogin= (event : React.MouseEvent<HTMLAnchorElement>) => {
+    if (!isLogin)
+    {
+      event.preventDefault();
+      openModal()
+    }
+  const onClickRefeshButton = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   return (
     <>
       <HomeBottomNavBarContainer>
         <Link
+          onClick={checkingLogin}
           to={`/profile/${profile?._id}`}
           className="h-fit my-auto">
           <img
@@ -32,13 +45,13 @@ const HomeBottomNavBar = () => {
             src={ProfileIcon}
           />
         </Link>
-        <button onClick={handleUsersListModal}>
+        <button onClick={onClickOpenUserListModal}>
           <img
             className="w-7 h-7 my-auto"
             src={UserListIcon}
           />
         </button>
-        <button>
+        <button onClick={onClickRefeshButton}>
           <img
             className="w-7 h-7 my-auto"
             src={ScrollTopIcon}
@@ -46,6 +59,7 @@ const HomeBottomNavBar = () => {
         </button>
         <Link
           to="/post-creation"
+          onClick ={checkingLogin}
           className="h-fit my-auto">
           <img
             className="w-7 h-6"
@@ -55,7 +69,7 @@ const HomeBottomNavBar = () => {
       </HomeBottomNavBarContainer>
       <Modal
         isOpen={isUsersListModalOpen}
-        onToggle={handleUsersListModal}
+        onToggle={onClickOpenUserListModal}
       />
     </>
   )
