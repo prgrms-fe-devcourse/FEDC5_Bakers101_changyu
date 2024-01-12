@@ -51,23 +51,27 @@ const PostHeader = ({
         <img src={prevIcon} />
       </button>
       <PostAuthorProfileWrapper>
-        <div className="w-[4rem] h-[4rem] overflow-hidden mx-auto rounded-full">
-          {author.image ? (
-            <img
-              className="w-[4rem] h-[4rem] object-cover"
-              src={author.image}
-              alt="profileimg"
-            />
-          ) : (
-            <NoProfileThumbnailIcon className="w-[4rem] h-[4rem] rounded-full text-[#ddd] bg-[#fff]" />
-          )}
-        </div>
-        <div className="flex mx-auto gap-2 w-fit">
-          <p className="font-semibold text-[1.1rem] my-1">{author.fullName}</p>
-          <p className="text-[0.65rem] my-auto text-purple-500 font-medium">
-            {getIsFollowed() ? '팔로잉 중' : null}
-          </p>
-        </div>
+        <Link to={`/profile/${author._id}`}>
+          <div className="w-[4rem] h-[4rem] overflow-hidden mx-auto rounded-full">
+            {author.image ? (
+              <img
+                className="w-[4rem] h-[4rem] object-cover"
+                src={author.image}
+                alt="profileimg"
+              />
+            ) : (
+              <NoProfileThumbnailIcon className="w-[4rem] h-[4rem] rounded-full text-[#ddd] bg-[#fff]" />
+            )}
+          </div>
+          <div className="flex mx-auto gap-2 w-fit">
+            <p className="font-semibold text-[1.1rem] my-1">
+              {author.fullName}
+            </p>
+            <p className="text-[0.65rem] my-auto text-purple-500 font-medium">
+              {getIsFollowed() ? '팔로잉 중' : null}
+            </p>
+          </div>
+        </Link>
         <p className="w-fit mx-auto text-[1.4rem] font-medium my-2">{title}</p>
         <p className="my-2 w-fit mx-auto text-[0.8rem]">
           {getPostLiveTime(createAt)}
