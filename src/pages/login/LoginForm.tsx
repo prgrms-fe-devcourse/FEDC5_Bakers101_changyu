@@ -10,7 +10,7 @@ function LoginForm() {
   const [password, setPassword] = useState('')
 
   const { setProfile } = useProfileStore()
-  const {setLogin} = useAuthModalStore()
+  const { setLogin } = useAuthModalStore()
   const navigate = useNavigate()
 
   const handleLoginSubmit = async () => {
