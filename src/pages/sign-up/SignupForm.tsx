@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom'
 import { signUp } from '@/apis/signup'
 import * as Styles from './SignupStyles'
 import isPasswordValid from '@/utils/passwordValidator'
-
 import { useProfileStore } from '@/stores/userProfileStore'
 
 const SignUpForm = () => {
