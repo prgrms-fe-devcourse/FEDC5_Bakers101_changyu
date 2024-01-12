@@ -1,5 +1,6 @@
 import { memo } from 'react'
 import formatDate from '@/utils/formatDate'
+import NoProfileThumbnailIcon from '@/pages/search/components/NoProfileThumbnailIcon'
 
 type NotificationItemProps = {
   notification: Notification
@@ -27,11 +28,14 @@ const NotificationItem = memo(({ notification }: NotificationItemProps) => {
   return (
     <div className="flex items-center p-2 border-b border-gray-300">
       <div className="mr-4 w-12 h-12 rounded-full overflow-hidden">
-        <img
-          src={author.image}
-          alt={`${author.fullName}의 프로필`}
-          className="w-full h-auto"
-        />
+        {author.image ? (
+          <img
+            src={author.image}
+            alt="프로필 이미지"
+          />
+        ) : (
+          <NoProfileThumbnailIcon className="w-full h-full rounded-full text-[#ddd] bg-[#fff]" />
+        )}
       </div>
       <div>
         <div className="text-gray-500">{formatDate(createdAt)}</div>
