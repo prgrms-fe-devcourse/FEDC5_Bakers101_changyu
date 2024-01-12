@@ -12,7 +12,7 @@ import EditIcon from './components/EditIcon'
 import ProfileImage from './components/ProfileImage'
 import CoverImage from './components/CoverImage'
 import LikedPostList from './components/profile/LikedPostList'
-import MyPostList from './components/profile/MyPostList'
+import MyPostList from './components/profile/MyPostLIst'
 
 import getProfile from '@/apis/profile/profile'
 import unfollow from '@/apis/follow/unfollow'

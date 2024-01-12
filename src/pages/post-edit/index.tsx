@@ -72,7 +72,7 @@ const PostEdit = () => {
       title: title,
       type: 'Post',
       body: details,
-      channelId: postDetails?.channel._id,
+      channelId: (postDetails?.channel as Channel)._id,
       postId: postDetails?._id
     })
     await updatePost(formData)
