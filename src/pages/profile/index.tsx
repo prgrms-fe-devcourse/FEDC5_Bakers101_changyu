@@ -7,11 +7,12 @@ import { useProfileStore } from '@/stores/userProfileStore'
 
 import UserProfileInfo from './components/profile/UserProfileInfo'
 import Header from './components/Header'
-import PostList from './components/profile/PostList'
 import Drawer from './components/profile-edit-drawer/Drawer'
 import EditIcon from './components/EditIcon'
 import ProfileImage from './components/ProfileImage'
 import CoverImage from './components/CoverImage'
+import LikedPostList from './components/profile/LikedPostList'
+import MyPostList from './components/profile/MyPostLIst'
 
 import getProfile from '@/apis/profile/profile'
 import unfollow from '@/apis/follow/unfollow'
@@ -179,11 +180,11 @@ const Profile = () => {
           </DetailSection>
           <Divider />
           <PostSection>
-            <PostList
+            <MyPostList
               posts={currentProfile?.posts}
               listTitle="작성한 포스트"
             />
-            <PostList
+            <LikedPostList
               posts={likedPosts}
               listTitle="좋아요한 포스트"
             />
