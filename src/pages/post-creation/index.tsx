@@ -22,10 +22,10 @@ type ChannelButtonType = {
 const breadOptions = ['조리빵', '특수빵', '식빵', '과자빵']
 
 const PostCreateContainer = styled.div`
-  ${tw`w-screen`}
+  ${tw``}
 `
 const PostInputsWrapper = styled.div`
-  ${tw`w-fit mx-auto`}
+  ${tw`w-[80%] mx-auto`}
 `
 const ChannelOptionsWrapper = styled.div``
 

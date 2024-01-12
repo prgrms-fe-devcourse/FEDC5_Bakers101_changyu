@@ -34,7 +34,7 @@ const ChannelButton = styled.button<ChannelButtonType>(
   ]
 )
 const PostInputsWrapper = styled.div`
-  ${tw`w-fit mx-auto`}
+  ${tw`w-[80%] mx-auto`}
 `
 
 const PostEdit = () => {

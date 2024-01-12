@@ -1,9 +1,10 @@
 import tw, { styled } from 'twin.macro'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
+import { useProfileStore } from '@/stores/userProfileStore'
 
+import NoProfileThumbnailIcon from '@/pages/search/components/NoProfileThumbnailIcon'
 import prevIcon from '@/assets/icons/prev_brown.svg'
-import peopleIcon from '@/assets/icons/profile.svg'
 import getPostLiveTime from '@/utils/getPostCreateTime'
 import DeleteCheckModal from './DeleteCheckModal'
 
@@ -15,7 +16,7 @@ const PostEditDeleteButtonsWrapper = styled.div`
 `
 
 const PostAuthorProfileWrapper = styled.div`
-  ${tw`w-fit mx-auto`}
+  ${tw`w-fit mx-auto my-2`}
 `
 
 type PostHeaderType = {
@@ -35,28 +36,42 @@ const PostHeader = ({
   isOwner
 }: PostHeaderType) => {
   const [isOpenDeleteCheckModal, setIsOpenDeleteCheckModal] = useState(false)
+  const { profile } = useProfileStore()
+  const navigate = useNavigate()
+
+  const getIsFollowed = () => {
+    return Boolean(profile?.following.some((item) => item.user === author._id))
+  }
 
   return (
     <PostHeaderContainer>
-      <Link
-        to="/"
+      <button
+        onClick={() => navigate(-1)}
         className="my-2 mb-4">
         <img src={prevIcon} />
-      </Link>
+      </button>
       <PostAuthorProfileWrapper>
-        <div className="w-[4rem] h-[4rem] overflow-hidden mx-auto rounded-full">
-          <img
-            className="w-[4rem] h-[4rem] object-cover"
-            src={author.image ? author.image : peopleIcon}
-            alt="profileimg"
-          />
-        </div>
-        <div className="flex mx-auto gap-2 w-fit">
-          <p className="font-semibold text-[1.1rem] my-1">{author.fullName}</p>
-          <p className="text-[0.65rem] my-auto text-purple-500 font-medium">
-            팔로잉 중
-          </p>
-        </div>
+        <Link to={`/profile/${author._id}`}>
+          <div className="w-[4rem] h-[4rem] overflow-hidden mx-auto rounded-full">
+            {author.image ? (
+              <img
+                className="w-[4rem] h-[4rem] object-cover"
+                src={author.image}
+                alt="profileimg"
+              />
+            ) : (
+              <NoProfileThumbnailIcon className="w-[4rem] h-[4rem] rounded-full text-[#ddd] bg-[#fff]" />
+            )}
+          </div>
+          <div className="flex mx-auto gap-2 w-fit">
+            <p className="font-semibold text-[1.1rem] my-1">
+              {author.fullName}
+            </p>
+            <p className="text-[0.65rem] my-auto text-purple-500 font-medium">
+              {getIsFollowed() ? '팔로잉 중' : null}
+            </p>
+          </div>
+        </Link>
         <p className="w-fit mx-auto text-[1.4rem] font-medium my-2">{title}</p>
         <p className="my-2 w-fit mx-auto text-[0.8rem]">
           {getPostLiveTime(createAt)}

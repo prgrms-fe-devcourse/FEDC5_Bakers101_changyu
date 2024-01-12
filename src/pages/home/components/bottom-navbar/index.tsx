@@ -17,14 +17,14 @@ const HomeBottomNavBarContainer = styled.div`
 const HomeBottomNavBar = () => {
   const { profile } = useProfileStore()
   const [isUsersListModalOpen, setIsUsersListModalOpen] = useState(false)
-  const { isLogin, openModal } = useAuthModalStore()
+  const { openModal } = useAuthModalStore()
 
   const onClickOpenUserListModal = () => {
     setIsUsersListModalOpen((prev) => !prev)
   }
 
   const checkingLogin = (event: React.MouseEvent<HTMLAnchorElement>) => {
-    if (!isLogin) {
+    if (!profile) {
       event.preventDefault()
       openModal()
     }

@@ -29,7 +29,7 @@ function LoginForm() {
     return isValid
   }
 
-  const { profile, setProfile } = useProfileStore()
+  const { setProfile } = useProfileStore()
   const navigate = useNavigate()
 
   useEffect(() => {

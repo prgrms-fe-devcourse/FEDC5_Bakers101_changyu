@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import tw, { styled } from 'twin.macro'
 import { useProfileStore } from '@/stores/userProfileStore'
-
+import NoProfileThumbnailIcon from '@/pages/search/components/NoProfileThumbnailIcon'
 import { getUserInform } from '@/apis/userApis'
 import CommentIcon from '@/assets/icons/comment.svg'
 import HeartIcon from '@/assets/icons/following.svg'
@@ -56,9 +56,8 @@ const PostlItem = ({ postDetail, index }: PostItemType) => {
   const { profile } = useProfileStore()
 
   const getIsFollowed = () => {
-    return postDetail.author.following.some(
-      (authorFollowId) =>
-        profile?.followers.some(({ _id }) => authorFollowId === _id)
+    return Boolean(
+      profile?.following.some((item) => item.user === postDetail.author._id)
     )
   }
 
@@ -95,7 +94,7 @@ const PostlItem = ({ postDetail, index }: PostItemType) => {
                 className="w-8 h-8 rounded-full"
               />
             ) : (
-              <p className="w-[1.4rem] h-[1.4rem] bg-yellow-300 rounded-full"></p>
+              <NoProfileThumbnailIcon className="w-[2rem] h-[2rem] bg-white text-[#ddd] bg-[#fff]" />
             )}
             <p className="font-bold">{authorName}</p>
           </Link>
