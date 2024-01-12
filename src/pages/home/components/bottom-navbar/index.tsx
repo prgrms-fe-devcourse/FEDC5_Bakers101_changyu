@@ -19,7 +19,7 @@ const HomeBottomNavBar = () => {
   const [isUsersListModalOpen, setIsUsersListModalOpen] = useState(false)
   const {isLogin,openModal} = useAuthModalStore()
 
-  const handleUsersListModal = () => {
+  const onClickOpenUserListModal = () => {
     setIsUsersListModalOpen((prev) => !prev)
   }
 
@@ -29,6 +29,8 @@ const HomeBottomNavBar = () => {
       event.preventDefault();
       openModal()
     }
+  const onClickRefeshButton = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   return (
@@ -43,13 +45,13 @@ const HomeBottomNavBar = () => {
             src={ProfileIcon}
           />
         </Link>
-        <button onClick={handleUsersListModal}>
+        <button onClick={onClickOpenUserListModal}>
           <img
             className="w-7 h-7 my-auto"
             src={UserListIcon}
           />
         </button>
-        <button>
+        <button onClick={onClickRefeshButton}>
           <img
             className="w-7 h-7 my-auto"
             src={ScrollTopIcon}
@@ -67,7 +69,7 @@ const HomeBottomNavBar = () => {
       </HomeBottomNavBarContainer>
       <Modal
         isOpen={isUsersListModalOpen}
-        onToggle={handleUsersListModal}
+        onToggle={onClickOpenUserListModal}
       />
     </>
   )

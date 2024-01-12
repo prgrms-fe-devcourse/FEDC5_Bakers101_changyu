@@ -13,7 +13,7 @@ const Container = styled.div`
 `
 
 const ProfileImageWrapper = styled.div`
-  ${tw`relative overflow-hidden rounded-full w-20 h-20`}
+  ${tw`relative overflow-hidden rounded-full w-12 h-12 md:w-20 md:h-20 mb-2`}
 `
 
 const ProfileCard = ({ id, fullName, profileImage }: ProfileCardProps) => {

@@ -8,11 +8,12 @@ import CommentList from './CommentList'
 import { getPostDetail } from '@/apis/postApis'
 
 type CommentsProps = {
+  postUserId: string
   postId: string
   setCommentNumber: React.Dispatch<React.SetStateAction<number>>
 }
 
-const Comments = ({ postId, setCommentNumber }: CommentsProps) => {
+const Comments = ({ postUserId, postId, setCommentNumber }: CommentsProps) => {
   const [comments, setComments] = useState<Comment[]>([])
 
   const fetchCommentsData = async (postId: string) => {
@@ -35,6 +36,7 @@ const Comments = ({ postId, setCommentNumber }: CommentsProps) => {
   return (
     <div>
       <CommentForm
+        postUserId={postUserId}
         postId={postId}
         onCommentAdded={handleCommentAdded}
         setCommentNumber={setCommentNumber}
