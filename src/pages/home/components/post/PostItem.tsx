@@ -52,10 +52,10 @@ const PostlItem = ({ postDetail, index }: PostItemType) => {
 
   const [isLoading, setIsLoading] = useState(false)
   const [userImg, setUserImg] = useState(null)
-  const [isFollow, setIsFollow] = useState(false)
+  const [isFollowed, setIsFollowed] = useState(false)
   const { profile } = useProfileStore()
 
-  const getIsFollow = () => {
+  const getIsFollowed = () => {
     return postDetail.author.following.some(
       (authorFollowId) =>
         profile?.followers.some(({ _id }) => authorFollowId === _id)
@@ -75,7 +75,7 @@ const PostlItem = ({ postDetail, index }: PostItemType) => {
 
   useEffect(() => {
     fetchUserInform()
-    setIsFollow(getIsFollow())
+    setIsFollowed(getIsFollowed())
     setTimeout(() => setIsLoading(true), index * 120)
   }, [postDetail.author._id, index])
 
@@ -100,7 +100,7 @@ const PostlItem = ({ postDetail, index }: PostItemType) => {
             <p className="font-bold">{authorName}</p>
           </Link>
           <p className="my-auto font-bold text-purple-500 text-[0.6rem]">
-            {isFollow ? '팔로우 중' : null}
+            {isFollowed ? '팔로우 중' : null}
           </p>
         </div>
         <p className="text-xs font-semibold pr-2 rounded-xl bg-brand-primary p-1 px-2 text-[#fff]">
