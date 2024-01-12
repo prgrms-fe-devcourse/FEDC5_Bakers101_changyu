@@ -13,7 +13,7 @@ const Container = styled.div`
 `
 
 const ProfileImageWrapper = styled.div`
-  ${tw`relative overflow-hidden rounded-full w-20 h-20`}
+  ${tw`relative overflow-hidden rounded-full w-12 h-12 md:w-20 md:h-20 mb-2`}
 `
 
 const ProfileCard = ({ id, fullName, profileImage }: ProfileCardProps) => {
@@ -34,7 +34,7 @@ const ProfileCard = ({ id, fullName, profileImage }: ProfileCardProps) => {
             <NoProfileThumbnailIcon className="w-full h-full rounded-full text-[#ddd] bg-[#fff]" />
           )}
         </ProfileImageWrapper>
-        <div className="text-xs">{fullName}</div>
+        <div className="text-[10px] md:text-lg">{fullName}</div>
       </Container>
     </Link>
   )

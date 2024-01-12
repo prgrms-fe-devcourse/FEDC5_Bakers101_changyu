@@ -32,7 +32,6 @@ const useSearch = ({ initialValue, onSearch, validate }: IUseSearch) => {
         const newError = validate ? validate(value) : ''
         if (newError.length === 0) {
           await onSearch(value)
-          setValue('')
         }
         setError(newError)
         setIsLoading(false)
@@ -49,6 +48,11 @@ const useSearch = ({ initialValue, onSearch, validate }: IUseSearch) => {
     setIsLoading(false)
   }
 
+  const handleResetButton = () => {
+    setValue('')
+    setError('')
+  }
+
   return {
     value,
     type,
@@ -56,6 +60,7 @@ const useSearch = ({ initialValue, onSearch, validate }: IUseSearch) => {
     isLoading,
     handleChange,
     handleSearch,
+    handleResetButton,
     handleClickFilter
   }
 }

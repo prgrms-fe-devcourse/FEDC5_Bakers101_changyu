@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useProfileStore } from '@/stores/userProfileStore'
-
 import { signUp } from '@/apis/signup'
 import * as Styles from './SignupStyles'
 import isPasswordValid from '@/utils/passwordValidator'
 
+import { useProfileStore } from '@/stores/userProfileStore'
+
 const SignUpForm = () => {
+  const { setProfile } = useProfileStore()
   const navigate = useNavigate()
   const [email, setEmail] = useState('')
   const [name, setName] = useState('')
@@ -40,8 +42,8 @@ const SignUpForm = () => {
   }
 
   const validateName = (input: string): boolean => {
-    const isValid = input.length >= 2
-    setNameError(isValid ? '' : '이름은 최소 2글자 이상이어야 합니다.')
+    const isValid = input.length <= 6
+    setNameError(isValid ? '' : '이름은 6글자 이내로 입력해주세요.')
     return isValid
   }
 
@@ -54,23 +56,34 @@ const SignUpForm = () => {
   }
 
   const handleSignUpSumbit = async () => {
-    try {
-      const isEmailValid = validateEmail(email)
-      const isNameValid = validateName(name)
-      const isPasswordValid = validatePassword(password)
-      const isConfirmPasswordValid = validateConfirmPassword(confirmPassword)
 
-      if (
-        isEmailValid &&
-        isNameValid &&
-        isPasswordValid &&
-        isConfirmPasswordValid
-      ) {
-        await signUp(email, name, password)
-        navigate('/login')
+    const isEmailValid = validateEmail(email)
+    const isNameValid = validateName(name)
+    const isPasswordValid = validatePassword(password)
+    const isConfirmPasswordValid = validateConfirmPassword(confirmPassword)
+
+    if (
+      isEmailValid &&
+      isNameValid &&
+      isPasswordValid &&
+      isConfirmPasswordValid
+    ) {
+      try {
+        {
+          const response = await signUp(email, name, password)
+          localStorage.setItem('token', JSON.stringify(response.token))
+          setProfile(response.user)
+          navigate('/')
+        }
+      } catch (error) {
+        console.error(error)
       }
-    } catch (error) {
-      console.error(error)
+    }
+  }
+  const handleKeyDown = async (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      e.preventDefault()
+      handleSignUpSumbit()
     }
   }
 
@@ -126,6 +139,7 @@ const SignUpForm = () => {
               setConfirmPassword(e.target.value)
               validateConfirmPassword(e.target.value)
             }}
+            onKeyDown={handleKeyDown}
           />
           {confirmPasswordError && (
             <Styles.Error>{confirmPasswordError}</Styles.Error>

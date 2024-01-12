@@ -3,13 +3,14 @@ import ButtonContainer from './ButtonContainer'
 import FollowButton from './FollowButton'
 import ChatIcon from './ChatIcon'
 
+
 interface UserProfileInfoProps {
   fullName?: string
   userName?: string
   email?: string
   isOnline?: boolean
-  followers?: Follow[]
-  following?: Following[]
+  followers?: number
+  following?: number
   isMyProfile: boolean
   isFollowed: boolean
   onClickFollowButton: () => void
@@ -51,6 +52,7 @@ const UserProfileInfo = ({
   isFollowed,
   onClickFollowButton
 }: UserProfileInfoProps) => {
+  
   return (
     <UserProfileInfoWrapper>
       <ProfileInfo>
@@ -61,8 +63,8 @@ const UserProfileInfo = ({
         </UserNameWrapper>
         <p className="text-[#333]">{email}</p>
         <ButtonContainer className="font-semibold mt-3">
-          <button>팔로워 {followers && followers.length}</button>
-          <button>팔로잉 {following && following.length}</button>
+          <button>팔로워 {followers}</button>
+          <button>팔로잉 {following}</button>
         </ButtonContainer>
       </ProfileInfo>
       <ButtonContainer className="items-center self-center mb-5">

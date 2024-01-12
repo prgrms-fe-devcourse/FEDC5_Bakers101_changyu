@@ -1,13 +1,17 @@
 import { useState } from 'react'
-import tw, { styled } from 'twin.macro'
+
 import dompurify from 'dompurify'
+import LikeButton from '@/components/likes/Likes'
+
+import tw, { styled } from 'twin.macro'
+
 import Comments from '@/components/comments'
 import CommentIcon from '@/assets/icons/comment.svg'
-import HeartIcon from '@/assets/icons/following.svg'
 import BookMarkIcon from '@/assets/icons/bookmark.svg'
 
 type PostBodyType = {
   body: string
+  postUserId: string
   likeNum: number
   commentNum: number
   postId: string
@@ -25,7 +29,13 @@ const PostBottomNavWrapper = styled.div`
   ${tw`flex justify-between mt-6`}
 `
 
-const PostBody = ({ body, likeNum, commentNum, postId }: PostBodyType) => {
+const PostBody = ({
+  body,
+  postUserId,
+  likeNum,
+  commentNum,
+  postId
+}: PostBodyType) => {
   const [commentNumber, setCommentNumber] = useState<number>(commentNum)
   const [showComments, setShowComments] = useState(false)
 
@@ -43,12 +53,10 @@ const PostBody = ({ body, likeNum, commentNum, postId }: PostBodyType) => {
       <PostBottomNavWrapper>
         <div className="flex gap-2">
           <div className="flex gap-1">
-            <img
-              className="w-5 h-5 my-auto"
-              src={HeartIcon}
-              alt="Heart Icon"
+            <LikeButton
+              postId={postId}
+              likeNum={likeNum}
             />
-            <p className="text-[0.9rem] text-[#767676]">{likeNum}</p>
           </div>
           <div
             className="flex gap-1"
@@ -69,6 +77,7 @@ const PostBody = ({ body, likeNum, commentNum, postId }: PostBodyType) => {
       </PostBottomNavWrapper>
       {showComments && (
         <Comments
+          postUserId={postUserId}
           postId={postId}
           setCommentNumber={setCommentNumber}
         />

@@ -18,7 +18,7 @@ export default function DeleteCheckModal({
   const navigate = useNavigate()
 
   const onClickDeleteButton = async () => {
-    await deletePost(import.meta.env.VITE_API_KEY, postId)
+    await deletePost(postId)
     setIsDeleteModalOpen(false)
     navigate('/')
   }
@@ -26,14 +26,14 @@ export default function DeleteCheckModal({
   return (
     <DeleteCheckModalContainer>
       <p> 정말 이 포스트를 삭제 하시겠습니까?</p>
-      <div className="flex gap-4 justify-center">
+      <div className="w-[15rem] flex gap-3 justify-center">
         <button
-          className="border-1 border-gray-200 px-2 py-1 my-1 rounded-md"
+          className="border-1 border-gray-200 px-3 py-1 my-2 rounded-md"
           onClick={onClickDeleteButton}>
           삭제
         </button>
         <button
-          className="border-1 border-gray-200 px-2 py-1 my-1 rounded-md"
+          className="border-1 border-gray-200 px-3 py-1 my-2 rounded-md"
           onClick={() => setIsDeleteModalOpen(false)}>
           취소
         </button>

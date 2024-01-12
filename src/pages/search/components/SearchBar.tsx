@@ -1,6 +1,8 @@
 import tw, { styled } from 'twin.macro'
 import PrevIcon from './PrevIcon'
 import SearchIcon from './SearchIcon'
+import ResetIcon from './ResetIcon'
+import { useRef } from 'react'
 
 interface SearchBarProps {
   keyword: string
@@ -12,6 +14,7 @@ interface SearchBarProps {
     query: string,
     e: React.KeyboardEvent<HTMLInputElement>
   ) => void
+  onReset: () => void
 }
 
 const Container = styled.div`
@@ -19,11 +22,11 @@ const Container = styled.div`
 `
 
 const Wrapper = styled.div`
-  ${tw`flex items-center gap-2 grow border-b border-brand-primary mr-4`}
+  ${tw`flex items-center gap-2 grow bg-[#eee]`}
 `
 
 const PrevButton = styled.button`
-  ${tw`flex justify-center items-center h-fit`}
+  ${tw`flex justify-center items-center`}
 `
 
 const SearchButton = styled.button`
@@ -31,11 +34,15 @@ const SearchButton = styled.button`
 `
 
 const Input = styled.input`
-  ${tw`grow border-b outline-none p-2`}
+  ${tw`grow border-b outline-none p-2 pl-4 bg-[#eee] text-sm`}
 `
 
 const Main = styled.div`
-  ${tw`flex flex-col grow`}
+  ${tw`flex flex-col grow rounded-3xl overflow-hidden`}
+`
+
+const ResetButton = styled.button`
+  ${tw`flex justify-center items-center h-fit`}
 `
 
 const SearchBar = ({
@@ -44,8 +51,11 @@ const SearchBar = ({
   onClickPrevButton,
   onSearch,
   onChange,
-  onPressEnter
+  onPressEnter,
+  onReset
 }: SearchBarProps) => {
+  // const inputRef = useRef<HTMLInputElement>(null)
+
   return (
     <Container>
       <PrevButton onClick={onClickPrevButton}>
@@ -54,14 +64,18 @@ const SearchBar = ({
       <Main>
         <Wrapper>
           <Input
+            // ref={inputRef}
             type="text"
             placeholder="검색어를 입력하세요"
             value={keyword}
             onChange={onChange}
             onKeyDown={(e) => onPressEnter(keyword, e)}
           />
+          <ResetButton onClick={onReset}>
+            <ResetIcon className="text-[#9e9e9e] text-[12px]" />
+          </ResetButton>
           <SearchButton onClick={() => onSearch(keyword)}>
-            <SearchIcon className="text-brand-primary text-[25px]" />
+            <SearchIcon className="text-[#9e9e9e] text-[20px] mr-4" />
           </SearchButton>
         </Wrapper>
         {error && <p className="text-[crimson] text-xs mt-2">{error}</p>}

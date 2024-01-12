@@ -1,3 +1,4 @@
+import { useProfileStore } from '@/stores/userProfileStore'
 import { CommentProps } from '@/components/comments/CommentList'
 import commentDeleteIcon from '@/assets/icons/commentDelete.svg'
 import formatDate from '@/utils/formatDate'
@@ -9,6 +10,11 @@ interface CommentItemProps {
 
 const CommentItem = ({ comment, onDelete }: CommentItemProps) => {
   const { _id, author, createdAt, comment: commentText } = comment
+  const { profile } = useProfileStore()
+
+  const canDeleteComment = () => {
+    return profile && profile._id === author._id
+  }
 
   return (
     <li className="mb-4 mx-8">
@@ -17,14 +23,16 @@ const CommentItem = ({ comment, onDelete }: CommentItemProps) => {
           <div className="font-medium">{author.fullName}</div>
           <div className="text-sm text-gray-500">{formatDate(createdAt)}</div>
         </div>
-        <div className="flex justify-between items-center">
-          <div className="py-2">{commentText}</div>
-          <img
-            className="cursor-pointer"
-            src={commentDeleteIcon}
-            alt="댓글 삭제 아이콘"
-            onClick={() => onDelete(_id)}
-          />
+        <div className="flex justify-between items-center min-w-0">
+          <div className="py-1 flex-grow overflow-hidden">{commentText}</div>
+          {canDeleteComment() && (
+            <img
+              className="cursor-pointer ml-4"
+              src={commentDeleteIcon}
+              alt="댓글 삭제 아이콘"
+              onClick={() => onDelete(_id)}
+            />
+          )}
         </div>
       </div>
     </li>
