@@ -15,7 +15,7 @@ const PostDetail = () => {
   const productId = params.id
 
   useEffect(() => {
-    ;(async () => {
+    (async () => {
       if (!productId) return
       const details = await getPostDetail(productId)
       await setPostDetails(details)

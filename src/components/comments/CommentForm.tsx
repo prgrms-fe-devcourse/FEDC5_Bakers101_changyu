@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 
 import { useProfileStore } from '@/stores/userProfileStore'
 
@@ -47,7 +47,7 @@ const CommentForm = ({
     }
   }
 
-  const handleKeyDown = (event) => {
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
       handleUploadIconClick()
     }

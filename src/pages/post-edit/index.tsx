@@ -50,7 +50,7 @@ const PostEdit = () => {
   const productId = params.id
 
   useEffect(() => {
-    ;(async () => {
+    (async () => {
       if (!productId) return
       const details = await getPostDetail(productId)
       setPostDetails(details)

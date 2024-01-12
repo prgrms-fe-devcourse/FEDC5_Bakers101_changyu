@@ -2,7 +2,6 @@ import tw, { styled } from 'twin.macro'
 import PrevIcon from './PrevIcon'
 import SearchIcon from './SearchIcon'
 import ResetIcon from './ResetIcon'
-import { useRef } from 'react'
 
 interface SearchBarProps {
   keyword: string

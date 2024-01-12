@@ -14,12 +14,12 @@ const PostList = ({ title, id }: nowChannelType) => {
 
   const fetchPostList = async () => {
     if (title === '전체 채널' && id === undefined) {
-      ;(async () => {
+      (async () => {
         const channeListRequest = await getAllPostList()
         setPostList(channeListRequest)
       })()
     } else if (id !== undefined) {
-      ;(async () => {
+      (async () => {
         const channeListRequest = await getPostList(id)
         setPostList(channeListRequest)
       })()
