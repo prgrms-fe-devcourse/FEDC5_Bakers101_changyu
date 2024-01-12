@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 
 import { useNavigate, Link } from 'react-router-dom'
 import tw, { styled } from 'twin.macro'
+import { useProfileStore } from '@/stores/userProfileStore'
 
 import { getUserInform } from '@/apis/userApis'
 import CommentIcon from '@/assets/icons/comment.svg'
@@ -9,10 +10,16 @@ import HeartIcon from '@/assets/icons/following.svg'
 import NoImage from '@/assets/temp/noImage.png'
 import getPostLiveTime from '@/utils/getPostCreateTime'
 
-const PostItemContainer = styled.div(({ isLoading }) => [
-  tw`flex flex-col gap-4 bg-white transition-all duration-700 ease-in-out transform rounded-lg p-2 shadow-lg`,
-  isLoading ? tw`translate-y-[0%]` : tw`translate-y-[80%] opacity-0`
-])
+type PostItemContainerProps = {
+  isLoading: boolean
+}
+
+const PostItemContainer = styled.div<PostItemContainerProps>(
+  ({ isLoading }) => [
+    tw`flex flex-col gap-4 bg-white transition-all duration-700 ease-in-out transform rounded-lg p-2 shadow-lg`,
+    isLoading ? tw`translate-y-[0%]` : tw`translate-y-[80%] opacity-0`
+  ]
+)
 
 const PostItemHeader = styled.div`
   ${tw`flex justify-between items-center px-2 py-2`}
@@ -45,6 +52,15 @@ const PostlItem = ({ postDetail, index }: PostItemType) => {
 
   const [isLoading, setIsLoading] = useState(false)
   const [userImg, setUserImg] = useState(null)
+  const [isFollowed, setIsFollowed] = useState(false)
+  const { profile } = useProfileStore()
+
+  const getIsFollowed = () => {
+    return postDetail.author.following.some(
+      (authorFollowId) =>
+        profile?.followers.some(({ _id }) => authorFollowId === _id)
+    )
+  }
 
   const fetchUserInform = async () => {
     const response = await getUserInform(postDetail.author._id)
@@ -59,6 +75,7 @@ const PostlItem = ({ postDetail, index }: PostItemType) => {
 
   useEffect(() => {
     fetchUserInform()
+    setIsFollowed(getIsFollowed())
     setTimeout(() => setIsLoading(true), index * 120)
   }, [postDetail.author._id, index])
 
@@ -83,7 +100,7 @@ const PostlItem = ({ postDetail, index }: PostItemType) => {
             <p className="font-bold">{authorName}</p>
           </Link>
           <p className="my-auto font-bold text-purple-500 text-[0.6rem]">
-            팔로우 중
+            {isFollowed ? '팔로우 중' : null}
           </p>
         </div>
         <p className="text-xs font-semibold pr-2 rounded-xl bg-brand-primary p-1 px-2 text-[#fff]">

@@ -9,7 +9,7 @@ const TabItem = ({ title, checked }: TabItemProps) => {
       type="radio"
       name="my_tabs_2"
       role="tab"
-      className="tab font-bold"
+      className="tab text-xs w-40"
       aria-label={title}
       readOnly
       checked={checked}

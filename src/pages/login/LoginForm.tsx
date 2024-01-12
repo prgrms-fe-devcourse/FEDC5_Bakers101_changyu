@@ -3,12 +3,14 @@ import { useNavigate } from 'react-router-dom'
 import { login } from '@/apis/login'
 import * as Styles from '@/pages/login/LoginStyles'
 import { useProfileStore } from '@/stores/userProfileStore'
+import { useAuthModalStore } from '@/stores/useAuthModalStore'
 
 function LoginForm() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
   const { setProfile } = useProfileStore()
+  const authModalStore = useAuthModalStore()
   const navigate = useNavigate()
 
   const handleLoginSubmit = async () => {
@@ -16,6 +18,7 @@ function LoginForm() {
       const response = await login(email, password)
       localStorage.setItem('token', JSON.stringify(response.token))
       setProfile(response.user)
+      authModalStore.updateIsUserLogin(true)
       navigate('/')
     } catch (error) {
       console.log(error)

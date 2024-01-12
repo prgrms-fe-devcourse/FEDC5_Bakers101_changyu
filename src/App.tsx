@@ -1,4 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { useAuthModalStore } from '@/stores/useAuthModalStore'
+import AuthRouteModal from './components/auth-route-modal'
+
 import Home from './pages/home'
 import PostCreation from './pages/post-creation'
 import PostDetail from './pages/post-detail'
@@ -9,8 +12,11 @@ import Profile from './pages/profile'
 import LoginForm from './pages/login/LoginForm'
 
 function App() {
+  const {isOpen,closeModal}= useAuthModalStore()
+  
   return (
     <BrowserRouter>
+      {isOpen &&  <AuthRouteModal closeModal={closeModal}/>  }
       <Routes>
         <Route
           path="/"
@@ -50,6 +56,7 @@ function App() {
         />
       </Routes>
     </BrowserRouter>
+
   )
 }
 
