@@ -3,7 +3,7 @@ import { create } from 'zustand'
 type ModalState = {
   isLogin: boolean
   isOpen: boolean
-  setLogin: () => void
+  updateIsUserLogin: (newIsLogin: boolean) => void
   toggleModal: () => void
   openModal: () => void
   closeModal: () => void
@@ -12,7 +12,7 @@ type ModalState = {
 export const useAuthModalStore = create<ModalState>((set) => ({
   isLogin: false,
   isOpen: false,
-  setLogin: () => set({ isLogin: true }),
+  updateIsUserLogin: (newIsLogin: boolean) => set({ isLogin: newIsLogin }),
   toggleModal: () => set((state) => ({ isOpen: !state.isOpen })),
   openModal: () => set({ isOpen: true }),
   closeModal: () => {

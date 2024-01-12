@@ -10,7 +10,7 @@ function LoginForm() {
   const [password, setPassword] = useState('')
 
   const { setProfile } = useProfileStore()
-  const { setLogin } = useAuthModalStore()
+  const authModalStore = useAuthModalStore()
   const navigate = useNavigate()
 
   const handleLoginSubmit = async () => {
@@ -18,7 +18,7 @@ function LoginForm() {
       const response = await login(email, password)
       localStorage.setItem('token', JSON.stringify(response.token))
       setProfile(response.user)
-      setLogin()
+      authModalStore.updateIsUserLogin(true)
       navigate('/')
     } catch (error) {
       console.log(error)
