@@ -48,32 +48,33 @@ const SignUpForm = () => {
   }
 
   const handleSignUpSumbit = async () => {
-    try {
-      const isEmailValid = validateEmail(email)
-      const isNameValid = validateName(name)
-      const isPasswordValid = validatePassword(password)
-      const isConfirmPasswordValid = validateConfirmPassword(confirmPassword)
+    const isEmailValid = validateEmail(email)
+    const isNameValid = validateName(name)
+    const isPasswordValid = validatePassword(password)
+    const isConfirmPasswordValid = validateConfirmPassword(confirmPassword)
 
-      if (
-        isEmailValid &&
-        isNameValid &&
-        isPasswordValid &&
-        isConfirmPasswordValid
-      ) {
-        const response = await signUp(email, name, password)
-        localStorage.setItem('token', JSON.stringify(response.token))
-        setProfile(response.user)
-        navigate('/')
+    if (
+      isEmailValid &&
+      isNameValid &&
+      isPasswordValid &&
+      isConfirmPasswordValid
+    ) {
+      try {
+        {
+          const response = await signUp(email, name, password)
+          localStorage.setItem('token', JSON.stringify(response.token))
+          setProfile(response.user)
+          navigate('/')
+        }
+      } catch (error) {
+        console.error(error)
       }
-    } catch (error) {
-      console.error(error)
     }
   }
-
   const handleKeyDown = async (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       e.preventDefault()
-      await handleSignUpSumbit()
+      handleSignUpSumbit()
     }
   }
 
