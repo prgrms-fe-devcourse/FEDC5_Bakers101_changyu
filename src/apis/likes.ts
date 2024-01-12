@@ -2,10 +2,10 @@ import axiosInstance from './api'
 import { LIKE_POST_PATH, UNLIKE_POST_PATH } from '@/utils/api_paths'
 
 export async function createLike(postId: string): Promise<Like> {
+  const token = localStorage.getItem('token')
+  const parsedToken = JSON.parse(token as string)
   const config = {
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem('token')}`
-    }
+    headers: { Authorization: `bearer ${parsedToken}` }
   }
 
   const requestBody = {
@@ -22,10 +22,10 @@ export async function createLike(postId: string): Promise<Like> {
 }
 
 export async function deleteLike(likeId: string): Promise<Like> {
+  const token = localStorage.getItem('token')
+  const parsedToken = JSON.parse(token as string)
   const config = {
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem('token')}`
-    }
+    headers: { Authorization: `bearer ${parsedToken}` }
   }
 
   const requestBody = {
