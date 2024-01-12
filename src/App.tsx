@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { useAuthModalStore } from '@/stores/useAuthModalStore'
-import AuthRouteModal from './components/to-auth-route-modal'
+import AuthRouteModal from './components/auth-route-modal'
 
 import Home from './pages/home'
 import PostCreation from './pages/post-creation'
