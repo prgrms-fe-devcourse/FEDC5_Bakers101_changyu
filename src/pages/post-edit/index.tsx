@@ -5,10 +5,18 @@ import { useNavigate, useParams } from 'react-router-dom'
 import TextEditor from '@/components/text-editor'
 import PostEditHeader from './components/Header'
 import onGetImageFile from '@/utils/onGetImageFile'
+import InputWarningModal from '../post-creation/components/InputWarningModal'
 
 import handleImageFormData from '@/utils/handleImageFormData'
 import { getPostDetail, updatePost } from '@/apis/postApis'
 import FileUploadIcon from '@/assets/icons/fileUpload.svg'
+
+type BreadType = '조리빵' | '특수빵' | '식빵' | '과자빵' | null
+
+type ChannelButtonType = {
+  indexItem: string
+  selectedBread: BreadType
+}
 
 const breadOptions = ['조리빵', '특수빵', '식빵', '과자빵']
 
@@ -17,17 +25,17 @@ const PostTitleImageInputWrapper = styled.div`
 `
 const ChannelOptionsWrapper = styled.div``
 
-const ChannelButton = styled.button(({ indexItem, selectedBread }) => [
-  tw`w-16 py-1 font-bold rounded-full`,
-  indexItem === selectedBread
-    ? tw`bg-[#9F8170] text-white`
-    : tw`bg-[#F3F3F3] text-[#926B58]`
-])
+const ChannelButton = styled.button<ChannelButtonType>(
+  ({ indexItem, selectedBread }) => [
+    tw`w-16 py-1 font-bold rounded-full`,
+    indexItem === selectedBread
+      ? tw`bg-[#9F8170] text-white`
+      : tw`bg-[#F3F3F3] text-[#926B58]`
+  ]
+)
 const PostInputsWrapper = styled.div`
   ${tw`w-fit mx-auto`}
 `
-
-type BreadType = '조리빵' | '특수빵' | '식빵' | '과자빵' | null
 
 const PostEdit = () => {
   const navigate = useNavigate()
@@ -37,6 +45,7 @@ const PostEdit = () => {
   const [postDetails, setPostDetails] = useState<Post>()
   const [image, setImage] = useState<string | File | undefined>()
   const [selectedBread, setSelectedBread] = useState<BreadType>(null)
+  const [isOpenInputWarningModal, setIsOpenInputWarningModal] = useState(false)
   const params = useParams()
   const productId = params.id
 
@@ -53,6 +62,11 @@ const PostEdit = () => {
   }, [])
 
   async function onClickEditButton() {
+    if (selectedBread === null || title.length < 2 || details.length < 2) {
+      setIsOpenInputWarningModal(true)
+      return
+    }
+
     const formData = handleImageFormData({
       imageFile: image,
       title: title,
@@ -61,7 +75,7 @@ const PostEdit = () => {
       channelId: postDetails?.channel._id,
       postId: postDetails?._id
     })
-    await updatePost(import.meta.env.VITE_API_KEY, formData)
+    await updatePost(formData)
     navigate(`/post-detail/${postDetails?._id}`)
   }
 
@@ -108,14 +122,19 @@ const PostEdit = () => {
             ))}
           </div>
         </ChannelOptionsWrapper>
-
-        <div className="mx-auto w-fit mt-6">
-          <input
-            className="w-[20rem] mx-auto min-h-[40rem] border-2 border-gray-300"
-            onChange={(e) => setDetails(e.target.value)}
-            value={details}
+        <TextEditor
+          setText={setDetails}
+          initialValue={details}
+          className="h-[40rem] mt-6 w-full mx-auto"
+        />
+        {isOpenInputWarningModal && (
+          <InputWarningModal
+            setCloseModal={() => setIsOpenInputWarningModal(false)}
+            titleLength={title.length}
+            detailLength={details.length}
+            selectedBread={selectedBread}
           />
-        </div>
+        )}
       </PostInputsWrapper>
     </div>
   )

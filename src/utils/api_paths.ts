@@ -1,7 +1,6 @@
 /* 어드민 */
 export const CREATE_CHANNEL_BY_ADMIN_PATH = '/channels/create'
 
-
 /* 인증 */
 export const LOGIN_PATH = '/login'
 export const SIGNUP_PATH = '/signup'
@@ -9,6 +8,7 @@ export const LOGOUT_PATH = '/logout'
 export const AUTH_CHECK = '/auth-user'
 /* 사용자 */
 export const GET_ALL_USER_LIST_PATH = '/users/get-users'
+export const GET_ONLINE_USER_LIST_PATH = '/users/online-users'
 export const GET_USER_PROFILE_PATH = '/users'
 export const UPDATE_PROFILE_IMAGE_PATH = '/users/upload-photo'
 export const UPDATE_COVER_IMAGE_PATH = '/users/upload-photo'

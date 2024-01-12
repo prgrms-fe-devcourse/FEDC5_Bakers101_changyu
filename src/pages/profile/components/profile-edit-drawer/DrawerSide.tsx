@@ -39,7 +39,7 @@ const DrawerSide = ({ onToggle }: DrawerSideProps) => {
           <PrevIcon className="w-full h-full text-[#fff]" />
         </PrevButton>
       </HeaderContainer>
-      <Container className="bg-base-200">
+      <Container className="bg-base-200 pb-5">
         <CoverImage imgSrc={profile?.coverImage}>
           <UploadImageButton
             className="absolute bottom-3 right-2"

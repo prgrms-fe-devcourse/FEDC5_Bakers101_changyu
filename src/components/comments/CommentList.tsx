@@ -21,9 +21,13 @@ export interface CommentProps {
 
 interface CommentListProps {
   comments: CommentProps[]
+  setCommentNumber: React.Dispatch<React.SetStateAction<number>>
 }
 
-const CommentList = ({ comments: initialComments }: CommentListProps) => {
+const CommentList = ({
+  comments: initialComments,
+  setCommentNumber
+}: CommentListProps) => {
   const [comments, setComments] = useState(initialComments)
 
   useEffect(() => {
@@ -36,6 +40,7 @@ const CommentList = ({ comments: initialComments }: CommentListProps) => {
       setComments((prevComments) =>
         prevComments.filter((comment) => comment._id !== commentId)
       )
+      setCommentNumber((prev) => prev - 1)
     } catch (error) {
       console.error('댓글 삭제 중 오류가 발생했습니다:', error)
     }

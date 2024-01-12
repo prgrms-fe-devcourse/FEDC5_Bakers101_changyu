@@ -8,6 +8,7 @@ interface InputProps {
   placeholder: string
   type: string
   onChangeInput: (e: React.ChangeEvent<HTMLInputElement>) => void
+  error?: string
 }
 
 const Input = styled.input`
@@ -15,7 +16,7 @@ const Input = styled.input`
 `
 
 const Label = styled.label`
-  ${tw`label`}
+  ${tw`label grow shrink-0 text-sm`}
 `
 
 const ProfileInput = ({
@@ -24,11 +25,15 @@ const ProfileInput = ({
   value,
   placeholder,
   type,
-  onChangeInput
+  onChangeInput,
+  error
 }: InputProps) => {
   return (
     <div>
-      <Label>{labelName}</Label>
+      <div className="flex justify-between items-center">
+        <Label>{labelName}</Label>
+        <p className="text-xs text-[crimson] px-1 py-2">{error}</p>
+      </div>
       <Input
         type={type}
         name={name}

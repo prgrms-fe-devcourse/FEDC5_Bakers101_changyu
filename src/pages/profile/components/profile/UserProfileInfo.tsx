@@ -3,16 +3,21 @@ import ButtonContainer from './ButtonContainer'
 import FollowButton from './FollowButton'
 import ChatIcon from './ChatIcon'
 
+
 interface UserProfileInfoProps {
   fullName?: string
   userName?: string
   email?: string
   isOnline?: boolean
-  followers?: Follow[]
-  following?: Following[]
+  followers?: number
+  following?: number
   isMyProfile: boolean
   isFollowed: boolean
   onClickFollowButton: () => void
+}
+
+interface OnlineIndicatorProps {
+  isOnline?: boolean
 }
 
 const UserProfileInfoWrapper = styled.div`
@@ -27,7 +32,7 @@ const UserNameWrapper = styled.div`
   ${tw`flex items-center gap-2`}
 `
 
-const OnlineIndicator = styled.div(({ isOnline }) => [
+const OnlineIndicator = styled.div<OnlineIndicatorProps>(({ isOnline }) => [
   tw`w-2 h-2 rounded-full bg-[crimson] self-end mb-1`,
   isOnline && tw`bg-[limegreen]`
 ])
@@ -47,6 +52,7 @@ const UserProfileInfo = ({
   isFollowed,
   onClickFollowButton
 }: UserProfileInfoProps) => {
+  
   return (
     <UserProfileInfoWrapper>
       <ProfileInfo>
@@ -57,22 +63,19 @@ const UserProfileInfo = ({
         </UserNameWrapper>
         <p className="text-[#333]">{email}</p>
         <ButtonContainer className="font-semibold mt-3">
-          <button>팔로워 {followers && followers.length}</button>
-          <button>팔로잉 {following && following.length}</button>
+          <button>팔로워 {followers}</button>
+          <button>팔로잉 {following}</button>
         </ButtonContainer>
       </ProfileInfo>
       <ButtonContainer className="items-center self-center mb-5">
         <ChatButton>
           <ChatIcon className="w-full h-full" />
         </ChatButton>
-        {!isMyProfile && isFollowed && (
+        {!isMyProfile && (
           <FollowButton
-            isFilled
+            isFilled={isFollowed}
             onClick={onClickFollowButton}
           />
-        )}
-        {!isMyProfile && !isFollowed && (
-          <FollowButton onClick={onClickFollowButton} />
         )}
       </ButtonContainer>
     </UserProfileInfoWrapper>

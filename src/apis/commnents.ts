@@ -1,12 +1,16 @@
 import axiosInstance from './api'
 import { CREATE_COMMENT_PATH, DELETE_COMMENT_PATH } from '@/utils/api_paths'
 
-const config = {
-  headers: {
-    Authorization: `Bearer ${import.meta.env.VITE_TOKEN}`
-  }
+const getToken = () => {
+  const token = localStorage.getItem('token')
+  return JSON.parse(token as string)
 }
 
+const config = {
+  headers: {
+    Authorization: `Bearer ${getToken()}`
+  }
+}
 export async function createComment(
   comment: string,
   postId: string
