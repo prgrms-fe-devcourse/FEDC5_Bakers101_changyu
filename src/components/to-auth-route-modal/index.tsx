@@ -27,7 +27,7 @@ const AuthRouteModal = ({ closeModal} : AuthRouteModal) =>{
   return ReactDOM.createPortal(
   <ModalOverlay onClick={handleOverlayClick}>
     <AuthRouteModalContainer>
-      <p className='text-center text-lg font-semibold'> 아직 Bakers101 회원이 아니신가요?</p>
+      <h2 className='text-center text-lg font-semibold'> 아직 Bakers101 회원이 아니신가요?</h2>
       <div className="w-fit text-center mx-auto grid gap-4 my-4">
         <Link className="px-4 py-1 rounded-md text-white bg-[#9F8170]" to ='/login' onClick={closeModal}>
           로그인
