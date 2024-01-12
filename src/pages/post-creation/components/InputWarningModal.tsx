@@ -6,10 +6,10 @@ const InputWarningModalContainer = styled.div`
 `
 
 const warningMesage = {
-  titleMin: '제목을 최소 2글자 이상 작성해주세요.',
-  titleMax: '제목을 최대 20글자 미만 작성해주세요.',
-  noBreadChannel: '글을 올리실 채널을 선택해주세요.',
-  noDetail: '본문을 작성해주세요.'
+  TITLE_EMPTY: '제목을 최소 2글자 이상 작성해주세요.',
+  TITLE_MAX: '제목을 최대 20글자 미만 작성해주세요.',
+  CHNANNEL_NULL: '글을 올리실 채널을 선택해주세요.',
+  DETAIL_EMPTY: '본문을 작성해주세요.'
 }
 
 interface InputWarningModal {
@@ -26,10 +26,10 @@ const InputWarningModal = ({
   selectedBread
 }: InputWarningModal) => {
   const getWarningMesage = () => {
-    if (titleLength < 2) return warningMesage['titleMin']
-    else if (titleLength > 19) return warningMesage['titleMax']
-    else if (!selectedBread) return warningMesage['noBreadChannel']
-    else if (!detailLength) return warningMesage['noDetail']
+    if (titleLength < 2) return warningMesage.TITLE_EMPTY
+    else if (titleLength > 19) return warningMesage.TITLE_MAX
+    else if (!selectedBread) return warningMesage.CHNANNEL_NULL
+    else if (!detailLength) return warningMesage.DETAIL_EMPTY
   }
 
   return (
