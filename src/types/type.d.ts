@@ -37,7 +37,7 @@ interface Post {
   image?: string
   imagePulicId?: string
   title: string
-  channel: Channel
+  channel: Channel | string
   author: User
   createdAt: string
   updatedAt: string
@@ -68,6 +68,7 @@ interface Notification {
   post?: string | null // 포스트 id
   follow?: string // 사용자 id
   comment?: Comment
+  like?: Like
   message?: string // 메시지 id
   createdAt: string
   updatedAt: string

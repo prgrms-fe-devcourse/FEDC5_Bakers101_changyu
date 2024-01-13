@@ -38,7 +38,7 @@ type PostItemType = {
   index: number
 }
 
-const PostlItem = ({ postDetail, index }: PostItemType) => {
+const PostItem = ({ postDetail, index }: PostItemType) => {
   const { title, body } = JSON.parse(postDetail.title)
   const channelName = postDetail.channel.name
   const authorName = postDetail.author.fullName
@@ -150,4 +150,4 @@ const PostlItem = ({ postDetail, index }: PostItemType) => {
   )
 }
 
-export default PostlItem
+export default PostItem
