@@ -11,8 +11,7 @@ import Drawer from './components/profile-edit-drawer/Drawer'
 import EditIcon from './components/EditIcon'
 import ProfileImage from './components/ProfileImage'
 import CoverImage from './components/CoverImage'
-import LikedPostList from './components/profile/LikedPostList'
-import MyPostList from './components/profile/MyPostLIst'
+import PostList from './components/profile/PostList'
 
 import getProfile from '@/apis/profile/profile'
 import unfollow from '@/apis/follow/unfollow'
@@ -63,6 +62,7 @@ const Profile = () => {
   const [followerCount, setFollowerCount] = useState<number>(0)
   const [followingCount, setFollowingCount] = useState<number>(0)
   const [likedPosts, setLikedPosts] = useState<Post[]>([])
+  const [myPosts, setMyPosts] = useState<Post[]>([])
 
   const handleToggleDrawer = () => {
     setIsOpen(!isOpen)
@@ -85,6 +85,14 @@ const Profile = () => {
       setLikedPosts((prev) => [...prev, data])
     })
   }, [profile?.likes])
+
+  const fetchMyPosts = useCallback(async () => {
+    const posts = currentProfile!.posts
+    posts?.forEach(async (post) => {
+      const data = await getPostDetail(post._id)
+      setMyPosts((prev) => [...prev, data])
+    })
+  }, [currentProfile])
 
   const handleClickFollowButton = async () => {
     let data = null
@@ -126,6 +134,10 @@ const Profile = () => {
   useEffect(() => {
     fetchLikedPosts()
   }, [])
+
+  useEffect(() => {
+    fetchMyPosts()
+  }, [currentProfile])
 
   useEffect(() => {
     const checkIsFollowedUser = () => {
@@ -180,11 +192,15 @@ const Profile = () => {
           </DetailSection>
           <Divider />
           <PostSection>
-            <MyPostList
+            {/* <MyPostList
               posts={currentProfile?.posts}
               listTitle="작성한 포스트"
+            /> */}
+            <PostList
+              posts={myPosts}
+              listTitle="작성한 포스트"
             />
-            <LikedPostList
+            <PostList
               posts={likedPosts}
               listTitle="좋아요한 포스트"
             />
