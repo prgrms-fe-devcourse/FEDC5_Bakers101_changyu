@@ -22,7 +22,7 @@ interface IUseForm {
 
 const useForm = ({ initialValue, onSubmit, validate }: IUseForm) => {
   const [values, setValues] = useState(initialValue)
-  const [errors, setErrors] = useState({})
+  const [errors, setErrors] = useState<Partial<Error>>({})
   const [isLoading, setIsLoading] = useState(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
