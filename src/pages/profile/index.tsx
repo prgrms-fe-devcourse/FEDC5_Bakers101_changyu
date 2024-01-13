@@ -192,10 +192,6 @@ const Profile = () => {
           </DetailSection>
           <Divider />
           <PostSection>
-            {/* <MyPostList
-              posts={currentProfile?.posts}
-              listTitle="작성한 포스트"
-            /> */}
             <PostList
               posts={myPosts}
               listTitle="작성한 포스트"
