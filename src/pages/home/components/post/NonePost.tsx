@@ -2,7 +2,7 @@ import tw, { styled } from 'twin.macro'
 import FireBakeIcon from '@/assets/icons/firebreadicon.svg'
 
 const NonePostContainer = styled.div`
-  ${tw`mx-auto transform my-12 translate-y-1/2  transition-all duration-500 ease-in-out`}
+  ${tw`h-screen mx-auto transform my-12 translate-y-1/2  transition-all duration-500 ease-in-out`}
 `
 
 const NonePost = () => {

@@ -22,7 +22,7 @@ import { createNotification } from '@/apis/notifications'
 import { getPostDetail } from '@/apis/postApis'
 
 const ProfileContainer = styled.main`
-  ${tw`w-full h-screen relative`}
+  ${tw`w-full h-full relative`}
 `
 
 const UserProfileSection = styled.section`

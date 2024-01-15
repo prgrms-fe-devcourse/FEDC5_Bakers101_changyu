@@ -23,9 +23,9 @@ const PostDetail = () => {
   }, [])
 
   return (
-    <div>
+    <div className='h-full'>
       {postDetails && (
-        <div>
+        <div className='bg-white'>
           <PostHeader
             postId={postDetails._id}
             title={JSON.parse(postDetails.title).title}
@@ -42,7 +42,7 @@ const PostDetail = () => {
             commentNum={postDetails.comments.length}
             postId={postDetails._id}
           />
-          <hr className="w-4/5 mx-auto mb-8 mt-2 px-2" />
+          <hr className="w-4/5 mx-auto pb-8 mt-2 px-2" />
         </div>
       )}
     </div>
