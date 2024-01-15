@@ -1,5 +1,5 @@
 import axiosInstance from '../api'
-import { GET_DETAIL_POST_PATH } from '@/utils/api_paths'
+import { GET_DETAIL_POST_PATH } from '@/apis/api_paths'
 
 const getPostDetail = async (postId: string) => {
   try {

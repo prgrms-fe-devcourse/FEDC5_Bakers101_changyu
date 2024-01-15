@@ -1,5 +1,5 @@
 import axiosInstance from '../api'
-import { LOGIN_PATH } from '@/utils/api_paths'
+import { LOGIN_PATH } from '@/apis/api_paths'
 
 type UserResponse = {
   user: User

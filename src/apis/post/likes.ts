@@ -1,5 +1,5 @@
 import axiosInstance from '../api'
-import { LIKE_POST_PATH, UNLIKE_POST_PATH } from '@/utils/api_paths'
+import { LIKE_POST_PATH, UNLIKE_POST_PATH } from '@/apis/api_paths'
 
 export async function createLike(postId: string): Promise<Like> {
   const token = localStorage.getItem('token')

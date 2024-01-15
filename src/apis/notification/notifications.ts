@@ -3,7 +3,7 @@ import {
   GET_NOTIFICATIONS_PATH,
   CREATE_NOTIFICATIONS_PATH,
   UPDATE_NOTIFICATIONS_PATH
-} from '@/utils/api_paths'
+} from '@/apis/api_paths'
 
 const getToken = () => {
   const token = localStorage.getItem('token')

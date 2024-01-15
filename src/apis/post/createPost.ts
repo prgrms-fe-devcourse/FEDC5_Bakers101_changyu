@@ -1,5 +1,5 @@
 import axiosInstance from '../api'
-import { CREATE_POST_PATH } from '@/utils/api_paths'
+import { CREATE_POST_PATH } from '@/apis/api_paths'
 
 async function createPost(formData: FormData) {
   try {

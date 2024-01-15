@@ -1,5 +1,5 @@
 import axiosInstance from '../api'
-import { DELETE_POST_PATH } from '@/utils/api_paths'
+import { DELETE_POST_PATH } from '@/apis/api_paths'
 
 async function deletePost(id: string) {
   try {

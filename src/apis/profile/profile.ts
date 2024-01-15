@@ -1,4 +1,4 @@
-import { GET_USER_PROFILE_PATH } from '@/utils/api_paths'
+import { GET_USER_PROFILE_PATH } from '@/apis/api_paths'
 import axiosInstance from '../api'
 
 interface ProfileResponse extends User {}

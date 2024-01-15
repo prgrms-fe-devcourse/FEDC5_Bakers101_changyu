@@ -1,4 +1,4 @@
-import { UPDATE_MY_PASSWORD_PATH } from '@/utils/api_paths'
+import { UPDATE_MY_PASSWORD_PATH } from '@/apis/api_paths'
 import axiosInstance from '../api'
 
 interface Data {

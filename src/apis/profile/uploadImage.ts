@@ -1,4 +1,4 @@
-import { UPDATE_PROFILE_IMAGE_PATH } from '@/utils/api_paths'
+import { UPDATE_PROFILE_IMAGE_PATH } from '@/apis/api_paths'
 import axiosInstance from '../api'
 
 async function uploadImage(formData: FormData) {

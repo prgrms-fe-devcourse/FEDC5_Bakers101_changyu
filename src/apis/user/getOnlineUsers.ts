@@ -1,4 +1,4 @@
-import { GET_ONLINE_USER_LIST_PATH } from '@/utils/api_paths'
+import { GET_ONLINE_USER_LIST_PATH } from '@/apis/api_paths'
 import axiosInstance from '../api'
 
 interface UserResponse extends User {}

@@ -1,4 +1,4 @@
-import { UNFOLLOW_PATH } from '@/utils/api_paths'
+import { UNFOLLOW_PATH } from '@/apis/api_paths'
 import axiosInstance from '../api'
 
 interface Data {

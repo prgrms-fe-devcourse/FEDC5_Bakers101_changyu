@@ -1,5 +1,5 @@
 import axiosInstance from '../api'
-import { CREATE_COMMENT_PATH, DELETE_COMMENT_PATH } from '@/utils/api_paths'
+import { CREATE_COMMENT_PATH, DELETE_COMMENT_PATH } from '@/apis/api_paths'
 
 const getToken = () => {
   const token = localStorage.getItem('token')

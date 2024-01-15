@@ -1,6 +1,6 @@
 import axiosInstance from '../api'
 
-import { CREATE_CHANNEL_BY_ADMIN_PATH, AUTH_CHECK } from '@/utils/api_paths'
+import { CREATE_CHANNEL_BY_ADMIN_PATH, AUTH_CHECK } from '@/apis/api_paths'
 
 async function createChannel(channelName: string, description: string) {
   try {
