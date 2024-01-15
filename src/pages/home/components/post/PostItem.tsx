@@ -1,14 +1,16 @@
 import { useState, useEffect } from 'react'
-
 import { useNavigate, Link } from 'react-router-dom'
 import tw, { styled } from 'twin.macro'
+
 import { useProfileStore } from '@/stores/userProfileStore'
-import NoProfileThumbnailIcon from '@/components/profile-images/NoProfileThumbnailIcon'
-import { getUserInform } from '@/apis/userApis'
+
+import ProfileImage from '@/components/profile-images'
+import getProfile from '@/apis/profile/profile'
+import getPostLiveTime from '@/utils/getPostCreateTime'
+
 import CommentIcon from '@/assets/icons/comment.svg'
 import HeartIcon from '@/assets/icons/following.svg'
 import NoImage from '@/assets/temp/noImage.png'
-import getPostLiveTime from '@/utils/getPostCreateTime'
 
 type PostItemContainerProps = {
   isLoading: boolean
@@ -45,13 +47,10 @@ const PostItem = ({ postDetail, index }: PostItemType) => {
   const likesNum = postDetail.likes.length
   const commentsNum = postDetail.comments.length
   const postImage = postDetail.image
-
   const timeString = getPostLiveTime(postDetail.createdAt)
-
   const navigate = useNavigate()
-
   const [isLoading, setIsLoading] = useState(false)
-  const [userImg, setUserImg] = useState(null)
+  const [userImg, setUserImg] = useState<string | undefined>(undefined)
   const [isFollowed, setIsFollowed] = useState(false)
   const { profile } = useProfileStore()
 
@@ -62,8 +61,8 @@ const PostItem = ({ postDetail, index }: PostItemType) => {
   }
 
   const fetchUserInform = async () => {
-    const response = await getUserInform(postDetail.author._id)
-    setUserImg(response.image || null)
+    const response = await getProfile(postDetail.author._id)
+    setUserImg(response.image || undefined)
   }
 
   const getHtmlToTextString = (htmlString: string) => {
@@ -83,19 +82,12 @@ const PostItem = ({ postDetail, index }: PostItemType) => {
       isLoading={isLoading}
       onClick={() => navigate(`/post-detail/${postDetail._id}`)}>
       <PostItemHeader>
-        <div className="flex gap-2 items-center">
+        <div className="flex gap-2 justify-center items-center">
           <Link
             to={`/profile/${postDetail.author._id}`}
             onClick={(event) => event.stopPropagation()}
             className="flex gap-2 items-center">
-            {userImg ? (
-              <img
-                src={userImg as string}
-                className="w-8 h-8 rounded-full"
-              />
-            ) : (
-              <NoProfileThumbnailIcon className="w-[2rem] h-[2rem] bg-white text-[#ddd] bg-[#fff]" />
-            )}
+            <ProfileImage profileImage={userImg} />
             <p className="font-bold">{authorName}</p>
           </Link>
           <p className="my-auto font-bold text-purple-500 text-[0.6rem]">
@@ -112,11 +104,13 @@ const PostItem = ({ postDetail, index }: PostItemType) => {
             <img
               src={postImage}
               className="w-full h-full bg-cover bg-white rounded-md"
+              alt="post-image"
             />
           ) : (
             <img
               src={NoImage}
               className="bg-cover bg-white rounded-md"
+              alt="no-image"
             />
           )}
         </div>
@@ -133,6 +127,7 @@ const PostItem = ({ postDetail, index }: PostItemType) => {
             <img
               className="w-4 h-4 my-auto"
               src={HeartIcon}
+              alt="heart-icon"
             />
             <p className="text-[0.9rem]">{likesNum}</p>
           </div>
@@ -140,6 +135,7 @@ const PostItem = ({ postDetail, index }: PostItemType) => {
             <img
               className="w-4 h-4 my-auto"
               src={CommentIcon}
+              alt="comment-icon"
             />
             <p className="text-[0.9rem]">{commentsNum}</p>
           </div>

@@ -1,22 +1,33 @@
-import tw, { styled } from 'twin.macro'
-import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import tw, { styled } from 'twin.macro'
+
 import { useProfileStore } from '@/stores/userProfileStore'
 
-import NoProfileThumbnailIcon from '@/components/profile-images/NoProfileThumbnailIcon'
-import prevIcon from '@/assets/icons/prev_brown.svg'
-import getPostLiveTime from '@/utils/getPostCreateTime'
+import ProfileImage from '@/components/profile-images'
 import DeleteCheckModal from './DeleteCheckModal'
 
+import getPostLiveTime from '@/utils/getPostCreateTime'
+import prevIcon from '@/assets/icons/prev_brown.svg'
+
 const PostHeaderContainer = styled.div`
-  ${tw``}
+  ${tw`flex flex-col`}
 `
 const PostEditDeleteButtonsWrapper = styled.div`
   ${tw`flex w-fit mx-auto gap-3 mt-3`}
 `
 
 const PostAuthorProfileWrapper = styled.div`
-  ${tw`w-fit mx-auto my-2`}
+  ${tw`flex flex-col justify-center items-center gap-2 w-fit mx-auto text-center`}
+  & > a {
+    ${tw`flex flex-col items-center`}
+  }
+  & img {
+    ${tw`mx-auto`}
+  }
+  & p {
+    ${tw`mx-auto`}
+  }
 `
 
 type PostHeaderType = {
@@ -48,21 +59,14 @@ const PostHeader = ({
       <button
         onClick={() => navigate(-1)}
         className="my-2 mb-4">
-        <img src={prevIcon} />
+        <img
+          src={prevIcon}
+          alt="prev-icon"
+        />
       </button>
       <PostAuthorProfileWrapper>
         <Link to={`/profile/${author._id}`}>
-          <div className="w-[4rem] h-[4rem] overflow-hidden mx-auto rounded-full">
-            {author.image ? (
-              <img
-                className="w-[4rem] h-[4rem] object-cover"
-                src={author.image}
-                alt="profileimg"
-              />
-            ) : (
-              <NoProfileThumbnailIcon className="w-[4rem] h-[4rem] rounded-full text-[#ddd] bg-[#fff]" />
-            )}
-          </div>
+          <ProfileImage profileImage={author.image as string} />
           <div className="flex mx-auto gap-2 w-fit">
             <p className="font-semibold text-[1.1rem] my-1">
               {author.fullName}
@@ -72,7 +76,7 @@ const PostHeader = ({
             </p>
           </div>
         </Link>
-        <p className="w-fit mx-auto text-[1.4rem] font-medium my-2">{title}</p>
+        <p className="w-fit mx-auto text-[1.4rem] font-medium my-1">{title}</p>
         <p className="my-2 w-fit mx-auto text-[0.8rem]">
           {getPostLiveTime(createAt)}
         </p>

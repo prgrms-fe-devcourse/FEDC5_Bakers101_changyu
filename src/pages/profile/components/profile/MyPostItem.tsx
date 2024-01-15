@@ -1,12 +1,14 @@
 import { useCallback } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import tw, { styled } from 'twin.macro'
+import { useProfileStore } from '@/stores/userProfileStore'
+
+import ProfileImage from '@/components/profile-images'
+import getPostLiveTime from '@/utils/getPostCreateTime'
+
 import NoImage from '@/assets/temp/noImage.png'
 import CommentIcon from '@/assets/icons/comment.svg'
 import HeartIcon from '@/assets/icons/following.svg'
-import NoProfileThumbnailIcon from '@/components/profile-images/NoProfileThumbnailIcon'
-import { useProfileStore } from '@/stores/userProfileStore'
-import getPostLiveTime from '@/utils/getPostCreateTime'
 
 interface PostItemProps {
   post: Post
@@ -48,14 +50,7 @@ const MyPostItem = ({ post }: PostItemProps) => {
             to={`/profile/${post.author}`}
             onClick={(event) => event.stopPropagation()}
             className="flex gap-2 items-center">
-            {profile?.image ? (
-              <img
-                src={profile.image}
-                className="w-8 h-8 rounded-full"
-              />
-            ) : (
-              <NoProfileThumbnailIcon className="w-[2rem] h-[2rem] bg-white text-[#ddd]" />
-            )}
+            <ProfileImage profileImage={profile?.image} />
             <p className="font-bold">{profile?.fullName}</p>
           </Link>
         </div>
@@ -69,11 +64,13 @@ const MyPostItem = ({ post }: PostItemProps) => {
             <img
               src={post.image}
               className="w-full h-full bg-cover bg-white rounded-md"
+              alt="post-image"
             />
           ) : (
             <img
               src={NoImage}
               className="bg-cover bg-white rounded-md"
+              alt="no-image"
             />
           )}
         </div>
@@ -90,6 +87,7 @@ const MyPostItem = ({ post }: PostItemProps) => {
             <img
               className="w-4 h-4 my-auto"
               src={HeartIcon}
+              alt="heart-icon"
             />
             <p className="text-[0.9rem]">{post.likes.length}</p>
           </div>
@@ -97,6 +95,7 @@ const MyPostItem = ({ post }: PostItemProps) => {
             <img
               className="w-4 h-4 my-auto"
               src={CommentIcon}
+              alt="comment-icon"
             />
             <p className="text-[0.9rem]">{post.comments.length}</p>
           </div>
