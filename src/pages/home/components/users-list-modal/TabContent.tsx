@@ -11,11 +11,13 @@ const TabContent = ({ users }: TabContentProps) => {
       {users.length > 0 && (
         <div className="p-2 grid grid-flow-dense grid-cols-5 gap-3">
           {users.map(({ _id, fullName, image }) => (
-            <ProfileCard
-              id={_id}
-              fullName={fullName}
-              profileImage={image}
-            />
+            <button key={_id}>
+              <ProfileCard
+                id={_id}
+                fullName={fullName}
+                profileImage={image}
+              />
+            </button>
           ))}
         </div>
       )}
