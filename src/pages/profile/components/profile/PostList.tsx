@@ -19,7 +19,7 @@ const PostList = ({ posts, listTitle }: PostListProps) => {
       <PostListTitle>{listTitle}</PostListTitle>
       <section className="flex flex-col gap-2">
         {posts?.length ? (
-          posts?.map((post, index) => (
+          posts.map((post, index) => (
             <button key={post._id}>
               <PostItem
                 postDetail={post}
