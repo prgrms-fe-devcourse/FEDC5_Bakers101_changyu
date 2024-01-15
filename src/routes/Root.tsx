@@ -9,6 +9,7 @@ import PostDetail from '../pages/post-detail'
 import PostEdit from '../pages/post-edit'
 import AuthRouteModal from '../components/auth-route-modal'
 import { useAuthModalStore } from '../stores/useAuthModalStore'
+import NotFound from '@/pages/not-found'
 
 function Root() {
   const { isOpen, closeModal } = useAuthModalStore()
@@ -47,6 +48,10 @@ function Root() {
         <Route
           path="/post-edit/:id"
           element={<PostEdit />}
+        />
+        <Route
+          path="*"
+          element={<NotFound />}
         />
       </Routes>
     </>
