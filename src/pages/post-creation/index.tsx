@@ -6,7 +6,7 @@ import CreatePostHeader from './components/header'
 import TextEditor from '@/components/text-editor'
 import InputWarningModal from './components/InputWarningModal'
 
-import { createPost } from '@/apis/postApis'
+import createPost from '@/apis/post/createPost'
 import getChannelInform from '@/apis/channel/getChannelInform'
 import FileUploadIcon from '@/assets/icons/fileUpload.svg'
 import handleImageFormData from '@/utils/handleImageFormData'

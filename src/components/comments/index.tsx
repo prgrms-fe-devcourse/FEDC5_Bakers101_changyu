@@ -5,7 +5,7 @@ import CommentForm from './CommentForm'
 import CommentList from './CommentList'
 
 // apis
-import { getPostDetail } from '@/apis/postApis'
+import getPostDetail from '@/apis/post/getPostDetail'
 
 type CommentsProps = {
   postUserId: string

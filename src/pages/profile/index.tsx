@@ -19,7 +19,7 @@ import unfollow from '@/apis/follow/unfollow'
 import follow from '@/apis/follow/follow'
 import logout from '@/apis/logout'
 import { createNotification } from '@/apis/notifications'
-import { getPostDetail } from '@/apis/postApis'
+import getPostDetail from '@/apis/post/getPostDetail'
 
 const ProfileContainer = styled.main`
   ${tw`w-full h-screen relative`}

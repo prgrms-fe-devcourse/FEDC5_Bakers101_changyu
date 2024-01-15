@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 
-import { getPostList, getAllPostList } from '@/apis/postApis'
+import getAllPostList from '@/apis/post/getAllPostList'
+import getPostList from '@/apis/post/getPostList'
 import NonePost from './NonePost'
 import PostItem from './PostItem'
 
