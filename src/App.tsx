@@ -12,11 +12,11 @@ import Profile from './pages/profile'
 import LoginForm from './pages/login/LoginForm'
 
 function App() {
-  const {isOpen,closeModal}= useAuthModalStore()
-  
+  const { isOpen, closeModal } = useAuthModalStore()
+
   return (
     <BrowserRouter>
-      {isOpen &&  <AuthRouteModal closeModal={closeModal}/>  }
+      {isOpen && <AuthRouteModal closeModal={closeModal} />}
       <Routes>
         <Route
           path="/"
@@ -56,7 +56,6 @@ function App() {
         />
       </Routes>
     </BrowserRouter>
-
   )
 }
 
