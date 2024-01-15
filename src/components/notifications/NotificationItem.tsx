@@ -7,7 +7,7 @@ type NotificationItemProps = {
   notification: Notification
 }
 
-const Container = tw.div`flex items-center p-2 border-b border-gray-300`
+const Container = tw.div`flex items-center p-2 border-b border-gray-300 w-full flex-1`
 
 const NotificationItem = memo(({ notification }: NotificationItemProps) => {
   const { seen, author, post, follow, like, createdAt } = notification
@@ -21,8 +21,8 @@ const NotificationItem = memo(({ notification }: NotificationItemProps) => {
 
     if (post) {
       return like
-        ? `@${fullName}님이 좋아요를 달았습니다.`
-        : `@${fullName}님이 댓글을 남겼습니다.`
+        ? `@${fullName}님이 회원님의 글에 좋아요를 달았습니다.`
+        : `@${fullName}님이 회원님의 글에 댓글을 남겼습니다.`
     }
   }
 
@@ -31,9 +31,11 @@ const NotificationItem = memo(({ notification }: NotificationItemProps) => {
   return (
     <Container>
       <ProfileImage profileImage={author.image} />
-      <div className="ml-3">
-        <div className="text-gray-500">{formatDate(createdAt)}</div>
-        <div>{renderNotificationContent()}</div>
+      <div className="ml-3 flex-1">
+        <div className="flex flex-start text-gray-500 text-left">
+          {formatDate(createdAt)}
+        </div>
+        <div className="text-left">{renderNotificationContent()}</div>
       </div>
     </Container>
   )

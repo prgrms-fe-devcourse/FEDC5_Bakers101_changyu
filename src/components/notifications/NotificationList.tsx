@@ -25,7 +25,9 @@ const NotificationList = ({ allRead }: NotificationListProps) => {
   return (
     <div className="flex-grow overflow-auto text-sm">
       {notifications.map((notification) => (
-        <button key={notification._id}>
+        <button
+          className="flex w-full"
+          key={notification._id}>
           <NotificationItem notification={notification} />
         </button>
       ))}
