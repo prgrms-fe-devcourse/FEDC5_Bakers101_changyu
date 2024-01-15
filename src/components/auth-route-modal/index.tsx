@@ -33,7 +33,7 @@ const AuthRouteModal = ({ closeModal }: AuthRouteModal) => {
         <div className="w-fit text-center mx-auto grid gap-4 my-4">
           <Link
             className="px-4 py-1 rounded-md text-white bg-[#9F8170]"
-            to="/login"
+            to="/"
             onClick={closeModal}>
             로그인
           </Link>

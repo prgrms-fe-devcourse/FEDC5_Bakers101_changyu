@@ -8,7 +8,9 @@ import EditIcon from '../EditIcon'
 import PrevIcon from '../PrevIcon'
 import { useProfileStore } from '@/stores/userProfileStore'
 
-const ProfileDrawerSide = styled.div``
+const ProfileDrawerSide = styled.div`
+  ${tw`bg-inherit`}
+`
 
 const HeaderContainer = styled.header`
   ${tw`w-full h-16 absolute top-2 left-1 hover:bg-inherit`}
@@ -19,7 +21,7 @@ const PrevButton = styled.button`
 `
 
 const Container = styled.div`
-  ${tw`w-full min-h-full`}
+  ${tw`w-full min-h-full bg-white h-full`}
 `
 
 const DetailSection = styled.div`

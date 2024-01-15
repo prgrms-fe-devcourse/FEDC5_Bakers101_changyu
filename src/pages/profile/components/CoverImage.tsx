@@ -16,7 +16,7 @@ const CoverImage = ({ imgSrc, children }: CoverImageProps) => {
         <img
           src={imgSrc}
           alt="profile"
-          className="w-full h-full object-cover p-0 rounded-none brightness-50"
+          className="w-full h-full object-cover p-0 rounded-none brightness-75"
         />
       )}
       {!imgSrc && <div className="w-full h-full bg-[#eaeaea]"></div>}

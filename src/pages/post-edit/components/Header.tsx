@@ -1,5 +1,5 @@
 import tw, { styled } from 'twin.macro'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import PrevBrownIcon from '@/assets/icons/prev_brown.svg'
 import EditIcon from '@/assets/icons/edit.svg'
@@ -13,16 +13,15 @@ const PostEditHeaderContainer = styled.div`
 `
 
 const PostEditHeader = ({ onClickSubmitButtn }: PostEditHeader) => {
+  const navigate = useNavigate()
   return (
     <PostEditHeaderContainer>
-      <Link
-        to="/"
+      <button
+        onClick={() => navigate(-1)}
         className="w-fit my-2 h-[3.125rem]">
         <img src={PrevBrownIcon} />
-      </Link>
-
+      </button>
       <h1 className="h-fit my-auto text-[1.4rem] font-semibold">페이지 수정</h1>
-
       <button onClick={onClickSubmitButtn}>
         <img
           className="w-8 h-8 mr-8"

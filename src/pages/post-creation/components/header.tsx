@@ -5,7 +5,7 @@ const CreatePostHeader = () => {
   return (
     <div>
       <Link
-        to="/"
+        to="/home"
         className="mx-2 my-2 h-[3.125rem]">
         <img src={PrevBrownIcon} />
       </Link>

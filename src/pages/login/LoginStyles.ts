@@ -8,3 +8,4 @@ export const Button = tw.button`w-full py-2 bg-white border border-gray-300 text
 export const Error = tw.p`text-red-500 text-sm absolute bottom-0 left-0 ml-1`
 export const LoginErrorContainer = tw.div`fixed mt-10`
 export const LoginError = tw.p`text-red-500 text-sm text-center`
+export const LinkContainer = tw.div`flex items-center justify-center gap-3 mt-4 text-xs text-[#808080] underline`

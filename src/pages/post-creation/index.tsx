@@ -22,7 +22,7 @@ type ChannelButtonType = {
 const breadOptions = ['조리빵', '특수빵', '식빵', '과자빵']
 
 const PostCreateContainer = styled.div`
-  ${tw``}
+  ${tw`h-screen`}
 `
 const PostInputsWrapper = styled.div`
   ${tw`w-[80%] mx-auto`}
@@ -68,7 +68,7 @@ const PostCreation = () => {
       channelId: channelId._id
     })
     await createPost(formData)
-    navigate('/')
+    navigate('/home')
   }
 
   return (
@@ -78,7 +78,7 @@ const PostCreation = () => {
         <PostTitleInputWrapper>
           <input
             placeholder="* 어떤 레시피인가요?"
-            className="mb-2 mx-2 min-w-[19rem] focus:outline-none"
+            className="mb-2 mx-2 min-w-[19rem] focus:outline-none bg-inherit"
             onChange={(e) => setTitle(e.target.value)}
           />
           <hr />

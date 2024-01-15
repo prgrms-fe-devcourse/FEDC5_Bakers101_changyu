@@ -18,7 +18,7 @@ type PostBodyType = {
 }
 
 const PostBodyContainer = styled.div`
-  ${tw`w-4/5 mx-auto px-2`}
+  ${tw`w-4/5 mx-auto px-2 bg-white`}
 `
 
 const PostDetailWrapper = styled.div`

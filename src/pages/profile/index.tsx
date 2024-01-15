@@ -21,7 +21,7 @@ import { createNotification } from '@/apis/notification/notifications'
 import getPostDetail from '@/apis/post/getPostDetail'
 
 const ProfileContainer = styled.main`
-  ${tw`w-full h-screen relative`}
+  ${tw`w-full h-full relative`}
 `
 
 const UserProfileSection = styled.section`
@@ -125,7 +125,7 @@ const Profile = () => {
     await logout()
     setProfile(null)
     localStorage.removeItem('token')
-    navigate('/')
+    navigate('/home')
   }
 
   useEffect(() => {

@@ -20,7 +20,7 @@ export default function DeleteCheckModal({
   const onClickDeleteButton = async () => {
     await deletePost(postId)
     setIsDeleteModalOpen(false)
-    navigate('/')
+    navigate('/home')
   }
 
   return (
