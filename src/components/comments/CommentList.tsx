@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import CommentItem from '@/components/comments/CommentItem'
-import { deleteComment } from '@/apis/commnents'
+import { deleteComment } from '@/apis/post/commnents'
 
 export interface CommentProps {
   _id: string
@@ -51,11 +51,12 @@ const CommentList = ({
       {comments.length > 0 ? (
         <ul className="w-full my-3">
           {comments.map((comment) => (
-            <CommentItem
-              key={comment._id}
-              comment={comment}
-              onDelete={handleCommentDelete}
-            />
+            <button key={comment._id}>
+              <CommentItem
+                comment={comment}
+                onDelete={handleCommentDelete}
+              />
+            </button>
           ))}
         </ul>
       ) : (

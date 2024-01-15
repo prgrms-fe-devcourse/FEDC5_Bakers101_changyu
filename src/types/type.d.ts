@@ -109,3 +109,11 @@ interface Following {
   updatedAt: string
   __v: number
 }
+
+
+interface Error {
+  password: string
+  confirmPassword: string
+  fullName: string
+  username: string
+}

@@ -12,7 +12,7 @@ interface InputProps {
 }
 
 const Input = styled.input`
-  ${tw`w-full border-b outline-none focus:border-brand-primary px-3 py-2`}
+  ${tw`w-full border-b outline-none focus:border-brand-primary px-3 py-2 bg-inherit`}
 `
 
 const Label = styled.label`

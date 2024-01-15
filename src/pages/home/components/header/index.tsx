@@ -11,7 +11,7 @@ import SearchIcon from '@/assets/icons/search.svg'
 import TriangleIcon from '@/assets/icons/triangle.svg'
 
 const HomeHeaderContainer = styled.div`
-  ${tw`flex justify-between items-center my-6`}
+  ${tw`flex justify-between items-center pt-6`}
 `
 
 const HomeHeaderButtonsWrapper = styled.div`

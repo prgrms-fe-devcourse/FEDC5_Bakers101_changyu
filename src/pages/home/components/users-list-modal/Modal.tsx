@@ -33,7 +33,7 @@ const Modal = ({ isOpen, onToggle }: UsersListProps) => {
 
   useEffect(() => {
     const fetchAllUsers = async () => {
-      const data: User[] = await getAllUsers({})
+      const data: User[] = await getAllUsers()
       setAllUsers(data)
     }
 
@@ -49,7 +49,7 @@ const Modal = ({ isOpen, onToggle }: UsersListProps) => {
     <ModalContainer
       id="modal"
       isOpen={isOpen}>
-      <div className="modal-box w-full h-96 p-0">
+      <div className="modal-box w-full h-96 p-0 bg-white">
         <TabList role="tablist">
           <TabItem
             title={'모든 사용자'}

@@ -1,4 +1,3 @@
-// icon:search | CSS Icons https://css.gg/ | Astrit
 import * as React from 'react'
 
 function SearchIcon(props: React.SVGProps<SVGSVGElement>) {

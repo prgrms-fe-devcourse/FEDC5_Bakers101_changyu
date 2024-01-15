@@ -13,22 +13,26 @@ const PostListTitle = styled.h1`
   ${tw`text-lg font-bold mb-4`}
 `
 
-const LikedPostList = ({ posts, listTitle }: PostListProps) => {
+const PostList = ({ posts, listTitle }: PostListProps) => {
   return (
     <PostListContainer>
       <PostListTitle>{listTitle}</PostListTitle>
       <section className="flex flex-col gap-2">
-        {posts?.map((post, index) => (
-          <button key={post._id}>
-            <PostItem
-              postDetail={post}
-              index={index}
-            />
-          </button>
-        ))}
+        {posts?.length ? (
+          posts.map((post, index) => (
+            <button key={post._id}>
+              <PostItem
+                postDetail={post}
+                index={index}
+              />
+            </button>
+          ))
+        ) : (
+          <h1 className="text-[#888] text-xl">포스트가 없습니다.</h1>
+        )}
       </section>
     </PostListContainer>
   )
 }
 
-export default LikedPostList
+export default PostList

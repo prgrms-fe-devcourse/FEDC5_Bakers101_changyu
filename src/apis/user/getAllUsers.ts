@@ -1,18 +1,9 @@
-import { GET_ALL_USER_LIST_PATH } from '@/utils/api_paths'
-import axiosInstance from '../api'
+import { axiosInstance } from '../api'
+import { GET_ALL_USER_LIST_PATH } from '@/apis/api_paths'
 
 interface UserResponse extends User {}
 
-interface AllUserProps {
-  offset?: number
-  limit?: number
-}
-
-// TODO: Params 추가하기
-async function getAllUsers({
-  offset,
-  limit
-}: AllUserProps): Promise<UserResponse[]> {
+async function getAllUsers(): Promise<UserResponse[]> {
   try {
     const response = await axiosInstance.get(GET_ALL_USER_LIST_PATH)
     return response.data

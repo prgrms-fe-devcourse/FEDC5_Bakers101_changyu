@@ -1,23 +1,12 @@
-import axiosInstance from './api'
+import { axiosInstanceWithToken } from '../api'
 import {
   GET_NOTIFICATIONS_PATH,
   CREATE_NOTIFICATIONS_PATH,
   UPDATE_NOTIFICATIONS_PATH
-} from '@/utils/api_paths'
-
-const getToken = () => {
-  const token = localStorage.getItem('token')
-  return JSON.parse(token as string)
-}
-
-const config = {
-  headers: {
-    Authorization: `Bearer ${getToken()}`
-  }
-}
+} from '@/apis/api_paths'
 
 export async function getNotifications(): Promise<Notification[]> {
-  const response = await axiosInstance.get(GET_NOTIFICATIONS_PATH, config)
+  const response = await axiosInstanceWithToken.get(GET_NOTIFICATIONS_PATH)
   return response.data
 }
 
@@ -34,14 +23,13 @@ export async function createNotification(
     postId
   }
 
-  const response = await axiosInstance.post(
+  const response = await axiosInstanceWithToken.post(
     CREATE_NOTIFICATIONS_PATH,
-    requestBody,
-    config
+    requestBody
   )
   return response.data
 }
 
 export async function updateNotifications(): Promise<void> {
-  await axiosInstance.put(UPDATE_NOTIFICATIONS_PATH, {}, config)
+  await axiosInstanceWithToken.put(UPDATE_NOTIFICATIONS_PATH, {})
 }

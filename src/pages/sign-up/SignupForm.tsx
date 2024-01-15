@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useProfileStore } from '@/stores/userProfileStore'
-import { signUp } from '@/apis/signup'
+import { signUp } from '@/apis/auth/signup'
 import * as Styles from './SignupStyles'
 import isPasswordValid from '@/utils/passwordValidator'
 
@@ -20,7 +20,7 @@ const SignUpForm = () => {
 
   useEffect(() => {
     if (profile) {
-      navigate('/')
+      navigate('/home')
     }
   }, [])
 
@@ -70,7 +70,7 @@ const SignUpForm = () => {
           const response = await signUp(email, name, password)
           localStorage.setItem('token', JSON.stringify(response.token))
           setProfile(response.user)
-          navigate('/')
+          navigate('/home')
         }
       } catch (error) {
         console.error(error)

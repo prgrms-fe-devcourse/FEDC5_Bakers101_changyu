@@ -3,6 +3,7 @@ import tw, { styled } from 'twin.macro'
 import CommentIcon from './CommentIcon'
 import HeartIcon from './HeartIcon'
 import { useCallback } from 'react'
+import NoThumbNailImage from '@/assets/NoThumbnail.png'
 
 interface FilteredPostProps {
   id: string
@@ -61,7 +62,6 @@ const FilteredPost = ({
   }, [])
 
   return (
-    // TODO: 추후 라우터를 이용하여 해당 포스트의 상세 페이지로 이동하는 기능 추가
     <Link to={`/post-detail/${id}`}>
       <Container>
         <Wrapper>
@@ -75,7 +75,7 @@ const FilteredPost = ({
             )}
             {!thumbnail && (
               <img
-                src={'src/assets/NoThumbnail.png'}
+                src={NoThumbNailImage}
                 alt="썸네일"
                 className="w-20 h-20 rounded-xl"
               />

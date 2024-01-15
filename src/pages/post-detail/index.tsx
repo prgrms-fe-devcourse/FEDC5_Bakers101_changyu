@@ -5,7 +5,7 @@ import { useProfileStore } from '@/stores/userProfileStore'
 import PostHeader from './compoents/PostHeader'
 import PostBody from './compoents/PostBody'
 
-import { getPostDetail } from '@/apis/postApis'
+import getPostDetail from '@/apis/post/getPostDetail'
 
 const PostDetail = () => {
   const [postDetails, setPostDetails] = useState<Post>()
@@ -15,7 +15,7 @@ const PostDetail = () => {
   const productId = params.id
 
   useEffect(() => {
-    ;(async () => {
+    (async () => {
       if (!productId) return
       const details = await getPostDetail(productId)
       await setPostDetails(details)
@@ -23,9 +23,9 @@ const PostDetail = () => {
   }, [])
 
   return (
-    <div>
+    <div className='h-full'>
       {postDetails && (
-        <div>
+        <div className='bg-white'>
           <PostHeader
             postId={postDetails._id}
             title={JSON.parse(postDetails.title).title}
@@ -42,7 +42,7 @@ const PostDetail = () => {
             commentNum={postDetails.comments.length}
             postId={postDetails._id}
           />
-          <hr className="w-4/5 mx-auto mb-8 mt-2 px-2" />
+          <hr className="w-4/5 mx-auto pb-8 mt-2 px-2" />
         </div>
       )}
     </div>

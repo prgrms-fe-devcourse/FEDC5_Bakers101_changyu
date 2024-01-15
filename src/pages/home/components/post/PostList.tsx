@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 
-import { getPostList, getAllPostList } from '@/apis/postApis'
+import getAllPostList from '@/apis/post/getAllPostList'
+import getPostList from '@/apis/post/getPostList'
 import NonePost from './NonePost'
 import PostItem from './PostItem'
 
@@ -14,12 +15,12 @@ const PostList = ({ title, id }: nowChannelType) => {
 
   const fetchPostList = async () => {
     if (title === '전체 채널' && id === undefined) {
-      ;(async () => {
+      (async () => {
         const channeListRequest = await getAllPostList()
         setPostList(channeListRequest)
       })()
     } else if (id !== undefined) {
-      ;(async () => {
+      (async () => {
         const channeListRequest = await getPostList(id)
         setPostList(channeListRequest)
       })()

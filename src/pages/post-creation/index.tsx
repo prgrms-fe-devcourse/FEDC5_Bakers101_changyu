@@ -6,8 +6,8 @@ import CreatePostHeader from './components/header'
 import TextEditor from '@/components/text-editor'
 import InputWarningModal from './components/InputWarningModal'
 
-import { createPost } from '@/apis/postApis'
-import { getChannelInform } from '@/apis/channelApis'
+import createPost from '@/apis/post/createPost'
+import getChannelInform from '@/apis/channel/getChannelInform'
 import FileUploadIcon from '@/assets/icons/fileUpload.svg'
 import handleImageFormData from '@/utils/handleImageFormData'
 import onGetImageFile from '@/utils/onGetImageFile'
@@ -22,7 +22,7 @@ type ChannelButtonType = {
 const breadOptions = ['조리빵', '특수빵', '식빵', '과자빵']
 
 const PostCreateContainer = styled.div`
-  ${tw``}
+  ${tw`h-screen`}
 `
 const PostInputsWrapper = styled.div`
   ${tw`w-[80%] mx-auto`}
@@ -68,7 +68,7 @@ const PostCreation = () => {
       channelId: channelId._id
     })
     await createPost(formData)
-    navigate('/')
+    navigate('/home')
   }
 
   return (
@@ -78,7 +78,7 @@ const PostCreation = () => {
         <PostTitleInputWrapper>
           <input
             placeholder="* 어떤 레시피인가요?"
-            className="mb-2 mx-2 min-w-[19rem] focus:outline-none"
+            className="mb-2 mx-2 min-w-[19rem] focus:outline-none bg-inherit"
             onChange={(e) => setTitle(e.target.value)}
           />
           <hr />

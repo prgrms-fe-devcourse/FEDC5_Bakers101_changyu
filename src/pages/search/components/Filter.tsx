@@ -1,10 +1,14 @@
 import tw, { styled } from 'twin.macro'
 
+interface FilterItemProps {
+  isSelected: boolean
+}
+
 const FilterContainer = styled.div`
   ${tw`flex items-center gap-3`}
 `
 
-const FilterItem = styled.button(({ isSelected }) => [
+const FilterItem = styled.button<FilterItemProps>(({ isSelected }) => [
   tw`rounded-3xl bg-[#eee] text-sm text-brand-primary py-2 px-4 font-bold`,
   isSelected && tw`bg-brand-primary text-white`
 ])

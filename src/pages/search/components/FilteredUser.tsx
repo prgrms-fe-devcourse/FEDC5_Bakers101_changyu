@@ -10,7 +10,11 @@ interface FilteredUserProps {
   isHidden?: boolean
 }
 
-const Container = styled.div(({ isHidden }) => [
+interface ContainerProps {
+  isHidden?: boolean
+}
+
+const Container = styled.div<ContainerProps>(({ isHidden }) => [
   !isHidden && tw`flex items-center gap-3`,
   isHidden && tw`w-fit flex flex-col justify-center items-center gap-3`
 ])
@@ -23,7 +27,6 @@ const FilteredUser = ({
   isHidden
 }: FilteredUserProps) => {
   return (
-    // TODO: 추후 라우터를 이용하여 해당 유저의 프로필 페이지로 이동하는 기능 추가
     <Link to={`/profile/${id}`}>
       <Container isHidden={isHidden}>
         <aside className="py-2 px-2">

@@ -1,4 +1,3 @@
-// icon:chatbubbles-outline | Ionicons https://ionicons.com/ | Ionic Framework
 import * as React from 'react'
 
 function ChatIcon(props: React.SVGProps<SVGSVGElement>) {

@@ -42,7 +42,7 @@ type PostItemType = {
 
 const PostItem = ({ postDetail, index }: PostItemType) => {
   const { title, body } = JSON.parse(postDetail.title)
-  const channelName = postDetail.channel.name
+  const channelName = (postDetail.channel as Channel).name
   const authorName = postDetail.author.fullName
   const likesNum = postDetail.likes.length
   const commentsNum = postDetail.comments.length

@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { login } from '@/apis/login'
+import { useNavigate, Link } from 'react-router-dom'
+import { login } from '@/apis/auth/login'
 import * as Styles from '@/pages/login/LoginStyles'
 import { useProfileStore } from '@/stores/userProfileStore'
 import isPasswordValid from '@/utils/passwordValidator'
+
 function LoginForm() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -25,11 +26,13 @@ function LoginForm() {
   }
   const { setProfile, profile } = useProfileStore()
   const navigate = useNavigate()
+  
   useEffect(() => {
     if (profile) {
-      navigate('/')
+      navigate('/home')
     }
   }, [])
+
   const handleLoginSubmit = async () => {
     const isEmailValid = validateEmail(email)
     const isPasswordValid = validatePassword(password)
@@ -38,7 +41,7 @@ function LoginForm() {
         const response = await login(email, password)
         localStorage.setItem('token', JSON.stringify(response.token))
         setProfile(response.user)
-        navigate('/')
+        navigate('/home')
       } catch (error) {
         setLoginError('이메일 또는 비밀번호가 올바르지 않습니다.')
       }
@@ -82,9 +85,10 @@ function LoginForm() {
           {passwordError && <Styles.Error>{passwordError}</Styles.Error>}
         </Styles.InputContainer>
         <Styles.Button onClick={handleLoginSubmit}>Login</Styles.Button>
-        <Styles.Button onClick={() => navigate('/sign-up')}>
-          계정이 없으신가요?
-        </Styles.Button>
+        <Styles.LinkContainer>
+          <Link to="/sign-up">계정이 없으신가요?</Link>
+          <Link to="/home">로그인 없이 이용하기</Link>
+        </Styles.LinkContainer>
       </Styles.Form>
       {loginError && (
         <Styles.LoginErrorContainer>

@@ -1,4 +1,3 @@
-// icon:circle-user | Fontawesome https://fontawesome.com/ | Fontawesome
 import * as React from 'react'
 
 function NoProfileThumbnailIcon(props: React.SVGProps<SVGSVGElement>) {
