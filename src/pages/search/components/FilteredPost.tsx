@@ -61,7 +61,6 @@ const FilteredPost = ({
   }, [])
 
   return (
-    // TODO: 추후 라우터를 이용하여 해당 포스트의 상세 페이지로 이동하는 기능 추가
     <Link to={`/post-detail/${id}`}>
       <Container>
         <Wrapper>

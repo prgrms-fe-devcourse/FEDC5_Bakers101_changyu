@@ -8,7 +8,7 @@ interface IUseSearch {
 
 const useSearch = ({ initialValue, onSearch, validate }: IUseSearch) => {
   const [value, setValue] = useState(initialValue)
-  const [type, setType] = useState('all') // ['all', 'user']
+  const [type, setType] = useState('all')
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
 

@@ -7,7 +7,6 @@ import { createNotification } from '@/apis/notification/notifications'
 import getProfile from '@/apis/profile/profile'
 
 import LikedButton from '@/components/likes/LikedButton'
-// import UnLikedButton from '@/components/likes/UnLikedButton'
 
 interface Props {
   postUserId: string

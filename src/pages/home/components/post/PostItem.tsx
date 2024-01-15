@@ -41,7 +41,7 @@ type PostItemType = {
 
 const PostItem = ({ postDetail, index }: PostItemType) => {
   const { title, body } = JSON.parse(postDetail.title)
-  const channelName = postDetail.channel.name
+  const channelName = (postDetail.channel as Channel).name
   const authorName = postDetail.author.fullName
   const likesNum = postDetail.likes.length
   const commentsNum = postDetail.comments.length
@@ -92,7 +92,7 @@ const PostItem = ({ postDetail, index }: PostItemType) => {
                 className="w-8 h-8 rounded-full"
               />
             ) : (
-              <NoProfileThumbnailIcon className="w-[2rem] h-[2rem] bg-white text-[#ddd] bg-[#fff]" />
+              <NoProfileThumbnailIcon className="w-[2rem] h-[2rem] text-[#ddd] bg-[#fff]" />
             )}
             <p className="font-bold">{authorName}</p>
           </Link>

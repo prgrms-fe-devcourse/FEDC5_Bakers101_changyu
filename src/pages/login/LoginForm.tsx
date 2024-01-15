@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
-import { login } from '@/apis/login'
+import { login } from '@/apis/auth/login'
 import * as Styles from '@/pages/login/LoginStyles'
 import { useProfileStore } from '@/stores/userProfileStore'
 import isPasswordValid from '@/utils/passwordValidator'
@@ -26,11 +26,13 @@ function LoginForm() {
   }
   const { setProfile, profile } = useProfileStore()
   const navigate = useNavigate()
+  
   useEffect(() => {
     if (profile) {
       navigate('/home')
     }
   }, [])
+
   const handleLoginSubmit = async () => {
     const isEmailValid = validateEmail(email)
     const isPasswordValid = validatePassword(password)

@@ -17,7 +17,6 @@ const Search = () => {
     value,
     type,
     error,
-    isLoading,
     handleChange,
     handleSearch,
     handleResetButton,
@@ -44,7 +43,6 @@ const Search = () => {
     }
   })
 
-  // TODO: 추후 라우터를 이용하여 이전 페이지로 돌아가는 기능 추가
   const handleClickPrevButton = () => {
     navigate(-1)
   }

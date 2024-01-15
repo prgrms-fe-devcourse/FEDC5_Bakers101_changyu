@@ -1,4 +1,3 @@
-// icon:chevron-back | Ionicons https://ionicons.com/ | Ionic Framework
 import * as React from 'react'
 
 function PrevIcon(props: React.SVGProps<SVGSVGElement>) {
