@@ -21,7 +21,7 @@ function Root() {
           element={<LoginForm />}
         />
         <Route
-          path="/login"
+          path="/home"
           element={<Home />}
         />
         <Route
