@@ -1,14 +1,16 @@
 import { useState, useEffect } from 'react'
-
 import { useNavigate, Link } from 'react-router-dom'
 import tw, { styled } from 'twin.macro'
+
 import { useProfileStore } from '@/stores/userProfileStore'
-import NoProfileThumbnailIcon from '@/components/profile-images/NoProfileThumbnailIcon'
+
+import ProfileImage from '@/components/profile-images'
 import getUserInform from '@/apis/user/getUserInform'
+import getPostLiveTime from '@/utils/getPostCreateTime'
+
 import CommentIcon from '@/assets/icons/comment.svg'
 import HeartIcon from '@/assets/icons/following.svg'
 import NoImage from '@/assets/temp/noImage.png'
-import getPostLiveTime from '@/utils/getPostCreateTime'
 
 type PostItemContainerProps = {
   isLoading: boolean
@@ -88,14 +90,7 @@ const PostItem = ({ postDetail, index }: PostItemType) => {
             to={`/profile/${postDetail.author._id}`}
             onClick={(event) => event.stopPropagation()}
             className="flex gap-2 items-center">
-            {userImg ? (
-              <img
-                src={userImg as string}
-                className="w-8 h-8 rounded-full"
-              />
-            ) : (
-              <NoProfileThumbnailIcon className="w-[2rem] h-[2rem] bg-white text-[#ddd] bg-[#fff]" />
-            )}
+            <ProfileImage profileImage={userImg as string} />
             <p className="font-bold">{authorName}</p>
           </Link>
           <p className="my-auto font-bold text-purple-500 text-[0.6rem]">
@@ -133,6 +128,7 @@ const PostItem = ({ postDetail, index }: PostItemType) => {
             <img
               className="w-4 h-4 my-auto"
               src={HeartIcon}
+              alt="heart-icon"
             />
             <p className="text-[0.9rem]">{likesNum}</p>
           </div>
@@ -140,6 +136,7 @@ const PostItem = ({ postDetail, index }: PostItemType) => {
             <img
               className="w-4 h-4 my-auto"
               src={CommentIcon}
+              alt="comment-icon"
             />
             <p className="text-[0.9rem]">{commentsNum}</p>
           </div>
