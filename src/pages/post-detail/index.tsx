@@ -5,7 +5,7 @@ import { useProfileStore } from '@/stores/userProfileStore'
 import PostHeader from './compoents/PostHeader'
 import PostBody from './compoents/PostBody'
 
-import { getPostDetail } from '@/apis/postApis'
+import getPostDetail from '@/apis/post/getPostDetail'
 
 const PostDetail = () => {
   const [postDetails, setPostDetails] = useState<Post>()

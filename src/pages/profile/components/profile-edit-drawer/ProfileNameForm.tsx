@@ -44,7 +44,7 @@ const ProfileNameForm = () => {
       setProfile(data)
     },
     validate: (values) => {
-      const errors = {} as Record<string, string>
+      const errors: Partial<Error> = {}
 
       if (values.fullName.length === 0) {
         errors.fullName = ERRORS.EMPTY_FULLNAME

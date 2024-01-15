@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import tw, { styled } from 'twin.macro'
 
-import { getChannelList } from '@/apis/channelApis'
+import getChannelList from '@/apis/channel/getChannelList'
 
 type ChannelSelectionModal = {
   setNowChannel: React.Dispatch<React.SetStateAction<ChannelListItemType>>

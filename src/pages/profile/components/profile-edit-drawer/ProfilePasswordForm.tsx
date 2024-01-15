@@ -37,7 +37,7 @@ const ProfilePasswordForm = () => {
       })
     },
     validate: (values) => {
-      const errors = {} as Record<string, string>
+      const errors: Partial<Error> = {}
       if (!isPasswordValid(values.password)) {
         errors.password =
           '*8자 이상, 특수문자, 대문자, 숫자'

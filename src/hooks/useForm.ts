@@ -17,12 +17,12 @@ interface Value {
 interface IUseForm {
   initialValue: Value
   onSubmit: (values: Value) => Promise<void>
-  validate?: (values: Value) => any
+  validate?: (values: Value) => Record<string, string>
 }
 
 const useForm = ({ initialValue, onSubmit, validate }: IUseForm) => {
   const [values, setValues] = useState(initialValue)
-  const [errors, setErrors] = useState({})
+  const [errors, setErrors] = useState<Partial<Error>>({})
   const [isLoading, setIsLoading] = useState(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

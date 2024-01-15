@@ -1,14 +1,15 @@
 import { useState, useEffect } from 'react'
-
 import { useNavigate, Link } from 'react-router-dom'
 import tw, { styled } from 'twin.macro'
+
 import { useProfileStore } from '@/stores/userProfileStore'
+import getProfile from '@/apis/profile/profile'
+import getPostLiveTime from '@/utils/getPostCreateTime'
+
 import NoProfileThumbnailIcon from '@/pages/search/components/NoProfileThumbnailIcon'
-import { getUserInform } from '@/apis/userApis'
 import CommentIcon from '@/assets/icons/comment.svg'
 import HeartIcon from '@/assets/icons/following.svg'
 import NoImage from '@/assets/temp/noImage.png'
-import getPostLiveTime from '@/utils/getPostCreateTime'
 
 type PostItemContainerProps = {
   isLoading: boolean
@@ -45,13 +46,10 @@ const PostItem = ({ postDetail, index }: PostItemType) => {
   const likesNum = postDetail.likes.length
   const commentsNum = postDetail.comments.length
   const postImage = postDetail.image
-
   const timeString = getPostLiveTime(postDetail.createdAt)
-
   const navigate = useNavigate()
-
   const [isLoading, setIsLoading] = useState(false)
-  const [userImg, setUserImg] = useState(null)
+  const [userImg, setUserImg] = useState<string | undefined>(undefined)
   const [isFollowed, setIsFollowed] = useState(false)
   const { profile } = useProfileStore()
 
@@ -62,8 +60,8 @@ const PostItem = ({ postDetail, index }: PostItemType) => {
   }
 
   const fetchUserInform = async () => {
-    const response = await getUserInform(postDetail.author._id)
-    setUserImg(response.image || null)
+    const response = await getProfile(postDetail.author._id)
+    setUserImg(response.image || undefined)
   }
 
   const getHtmlToTextString = (htmlString: string) => {

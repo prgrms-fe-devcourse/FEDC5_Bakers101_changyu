@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import CommentItem from '@/components/comments/CommentItem'
-import { deleteComment } from '@/apis/commnents'
+import { deleteComment } from '@/apis/post/commnents'
 
 export interface CommentProps {
   _id: string
