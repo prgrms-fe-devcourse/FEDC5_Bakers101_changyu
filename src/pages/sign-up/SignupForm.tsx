@@ -20,7 +20,7 @@ const SignUpForm = () => {
 
   useEffect(() => {
     if (profile) {
-      navigate('/')
+      navigate('/home')
     }
   }, [])
 
@@ -70,7 +70,7 @@ const SignUpForm = () => {
           const response = await signUp(email, name, password)
           localStorage.setItem('token', JSON.stringify(response.token))
           setProfile(response.user)
-          navigate('/')
+          navigate('/home')
         }
       } catch (error) {
         console.error(error)

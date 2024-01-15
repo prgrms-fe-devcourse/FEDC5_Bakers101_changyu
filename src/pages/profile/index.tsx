@@ -116,7 +116,7 @@ const Profile = () => {
     await logout()
     setProfile(null)
     localStorage.removeItem('token')
-    navigate('/')
+    navigate('/home')
   }
 
   useEffect(() => {

@@ -27,7 +27,7 @@ function LoginForm() {
   const navigate = useNavigate()
   useEffect(() => {
     if (profile) {
-      navigate('/')
+      navigate('/home')
     }
   }, [])
   const handleLoginSubmit = async () => {
@@ -38,7 +38,7 @@ function LoginForm() {
         const response = await login(email, password)
         localStorage.setItem('token', JSON.stringify(response.token))
         setProfile(response.user)
-        navigate('/')
+        navigate('/home')
       } catch (error) {
         setLoginError('이메일 또는 비밀번호가 올바르지 않습니다.')
       }

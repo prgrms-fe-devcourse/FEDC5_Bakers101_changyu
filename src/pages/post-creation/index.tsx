@@ -68,7 +68,7 @@ const PostCreation = () => {
       channelId: channelId._id
     })
     await createPost(formData)
-    navigate('/')
+    navigate('/home')
   }
 
   return (
