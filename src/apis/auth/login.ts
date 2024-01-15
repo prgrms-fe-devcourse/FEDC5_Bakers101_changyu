@@ -1,4 +1,4 @@
-import axiosInstance from '../api'
+import { axiosInstance } from '../api'
 import { LOGIN_PATH } from '@/apis/api_paths'
 
 type UserResponse = {
@@ -6,7 +6,6 @@ type UserResponse = {
   token: string
 }
 
-//로그인함수
 export async function login(
   email: string,
   password: string

@@ -1,4 +1,4 @@
-import axiosInstance from '../api'
+import { axiosInstance } from '../api'
 
 import { GET_CHANNEL_LIST_PATH } from '@/apis/api_paths'
 

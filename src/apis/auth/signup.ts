@@ -1,4 +1,4 @@
-import axiosInstance from '../api'
+import { axiosInstance } from '../api'
 import { SIGNUP_PATH } from '@/apis/api_paths'
 
 type UserResponse = {
@@ -6,7 +6,6 @@ type UserResponse = {
   token: string
 }
 
-//회원가입함수
 export async function signUp(
   email: string,
   fullName: string,

@@ -1,14 +1,9 @@
-import axiosInstance from '../api'
+import { axiosInstanceWithToken } from '../api'
 import { DELETE_POST_PATH } from '@/apis/api_paths'
 
 async function deletePost(id: string) {
   try {
-    const token = localStorage.getItem('token')
-    const parsedToken = JSON.parse(token as string)
-    await axiosInstance.delete(DELETE_POST_PATH, {
-      headers: { Authorization: `bearer ${parsedToken}` },
-      data: { id: id }
-    })
+    await axiosInstanceWithToken.delete(DELETE_POST_PATH, { data: { id } })
   } catch (error) {
     throw new Error(`${error}`)
   }

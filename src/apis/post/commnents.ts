@@ -1,16 +1,6 @@
-import axiosInstance from '../api'
+import { axiosInstanceWithToken } from '../api'
 import { CREATE_COMMENT_PATH, DELETE_COMMENT_PATH } from '@/apis/api_paths'
 
-const getToken = () => {
-  const token = localStorage.getItem('token')
-  return JSON.parse(token as string)
-}
-
-const config = {
-  headers: {
-    Authorization: `Bearer ${getToken()}`
-  }
-}
 export async function createComment(
   comment: string,
   postId: string
@@ -20,10 +10,9 @@ export async function createComment(
     postId
   }
 
-  const response = await axiosInstance.post<Comment>(
+  const response = await axiosInstanceWithToken.post<Comment>(
     CREATE_COMMENT_PATH,
-    requestBody,
-    config
+    requestBody
   )
   return response.data
 }
@@ -33,9 +22,11 @@ export async function deleteComment(id: string): Promise<Comment> {
     id
   }
 
-  const response = await axiosInstance.delete<Comment>(DELETE_COMMENT_PATH, {
-    data: requestBody,
-    ...config
-  })
+  const response = await axiosInstanceWithToken.delete<Comment>(
+    DELETE_COMMENT_PATH,
+    {
+      data: requestBody
+    }
+  )
   return response.data
 }

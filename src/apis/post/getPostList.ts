@@ -1,4 +1,4 @@
-import axiosInstance from '../api'
+import { axiosInstance } from '../api'
 import { GET_POST_LIST_BY_CHANNEL_PATH } from '@/apis/api_paths'
 
 async function getPostList(channelId: string) {

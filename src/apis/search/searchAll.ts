@@ -1,5 +1,5 @@
+import { axiosInstance } from '../api'
 import { SEARCH_ALL_PATH } from '@/apis/api_paths'
-import axiosInstance from '../api'
 
 interface SearchResponse {
   posts: Post[]
