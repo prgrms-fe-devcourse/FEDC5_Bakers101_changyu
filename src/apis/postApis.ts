@@ -1,5 +1,5 @@
 import axiosInstance from './api'
-import { getChannelList } from './channelApis'
+import getChannelList from './channel/getChannelList'
 import {
   CREATE_POST_PATH,
   DELETE_POST_PATH,

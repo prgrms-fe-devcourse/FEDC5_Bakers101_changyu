@@ -7,7 +7,7 @@ import TextEditor from '@/components/text-editor'
 import InputWarningModal from './components/InputWarningModal'
 
 import { createPost } from '@/apis/postApis'
-import { getChannelInform } from '@/apis/channelApis'
+import getChannelInform from '@/apis/channel/getChannelInform'
 import FileUploadIcon from '@/assets/icons/fileUpload.svg'
 import handleImageFormData from '@/utils/handleImageFormData'
 import onGetImageFile from '@/utils/onGetImageFile'

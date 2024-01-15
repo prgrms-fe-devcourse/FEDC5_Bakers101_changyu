@@ -1,10 +1,6 @@
-import axiosInstance from './api'
+import axiosInstance from '../api'
 
-import {
-  CREATE_CHANNEL_BY_ADMIN_PATH,
-  GET_CHANNEL_LIST_PATH,
-  AUTH_CHECK
-} from '@/utils/api_paths'
+import { CREATE_CHANNEL_BY_ADMIN_PATH, AUTH_CHECK } from '@/utils/api_paths'
 
 async function createChannel(channelName: string, description: string) {
   try {
@@ -31,25 +27,4 @@ async function createChannel(channelName: string, description: string) {
   }
 }
 
-async function getChannelInform(channel: string) {
-  try {
-    const request = await axiosInstance.get(
-      `${GET_CHANNEL_LIST_PATH}/${encodeURIComponent(channel)}`
-    )
-
-    return request.data
-  } catch (error) {
-    throw new Error(`${error}`)
-  }
-}
-
-async function getChannelList() {
-  try {
-    const request = await axiosInstance.get(GET_CHANNEL_LIST_PATH)
-    return request.data
-  } catch (error) {
-    throw new Error(`${error}`)
-  }
-}
-
-export { createChannel, getChannelInform, getChannelList }
+export default createChannel
