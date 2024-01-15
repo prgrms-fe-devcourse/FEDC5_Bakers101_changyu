@@ -1,6 +1,6 @@
 import { memo } from 'react'
 import formatDate from '@/utils/formatDate'
-import NoProfileThumbnailIcon from '@/pages/search/components/NoProfileThumbnailIcon'
+import NoProfileThumbnailIcon from '@/components/profile-images/NoProfileThumbnailIcon'
 
 type NotificationItemProps = {
   notification: Notification

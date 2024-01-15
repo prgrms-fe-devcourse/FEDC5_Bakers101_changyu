@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import tw, { styled } from 'twin.macro'
-import NoProfileThumbnailIcon from '@/pages/search/components/NoProfileThumbnailIcon'
+import NoProfileThumbnailIcon from '@/components/profile-images/NoProfileThumbnailIcon'
 
 interface ProfileCardProps {
   id: string

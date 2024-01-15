@@ -4,7 +4,7 @@ import tw, { styled } from 'twin.macro'
 import NoImage from '@/assets/temp/noImage.png'
 import CommentIcon from '@/assets/icons/comment.svg'
 import HeartIcon from '@/assets/icons/following.svg'
-import NoProfileThumbnailIcon from '@/pages/search/components/NoProfileThumbnailIcon'
+import NoProfileThumbnailIcon from '@/components/profile-images/NoProfileThumbnailIcon'
 import { useProfileStore } from '@/stores/userProfileStore'
 import getPostLiveTime from '@/utils/getPostCreateTime'
 

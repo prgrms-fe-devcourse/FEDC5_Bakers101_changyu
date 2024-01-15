@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import tw, { styled } from 'twin.macro'
-import NoProfileThumbnailIcon from './NoProfileThumbnailIcon'
+import NoProfileThumbnailIcon from '../../../components/profile-images/NoProfileThumbnailIcon'
 
 interface FilteredUserProps {
   id: string

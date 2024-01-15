@@ -1,6 +1,6 @@
 import tw, { styled } from 'twin.macro'
 
-import NoProfileThumbnailIcon from '@/pages/search/components/NoProfileThumbnailIcon'
+import NoProfileThumbnailIcon from '@/components/profile-images/NoProfileThumbnailIcon'
 
 const ProfileImageWrapper = styled.div`
   ${tw`relative overflow-hidden rounded-full w-32 h-32`}
