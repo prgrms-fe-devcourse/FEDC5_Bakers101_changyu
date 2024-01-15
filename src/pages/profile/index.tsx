@@ -17,8 +17,8 @@ import MyPostList from './components/profile/MyPostList'
 import getProfile from '@/apis/profile/profile'
 import unfollow from '@/apis/follow/unfollow'
 import follow from '@/apis/follow/follow'
-import logout from '@/apis/logout'
-import { createNotification } from '@/apis/notifications'
+import logout from '@/apis/auth/logout'
+import { createNotification } from '@/apis/notification/notifications'
 import getPostDetail from '@/apis/post/getPostDetail'
 
 const ProfileContainer = styled.main`

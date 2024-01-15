@@ -1,4 +1,4 @@
-import axiosInstance from './api'
+import axiosInstance from '../api'
 import {
   GET_NOTIFICATIONS_PATH,
   CREATE_NOTIFICATIONS_PATH,

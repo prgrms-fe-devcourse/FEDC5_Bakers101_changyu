@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import NotificationItem from './NotificationItem'
-import { getNotifications } from '@/apis/notifications'
+import { getNotifications } from '@/apis/notification/notifications'
 
 type NotificationListProps = {
   allRead: boolean

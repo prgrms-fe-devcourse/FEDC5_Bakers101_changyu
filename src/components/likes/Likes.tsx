@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react'
 import { useProfileStore } from '@/stores/userProfileStore'
 import { useAuthModalStore } from '@/stores/useAuthModalStore'
 
-import { createLike, deleteLike } from '@/apis/likes'
-import { createNotification } from '@/apis/notifications'
+import { createLike, deleteLike } from '@/apis/post/likes'
+import { createNotification } from '@/apis/notification/notifications'
 import getProfile from '@/apis/profile/profile'
 
 import LikedButton from '@/components/likes/LikedButton'

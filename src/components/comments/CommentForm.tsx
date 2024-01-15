@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { useProfileStore } from '@/stores/userProfileStore'
 import { useAuthModalStore } from '@/stores/useAuthModalStore'
-import { createComment } from '@/apis/commnents'
-import { createNotification } from '@/apis/notifications'
+import { createComment } from '@/apis/post/commnents'
+import { createNotification } from '@/apis/notification/notifications'
 import commentUploadIcon from '@/assets/icons/commentUpload.svg'
 
 type CommentFormProps = {

@@ -1,4 +1,4 @@
-import axiosInstance from './api'
+import axiosInstance from '../api'
 import { LOGIN_PATH } from '@/utils/api_paths'
 
 type UserResponse = {

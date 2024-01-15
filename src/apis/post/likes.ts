@@ -1,4 +1,4 @@
-import axiosInstance from './api'
+import axiosInstance from '../api'
 import { LIKE_POST_PATH, UNLIKE_POST_PATH } from '@/utils/api_paths'
 
 export async function createLike(postId: string): Promise<Like> {

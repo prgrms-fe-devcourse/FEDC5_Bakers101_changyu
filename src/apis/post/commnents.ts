@@ -1,4 +1,4 @@
-import axiosInstance from './api'
+import axiosInstance from '../api'
 import { CREATE_COMMENT_PATH, DELETE_COMMENT_PATH } from '@/utils/api_paths'
 
 const getToken = () => {

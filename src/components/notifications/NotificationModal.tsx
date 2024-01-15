@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import tw, { styled } from 'twin.macro'
 
 import NotificationList from './NotificationList'
-import { updateNotifications } from '@/apis/notifications'
+import { updateNotifications } from '@/apis/notification/notifications'
 import { NotificationsProps } from './index'
 
 const ModalOverlay = styled.div`
@@ -27,7 +27,6 @@ const CloseButton = styled.button`
 
 const NotificationModal = ({ isOpen, toggleModal }: NotificationsProps) => {
   const [allRead, setAllRead] = useState(false)
-
 
   const handleAllReadChange = async () => {
     try {
