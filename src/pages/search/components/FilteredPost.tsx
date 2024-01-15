@@ -3,6 +3,7 @@ import tw, { styled } from 'twin.macro'
 import CommentIcon from './CommentIcon'
 import HeartIcon from './HeartIcon'
 import { useCallback } from 'react'
+import NoThumbNailImage from '@/assets/NoThumbnail.png'
 
 interface FilteredPostProps {
   id: string
@@ -74,7 +75,7 @@ const FilteredPost = ({
             )}
             {!thumbnail && (
               <img
-                src={'src/assets/NoThumbnail.png'}
+                src={NoThumbNailImage}
                 alt="썸네일"
                 className="w-20 h-20 rounded-xl"
               />
