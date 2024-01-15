@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { useProfileStore } from '@/stores/userProfileStore'
 
-import NoProfileThumbnailIcon from '@/pages/search/components/NoProfileThumbnailIcon'
+import NoProfileThumbnailIcon from '@/components/profile-images/NoProfileThumbnailIcon'
 import prevIcon from '@/assets/icons/prev_brown.svg'
 import getPostLiveTime from '@/utils/getPostCreateTime'
 import DeleteCheckModal from './DeleteCheckModal'
