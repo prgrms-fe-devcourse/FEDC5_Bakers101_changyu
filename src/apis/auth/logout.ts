@@ -1,5 +1,5 @@
-import { LOGOUT_PATH } from '@/utils/api_paths'
-import axiosInstance from './api'
+import { axiosInstance } from '../api'
+import { LOGOUT_PATH } from '@/apis/api_paths'
 
 async function logout() {
   try {

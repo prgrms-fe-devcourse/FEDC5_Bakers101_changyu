@@ -1,5 +1,5 @@
 import tw, { styled } from 'twin.macro'
-import { deletePost } from '@/apis/postApis'
+import deletePost from '@/apis/post/deletePost'
 import { useNavigate } from 'react-router-dom'
 
 const DeleteCheckModalContainer = styled.div`

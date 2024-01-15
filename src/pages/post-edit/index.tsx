@@ -8,7 +8,8 @@ import onGetImageFile from '@/utils/onGetImageFile'
 import InputWarningModal from '../post-creation/components/InputWarningModal'
 
 import handleImageFormData from '@/utils/handleImageFormData'
-import { getPostDetail, updatePost } from '@/apis/postApis'
+import getPostDetail from '@/apis/post/getPostDetail'
+import updatePost from '@/apis/post/updatePost'
 import FileUploadIcon from '@/assets/icons/fileUpload.svg'
 
 type BreadType = '조리빵' | '특수빵' | '식빵' | '과자빵' | null

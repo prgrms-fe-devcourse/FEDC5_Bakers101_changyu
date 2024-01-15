@@ -1,25 +1,22 @@
-import axiosInstance from './api'
-import { SIGNUP_PATH } from '@/utils/api_paths'
+import { axiosInstance } from '../api'
+import { LOGIN_PATH } from '@/apis/api_paths'
 
 type UserResponse = {
   user: User
   token: string
 }
 
-//회원가입함수
-export async function signUp(
+export async function login(
   email: string,
-  fullName: string,
   password: string
 ): Promise<UserResponse> {
   const requestBody = {
     email,
-    fullName,
     password
   }
 
   const response = await axiosInstance.post<UserResponse>(
-    SIGNUP_PATH,
+    LOGIN_PATH,
     requestBody
   )
 

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useProfileStore } from '@/stores/userProfileStore'
-import { signUp } from '@/apis/signup'
+import { signUp } from '@/apis/auth/signup'
 import * as Styles from './SignupStyles'
 import isPasswordValid from '@/utils/passwordValidator'
 
