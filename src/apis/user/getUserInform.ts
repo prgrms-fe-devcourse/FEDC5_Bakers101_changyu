@@ -1,4 +1,4 @@
-import axiosInstance from './api'
+import axiosInstance from '../api'
 
 import { GET_USER_PROFILE_PATH } from '@/utils/api_paths'
 
@@ -14,4 +14,4 @@ async function getUserInform(id: string) {
   }
 }
 
-export { getUserInform }
+export default getUserInform
