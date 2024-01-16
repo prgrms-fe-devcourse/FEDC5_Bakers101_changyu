@@ -17,6 +17,7 @@ interface User {
   email: string
   createdAt: string
   updatedAt: string
+  username?: string
 }
 
 interface Channel {
@@ -36,7 +37,7 @@ interface Post {
   image?: string
   imagePulicId?: string
   title: string
-  channel: Channel
+  channel: Channel | string
   author: User
   createdAt: string
   updatedAt: string
@@ -50,7 +51,7 @@ interface Like {
   updatedAt: string
 }
 
-interface Commnet {
+interface Comment {
   _id: string
   comment: string
   author: User
@@ -67,6 +68,7 @@ interface Notification {
   post?: string | null // 포스트 id
   follow?: string // 사용자 id
   comment?: Comment
+  like?: Like
   message?: string // 메시지 id
   createdAt: string
   updatedAt: string
@@ -106,4 +108,12 @@ interface Following {
   createdAt: string
   updatedAt: string
   __v: number
+}
+
+
+interface Error {
+  password: string
+  confirmPassword: string
+  fullName: string
+  username: string
 }
