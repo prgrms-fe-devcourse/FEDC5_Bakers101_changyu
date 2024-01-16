@@ -37,8 +37,7 @@ Bakers101은 직접 빵을 굽는 '빵굽족'들을 위한 사용자 참여형 *
 
 
 # Tech & Stack 
-
-<img width="571" alt="image" src="https://github.com/prgrms-fe-devcourse/FEDC5_Bakers101_changyu/assets/40955023/d067b165-a812-413e-b5c6-e17873770599">
+<img width="930" alt="image" src="https://github.com/prgrms-fe-devcourse/FEDC5_Bakers101_changyu/assets/40955023/d873b58e-a8f1-43d1-9376-9a2f07b5e10a">
 
 <br/>
 <br/>
