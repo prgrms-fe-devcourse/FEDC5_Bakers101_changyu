@@ -51,7 +51,9 @@ const CommentList = ({
       {comments.length > 0 ? (
         <ul className="w-full my-3">
           {comments.map((comment) => (
-            <button key={comment._id}>
+            <button
+              key={comment._id}
+              className="w-full text-left">
               <CommentItem
                 comment={comment}
                 onDelete={handleCommentDelete}
